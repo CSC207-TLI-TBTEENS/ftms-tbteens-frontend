@@ -1,25 +1,28 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import EmployeeForm from './Employees/EmployeeForm.js';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <button type="button" className="btn btn-success" data-toggle="modal" data-target="#employeeForm">
+          Add Employee
+        </button> 
+        <div className="modal fade" id="employeeForm" tabindex="-1" role="dialog" aria-labelledby="createNewEmployee" aria-hidden="true">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+            <div className="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Adding New Employee</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div className="modal-content">
+              <EmployeeForm/>
+            </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
