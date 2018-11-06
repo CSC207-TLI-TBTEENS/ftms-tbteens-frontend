@@ -33,7 +33,6 @@ class EmployeeForm extends Component {
             <div className="container">
 	        <div className="row align-items-center justify-content-center h-100">
             <div className="popup-form">
-                
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-row">
                         <div className="form-group col-md-6">
@@ -89,7 +88,7 @@ class EmployeeForm extends Component {
                     </div>
                     <button
                         type="submit"
-                        className="btn btn-primary btn-block"
+                        className="btn btn-submit btn-block"
                     >
                     Create
                     </button>

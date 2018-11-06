@@ -17,7 +17,7 @@ class App extends Component {
               <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div className="modal-content">
+            <div className="modal-body">
               <EmployeeForm/>
             </div>
             </div>

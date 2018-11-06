@@ -17,3 +17,30 @@ code {
   margin-top: 25px;
   margin-bottom: 50px;
 }
+
+.btn-submit {
+  background-color: rgb(160, 218, 113);
+  border-color: rgb(160, 218, 113);
+  color: rgb(53, 46, 66);
+}
+
+.btn-submit:hover, .btn-submit:focus {
+  background-color: rgb(130, 179, 91);
+  border-color: rgb(130, 179, 91);
+  color: rgb(53, 46, 66);
+}
+
+.modal-header {
+  background-color: rgb(90, 85, 121);
+  border-color: rgb(79, 75, 107);
+  color: rgb(203, 200, 228);
+}
+.modal-content {
+  background-color: rgb(32, 30, 46);
+  color: rgb(203, 200, 228);
+}
+
+.close {
+  color: rgb(203, 200, 228);
+  text-shadow: none;
+}
