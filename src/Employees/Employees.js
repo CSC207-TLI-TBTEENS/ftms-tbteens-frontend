@@ -33,7 +33,7 @@ class Employees extends Component {
                             <h1 className="display-4">Welcome!</h1>
                             <hr className="my-4"/>
                             <p>
-                                <button type="button" className="btn btn-success" data-toggle="modal" data-target="#employeeForm">
+                                <button type="button" className="btn btn-submit" data-toggle="modal" data-target="#employeeForm">
                                     Add Employee
                                 </button> 
                             </p>

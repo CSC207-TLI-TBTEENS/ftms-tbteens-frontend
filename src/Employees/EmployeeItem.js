@@ -5,7 +5,6 @@ const EmployeeItem = ({firstname, lastname, email}) => (
         <td>{firstname}</td>
         <td>{lastname}</td>
         <td>{email}</td>
-        <td>X</td>
     </tr>
 )
 export default EmployeeItem;

@@ -13,14 +13,15 @@ class EmployeeList extends Component {
         return (
             <table className="table">
                 <thead>
-                    <tr>
+                    <tr className="table-head">
                         <th scope="col">First</th>
                         <th scope="col">Last</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Delete</th>
                     </tr>
                 </thead>
+                <tbody>
                 {employees}
+                </tbody>
             </table>
         )
     }
