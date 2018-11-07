@@ -19,6 +19,7 @@ class EmployeeForm extends Component {
     
     handleSubmit(e) {
         e.preventDefault();
+        this.props.addEmployee({...this.state});
         this.setState({
             firstname: '',
             lastname: '',

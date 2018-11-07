@@ -1,33 +1,17 @@
 import React, {Component} from 'react';
-import * as apiCalls from './api';
 import EmployeeItem from './EmployeeItem';
 
 class EmployeeList extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            employees: []
-        }
-    }
-
-    componentWillMount() {
-        this.loadEmployees();
-    }
-
-    async loadEmployees() {
-        let employees = await apiCalls.getEmployees();
-        this.setState({employees});
-    }
 
     render() {
-        const employees = this.state.employees.map(emp => (
+        const employees = this.props.employees.map(emp => (
             <EmployeeItem
                 key={emp.id}
                 {...emp}
             />
         ));
         return (
-            <table className="table table-striped">
+            <table className="table">
                 <thead>
                     <tr>
                         <th scope="col">First</th>
