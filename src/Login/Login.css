@@ -1,0 +1,77 @@
+.Button {
+    background-color:rgb(160, 218, 113);
+    border-radius: 1rem;
+}
+
+.Header {
+    background-color:rgb(90, 85, 121);
+    height: 35rem;
+    width: 45rem;
+    margin-left: 18rem;
+    margin-top: 3.5rem;
+    border-radius: 1rem;
+}
+
+.welcome-header {
+    height: 7rem;
+    width: 38rem;
+    margin-left: 4rem;
+    margin-top: 3rem;
+    text-align: center;
+    background-color:rgb(90, 85, 121);
+    font-size: 2rem;
+    border-radius: 1rem;
+    padding: 0.3rem;
+    color: rgb(203, 200, 228);
+    line-height: 4rem;
+}
+
+.field {
+    border-radius: 1rem;
+    margin-left: 12.7rem;
+    width: 20rem;
+    height: 20rem;
+    margin-top: 3rem;
+    background-color: rgb(32, 30, 46);  
+    box-shadow: 0.3rem;
+    padding: 0.3rem;
+}
+
+.field-form {
+    height: 3rem;
+    width: 18.8rem;
+    border-radius: 1rem;
+    background-color: rgb(32, 30, 46);  
+    color: rgb(203, 200, 228);
+    border-color: black;  
+    margin: 0.25rem;
+
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgb(203, 200, 228);
+    opacity: 1; /* Firefox */
+}
+
+.login-button {
+    margin: 2%;
+    margin-left: 40%;
+}
+
+.third-party-login {
+    color: rgb(203, 200, 228);
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.divider {
+    border-color: rgb(203, 200, 228);
+    size: 1rem;
+}
+
+.password-forgot {
+    color: rgb(203, 200, 228);
+    font-size: 80%;
+    margin-top: -1.7rem;
+    margin-left: 10.5rem;
+}
