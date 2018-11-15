@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Employees from './Employees/Employees.js';
+import Entities from './Entities/Entities.js';
 import Login from './Login/Login.js';
-import JobAssignment from './JobAssignment/JobAssignment.js';
+// import JobAssignment from './JobAssignment/JobAssignment.js';
 
 class App extends Component {
 state = {
@@ -24,7 +24,7 @@ state = {
     if (this.state.loggedIn) {
       display = (
         <div>
-          <Employees />
+          <Entities type="Company"/>
         </div>
       )
     }
