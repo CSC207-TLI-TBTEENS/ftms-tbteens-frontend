@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Employees from './Employees/Employees.js';
 import Login from './Login/Login.js';
+import JobAssignment from './JobAssignment/JobAssignment.js';
 
 class App extends Component {
 state = {

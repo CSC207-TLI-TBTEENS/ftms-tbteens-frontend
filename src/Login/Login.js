@@ -15,7 +15,8 @@ const buttonStyle = {
     borderRadius: '1rem',
     width: '5rem',
     height: '2rem',
-    lineHeight: '0.9rem',
+    lineHeight: '0.5rem',
+    color: 'black',
     textAlign: 'flex',
     display: 'block',
     marginLeft: '-0.5rem',
@@ -38,8 +39,8 @@ const Login = (props) => {
                 <div className="login-button">
                     <Button className ="Button" type="primary" style={buttonStyle} onClick={props.click}>Login</Button>
                 </div>
-                <hr className='divider'></hr>
                 <div className="login-google">
+                    <hr className='divider'></hr>
                     <p className="third-party-login">Login using your Google or Facebook account</p>
                     <Federation />
                 </div>     
