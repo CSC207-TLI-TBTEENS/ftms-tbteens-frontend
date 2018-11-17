@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Employees from './Employees/Employees.js';
 import Companies from './Companies/Companies.js';
+import Timesheets from './Timesheets/Timesheets.js'
 import Login from './Login/Login.js';
 // import JobAssignment from './JobAssignment/JobAssignment.js';
 
@@ -25,7 +26,7 @@ state = {
     if (this.state.loggedIn) {
       display = (
         <div>
-          <Companies/>       
+          <Timesheets/>       
         </div>
       )
     }
