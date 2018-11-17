@@ -28,7 +28,7 @@ class Employees extends Component {
     render() {
         return (
         <div className="container">
-            <header className="jumbotron">
+            <header className="jumbotron bg-purple">
                         <div className="container">
                             <h1 className="display-4">Welcome!</h1>
                             <hr className="my-4"/>

@@ -14,11 +14,38 @@ code {
     monospace;
 }
 
-.jumbotron {
+/* Nav */
+
+.bg-purple {
   background-color: rgb(90, 85, 121);
   border-color: rgb(79, 75, 107);
   color: rgb(203, 200, 228);
 }
+
+.navbar a {
+  font-weight: bold;
+  color: rgb(203, 200, 228);
+}
+
+.navbar a:hover {
+  color: rgb(203, 200, 228);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.navbar-brand > img {
+  display: inline-block;
+  height: 30px;
+  margin-bottom: 2px;
+  margin-right: 5px;
+  border-radius: 2px;
+}
+
+.navbar-header {
+  margin: 0 auto;
+}
+
+/* Entities */
 
 .table thead th {
   border-bottom: none;
