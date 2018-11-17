@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 
-class EntityForm extends Component {
+class EmployeeForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            firstName: '',
-            lastEmail: '',
-            emailLogo: '',
-            numberNumber: ''
+            firstname: '',
+            lastname: '',
+            email: '',
+            number: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,25 +19,17 @@ class EntityForm extends Component {
     
     handleSubmit(e) {
         e.preventDefault();
-        this.props.addEntity({...this.state});
+        this.props.addEmployee({...this.state});
         this.setState({
-            firstName: '',
-            lastEmail: '',
-            emailLogo: '',
-            numberNumber: ''
+            firstname: '',
+            lastname: '',
+            email: '',
+            number: ''
         });
       }
     
     render() {
-        const {firstName, lastEmail, emailLogo, numberNumber} = this.state;
-        let [id1, id2, id3, id4] = [this.props.ids[0], 
-                                    this.props.ids[1], 
-                                    this.props.ids[2], 
-                                    this.props.ids[3]]
-        let [ph1, ph2, ph3, ph4] = [this.props.phs[0],
-                                    this.props.phs[1], 
-                                    this.props.phs[2], 
-                                    this.props.phs[3]]
+        const {firstname, lastname, email, number} = this.state;
         return (
             <div className="container">
 	        <div className="row align-items-center justify-content-center h-100">
@@ -45,52 +37,52 @@ class EntityForm extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-row">
                         <div className="form-group col-md-6">
-                            <label htmlFor="firstName">{id1}</label>
+                            <label htmlFor="firstName">First Name</label>
                             <input 
                             type="text"
                             className="form-control"
                             name="firstname"
                             id="firstName" 
-                            placeholder={ph1}
-                            value={firstName}
+                            placeholder="John"
+                            value={firstname}
                             autoComplete="off"
                             onChange={this.handleChange}/>
                         </div>
                         <div className="form-group col-md-6">
-                            <label htmlFor="lastName">{id2}</label>
+                            <label htmlFor="lastName">Last Name</label>
                             <input 
                             type="text"
                             className="form-control"
                             name="lastname"
                             id="lastName" 
-                            placeholder={ph2}
-                            value={lastEmail}
+                            placeholder="Doe"
+                            value={lastname}
                             autoComplete="off"
                             onChange={this.handleChange}/>
                         </div>
                     </div>
                     <div className="form-row">
                         <div className="form-group col-md-6">
-                            <label htmlFor="email">{id3}</label>
+                            <label htmlFor="email">Email</label>
                             <input 
                             type="email"
                             className="form-control"
                             name="email"
                             id="email" 
-                            placeholder={ph3}
-                            value={emailLogo}
+                            placeholder="example@example.com"
+                            value={email}
                             autoComplete="off"
                             onChange={this.handleChange}/>
                         </div>
                         <div className="form-group col-md-6">
-                            <label htmlFor="number">{id4}</label>
+                            <label htmlFor="number">Phone Number</label>
                             <input 
                             type="tel"
                             className="form-control"
                             name="number"
                             id="number" 
-                            placeholder={ph4}
-                            value={numberNumber}
+                            placeholder="289-400-2393"
+                            value={number}
                             autoComplete="off"
                             onChange={this.handleChange}/>
                         </div>
@@ -109,4 +101,4 @@ class EntityForm extends Component {
     }
 }
 
-export default EntityForm;
+export default EmployeeForm;

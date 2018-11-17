@@ -1,21 +1,4 @@
-const EMPLOYEEAPI = "/api/employees/";
 const COMPANYAPI = "/api/companies/";
-
-export async function getEmployees() {
-    return fetch(EMPLOYEEAPI)
-    .then(resp => {return ValidateHTTPStatus(resp)});
-}
-
-export async function createEmployee(input) {
-    return fetch(EMPLOYEEAPI, {
-        method: "post",
-        headers: new Headers({
-            "Content-Type" : "application/json"
-        }),
-        body: JSON.stringify({...input})
-    })
-    .then(resp => {return ValidateHTTPStatus(resp)});
-}
 
 export async function getCompanies() {
     return fetch(COMPANYAPI)
