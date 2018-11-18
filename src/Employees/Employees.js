@@ -22,7 +22,7 @@ class Employees extends Component {
 
     async loadEmployees() {
         let employees = await apiCalls.getEmployees();
-        this.setState({employees : employees, loading : false, employeesShow:employees});
+        this.setState({employees : employees, loading : false, employeesShow:[...employees]});
     }
 
     async addEmployee(employee) {
