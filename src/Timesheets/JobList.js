@@ -4,10 +4,10 @@ import JobItem from './JobItem';
 class JobList extends Component {
 
     render() {
-        const jobs = this.props.jobs.map(emp => (
+        const jobs = this.props.jobs.map(job => (
            <JobItem
-                key={emp.id}
-                {...emp}
+                key={job.id}
+                {...job}
             />
         ));
         return (
@@ -16,6 +16,7 @@ class JobList extends Component {
                     <tr className="table-head">
                         <th scope="col">Name</th>
                         <th scope="col">Client Company</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>

@@ -14,8 +14,10 @@ class Jobs extends Component {
     }
 
     async loadJobs() {
+        let job = {id: 1, jobName: "Sami's Job", clientName: "UofT", description: "This is a new job", tasks: 0};
+        let jobs = [job];
         // let jobs = await apiCalls.getEmployeesJobs();
-        // this.setState({jobs});
+        this.setState({jobs});
     }
 
     render() {
@@ -30,6 +32,7 @@ class Jobs extends Component {
                 <JobList
                     jobs = {this.state.jobs}
                 />
+
             </div>
         )
     }
