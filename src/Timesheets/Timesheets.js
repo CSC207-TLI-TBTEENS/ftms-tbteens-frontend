@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as apiCalls from './api';
 import TimesheetForm from './TimesheetForm';
 import TimesheetList from './TimesheetList';
+import SearchBar from '../Search/Search.js'
 
 class Timesheets extends Component {
     constructor(props) {
@@ -12,34 +13,11 @@ class Timesheets extends Component {
             query: ''
         }
         this.addTimesheet = this.addTimesheet.bind(this);
-        this.search = this.search.bind(this);
+        this.searchRet = this.searchRet.bind(this);
     }
-    search(e){
-        this.setState({[e.target.name]:e.target.value})
-        if (e.target.value != ""){
-            let curtimesheets = this.state.timesheets;
-            let newTimesheet = [];
-            const values = Object.values(curtimesheets)
-            for (let i = 0; i < values.length; i++) {
-                let data = Object.values(values[i])
-                
-
-                for (let j = 1; j < data.length; j++){
-                    console.log(data[j])
-                    console.log(data[j].indexOf(e.target.value))
-                    if (data[j].indexOf(e.target.value) != -1 && !newTimesheet.includes(values[i])){   
-                        newTimesheet.push(values[i])
-                    }
-                }
-                
-            }
-           
-            this.setState({timesheetsShow: [...newTimesheet]});
-    
-        }
-        else{
-            this.setState({timesheetsShow: [...this.state.timesheets]});
-        }
+ 
+    searchRet(data){
+        this.setState({timesheetsShow:[...data]});
     }
 
     componentWillMount() {
@@ -74,20 +52,9 @@ class Timesheets extends Component {
                         </div>
             </header>
             
-            <input 
-                            aria-label="Small"
-                            aria-describedby="inputGroup-sizing-sm"
-                            type="text"
-                            
-                            className="form-control"
-                            name="query"
-                            id="query"
-                            value = {query}
-                            placeholder="search"
-                            autoComplete="off"
-                            onChange={this.search}
-                            />
             
+            <SearchBar data={this.state.timesheets} onchange={this.searchRet}/>
+
             <TimesheetList
                 timesheets = {timesheetsShow}
             />
