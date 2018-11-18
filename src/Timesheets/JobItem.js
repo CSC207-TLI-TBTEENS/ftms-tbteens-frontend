@@ -7,10 +7,10 @@ const JobItem = ({jobName, clientName, jobDescription}) => (
         <td>{clientName}</td>
         <td>
             <center>
-                <button type="button" className="btn btn-secondary mr-1" data-toggle="modal" data-target="#jobDetails">
+                <button type="button" className="btn btn-second mr-1" data-toggle="modal" data-target="#jobDetails">
                     Job Details
                 </button>
-                <button type="button" className="btn btn-primary ml-1" >
+                <button type="button" className="btn btn-main ml-1" >
                     Edit Timesheet
                 </button>
             </center>
@@ -33,10 +33,10 @@ const JobItem = ({jobName, clientName, jobDescription}) => (
                         <p className="detail">{jobDescription}</p>
                      </div>
                      <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary mr-1" data-dismiss="modal">
+                        <button type="button" className="btn btn-second mr-1" data-dismiss="modal">
                             Back
                         </button>
-                        <button type="button" className="btn btn-primary ml-1" >
+                        <button type="button" className="btn btn-main ml-1" >
                             Edit Timesheet
                         </button>
                      </div>
