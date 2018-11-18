@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Employees from './Employees/Employees.js';
+import Companies from './Companies/Companies.js';
 import Login from './Login/Login.js';
+// import JobAssignment from './JobAssignment/JobAssignment.js';
 
 class App extends Component {
 state = {
@@ -23,7 +25,7 @@ state = {
     if (this.state.loggedIn) {
       display = (
         <div>
-          <Employees />
+          <Companies/>       
         </div>
       )
     }
