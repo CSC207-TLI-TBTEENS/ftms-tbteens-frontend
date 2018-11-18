@@ -6,7 +6,6 @@ class JobList extends Component {
     render() {
         const jobs = this.props.jobs.map(job => (
            <JobItem
-                key={job.id}
                 {...job}
             />
         ));

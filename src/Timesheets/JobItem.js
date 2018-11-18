@@ -1,7 +1,8 @@
 import React from 'react';
 import './JobDetails.css';
+import { Link } from 'react-router-dom';
 
-const JobItem = ({jobName, clientName, jobDescription}) => (
+const JobItem = ({jobId, jobName, clientName, jobDescription, jobLocation}) => (
     <tr>
         <td>{jobName}</td>
         <td>{clientName}</td>
@@ -10,9 +11,11 @@ const JobItem = ({jobName, clientName, jobDescription}) => (
                 <button type="button" className="btn btn-second mr-1" data-toggle="modal" data-target="#jobDetails">
                     Job Details
                 </button>
-                <button type="button" className="btn btn-main ml-1" >
-                    Edit Timesheet
-                </button>
+                <Link className="nav-link" to={"/timesheets/edit"}>
+                    <button type="button" className="btn btn-main ml-1" >
+                        Edit Timesheet
+                    </button>
+                </Link>
             </center>
          </td>
 
@@ -31,14 +34,18 @@ const JobItem = ({jobName, clientName, jobDescription}) => (
                         <p className="detail">{clientName}</p>
                         <h6>Description</h6>
                         <p className="detail">{jobDescription}</p>
+                        <h6>Location</h6>
+                        <p className="detail">{jobLocation}</p>
                      </div>
                      <div className="modal-footer">
                         <button type="button" className="btn btn-second mr-1" data-dismiss="modal">
                             Back
                         </button>
-                        <button type="button" className="btn btn-main ml-1" >
-                            Edit Timesheet
-                        </button>
+                        <Link className="nav-link" to={"/timesheets/edit"}>
+                            <button type="button" className="btn btn-main ml-1" >
+                                Edit Timesheet
+                            </button>
+                        </Link>
                      </div>
                  </div>
              </div>
