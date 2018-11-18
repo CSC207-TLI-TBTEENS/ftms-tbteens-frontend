@@ -11,17 +11,17 @@ class Submit extends Component {
     render() {
         return (
             <div className="container">
-                <header className="jumbotron">
+                <header className="jumbotron bg-purple">
                     <div className="container">
                         <h1 className="display-4">Review and Submit</h1>
-                        <hr className="my-4"/>
-
                     </div>
                 </header>
 
-                <SubmitList
-                    employees = {this.props.jobDetails}
-                />
+                <SubmitList/>
+
+                <button type="button" className="btn btn-submit" data-toggle="modal" data-target="#employeeForm">
+                    Submit
+                </button>
             </div>
         );
     }
