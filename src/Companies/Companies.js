@@ -3,15 +3,18 @@ import * as apiCalls from './api';
 import CompanyForm from './CompanyForm';
 import CompanyList from './CompanyList';
 import Loading from '../components/Loading';
+import SearchBar from '../components/Search.js'
 
 class Companies extends Component {
     constructor(props) {
         super(props);
         this.state = {
             companies: [],
+            companiesShow:[],
             loading: true
         }
         this.addCompany= this.addCompany.bind(this);
+        this.searchRet = this.searchRet.bind(this);
     }
     componentWillMount() {
         this.loadCompanies();
@@ -19,7 +22,7 @@ class Companies extends Component {
 
     async loadCompanies() {
         let companies= await apiCalls.getCompanies();
-        this.setState({companies : companies, loading : false});
+        this.setState({companies : companies, loading : false, companiesShow: [...companies]});
     }
 
     async addCompany(company) {
@@ -27,12 +30,19 @@ class Companies extends Component {
         this.setState({companies : [...this.state.companies, newCompany]});
     }
 
+    searchRet(data){
+        this.setState({companiesShow : [...data]});
+    }
+
     render() {
         let content;
         if (this.state.loading) {
             content = <Loading/>;
         } else {
-            content = <CompanyList companies = {this.state.companies} />;
+            content = (<div> 
+                    <SearchBar data={this.state.companies} onchange={this.searchRet}/>
+                    <CompanyList companies = {this.state.companiesShow} />
+                    </div>);
         }
         return (
             <div className="container">
