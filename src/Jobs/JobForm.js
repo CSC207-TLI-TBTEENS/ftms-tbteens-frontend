@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class TimesheetForm extends Component {
+class JobForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -21,7 +21,7 @@ class TimesheetForm extends Component {
     
     handleSubmit(e) {
         e.preventDefault();
-        this.props.addTimesheet({...this.state});
+        this.props.addJob({...this.state});
         this.setState({
             taskName:'',
             siteName:'',
@@ -131,4 +131,4 @@ class TimesheetForm extends Component {
     }
 }
 
-export default TimesheetForm;
+export default JobForm;

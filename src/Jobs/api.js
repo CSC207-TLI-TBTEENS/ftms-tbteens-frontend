@@ -1,20 +1,11 @@
-const TIMESHEETAPI = "/api/timesheets/";
+const JOBAPI = "/api/jobs/";
 
-export async function getTimesheets() {
-    return fetch(TIMESHEETAPI)
+export async function getJobs() {
+    return fetch(JOBAPI)
     .then(resp => {return ValidateHTTPStatus(resp)});
 }
 
-export async function createTimesheet(input) {
-    return fetch(TIMESHEETAPI, {
-        method: "post",
-        headers: new Headers({
-            "Content-Type" : "application/json"
-        }),
-        body: JSON.stringify({...input})
-    })
-    .then(resp => {return ValidateHTTPStatus(resp)});
-}
+
 
 function ValidateHTTPStatus(resp) {
     if (!resp.ok) {

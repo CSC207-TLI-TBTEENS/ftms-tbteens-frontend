@@ -7,6 +7,7 @@ import {
 import Employees from "../Employees/Employees";
 import Companies from "../Companies/Companies";
 import Login from "../Login/Login.js";
+import Jobs from "../Jobs/Jobs.js";
 
 const Main = props => {
     return (
@@ -22,6 +23,7 @@ const Main = props => {
                         <Route exact path="/login" component={Login} />
                         <Route exact path="/employees" component={Employees} />
                         <Route exact path="/companies" component={Companies} />
+                        <Route exact path="/jobs" component={Jobs} />
                     </Switch>
                 </div>
                 </CSSTransition>
