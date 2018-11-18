@@ -54,6 +54,17 @@ code {
   margin: 0 auto;
 }
 
+#g-search-button {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  position: relative;
+  left: -22px;
+  top: 3px;
+
+  background-image: ".\images\Search.png"
+}
+
 /* Entities */
 
 .table thead th {
@@ -123,11 +134,12 @@ code {
   text-shadow: none;
 }
 
-
-.form-control {
-  width: 20%;
-  float: right;
-
+.search {
+    background-color: white;
+    border-radius: 4px;
+    padding-left: 40px;
+    padding: 5px 20px;
+    float: right;
 }
 /* Transitions */
 .page {

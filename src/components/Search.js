@@ -35,11 +35,12 @@ class SearchBar extends Component {
 
     render (){
         return(
-        <input 
+        <div>
+            <input 
             aria-label="Small"
             aria-describedby="inputGroup-sizing-sm"
             type="text"
-            className="form-control mb-2"
+            className="search mb-2"
             name="query"
             id="query"
             value = {this.state.query}
@@ -47,6 +48,9 @@ class SearchBar extends Component {
             autoComplete="off"
             onChange={this.searching}
             />
+            <span class="fas fa-stroopwafel"></span>
+        </div>
+        
         )
     }
 }
