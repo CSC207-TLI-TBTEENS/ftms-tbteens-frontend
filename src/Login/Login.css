@@ -47,6 +47,9 @@
     margin: 0.25rem;
 
 }
+.field-form:focus{
+    outline:none
+}
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: rgb(203, 200, 228);
