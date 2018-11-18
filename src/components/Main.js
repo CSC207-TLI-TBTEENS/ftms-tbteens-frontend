@@ -6,6 +6,7 @@ import {
   } from 'react-transition-group';
 import Employees from "../Employees/Employees";
 import Companies from "../Companies/Companies";
+import Login from "../Login/Login.js";
 
 const Main = props => {
     return (
@@ -18,6 +19,7 @@ const Main = props => {
                 >
                 <div className="page">
                     <Switch location={location}>
+                        <Route exact path="/login" component={Login} />
                         <Route exact path="/employees" component={Employees} />
                         <Route exact path="/companies" component={Companies} />
                     </Switch>

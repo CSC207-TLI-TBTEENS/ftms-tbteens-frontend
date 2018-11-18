@@ -1,7 +1,8 @@
 import React from 'react';
 import './Login.css';
-import { Button, Checkbox } from 'element-react';
+import { Button, Checkbox, AutoComplete } from 'element-react';
 import Federation from './FedLogin.js';
+import Logo from "../images/norweld-logo.png";
 
 const rememberStyle = {
     color: 'rgb(203, 200, 228)',
@@ -9,35 +10,13 @@ const rememberStyle = {
     marginLeft: '3%'
 }
 
-const buttonStyle = {
-    borderRadius: '1rem',
-    backgroundColor: 'rgb(160, 218, 113)',
-    borderRadius: '1rem',
-    width: '5rem',
-    height: '2rem',
-    lineHeight: '0.5rem',
-    color: 'black',
-    textAlign: 'flex',
-    display: 'block',
-    marginLeft: '-0.5rem',
-    borderColor: 'rgb(90, 85, 121)'
-}
-
-const containerStyle = {
-    backgroundColor: "rgb(90, 85, 121)",
-    marginTop: "5vh",
-    borderTadius: "1vh",
-    color: "rgb(203, 200, 228)",
-    textAlign: "center",
-    height: "38rem",
-    width: "28rem"
-}
-
 const Login = (props) => {
     return (
+        <div className="container">
         <div className="row">
-            <div className="container">    
-                <p className="welcome-text"> Welcome to Norweld! <br/> Please login below. </p>
+            <div className="container container-style">
+                <img className="logo-header pt-3" src={Logo}/>    
+                {/* <p className="welcome-text"> Welcome to Norweld! <br/> Please login below. </p> */}
                 <div className="field">
                     <form className="login-form">
                         <div className="form-group">
@@ -61,6 +40,7 @@ const Login = (props) => {
                     </div>     
                 </div>
             </div>
+        </div>
         </div>
         
     )
