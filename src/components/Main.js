@@ -7,7 +7,11 @@ import {
 import Employees from "../Employees/Employees";
 import Companies from "../Companies/Companies";
 import Login from "../Login/Login.js";
+<<<<<<< HEAD
 import Jobs from "../Jobs/Jobs.js";
+=======
+import JobAssignment from "../JobAssignment/JobAssignment.js";
+>>>>>>> bebba8aa322ba72ff16ca902f52d47323c5d1933
 
 const Main = props => {
     return (
@@ -23,7 +27,11 @@ const Main = props => {
                         <Route exact path="/login" component={Login} />
                         <Route exact path="/employees" component={Employees} />
                         <Route exact path="/companies" component={Companies} />
+<<<<<<< HEAD
                         <Route exact path="/jobs" component={Jobs} />
+=======
+                        <Route exact path="/jobassign" component={JobAssignment} />
+>>>>>>> bebba8aa322ba72ff16ca902f52d47323c5d1933
                     </Switch>
                 </div>
                 </CSSTransition>
