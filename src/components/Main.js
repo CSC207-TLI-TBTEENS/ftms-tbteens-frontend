@@ -2,7 +2,7 @@ import React from "react";
 import { Switch, Route, withRouter, Redirect } from "react-router-dom";
 import Employees from "../Employees/Employees";
 import Companies from "../Companies/Companies";
-import Timesheets from ".../Timesheets/Jobs";
+import Timesheets from "../Timesheets/Jobs";
 
 const Main = props => {
     return (
