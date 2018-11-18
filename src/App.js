@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Entities from './Entities/Entities.js';
 import Login from './Login/Login.js';
-// import JobAssignment from './JobAssignment/JobAssignment.js';
+import JobAssignment from './JobAssignment/JobAssignment.js';
 
 class App extends Component {
 state = {
@@ -30,7 +30,7 @@ state = {
     }
 
     return (
-      display
+      <JobAssignment />
     );
   }
 }

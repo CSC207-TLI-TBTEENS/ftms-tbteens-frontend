@@ -1,0 +1,75 @@
+.el-tree-node__content {
+    border-radius: 0.5rem
+}
+
+.list-group-item-action {
+    width: 25vw
+}
+
+.card {
+    width: 20vw;
+    border: none
+}
+
+.accordion {
+    height: 75vh;
+    overflow-y: scroll;
+}
+
+.card-header {
+    background-color: rgb(90, 85, 121);
+    text-align: center;
+    border-bottom: none
+}
+
+.card-body {
+    font-size: 1vw;
+}
+
+.btn-link {
+    font-size: 1.2vw;
+    width: -1vw;
+    color: rgb(203, 200, 228);
+}
+
+.btn-link:hover {
+    color: rgb(160, 218, 113);
+}
+
+.card-title {
+    color: white;
+    font-size: 2.3rem
+}
+
+.card-subtitle {
+    color: rgb(203, 200, 228);
+    font-size: 1.6rem
+}
+
+.card-text{
+    color: white;
+    font-size: 1.1rem
+}
+
+.el-icon-delete:hover {
+    color: rgb(160, 218, 113)
+}
+
+.job-manage-header {
+    color: rgb(203, 200, 228);
+    text-align: center;
+    font-size: 2vw
+}
+
+.list-header {
+    color: rgb(203, 200, 228);
+    font-size: 2vw
+}
+
+/* .employee-head {
+    margin-left: 0.5vw
+}
+
+.job-head {
+    margin-left: 4vw
+} */
