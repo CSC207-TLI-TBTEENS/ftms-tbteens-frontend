@@ -18,17 +18,14 @@ class SearchBar extends Component {
             for (let i = 0; i < values.length; i++) {
                 let data = Object.values(values[i])
                 for (let j = 1; j < data.length; j++){
-                    console.log(typeof data[j])
                     if (data[j].toLowerCase().indexOf(e.target.value.toLowerCase()) != -1 && !newData.includes(values[i])){   
                         newData.push(values[i]);
                     }
                 }
                 
             }
-            console.log(newData)
             this.props.onchange(newData);
-            
-    
+
         }
         else{
             this.props.onchange(this.props.data);
