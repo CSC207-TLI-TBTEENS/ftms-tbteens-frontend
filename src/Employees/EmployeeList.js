@@ -3,8 +3,9 @@ import EmployeeItem from './EmployeeItem';
 
 class EmployeeList extends Component {
     sortEmployees(key) {
-        this.props.sortFunc(key);
+        this.props.sortFunc(key, this.props.toggle);
     }
+
     render() {
         let employees = this.props.employees.map(emp => (
             <EmployeeItem
@@ -16,7 +17,6 @@ class EmployeeList extends Component {
             <table className="table">
                 <thead>
                     <tr className="table-head">
-                        {/*<th scope="col">First</th>*/}
                         <th scope="col" onClick={() => this.sortEmployees('firstname')}>First</th>
                         <th scope="col" onClick={() => this.sortEmployees('lastname')}>Last</th>
                         <th scope="col" onClick={() => this.sortEmployees('email')}>Email</th>
