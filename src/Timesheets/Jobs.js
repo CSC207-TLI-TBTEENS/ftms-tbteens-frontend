@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import JobList from './JobList';
 
 class Jobs extends Component {
     constructor(props) {
@@ -23,7 +24,6 @@ class Jobs extends Component {
                 <header className="jumbotron">
                     <div className="container">
                         <h1 className="display-4">Job List</h1>
-                        <hr className="my-4"/>
                     </div>
                 </header>
 
