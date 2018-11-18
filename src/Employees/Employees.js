@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import * as apiCalls from './api';
 import EmployeeForm from './EmployeeForm';
 import EmployeeList from './EmployeeList';
+import Loading from '../components/Loading';
 
 class Employees extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            employees: []
+            employees: [],
+            loading: true
         }
         this.addEmployee = this.addEmployee.bind(this);
     }
@@ -17,7 +19,7 @@ class Employees extends Component {
 
     async loadEmployees() {
         let employees = await apiCalls.getEmployees();
-        this.setState({employees});
+        this.setState({employees : employees, loading : false});
     }
 
     async addEmployee(employee) {
@@ -26,6 +28,12 @@ class Employees extends Component {
     }
 
     render() {
+        let content;
+        if (this.state.loading) {
+            content = <Loading/>;
+        } else {
+            content = <EmployeeList employees = {this.state.employees} />;
+        }
         return (
         <div className="container">
             <header className="jumbotron bg-purple">
@@ -40,9 +48,7 @@ class Employees extends Component {
                         </div>
             </header>
 
-            <EmployeeList
-                employees = {this.state.employees}
-            />
+            {content}
 
             <div className="modal fade" id="employeeForm" tabindex="-1" role="dialog" aria-labelledby="createNewEmployee" aria-hidden="true">
             <div className="modal-dialog" role="document">

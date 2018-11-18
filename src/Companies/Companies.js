@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as apiCalls from './api';
 import CompanyForm from './CompanyForm';
 import CompanyList from './CompanyList';
+import Loading from '../components/Loading';
 
 class Companies extends Component {
     constructor(props) {
@@ -29,7 +30,7 @@ class Companies extends Component {
     render() {
         let content;
         if (this.state.loading) {
-            content = <div>Loading...</div>;
+            content = <Loading/>;
         } else {
             content = <CompanyList companies = {this.state.companies} />;
         }
