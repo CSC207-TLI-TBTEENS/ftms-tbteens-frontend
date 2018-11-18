@@ -111,3 +111,30 @@ code {
   color: rgb(203, 200, 228);
   text-shadow: none;
 }
+
+/* Transitions */
+.page {
+  position: absolute;
+  top: 100px;
+  left: 0;
+  right: 0;
+}
+.fade-appear
+.fade-enter {
+  opacity: 0;
+  z-index: 1;
+}
+.fade-appear-active
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 400ms linear 200ms;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit.fade-exit-active {
+  opacity: 0;
+  transition: opacity 200ms linear;
+}

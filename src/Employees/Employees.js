@@ -30,7 +30,7 @@ class Employees extends Component {
         <div className="container">
             <header className="jumbotron bg-purple">
                         <div className="container">
-                            <h1 className="display-4">Welcome!</h1>
+                            <h1 className="display-4">Employees</h1>
                             <hr className="my-4"/>
                             <p>
                                 <button type="button" className="btn btn-submit" data-toggle="modal" data-target="#employeeForm">
