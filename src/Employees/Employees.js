@@ -12,6 +12,7 @@ class Employees extends Component {
             loading: true
         }
         this.addEmployee = this.addEmployee.bind(this);
+        this.sortEmployee = this.sortEmployee.bind(this);
     }
     componentWillMount() {
         this.loadEmployees();
@@ -27,12 +28,25 @@ class Employees extends Component {
         this.setState({employees : [...this.state.employees, newEmployee]});
     }
 
+    async sortEmployee(key) {
+        console.log(key);
+        let copyEmployees = [...this.state.employees];
+        let employees = await copyEmployees.sort(function(a, b) {
+                        if (a[key] < b[key])
+                            return -1;
+                        else if (a[key] > b[key])
+                            return 1;
+                        return 0; 
+                        });
+        this.setState({employees});
+    }
+
     render() {
         let content;
         if (this.state.loading) {
             content = <Loading/>;
         } else {
-            content = <EmployeeList employees = {this.state.employees} />;
+            content = <EmployeeList employees = {this.state.employees} sortFunc = {this.sortEmployee}/>;
         }
         return (
         <div className="container">
