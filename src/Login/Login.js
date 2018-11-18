@@ -23,29 +23,46 @@ const buttonStyle = {
     borderColor: 'rgb(90, 85, 121)'
 }
 
+const containerStyle = {
+    backgroundColor: "rgb(90, 85, 121)",
+    marginTop: "5vh",
+    borderTadius: "1vh",
+    color: "rgb(203, 200, 228)",
+    textAlign: "center",
+    height: "38rem",
+    width: "28rem"
+}
+
 const Login = (props) => {
     return (
-        <div className="Header">
-            <h1 className="welcome-header">
-            Welcome to the Construction Company! <br/> Please login below.</h1>
-            <div className="field">
-                <input className="field-form" type="text" placeholder=" Email..."/>
-                <br/>
-                <input className="field-form" type="text" placeholder=" Password..." />
-                <div className="remember-info">
-                    <Checkbox checked style={rememberStyle}> Remember me</Checkbox>
-                    <p className='password-forgot'>Forgot your password?</p>
+        <div className="row">
+            <div className="container">    
+                <p className="welcome-text"> Welcome to Norweld! <br/> Please login below. </p>
+                <div className="field">
+                    <form className="login-form">
+                        <div className="form-group">
+                            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email"/>
+                        </div>
+                        <div className="form-group">
+                            <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                        </div>
+                        <div className="form-group form-check">
+                            <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
+                            <label className="form-check-label" for="exampleCheck1">Remember me</label>
+                        </div>
+                        <div className="login-submit">
+                            <button type="submit" className="btn btn-submit">Login</button>
+                        </div>
+                    </form>
+                    <div className="third-party-buttons">
+                        <hr className="divider"/>
+                        <p className="third-party-login">Login using your Google or Facebook account</p>
+                        <Federation />
+                    </div>     
                 </div>
-                <div className="login-button">
-                    <Button className ="Button" type="primary" style={buttonStyle} onClick={props.click}>Login</Button>
-                </div>
-                <div className="login-google">
-                    <hr className='divider'></hr>
-                    <p className="third-party-login">Login using your Google or Facebook account</p>
-                    <Federation />
-                </div>     
             </div>
         </div>
+        
     )
 }
 
