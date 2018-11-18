@@ -4,16 +4,10 @@ import { Button, Checkbox, AutoComplete } from 'element-react';
 import Federation from './FedLogin.js';
 import Logo from "../images/norweld-logo.png";
 
-const rememberStyle = {
-    color: 'rgb(203, 200, 228)',
-    fontSize: '80%',
-    marginLeft: '3%'
-}
-
 const Login = (props) => {
     return (
         <div className="container">
-        <div className="row">
+        <div className="row align-items-center">
             <div className="container container-style">
                 <img className="logo-header pt-3" src={Logo}/>    
                 {/* <p className="welcome-text"> Welcome to Norweld! <br/> Please login below. </p> */}
