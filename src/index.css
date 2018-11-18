@@ -48,6 +48,10 @@ code {
   color: rgb(203, 200, 228);
 }
 
+input[type=text]:focus {
+  border: 3px solid #555;
+}
+
 .table tbody tr:nth-child(even):hover {
   background-color: rgb(66, 62, 90);
   color: rgb(203, 200, 228);
@@ -83,4 +87,10 @@ code {
 .close {
   color: rgb(203, 200, 228);
   text-shadow: none;
+}
+.searchControl input[type=text] {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
 }
