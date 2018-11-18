@@ -1,5 +1,3 @@
-"use strict";
-
 import React, { Component } from 'react';
 import * as apiCalls from './api';
 import TimesheetForm from './TimesheetForm';
@@ -11,48 +9,37 @@ class Timesheets extends Component {
         this.state = {
             timesheets: [],
             timesheetsShow: [],
-            query: '',
-            update: 'false'
+            query: ''
         }
         this.addTimesheet = this.addTimesheet.bind(this);
         this.search = this.search.bind(this);
-        this.handleChanging = this.handleChanging.bind(this);
     }
     search(e){
-        e.preventDefault();
-        if (this.state.query != ''){
+        this.setState({[e.target.name]:e.target.value})
+        if (e.target.value != ""){
             let curtimesheets = this.state.timesheets;
             let newTimesheet = [];
-            console.log(...curtimesheets)
-            let i,j;
-            newTimesheet = curtimesheets.filter(timesheet => (
-                timesheet.taskName.indexOf(this.state.query) != -1
-            ))
-            
-            // curtimesheets.forEach(element => {
-            //     if(element
-            // }); (i = 0; i < curtimesheets.length; i++) {
-            //     curTimesheet = curtimesheets[î];
-            //     if(curTime)
-            //     for (j=0; j< curtimesheets[i].length; j++){
-            //         if (curtimesheets[i].indexOf(this.state.query) != -1){
-            //             console.log(curtimesheets[i])
-            //             
-            //         }
-            //     }
+            const values = Object.values(curtimesheets)
+            for (let i = 0; i < values.length; i++) {
+                let data = Object.values(values[i])
+                
+
+                for (let j = 1; j < data.length; j++){
+                    console.log(data[j])
+                    console.log(data[j].indexOf(e.target.value))
+                    if (data[j].indexOf(e.target.value) != -1 && !newTimesheet.includes(values[i])){   
+                        newTimesheet.push(values[i])
+                    }
+                }
+                
+            }
            
             this.setState({timesheetsShow: [...newTimesheet]});
     
         }
         else{
-            this.setState({timesheetsShow: [...this.state.timesheets] })
+            this.setState({timesheetsShow: [...this.state.timesheets]});
         }
-    }
-    handleChanging(e) {
-        
-        this.setState({[e.target.name]:e.target.value})
-        
-        
     }
 
     componentWillMount() {
@@ -71,14 +58,8 @@ class Timesheets extends Component {
     }
 
     render() {
-        /*if (this.state.update){
-            const newerTimesheet = [...this.state.newTimesheet];
-            let update = false
-            this.setState({timesheets: [...newerTimesheet], update: 'false'});
-            
-            
-        
-        }*/
+        const {query, timesheets, timesheetsShow} = this.state;
+
         return (
         <div className="container">
             <header className="jumbotron">
@@ -92,24 +73,23 @@ class Timesheets extends Component {
                             </p>
                         </div>
             </header>
-            <form onSubmit={this.search}>
+            
             <input 
                             aria-label="Small"
                             aria-describedby="inputGroup-sizing-sm"
                             type="text"
-                            className="searchControl"
+                            
+                            className="form-control"
                             name="query"
                             id="query"
-                            value = {this.state.query}
+                            value = {query}
                             placeholder="search"
                             autoComplete="off"
-                            onChange={this.handleChanging}
-                            onkeydown={this.search}
+                            onChange={this.search}
                             />
-            </form>
             
             <TimesheetList
-                timesheets = {this.state.timesheetsShow}
+                timesheets = {timesheetsShow}
             />
 
             <div className="modal fade" id="timesheetForm" tabindex="-1" role="dialog" aria-labelledby="createNewTimesheet" aria-hidden="true">
