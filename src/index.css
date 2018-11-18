@@ -124,7 +124,7 @@ code {
 /* Transitions */
 .page {
   position: absolute;
-  top: 100px;
+  margin-top: 20px;
   left: 0;
   right: 0;
 }
@@ -136,7 +136,7 @@ code {
 .fade-appear-active
 .fade-enter.fade-enter-active {
   opacity: 1;
-  transition: opacity 400ms linear 200ms;
+  transition: opacity 500ms linear 250ms;
 }
 
 .fade-exit {
@@ -145,7 +145,7 @@ code {
 
 .fade-exit.fade-exit-active {
   opacity: 0;
-  transition: opacity 200ms linear;
+  transition: opacity 250ms linear;
 }
 
 /* Loading Rings  */

@@ -13,7 +13,7 @@ const Main = props => {
             <TransitionGroup>
                 <CSSTransition
                     key={location.key}
-                    timeout={600}
+                    timeout={750}
                     classNames="fade"
                 >
                 <div className="page">
