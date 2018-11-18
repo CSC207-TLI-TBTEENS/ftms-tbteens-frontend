@@ -123,11 +123,12 @@ code {
   text-shadow: none;
 }
 
-<<<<<<< HEAD
+
 .form-control {
   width: 20%;
   float: right;
-=======
+
+}
 /* Transitions */
 .page {
   position: absolute;
@@ -228,5 +229,5 @@ code {
   height: 200px !important;
   -webkit-transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
   transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
->>>>>>> master
+
 }
