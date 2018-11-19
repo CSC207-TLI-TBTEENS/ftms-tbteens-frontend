@@ -6,44 +6,49 @@ class SubmitList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            fields: ["Start Time", "End Time", "Travel Time", "Costs"],
-            current: ["10:12", "13:09", "0:30", "$350"]
+            details: [
+                { name: "Start Time", value: "10:12"},
+                { name: "End Time", value: "13:09"},
+                { name: "Travel Time", value: "00:30"},
+                { name: "Costs", value: "$350"}
+            ]
         }
     }
 
-    handleInputChange(event) {
-        this.setState({current: event.target.value})
+    handleInputChange = (event) => {
+        this.setState({
+            current: [
+                event.target.value,
+                "13:09",
+                "0:30",
+                "$350"
+            ]
+        })
     }
 
     createTable = () => {
         let items = [];
-        for (let i = 0; i < this.state.fields.length; i++) {
+        for (let i = 0; i < this.state.details.length; i++) {
             items.push(<SubmitItem
-                field={this.state.fields[i]}
-                current={this.state.current[i]}
+                name={this.state.details[i].name}
+                value={this.state.details[i].value}
                 handleChange={this.handleInputChange}
             />)
         }
         return items
     }
 
+    createTable2 = () =>{
+        return this.state.details.map(detail => {
+            return <SubmitItem name={detail.name} value={detail.value} handleChange={this.handleInputChange}/>
+        })
+    }
+
     render() {
         return (
             <div>
-
                 <table className="table">
-                    {/*/!*TODO: Fill with more fields*!/*/}
-                    {/*<SubmitItem*/}
-                        {/*field="Start Time"*/}
-                        {/*current="10:12"*/}
-                    {/*/>*/}
-                    {/*<SubmitItem*/}
-                        {/*field="End Time"*/}
-                        {/*current="13:53"*/}
-                    {/*/>*/}
-                    {/*<SubmitItem field="Travel Time"/>*/}
-                    {/*<SubmitItem field="Costs"/>*/}
-                    {this.createTable()}
+                    {this.createTable2()}
                 </table>
             </div>
         )

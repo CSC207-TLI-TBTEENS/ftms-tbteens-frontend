@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './Submit.css';
 
 import SubmitList from './SubmitList';
