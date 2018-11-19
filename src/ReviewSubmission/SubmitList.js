@@ -7,40 +7,34 @@ class SubmitList extends Component {
         super(props);
         this.state = {
             details: [
-                { name: "Start Time", value: "10:12"},
-                { name: "End Time", value: "13:09"},
-                { name: "Travel Time", value: "00:30"},
-                { name: "Costs", value: "$350"}
+                {name: "Start Time", value: "10:12"},
+                {name: "End Time", value: "13:09"},
+                {name: "Travel Time", value: "00:30"},
+                {name: "Costs", value: "$350"}
             ]
         }
     }
 
-    handleInputChange = (event) => {
+    handleInputChange = (event, index) => {
+        const detailChanged = {...this.state.details[index]};
+        detailChanged.value = event.target.value;
+
+        const newDetails = [...this.state.details];
+        newDetails[index] = detailChanged;
+
         this.setState({
-            current: [
-                event.target.value,
-                "13:09",
-                "0:30",
-                "$350"
-            ]
+            details: newDetails
         })
     }
 
     createTable = () => {
-        let items = [];
-        for (let i = 0; i < this.state.details.length; i++) {
-            items.push(<SubmitItem
-                name={this.state.details[i].name}
-                value={this.state.details[i].value}
-                handleChange={this.handleInputChange}
-            />)
-        }
-        return items
-    }
-
-    createTable2 = () =>{
-        return this.state.details.map(detail => {
-            return <SubmitItem name={detail.name} value={detail.value} handleChange={this.handleInputChange}/>
+        return this.state.details.map((detail, index) => {
+            return <SubmitItem
+                name={detail.name}
+                value={detail.value}
+                handleChange={(event) => this.handleInputChange(event, index)}
+                key={index}
+            />
         })
     }
 
@@ -48,7 +42,7 @@ class SubmitList extends Component {
         return (
             <div>
                 <table className="table">
-                    {this.createTable2()}
+                    {this.createTable()}
                 </table>
             </div>
         )
