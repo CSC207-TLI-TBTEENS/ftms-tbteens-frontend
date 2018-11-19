@@ -13,6 +13,7 @@ class Submit extends Component {
             <div className="container">
                 <header className="jumbotron bg-purple">
                     <h1 className="display-4">Review and Submit</h1>
+                    {/*TODO: Change this "Task Name" to be from props*/}
                     <p className="h4">Task Name</p>
                 </header>
 

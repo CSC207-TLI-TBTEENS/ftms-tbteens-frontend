@@ -1,10 +1,16 @@
-.row-head {
-    text-align: left;
-    vertical-align: center;
+.user-input {
+    color: rgb(90, 85, 121);
+    border-color: rgb(79, 75, 107);
+    background-color: rgb(203, 200, 228);
 }
 
-.user-input {
-    background-color: rgb(90, 85, 121);
-    border-color: rgb(79, 75, 107);
-    color: rgb(203, 200, 228);
+.user-input:focus {
+    background-color: rgb(203, 200, 228);
+}
+
+
+.table td.fit,
+.table th.fit {
+    white-space: nowrap;
+    width: 1%;
 }

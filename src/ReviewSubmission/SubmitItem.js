@@ -1,13 +1,18 @@
 import React from 'react';
 import './Submit.css';
 
-const SubmitItem = ({field}) => (
+const SubmitItem = ( props ) => (
     <tr className="bg-purple">
-        <th className="align-middle"><h5>{field}</h5></th>
-        <td><input type="text" className="form-control user-input" aria-label="Sizing example input"
-                   aria-describedby="inputGroup-sizing-default"/></td>
+        <td className="align-middle fit"><h5>{props.field}</h5></td>
+        <td>
+            {/*TODO: Auto fill the inputs*/}
+            <input type="text"
+                   className="form-control user-input"
+                   value={props.current}
+                   onChange={props.handleChange.bind(this)}
+            />
+        </td>
     </tr>
-
 )
 
 export default SubmitItem;
