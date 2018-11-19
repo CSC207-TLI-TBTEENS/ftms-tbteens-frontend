@@ -14,12 +14,10 @@ class SearchBar extends Component {
         this.setState({[e.target.name]:e.target.value})
         if (e.target.value != ""){
             let newData = [];
-            console.log(this.props.data)
             const values = Object.values(this.props.data)
             
             for (let i = 0; i < values.length; i++) {
                 let data = Object.values(values[i])
-                console.log(data)
                 for (let j = 1; j < data.length; j++){
                     let tableString = data[j]
                     if (typeof data[j] === typeof "String"){
