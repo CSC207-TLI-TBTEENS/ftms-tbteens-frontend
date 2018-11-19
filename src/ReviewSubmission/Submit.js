@@ -12,14 +12,13 @@ class Submit extends Component {
         return (
             <div className="container">
                 <header className="jumbotron bg-purple">
-                    <div className="container">
-                        <h1 className="display-4">Review and Submit</h1>
-                    </div>
+                    <h1 className="display-4">Review and Submit</h1>
+                    <p className="h4">Task Name</p>
                 </header>
 
                 <SubmitList/>
 
-                <button type="button" className="btn btn-submit" data-toggle="modal" data-target="#employeeForm">
+                <button type="button" className="btn btn-submit">
                     Submit
                 </button>
             </div>

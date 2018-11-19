@@ -1,0 +1,10 @@
+.row-head {
+    text-align: left;
+    vertical-align: center;
+}
+
+.user-input {
+    background-color: rgb(90, 85, 121);
+    border-color: rgb(79, 75, 107);
+    color: rgb(203, 200, 228);
+}

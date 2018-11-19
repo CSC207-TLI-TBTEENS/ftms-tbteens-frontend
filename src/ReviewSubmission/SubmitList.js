@@ -7,10 +7,12 @@ class SubmitList extends Component {
     render() {
         return (
             <div>
-                <SubmitItem field="Start Time"/>
-                <SubmitItem field="End Time"/>
-                <SubmitItem field="Travel Time"/>
-                <SubmitItem field="Costs"/>
+                <table className="table">
+                    <SubmitItem field="Start Time"/>
+                    <SubmitItem field="End Time"/>
+                    <SubmitItem field="Travel Time"/>
+                    <SubmitItem field="Costs"/>
+                </table>
             </div>
         )
     }

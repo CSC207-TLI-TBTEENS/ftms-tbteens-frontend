@@ -1,13 +1,12 @@
 import React from 'react';
+import './Submit.css';
 
 const SubmitItem = ({field}) => (
-    <div className="input-group mb-3">
-        <div className="input-group-prepend">
-            <span className="input-group-text" id="inputGroup-sizing-default">{field}</span>
-        </div>
-        <input type="text" className="form-control" aria-label="Sizing example input"
-               aria-describedby="inputGroup-sizing-default"/>
-    </div>
+    <tr className="bg-purple">
+        <th className="align-middle"><h5>{field}</h5></th>
+        <td><input type="text" className="form-control user-input" aria-label="Sizing example input"
+                   aria-describedby="inputGroup-sizing-default"/></td>
+    </tr>
 
 )
 
