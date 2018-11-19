@@ -1,52 +1,38 @@
 import React from 'react';
-import { Button } from 'element-react';
 
-const style = {
-    borderRadius: '1rem',
-    backgroundColor: 'rgb(90, 85, 121)',
-    color: 'white',
-    margin: '0.3rem',
-    width: '7rem',
-    height: '2.5rem',
-    textAlign: 'left',
-    marginLeft: "2rem"
+const google = {
+    textAlign: "center",
+    width: "10rem",
+    backgroundColor: "#bd5045",
+    borderColor: "#ffffff",
+    color: "#ffffff",
 }
 
-const style2 = {
-    borderRadius: '1rem',
-    backgroundColor: '#38569E',
-    color: 'white',
-    margin: '0.3rem',
-    width: '7rem',
-    height: '2.5rem',
-    textAlign: 'left',
-    marginLeft: '1.5rem'
-}
-
-const imageStyle = {
-    width: '1.5rem',
-    height: '1.5rem',
-    marginTop: '0.75rem',
-    marginLeft: '6.8rem',
-    position: 'absolute'
-}
-
-const imageStyle2 = {
-    width: '1.5rem',
-    height: '1.5rem',
-    marginTop: '0.75rem',
-    marginLeft: '6.5rem',
-    position: 'absolute',
-    borderRadius: '30%'
+const facebook = {
+    textAlign: "center",
+    width: "10rem",
+    backgroundColor: "#38569E",
+    borderColor: "rgb(71, 117, 209)",
+    color: "rgb(203, 200, 228)",
 }
 
 const fedButton = () => {
     return (
         <div>
-            <img src={require('./google-logo.png')} style={imageStyle}></img>
-            <Button type="primary" style={style}>Google </Button>
-            <img src={require('./facebook-logo.png')} style={imageStyle2}></img>
-            <Button type="primary" style={style2}>Facebook </Button>
+            <div className="row justify-content-center mb-1">
+                <div className="col-xs-12 col-md-6">
+                    <button type="button" class="btn btn-primary" style={google}>
+                        Google
+                    </button>
+                </div>
+            </div>
+            <div className="row justify-content-center">
+                <div className="col-xs-12 col-md-6">
+                    <button type="button" class="btn btn-primary" style={facebook}>
+                        Facebook
+                    </button>
+                </div>
+            </div>
         </div>
     )
 }
