@@ -5,14 +5,22 @@ import SubmitItem from './SubmitItem';
 class SubmitList extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            details: [
-                {name: "Start Time", value: "10:12"},
-                {name: "End Time", value: "13:09"},
-                {name: "Travel Time", value: "00:30"},
-                {name: "Costs", value: "$350"}
-            ]
+            details: props.details
         }
+
+        if (this.state.details === null || this.state.details.length === 0) {
+            this.state = {
+                details: [
+                    {name: "Start Time", value: "10:12"},
+                    {name: "End Time", value: "13:09"},
+                    {name: "Travel Time", value: "00:30"},
+                    {name: "Costs", value: "$350"}
+                ]
+            }
+        }
+
     }
 
     handleInputChange = (event, index) => {
@@ -40,7 +48,7 @@ class SubmitList extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container bg-purple">
                 <table className="table">
                     {this.createTable()}
                 </table>
