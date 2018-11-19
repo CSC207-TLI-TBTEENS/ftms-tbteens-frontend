@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import validateEmail from "../EmailValidation/ValidateEmail";
 
 class CompanyForm extends Component {
     constructor(props) {
@@ -100,6 +101,9 @@ class CompanyForm extends Component {
             </div>
             </div> 
         )
+        {
+            ("#submit").on("click", validateEmail);
+        }
     }
 }
 
