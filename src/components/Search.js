@@ -22,9 +22,12 @@ class SearchBar extends Component {
                 console.log(data)
                 for (let j = 1; j < data.length; j++){
                     let tableString = data[j]
-                    if (tableString.indexOf(e.target.value) != -1 && !newData.includes(values[i])){   
-                        newData.push(values[i]);
+                    if (typeof data[j] === typeof "String"){
+                        if (tableString.indexOf(e.target.value) != -1 && !newData.includes(values[i])){   
+                            newData.push(values[i]);
+                        }
                     }
+                    
                 }
                 
             }
@@ -48,7 +51,7 @@ class SearchBar extends Component {
             name="query"
             id="query"
             value = {this.state.query}
-            placeholder="search"
+            placeholder="Search..."
             autoComplete="off"
             onChange={this.searching}
             />
