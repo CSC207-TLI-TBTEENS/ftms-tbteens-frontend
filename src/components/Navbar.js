@@ -26,7 +26,7 @@ class Navbar extends Component {
                                 <Link className="nav-link" to={"/companies"}> Companies </Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to={"/jobs"}> Jobs </Link>
+                                <Link className="nav-link" to={"/jobsview"}> Jobs </Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" to={"/jobassign"}> Job Assignment </Link>

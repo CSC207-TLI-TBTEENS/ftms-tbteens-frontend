@@ -7,7 +7,7 @@ import {
 import Employees from "../Employees/Employees";
 import Companies from "../Companies/Companies";
 import Login from "../Login/Login.js";
-import Jobs from "../Jobs/Jobs.js";
+import JobsView from "../JobsView/Jobs.js";
 import JobAssignment from "../JobAssignment/JobAssignment.js";
 
 const Main = props => {
@@ -24,7 +24,7 @@ const Main = props => {
                         <Route exact path="/login" component={Login} />
                         <Route exact path="/employees" component={Employees} />
                         <Route exact path="/companies" component={Companies} />
-                        <Route exact path="/jobs" component={Jobs} />
+                        <Route exact path="/jobsview" component={JobsView} />
                         <Route exact path="/jobassign" component={JobAssignment} />
                     </Switch>
                 </div>
