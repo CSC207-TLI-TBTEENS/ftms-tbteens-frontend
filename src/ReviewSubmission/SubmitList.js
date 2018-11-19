@@ -48,7 +48,7 @@ class SubmitList extends Component {
 
     render() {
         return (
-            <div className="container bg-purple">
+            <div className="container bg-purple rounded">
                 <table className="table">
                     {this.createTable()}
                 </table>

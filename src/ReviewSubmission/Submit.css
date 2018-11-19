@@ -8,9 +8,9 @@
     background-color: rgb(203, 200, 228);
 }
 
-
 .table td.fit,
 .table th.fit {
     white-space: nowrap;
-    width: 1%;
+    width: 15%;
+    text-align: right;
 }
