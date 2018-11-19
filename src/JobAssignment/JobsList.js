@@ -7,6 +7,10 @@ const style = {
     backgroundColor: "rgb(160, 218, 113)"
 }
 
+const cardStyle = {
+    width: "15vw"
+}
+
 const JobsList = (props) => {
     let num = 1;
     return (
@@ -16,7 +20,7 @@ const JobsList = (props) => {
                     props.jobs.map(job => {
                         num++;
                         return (
-                            <div class="card">
+                            <div class="card" style={cardStyle}>
                                 <div class="card-header" id="headingOne">
                                 <h5 class="mb-0">
                                     <button onClick={props.taskHandler.bind(this, job)}class="btn btn-link" type="button" data-toggle="collapse" data-target={"#job" + num} aria-expanded="false" aria-controls={"job" + num}>

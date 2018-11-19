@@ -17,11 +17,21 @@ class Navbar extends Component {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav mr-auto">
                             <li className="nav-item">
+                                <Link className="nav-link" to={"/login"}> Login </Link>
+                            </li>
+                            <li className="nav-item">
                                 <Link className="nav-link" to={"/employees"}> Employees </Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" to={"/companies"}> Companies </Link>
                             </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to={"/jobs"}> Jobs </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to={"/jobassign"}> Job Assignment </Link>
+                            </li>
+                           
                         </ul>
                     </div>
                 </div>

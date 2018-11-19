@@ -7,7 +7,7 @@
 }
 
 .card {
-    width: 20vw;
+    width: 25vw;
     border: none
 }
 
@@ -38,17 +38,17 @@
 
 .card-title {
     color: white;
-    font-size: 2.3rem
+    font-size: 2vw
 }
 
 .card-subtitle {
     color: rgb(203, 200, 228);
-    font-size: 1.6rem
+    font-size: 1.2vw
 }
 
 .card-text{
     color: white;
-    font-size: 1.1rem
+    font-size: 1vw
 }
 
 .el-icon-delete:hover {
