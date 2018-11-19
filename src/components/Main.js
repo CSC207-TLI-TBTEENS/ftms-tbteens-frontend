@@ -9,6 +9,7 @@ import Companies from "../Companies/Companies";
 import Login from "../Login/Login.js";
 import Jobs from "../Jobs/Jobs.js";
 import JobAssignment from "../JobAssignment/JobAssignment.js";
+import Submit from "../ReviewSubmission/Submit.js";
 
 const Main = props => {
     return (
@@ -26,6 +27,7 @@ const Main = props => {
                         <Route exact path="/companies" component={Companies} />
                         <Route exact path="/jobs" component={Jobs} />
                         <Route exact path="/jobassign" component={JobAssignment} />
+                        <Route exact path="/review" component={Submit} />
                     </Switch>
                 </div>
                 </CSSTransition>
