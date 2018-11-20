@@ -6,17 +6,14 @@ import Loading from '../components/Loading';
 import SearchBar from '../components/Search.js'
 
 class Employees extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
             employees: [],
             employeesShow:[],
-            loading: true,
-            listToggle: 0
+            loading: true
         }
         this.addEmployee = this.addEmployee.bind(this);
-        this.sortEmployee = this.sortEmployee.bind(this);
         this.searchRet = this.searchRet.bind(this);
     }
     componentWillMount() {
@@ -85,7 +82,6 @@ class Employees extends Component {
         
         return listToggle;
     }
-
     render() {
         let content;
         if (this.state.loading) {
@@ -93,7 +89,7 @@ class Employees extends Component {
         } else {
             content = (<div>
                     <SearchBar data={this.state.employees} onchange={this.searchRet}/>
-                    <EmployeeList employees = {this.state.employeesShow} sortFunc = {this.sortEmployee} toggle = {this.state.listToggle}/> 
+                    <EmployeeList employees = {this.state.employeesShow} /> 
                 </div>);
         }
         return (
@@ -114,12 +110,12 @@ class Employees extends Component {
 
             {content}
 
-            <div className="modal fade" id="employeeForm" tabIndex="-1" role="dialog" aria-labelledby="createNewEmployee" aria-hidden="true">
+            <div className="modal fade" id="employeeForm" tabindex="-1" role="dialog" aria-labelledby="createNewEmployee" aria-hidden="true">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                 <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">Adding New Employee</h5>
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                <h5 class="modal-title" id="exampleModalLabel">Adding New Employee</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
                 </div>

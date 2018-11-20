@@ -7,12 +7,14 @@ import {
 import Employees from "../Employees/Employees";
 import Companies from "../Companies/Companies";
 import Login from "../Login/Login.js";
-import Jobs from "../Jobs/Jobs.js";
+import JobsView from "../JobsView/Jobs.js";
 import JobAssignment from "../JobAssignment/JobAssignment.js";
+import Submit from "../ReviewSubmission/Submit.js";
+import Timesheets from "../Timesheets/Jobs";
 
 const Main = props => {
     return (
-        <Route render={({location}) => ( 
+        <Route render={({location}) => (
             <TransitionGroup>
                 <CSSTransition
                     key={location.key}
@@ -24,8 +26,10 @@ const Main = props => {
                         <Route exact path="/login" component={Login} />
                         <Route exact path="/employees" component={Employees} />
                         <Route exact path="/companies" component={Companies} />
-                        <Route exact path="/jobs" component={Jobs} />
+                        <Route exact path="/jobsview" component={JobsView} />
                         <Route exact path="/jobassign" component={JobAssignment} />
+                        <Route exact path="/review" component={Submit} />
+                        <Route exact path="/timesheets" component={Timesheets}/>
                     </Switch>
                 </div>
                 </CSSTransition>

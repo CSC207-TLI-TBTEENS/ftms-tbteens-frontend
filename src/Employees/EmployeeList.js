@@ -2,12 +2,9 @@ import React, {Component} from 'react';
 import EmployeeItem from './EmployeeItem';
 
 class EmployeeList extends Component {
-    sortEmployees(key) {
-        this.props.sortFunc(key, this.props.toggle);
-    }
 
     render() {
-        let employees = this.props.employees.map(emp => (
+        const employees = this.props.employees.map(emp => (
             <EmployeeItem
                 key={emp.id}
                 {...emp}
@@ -17,9 +14,9 @@ class EmployeeList extends Component {
             <table className="table">
                 <thead>
                     <tr className="table-head">
-                        <th scope="col" onClick={() => this.sortEmployees('firstname')}>First</th>
-                        <th scope="col" onClick={() => this.sortEmployees('lastname')}>Last</th>
-                        <th scope="col" onClick={() => this.sortEmployees('email')}>Email</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Email</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,7 +25,6 @@ class EmployeeList extends Component {
             </table>
         )
     }
-
 }
 
 export default EmployeeList;

@@ -75,47 +75,47 @@ export class JobAssignment extends Component {
 
     render() {
         return (
-            <div className="container h-100">
-                <div className="row justify-content-center align-items-center">
-                    <div className="col-4 align-items-center job-manage-header">
+            <div className="container h-80">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-4 align-items-center job-manage-header">
                         Jobs Manager
                     </div>
                 </div>
-                <div className="row justify-content-between align-items-center">
-                    <div className="col-3 align-items-center job-manage-header">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-3 align-items-center job-manage-header">
                         Employees
                     </div>
-                    <div className="col-6 align-items-center job-manage-header">
+                    <div class="col-6 align-items-center job-manage-header">
                     </div>
-                    <div className="col-3 justify-content-end job-manage-header">
+                    <div class="col-3 justify-content-end job-manage-header">
                         Jobs
                     </div>
                 </div>
-                <div className="row justify-content-center h-100">
-                    <div className="col-3 d-flex justify-content-center">
+                <div class="row justify-content-center h-100">
+                    <div className="col-md-3 d-flex justify-content-center">
                             <EmployeesList employees={this.state.employees} 
                                 employeeHandler={this.handleEmployeeChosen}/> 
                     </div>
-                    <div className="col-6">
+                    <div className="col-md-6">
                         <div className="row align-items-center justify-content-center" style={style}>
                         </div>
                         <div className="row align-items-center justify-content-center">
-                            <div className="col-12 mb-3 d-flex justify-content-center">
+                            <div className="col-md-12 mb-3 d-flex justify-content-center">
                                 <TaskConfirmation currentJob={this.state.taskToConfirm}/>
                             </div>
                         </div>
                         <div className="row align-items-center justify-content-center">
-                            <div className="col-12 mb-3 d-flex justify-content-center">
+                            <div className="col-md-12 mb-3 d-flex justify-content-center">
                                 <EmployeeConfirmation currentEmployee={this.state.employeeToConfirm}/>
                             </div>
                          </div>
                         <div className="row justify-content-center">
-                            <div className="col-12 d-flex justify-content-center">
+                            <div className="col-md-12 d-flex justify-content-center">
                                 <Confirmation />
                             </div>
                         </div>
                     </div> 
-                    <div className="col-3 d-flex justify-content-center">
+                    <div className="col-md-3 d-flex justify-content-center">
                         <JobsList jobs={this.state.jobs} taskHandler={this.handleTaskChosen}/>
                     </div>
                 </div>

@@ -3,18 +3,26 @@ import './Login.css';
 import { Button, Checkbox, AutoComplete } from 'element-react';
 import Federation from './FedLogin.js';
 import Logo from "../images/norweld-logo.png";
+import validateEmail from "../EmailValidation/ValidateEmail.js"
+
+
+const rememberStyle = {
+    color: 'rgb(203, 200, 228)',
+    fontSize: '80%',
+    marginLeft: '3%'
+}
 
 const Login = (props) => {
     return (
         <div className="container">
-        <div className="row align-items-center">
+        <div className="row">
             <div className="container container-style">
                 <img className="logo-header pt-3" src={Logo}/>    
                 {/* <p className="welcome-text"> Welcome to Norweld! <br/> Please login below. </p> */}
                 <div className="field">
                     <form className="login-form">
                         <div className="form-group">
-                            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email"/>
+                            <input type="email" name="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email"/>
                         </div>
                         <div className="form-group">
                             <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"/>
@@ -24,7 +32,7 @@ const Login = (props) => {
                             <label className="form-check-label" for="exampleCheck1">Remember me</label>
                         </div>
                         <div className="login-submit">
-                            <button type="submit" className="btn btn-submit">Login</button>
+                            <button type="submit" id = "login" className="btn btn-submit">Login</button>
                         </div>
                     </form>
                     <div className="third-party-buttons">
@@ -36,8 +44,10 @@ const Login = (props) => {
             </div>
         </div>
         </div>
-        
     )
+    {
+        ("#submit").on("click", validateEmail);
+    }
 }
 
 export default Login;

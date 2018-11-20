@@ -54,17 +54,6 @@ code {
   margin: 0 auto;
 }
 
-#g-search-button {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  position: relative;
-  left: -22px;
-  top: 3px;
-
-  background-image: ".\images\Search.png"
-}
-
 /* Entities */
 
 .table thead th {
@@ -119,6 +108,18 @@ code {
   color: rgb(53, 46, 66);
 }
 
+.btn-main, .btn-main:hover, .btn-main:focus {
+    background-color: rgb(203, 200, 228);
+    border-color: rgb(79, 75, 107);
+    color: rgb(53, 46, 66);
+}
+
+.btn-secondary, .btn-secondary:hover, .btn-secondary:focus {
+    background-color: rgb(90, 85, 121);
+    border-color: rgb(79, 75, 107);
+    color: rgb(203, 200, 228);
+}
+
 .modal-header {
   background-color: rgb(90, 85, 121);
   border-color: rgb(79, 75, 107);
@@ -135,20 +136,16 @@ code {
 }
 
 .search {
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-shadow: inset 0 1px 3px #ddd;
-    border-radius: 4px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-
+    color: rgb(90, 85, 121);
+    border-color: rgb(79, 75, 107);
+    background-color: rgb(203, 200, 228);
     padding: 5px 20px;
+    border-radius: 5px;
     float: right;
+}
+
+.search:focus {
+  background-color: rgb(203, 200, 228);
 }
 /* Transitions */
 .page {
