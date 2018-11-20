@@ -33,12 +33,14 @@ class Employees extends Component {
         let newEmployee = await apiCalls.createEmployee(employee);
         this.setState({employees : [...this.state.employees, newEmployee]});
     }
+
     searchRet(data){
-        this.setState({employeesShow:[...data]});
+        //this.setState({employeesShow:[...data]});
+        this.setState({employees: [...data]});
     }
 
     async sortEmployee(key, toggleState) {
-        let copyEmployees = [...this.state.employees];
+        let copyEmployees = [...this.state.defaultEmployees];
         let employees = [...this.state.defaultEmployees];
         if (toggleState === 0)
             employees = await this.sortByAscending(copyEmployees, key);
