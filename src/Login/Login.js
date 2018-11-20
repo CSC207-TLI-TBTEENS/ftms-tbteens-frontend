@@ -3,7 +3,6 @@ import './Login.css';
 import { Button, Checkbox, AutoComplete } from 'element-react';
 import Federation from './FedLogin.js';
 import Logo from "../images/norweld-logo.png";
-import validateEmail from "../EmailValidation/ValidateEmail.js"
 
 
 const rememberStyle = {
@@ -45,9 +44,6 @@ const Login = (props) => {
         </div>
         </div>
     )
-    {
-        ("#submit").on("click", validateEmail);
-    }
 }
 
 export default Login;
