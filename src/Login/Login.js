@@ -6,10 +6,16 @@ import Logo from "../images/norweld-logo.png";
 import validateEmail from "../EmailValidation/ValidateEmail.js"
 
 
+const rememberStyle = {
+    color: 'rgb(203, 200, 228)',
+    fontSize: '80%',
+    marginLeft: '3%'
+}
+
 const Login = (props) => {
     return (
         <div className="container">
-        <div className="row align-items-center">
+        <div className="row">
             <div className="container container-style">
                 <img className="logo-header pt-3" src={Logo}/>    
                 {/* <p className="welcome-text"> Welcome to Norweld! <br/> Please login below. </p> */}

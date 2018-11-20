@@ -10,10 +10,11 @@ import Login from "../Login/Login.js";
 import JobsView from "../JobsView/Jobs.js";
 import JobAssignment from "../JobAssignment/JobAssignment.js";
 import Submit from "../ReviewSubmission/Submit.js";
+import Timesheets from "../Timesheets/Jobs";
 
 const Main = props => {
     return (
-        <Route render={({location}) => ( 
+        <Route render={({location}) => (
             <TransitionGroup>
                 <CSSTransition
                     key={location.key}
@@ -28,6 +29,7 @@ const Main = props => {
                         <Route exact path="/jobsview" component={JobsView} />
                         <Route exact path="/jobassign" component={JobAssignment} />
                         <Route exact path="/review" component={Submit} />
+                        <Route exact path="/timesheets" component={Timesheets}/>
                     </Switch>
                 </div>
                 </CSSTransition>
