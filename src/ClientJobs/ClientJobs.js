@@ -27,6 +27,12 @@ class ClientJobs extends Component {
                 <header className="jumbotron bg-purple">
                     <div className="container">
                         <h1 className="display-4">Client Job List</h1>
+                        <hr className="my-4"/>
+                        <p>
+                            <button type="button" className="btn btn-submit" data-toggle="modal" data-target="#employeeForm">
+                                Add Job
+                            </button>
+                        </p>
                     </div>
                 </header>
 
