@@ -10,7 +10,6 @@ class Employees extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            defaultEmployees: [],
             employees: [],
             employeesShow:[],
             loading: true,
@@ -26,7 +25,7 @@ class Employees extends Component {
 
     async loadEmployees() {
         let employees = await apiCalls.getEmployees();
-        this.setState({defaultEmployees: employees, employees : employees, loading : false, employeesShow:[...employees]});
+        this.setState({employees : employees, loading : false, employeesShow:[...employees]});
     }
 
     async addEmployee(employee) {
@@ -35,20 +34,23 @@ class Employees extends Component {
     }
 
     searchRet(data){
-        //this.setState({employeesShow:[...data]});
-        this.setState({employees: [...data]});
+        this.setState({employeesShow: [...data]});
     }
 
     async sortEmployee(key, toggleState) {
-        let copyEmployees = [...this.state.defaultEmployees];
-        let employees = [...this.state.defaultEmployees];
-        if (toggleState === 0)
-            employees = await this.sortByAscending(copyEmployees, key);
-        else if (toggleState === 1)
-            employees = await this.sortByDescending(copyEmployees, key);
+        let employees = [...this.state.employees];
+        let employeesShow = [...this.state.employeesShow];
+        if (toggleState === 0) {
+            employees = await this.sortByAscending(employees, key);
+            employeesShow = await this.sortByAscending([...this.state.employeesShow], key);
+        }
+        else if (toggleState === 1) {
+            employees = await this.sortByDescending(employees, key);
+            employeesShow = await this.sortByDescending([...this.state.employeesShow], key);
+        }
 
         let listToggle = await this.incrementToggle();
-        this.setState({employees: employees, listToggle: listToggle});
+        this.setState({employees: employees, employeesShow: employeesShow, listToggle: listToggle});
     }
 
     async sortByAscending(arr, key) {
@@ -79,7 +81,7 @@ class Employees extends Component {
 
     async incrementToggle() {
         let listToggle = this.state.listToggle;
-        listToggle = (listToggle !== 2) ? listToggle + 1 : 0;
+        listToggle = listToggle ? 0 : 1;
         
         return listToggle;
     }
