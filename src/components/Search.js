@@ -41,7 +41,7 @@ class SearchBar extends Component {
             aria-label="Small"
             aria-describedby="inputGroup-sizing-sm"
             type="text"
-            className="search mb-2"
+            className="search mb-1"
             name="query"
             id="query"
             value = {this.state.query}

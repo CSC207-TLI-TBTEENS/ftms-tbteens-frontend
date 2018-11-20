@@ -11,7 +11,7 @@ const JobItem = ({jobId, jobName, clientName, jobDescription, jobLocation}) => (
                 <button type="button" className="btn btn-second mr-1" data-toggle="modal" data-target="#jobDetails">
                     Job Details
                 </button>
-                <Link className="nav-link" to={"/timesheets/edit"}>
+                <Link to={"/timesheets/edit"}>
                     <button type="button" className="btn btn-main ml-1" >
                         Edit Timesheet
                     </button>
