@@ -15,6 +15,9 @@
     text-align: left;
 }
 
-.y-padded {
-    padding-top: 10px;
+form div.row {
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
 }

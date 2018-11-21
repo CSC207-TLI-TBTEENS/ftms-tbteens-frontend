@@ -5,12 +5,15 @@ import './Submit.css';
 class Submit extends Component {
     constructor(props) {
         super(props);
+        const regexTime = "([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]";
+        const regexHour = "[0-9]+:[0-9]{2}";
+        const regexMoney = "[$]{0,1}[0-9]*(,[0-9]{3})*(.[0-9]{2}){0,1}";
         this.state = {
             details:
-                [{name: "Start Time", value: "12:34", inputRegex: "[0-2]*[0-9]:[0-9]{2}"},
-                {name: "End Time", value: "23:45", inputRegex: "[0-2]*[0-9]:[0-9]{2}"},
-                {name: "Travel Time", value: "00:00", inputRegex: "[0-9]+:[0-9]{2}"},
-                {name: "Costs", value: "1,000,000", inputRegex: "[$]{0,1}[0-9]*(,[0-9]{3})*(.[0-9]{2}){0,1}"}]
+                [{name: "Start Time", value: "12:34", inputRegex: regexTime},
+                {name: "End Time", value: "23:45", inputRegex: regexTime},
+                {name: "Travel Time", value: "00:00", inputRegex: regexHour},
+                {name: "Costs", value: "1,000,000", inputRegex: regexMoney}]
         }
     }
 

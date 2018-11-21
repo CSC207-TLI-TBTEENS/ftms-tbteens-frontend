@@ -1,6 +1,4 @@
 import React from 'react';
-import './Submit.css';
-
 
 const SubmitItem = ({name, pattern, handleChange, value}) => (
     <div className="form-group row">

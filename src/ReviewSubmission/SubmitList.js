@@ -37,7 +37,7 @@ class SubmitList extends Component {
     render() {
         return (
             <div className="container bg-purple rounded">
-                <div className="container y-padded">
+                <div className="container">
                     <form>
                         {this.createForm()}
                     </form>
