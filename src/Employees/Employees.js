@@ -89,6 +89,63 @@ class Employees extends Component {
         
         return listToggle;
     }
+
+    setEmployeeViewing = (firstname, lastname, email, phone) => {
+        this.setState({employeeViewed: [
+            {label: "First Name", value: firstname}, 
+            {label: "Last Name", value: lastname}, 
+            {label: "Email", value: email}, 
+            {label: "Number", value: phone}
+        ]})
+    }
+
+    formChangeHandler = (event, index) => {
+        const changed = {...this.state.employeeViewed[index]};
+        changed.value = event.target.value;
+
+        const newEmployeeViewed = [...this.state.employeeViewed];
+        newEmployeeViewed[index] = changed;
+
+        this.setState({
+            employeeViewed: newEmployeeViewed    
+        })
+    }
+
+    async confirmDeletion(id, firstname, lastname) {
+        let deleted = false;
+        console.log(this);
+        await MessageBox.confirm('This action will remove EMPLOYEE #' + id + ' ' + firstname + ' ' + lastname + ' from the database. Continue?', 'Warning', {
+            confirmButtonText: 'OK',
+            cancelButtonText: 'Cancel',
+            type: 'warning'
+        }).then(async() => {
+            deleted = true;
+            await apiCalls.deleteEmployee(id);
+            await Message({
+              type: 'success',
+              message: 'Deleted EMPLOYEE #' + id + ' ' + firstname + ' ' + lastname + ' successfully!'
+            });
+        }).catch(() => {
+            Message({
+              type: 'info',
+              message: "Deletion cancelled!"
+            });
+        });
+        console.log(deleted)
+        if (deleted) {
+            let currentEmployees = [...this.state.employees];
+            for (let i = 0; i < currentEmployees.length; i++) {
+                if (currentEmployees[i].id == id) {
+                    currentEmployees.splice(i, 1);
+                    break;
+                }
+            };
+            this.setState({employeesShow: currentEmployees, employees: currentEmployees});
+        }
+        console.log(this.state);
+        console.log(this.state.currentEmployees)
+    }
+
     render() {
         let content;
         if (this.state.loading) {
