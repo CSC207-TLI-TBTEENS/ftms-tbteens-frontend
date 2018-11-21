@@ -180,7 +180,7 @@ class Employees extends Component {
         if (deleted) {
             let currentEmployees = [...this.state.employees];
             for (let i = 0; i < currentEmployees.length; i++) {
-                if (currentEmployees[i].id == id) {
+                if (currentEmployees[i].id === id) {
                     currentEmployees.splice(i, 1);
                     break;
                 }
