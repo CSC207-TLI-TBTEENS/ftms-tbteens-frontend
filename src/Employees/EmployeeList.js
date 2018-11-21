@@ -9,7 +9,6 @@ class EmployeeList extends Component {
                 {...emp}
                 viewHandler = {this.props.viewHandler}
                 deletionHandler = {this.props.deletionHandler}
-                curr = {this.props.parent}  
             />
         ));
 
@@ -41,7 +40,12 @@ class EmployeeList extends Component {
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary save-changes-btn">Save changes</button>
+                                <button onClick={this.props.editHandler.bind(this.props.parent, 
+                                        emp.id, this.props.employeeViewed[0].value, 
+                                        this.props.employeeViewed[1].value, 
+                                        this.props.employeeViewed[2].value, 
+                                        this.props.employeeViewed[3].value)}
+                                type="button" class="btn btn-primary save-changes-btn">Save changes</button>
                             </div>
                         </div>
                     </div>

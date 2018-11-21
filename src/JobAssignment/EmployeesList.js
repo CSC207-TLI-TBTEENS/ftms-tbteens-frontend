@@ -25,8 +25,9 @@ const EmployeesList = (props) => {
 
                                 <div id={"employee" + num} class="collapse multi-collapse" aria-labelledby="headingOne" data-parent="#accordionExample2">
                                 <div class="card-body" style={style}>
-                                    {/* <p>EMPLOYEE ID: {employee.id}</p>
-                                    <p>EMPLOYEE SKILL: {employee.skill}</p> */}
+                                    <p>EMPLOYEE ID: {employee.id}</p>
+                                    <p>EMPLOYEE EMAIL: {employee.email}</p>
+                                    <p>EMPLOYEE NUMBER: {employee.number}</p>
                                 </div>
                                 </div>
                             </div>
