@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SubmitItem = ({name, pattern, handleChange, value, errorMsg}) => (
+const SubmitItem = ({name, pattern, handleChange, value}) => (
     <div className="form-group row">
         <label htmlFor="colFormLabel" className="col-sm-2 col-form-label"><h4>{name}</h4></label>
         <div className="col-sm-10">
@@ -10,9 +10,7 @@ const SubmitItem = ({name, pattern, handleChange, value, errorMsg}) => (
                 value={value} 
                 onChange={handleChange} 
                 pattern={pattern}/>
-            <div className="form-control-feedback form-error">
-                {errorMsg}
-            </div>
+            <div className="form-control-feedback form-error"></div>
         </div>
     </div>
 )

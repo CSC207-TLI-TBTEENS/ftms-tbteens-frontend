@@ -46,7 +46,6 @@ class Submit extends Component {
                         <hr className="my-4"/>
                         {/*TODO: Change this "Task Name" to be from props*/}
                         <p className="h4">Task Name</p>
-                        <p id="par"></p>
                     </div>
                 </header>
 
