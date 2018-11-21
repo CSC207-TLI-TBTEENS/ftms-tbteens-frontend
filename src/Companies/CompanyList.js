@@ -11,18 +11,20 @@ class CompanyList extends Component {
             />
         ));
         return (
-            <table className="table">
-                <thead>
-                    <tr className="table-head">
-                        <th scope="col">Logo</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Contact Email</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {companies}
-                </tbody>
-            </table>
+            <div className="table-responsive">
+                <table className="table">
+                    <thead>
+                        <tr className="table-head">
+                            <th scope="col">Logo</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Contact Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {companies}
+                    </tbody>
+                </table>
+            </div>            
         )
     }
 }

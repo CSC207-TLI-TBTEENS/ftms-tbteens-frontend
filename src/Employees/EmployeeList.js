@@ -11,18 +11,20 @@ class EmployeeList extends Component {
             />
         ));
         return (
-            <table className="table">
-                <thead>
-                    <tr className="table-head">
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Email</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {employees}
-                </tbody>
-            </table>
+            <div className="table-responsive">
+                <table className="table">
+                    <thead>
+                        <tr className="table-head">
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {employees}
+                    </tbody>
+                </table>
+            </div>
         )
     }
 }
