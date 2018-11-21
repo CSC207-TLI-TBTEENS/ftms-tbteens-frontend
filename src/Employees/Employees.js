@@ -18,7 +18,9 @@ class Employees extends Component {
                             {label: "Email", value: null}, 
                             {label: "Phone", value: null}],
             loading: true,
-            listToggle: 0
+            listToggle: 0,
+            changeKey: true,
+            previousKey: ''
         }
         this.addEmployee = this.addEmployee.bind(this);
         this.searchRet = this.searchRet.bind(this);
@@ -45,8 +47,11 @@ class Employees extends Component {
     }
 
     async sortEmployees(key) {
-        let sortedList = await sorter.sortTable([...this.state.employees], [...this.state.employeesShow], key, this.state.listToggle);
-        this.setState({employees: sortedList[0], employeesShow: sortedList[1], listToggle: sortedList[2]});
+        let changeKey = (key !== this.state.previousKey) ? true : this.state.changeKey;
+        let sortedList = await sorter.sortTable([...this.state.employees], [...this.state.employeesShow],
+                         key, this.state.listToggle, changeKey);
+        this.setState({employees: sortedList[0], employeesShow: sortedList[1], 
+                        listToggle: sortedList[2], changeKey: !changeKey, previousKey: key});
     }
 
     setEmployeeViewing = (firstname, lastname, email, phone) => {

@@ -1,17 +1,22 @@
-export async function sortTable(mainArray, searchArray, key, toggleState) {
+export async function sortTable(mainArray, searchArray, key, toggleState, changeKey) {
     let sortedMainArray = [...mainArray];
     let sortedSearchArray = [...searchArray];
+    let newChangeKey = changeKey
 
-    if (toggleState === 0) {
+    if (toggleState === 0 || changeKey === true) {
        sortedMainArray = await sortByAscending(sortedMainArray, key);
        sortedSearchArray = await sortByAscending(sortedSearchArray, key);
     }
+
     else if (toggleState === 1) {
         sortedMainArray = await sortByDescending(sortedMainArray, key);
         sortedSearchArray = await sortByDescending(sortedSearchArray, key);
     }
 
-    let newToggleState = await incrementToggle(toggleState);
+    // if changeKey was true
+    let newToggleState = 1;
+    if (changeKey === false)
+        newToggleState = await incrementToggle(toggleState);
     
     return [sortedMainArray, sortedSearchArray, newToggleState];
 }
