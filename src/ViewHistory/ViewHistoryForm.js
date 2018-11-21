@@ -56,7 +56,7 @@ class ViewHistoryForm extends Component {
 
                             <div className="form-row">
                                 <div className="form-group col-md-6">
-                                    <label htmlFor="number">Date</label>
+                                    <label htmlFor="DateInfo">Date</label>
                                     <input
                                         type="date"
                                         className= "test"
@@ -70,7 +70,7 @@ class ViewHistoryForm extends Component {
 
                             <div className="form-row">
                                 <div className="form-group col-md-6">
-                                    <label htmlFor="TravelTime">Start Time</label>
+                                    <label htmlFor="StartTime">Start Time</label>
                                     <input
                                         type="time"
                                         className="form-control"
@@ -82,12 +82,12 @@ class ViewHistoryForm extends Component {
                                         onChange={this.handleChange}/>
                                 </div>
                                 <div className="form-group col-md-6">
-                                    <label htmlFor="email">End Time</label>
+                                    <label htmlFor="EndTime">End Time</label>
                                     <input
                                         type="time"
                                         className="form-control"
-                                        name="End Time"
-                                        id="End Time"
+                                        name="EndTime"
+                                        id="EndTime"
                                         value={EndTime}
                                         autoComplete="off"
                                         onChange={this.handleChange}/>
@@ -95,14 +95,15 @@ class ViewHistoryForm extends Component {
                             </div>
 
                             {/*this field doesn't work idk why*/}
+
                             <div className="form-row">
                                 <div className="form-group col-md-6">
-                                    <label htmlFor="number">Travel Time</label>
+                                    <label htmlFor="TravelTime">Travel Time</label>
                                     <input
                                         type="number"
                                         className="form-control"
-                                        name="EndTime"
-                                        id="EndTime"
+                                        name="TravelTime"
+                                        id="TravelTime"
                                         placeholder={'98'}
                                         value={TravelTime}
                                         autoComplete="off"

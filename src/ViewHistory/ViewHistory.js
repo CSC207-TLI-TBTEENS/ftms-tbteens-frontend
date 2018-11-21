@@ -9,8 +9,8 @@ class ViewHistory extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            companies: [],
-            companiesShow:[],
+            CompletedJobs: [],
+            JobsShow:[],
             loading: true
         }
         this.addCompany= this.addCompany.bind(this);
