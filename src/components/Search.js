@@ -21,7 +21,7 @@ class SearchBar extends Component {
                 for (let j = 1; j < data.length; j++){
                     if (typeof data[j] === typeof "a"){
                         let tableString = data[j].toLowerCase()
-                        if (tableString.indexOf(e.target.value.toLowerCase()) != -1 && !newData.includes(values[i])){   
+                        if (tableString.indexOf(e.target.value.toLowerCase()) !== -1 && !newData.includes(values[i])){   
                             newData.push(values[i]);
                         }
                     }

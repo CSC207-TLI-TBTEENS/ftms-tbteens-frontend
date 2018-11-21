@@ -100,15 +100,17 @@ class Employees extends Component {
     }
 
     formChangeHandler = (event, index) => {
-        const changed = {...this.state.employeeViewed[index]};
-        changed.value = event.target.value;
+        if (index !== 2) {
+            const changed = {...this.state.employeeViewed[index]};
+            changed.value = event.target.value;
 
-        const newEmployeeViewed = [...this.state.employeeViewed];
-        newEmployeeViewed[index] = changed;
+            const newEmployeeViewed = [...this.state.employeeViewed];
+            newEmployeeViewed[index] = changed;
 
-        this.setState({
-            employeeViewed: newEmployeeViewed    
-        })
+            this.setState({
+                employeeViewed: newEmployeeViewed    
+            })
+        }
     }
 
     async handleEmployeeEdit(id, firstname, lastname, email, number) {
@@ -180,7 +182,7 @@ class Employees extends Component {
         if (deleted) {
             let currentEmployees = [...this.state.employees];
             for (let i = 0; i < currentEmployees.length; i++) {
-                if (currentEmployees[i].id == id) {
+                if (currentEmployees[i].id === id) {
                     currentEmployees.splice(i, 1);
                     break;
                 }
@@ -198,7 +200,7 @@ class Employees extends Component {
         } else {
             content = (<div>
                     <SearchBar data={this.state.employees} onchange={this.searchRet}/>
-                    <EmployeeList employees = {this.state.employeesShow} 
+                    <EmployeeList employees = {this.state.employees} 
                                 employeeViewed={this.state.employeeViewed}
                                 viewHandler={this.setEmployeeViewing}
                                 formHandler={this.formChangeHandler}
