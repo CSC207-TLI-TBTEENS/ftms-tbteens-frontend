@@ -12,18 +12,18 @@ class ClientJobList extends Component {
         ));
         return (
             <div className="table-responsive">
-                <table className="table">
-                    <thead>
-                    <tr className="table-head">
-                        <th scope="col">Site Location</th>
-                        <th scope="col">Job Description</th>
-                        <th scope="col">Employees</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {clientJobs}
-                    </tbody>
-                </table>
+            <table className="table">
+                <thead>
+                <tr className="table-head">
+                    <th scope="col">Site Location</th>
+                    <th scope="col">Job Description</th>
+                    <th scope="col">Employees</th>
+                </tr>
+                </thead>
+                <tbody>
+                {clientJobs}
+                </tbody>
+            </table>
             </div>
         )
     }

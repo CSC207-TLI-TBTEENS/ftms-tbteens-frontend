@@ -56,20 +56,20 @@ class CompanyList extends Component {
         })
         return (
             <div className="table-responsive">
-                <table className="table">
-                    <thead>
-                        <tr className="table-head">
-                            <th scope="col">Logo</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Contact Email</th>
-                            <th scole="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {companies}
-                        {modals}
-                    </tbody>
-                </table>
+            <table className="table">
+                <thead>
+                    <tr className="table-head">
+                        <th scope="col">Logo</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Contact Email</th>
+                        <th scole="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {companies}
+                    {modals}
+                </tbody>
+            </table>
             </div>            
         )
     }

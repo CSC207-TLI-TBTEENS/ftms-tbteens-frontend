@@ -54,20 +54,20 @@ class EmployeeList extends Component {
         })
         return (
             <div className="table-responsive">
-                <table className="table">
-                    <thead>
-                        <tr className="table-head">
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Email</th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {employees}
-                        {modals}
-                    </tbody>
-                </table>
+            <table className="table">
+                <thead>
+                    <tr className="table-head">
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Email</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {employees}
+                    {modals}
+                </tbody>
+            </table>
             </div>
         )
     }
