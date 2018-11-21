@@ -22,7 +22,7 @@ class SubmitList extends Component {
         })
     }
 
-    createTable = () => {
+    createForm = () => {
         return this.state.details.map((detail, index) => {
             return <SubmitItem
                 name={detail.name}
@@ -37,12 +37,10 @@ class SubmitList extends Component {
     render() {
         return (
             <div className="container bg-purple rounded">
-                <div className="container">
-                    <table className="table">
-                        <tbody>
-                            {this.createTable()}
-                        </tbody>
-                    </table>
+                <div className="container y-padded">
+                    <form>
+                        {this.createForm()}
+                    </form>
                 </div>
             </div>
         )

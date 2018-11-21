@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import './Submit.css';
-
 import SubmitList from './SubmitList';
+import './Submit.css';
 
 class Submit extends Component {
     constructor(props) {
@@ -11,7 +10,7 @@ class Submit extends Component {
                 [{name: "Start Time", value: "12:34", inputRegex: "[0-2]*[0-9]:[0-9]{2}"},
                 {name: "End Time", value: "23:45", inputRegex: "[0-2]*[0-9]:[0-9]{2}"},
                 {name: "Travel Time", value: "00:00", inputRegex: "[0-9]+:[0-9]{2}"},
-                {name: "Costs", value: "1,000,000", inputRegex: "[0-9$,]*"}]
+                {name: "Costs", value: "1,000,000", inputRegex: "[$]{0,1}[0-9]*(,[0-9]{3})*(.[0-9]{2}){0,1}"}]
         }
     }
 
