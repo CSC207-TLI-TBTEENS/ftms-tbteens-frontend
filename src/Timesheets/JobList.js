@@ -10,18 +10,20 @@ class JobList extends Component {
             />
         ));
         return (
-            <table className="table">
-                <thead>
-                    <tr className="table-head">
-                        <th scope="col">Name</th>
-                        <th scope="col">Client Company</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                {jobs}
-                </tbody>
-            </table>
+            <div className="table-responsive">
+                <table className="table">
+                    <thead>
+                        <tr className="table-head">
+                            <th scope="col">Name</th>
+                            <th scope="col">Client Company</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {jobs}
+                    </tbody>
+                </table>
+            </div>
         )
     }
 }
