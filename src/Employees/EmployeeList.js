@@ -59,6 +59,7 @@ class EmployeeList extends Component {
             )
         })
         return (
+            <div className="table-responsive">
             <table className="table">
                 <thead>
                     <tr className="table-head">
@@ -69,10 +70,11 @@ class EmployeeList extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                {employees}
-                {modals}
+                    {employees}
+                    {modals}
                 </tbody>
             </table>
+            </div>
         )
     }
 }

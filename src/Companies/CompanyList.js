@@ -59,6 +59,7 @@ class CompanyList extends Component {
             )
         })
         return (
+            <div className="table-responsive">
             <table className="table">
                 <thead>
                     <tr className="table-head">
@@ -69,10 +70,11 @@ class CompanyList extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                {companies}
-                {modals}
+                    {companies}
+                    {modals}
                 </tbody>
             </table>
+            </div>            
         )
     }
 }

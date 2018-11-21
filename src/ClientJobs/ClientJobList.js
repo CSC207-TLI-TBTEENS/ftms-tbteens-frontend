@@ -11,6 +11,7 @@ class ClientJobList extends Component {
             />
         ));
         return (
+            <div className="table-responsive">
             <table className="table">
                 <thead>
                 <tr className="table-head">
@@ -23,6 +24,7 @@ class ClientJobList extends Component {
                 {clientJobs}
                 </tbody>
             </table>
+            </div>
         )
     }
 }

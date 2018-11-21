@@ -11,6 +11,7 @@ class ViewHistoryList extends Component {
             />
         ));
         return (
+            <div className="table-responsive">
             <table className="table">
                 <thead>
                 <tr className="table-head">
@@ -25,6 +26,7 @@ class ViewHistoryList extends Component {
                 {companies}
                 </tbody>
             </table>
+            </div>
         )
     }
 }
