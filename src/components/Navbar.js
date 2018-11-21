@@ -51,10 +51,6 @@ class Navbar extends Component {
                             <li className="nav-item">
                                 {login}
                             </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to={"/viewhistory"}> View History </Link>
-                            </li>
-
                         </ul>
                     </div>
                 </div>
