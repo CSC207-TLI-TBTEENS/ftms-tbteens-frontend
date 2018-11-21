@@ -1,4 +1,5 @@
 import request from "../Services/apiServices";
+const SIGNUPEMPLOYEE = "/api/auth/signup";
 const EMPLOYEEAPI = "/api/employees/";
 const EMPLOYEEJOBS = EMPLOYEEAPI + "jobs";
 
@@ -14,7 +15,7 @@ export async function getEmployees() {
 // Create Employee
 export async function createEmployee(input) {
     return request({
-        url: EMPLOYEEAPI,
+        url: SIGNUPEMPLOYEE,
         method: 'POST',
         body: JSON.stringify({...input})
     });
@@ -27,6 +28,22 @@ export async function deleteEmployee(input) {
         url: address,
         method: 'DELETE',
     });
+}
+
+// Edit Employee
+export async function editEmployee(input) {
+    let id = input.id.toString();
+    let firstname = input.firstname;
+    let lastname = input.lastname;
+    let email = input.email;
+    let phone = input.number;
+    let address = (EMPLOYEEAPI + id + "?firstName=" + firstname + "&lastName=" + 
+                    lastname + "&email=" + email + "&phone=" + phone);
+    return request({
+        url: address,
+        method: "PUT",
+        body: {...input}
+    })
 }
 
 // get Jobs from Employee

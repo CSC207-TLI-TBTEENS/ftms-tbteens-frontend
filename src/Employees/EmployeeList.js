@@ -9,6 +9,7 @@ class EmployeeList extends Component {
                 {...emp}
                 viewHandler = {this.props.viewHandler}
                 deletionHandler = {this.props.deletionHandler}
+                curr = {this.props.parent}
             />
         ));
 
