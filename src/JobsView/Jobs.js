@@ -13,6 +13,7 @@ class Jobs extends Component {
             query: ''
         }
         this.searchRet = this.searchRet.bind(this);
+        this.getEmployeesFromJob = this.getEmployeesFromJob.bind(this);
     }
  
     searchRet(data){
@@ -26,7 +27,11 @@ class Jobs extends Component {
     async loadJobs() {
         let jobs = await apiCalls.getJobs();
         this.setState({jobs, jobsShow:[...jobs]});
-        
+    }
+
+    getEmployeesFromJob(job){
+        let employees = apiCalls.getEmployeesFromJob(job);
+        return employees;
     }
 
     render() {
@@ -45,7 +50,7 @@ class Jobs extends Component {
             <SearchBar data={this.state.jobs} onchange={this.searchRet}/>
 
             <JobList
-                jobs = {jobsShow}
+                jobs = {jobsShow} getEmployees = {this.getEmployeesFromJob}
             />
 
             <div className="modal fade" id="jobForm" tabindex="-1" role="dialog" aria-labelledby="createNewJob" aria-hidden="true">

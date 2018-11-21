@@ -1,8 +1,20 @@
 const JOBAPI = "/api/jobs/";
+const JOBEMPLOYEES = JOBAPI + "employees";
 
 export async function getJobs() {
     return fetch(JOBAPI)
     .then(resp => {return ValidateHTTPStatus(resp)});
+}
+
+export async function getEmployeesFromJob(input) {
+    return fetch(JOBEMPLOYEES, {
+        method: "POST",
+        headers: new Headers({
+            "Content-Type": "application/json"
+        }),
+        body: JSON.stringify({...input})
+    })
+    .then(resp => {return ValidateHTTPStatus(resp)})
 }
 
 

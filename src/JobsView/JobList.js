@@ -2,12 +2,17 @@ import React, {Component} from 'react';
 import JobItem from './JobItem';
 
 class JobList extends Component {
+    constructor(props) {
+        super(props);
+    }
     
     render() {
-        const jobs = this.props.jobs.map(emp => (
+        const jobs = this.props.jobs.map(job => (
             <JobItem
-                key={emp.id}
-                {...emp}
+                key={job.id}
+                job = {job}
+                getEmployees = {this.props.getEmployees}
+                {...job}
             />
         ));
         return (
