@@ -62,6 +62,50 @@ class Companies extends Component {
         })
     }
 
+    async handleEmployeeEdit(id, name, logo, email, number) {
+        let edited = false;
+        console.log("this", this);
+        console.log("id", id)
+        await MessageBox.confirm('Update this company\'s information?', 'Warning', {
+            confirmButtonText: 'OK',
+            cancelButtonText: 'Cancel',
+            type: 'warning'
+        }).then(async() => {
+            edited = true;
+            await apiCalls.editCompany({id, name, logo, email, number});
+            await Message({
+              type: 'success',
+              message: 'Edited COMPANY #' + id + ' ' + name + ' successfully!'
+            });
+        }).catch((error) => {
+            console.log(error)
+            Message({
+              type: 'info',
+              message: "Deletion cancelled!"
+            });
+        });
+        if (edited) {
+            let currentCompanies = [...this.state.companies];
+            for (let i = 0; i < currentCompanies.length; i++) {
+                if (currentCompanies[i].id == id) {
+                    let editedCompany = {
+                        id: id,
+                        name: name,
+                        logo: logo,
+                        email: email,
+                        number: number
+                    };
+                    currentCompanies[i] = editedCompany;
+                    break;
+                }
+            }
+            this.setState({companies: currentCompanies, 
+                companiesShow: currentCompanies});
+            
+            console.log(this.state.companies, this.state.companiesShow)
+        }
+    }
+
     async confirmDeletion(id, name) {
         let deleted = false;
         console.log(this);
@@ -109,6 +153,7 @@ class Companies extends Component {
                                 formHandler={this.formChangeHandler}
                                 companyViewed={this.state.companyViewed}
                                 deletionHandler={this.confirmDeletion}
+                                editHandler={this.handleEmployeeEdit}
                                 curr={this}/>
                     </div>);
         }

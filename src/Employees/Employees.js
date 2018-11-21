@@ -111,6 +111,50 @@ class Employees extends Component {
         })
     }
 
+    async handleEmployeeEdit(id, firstname, lastname, email, number) {
+        let edited = false;
+        console.log("this", this);
+        console.log("id", id)
+        await MessageBox.confirm('Update this employee\'s information?', 'Warning', {
+            confirmButtonText: 'OK',
+            cancelButtonText: 'Cancel',
+            type: 'warning'
+        }).then(async() => {
+            edited = true;
+            await apiCalls.editEmployee({id, firstname, lastname, email, number});
+            await Message({
+              type: 'success',
+              message: 'Edited EMPLOYEE #' + id + ' ' + firstname + ' ' + lastname + ' successfully!'
+            });
+        }).catch((error) => {
+            console.log(error)
+            Message({
+              type: 'info',
+              message: "Deletion cancelled!"
+            });
+        });
+        if (edited) {
+            let currentEmployees = [...this.state.employees];
+            for (let i = 0; i < currentEmployees.length; i++) {
+                if (currentEmployees[i].id == id) {
+                    let editedEmployee = {
+                        id: id,
+                        firstname: firstname,
+                        lastname: lastname,
+                        email: email,
+                        number: number
+                    };
+                    currentEmployees[i] = editedEmployee;
+                    break;
+                }
+            }
+            this.setState({employees: currentEmployees, 
+                employeesShow: currentEmployees});
+            
+            console.log(this.state.employees, this.state.employeesShow)
+        }
+    }
+
     async confirmDeletion(id, firstname, lastname) {
         let deleted = false;
         console.log(this);
@@ -125,7 +169,8 @@ class Employees extends Component {
               type: 'success',
               message: 'Deleted EMPLOYEE #' + id + ' ' + firstname + ' ' + lastname + ' successfully!'
             });
-        }).catch(() => {
+        }).catch((error) => {
+            console.log(error)
             Message({
               type: 'info',
               message: "Deletion cancelled!"
@@ -158,6 +203,7 @@ class Employees extends Component {
                                 viewHandler={this.setEmployeeViewing}
                                 formHandler={this.formChangeHandler}
                                 deletionHandler={this.confirmDeletion}
+                                editHandler={this.handleEmployeeEdit}
                                 parent={this}/> 
                 </div>);
         }
