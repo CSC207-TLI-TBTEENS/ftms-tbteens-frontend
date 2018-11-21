@@ -38,7 +38,7 @@ class ClientJobForm extends Component {
                         <form onSubmit={this.handleSubmit}>
 
                             <div className="form-row">
-                                <div className="form-group col-md-6">
+                                <div className="form-group col-md-18">
                                     <label htmlFor="job">Job Name</label>
                                     <input
                                         type="text"
@@ -53,7 +53,7 @@ class ClientJobForm extends Component {
                             </div>
 
                             <div className="form-row">
-                                <div className="form-group col-md-6">
+                                <div className="form-group col-md-18">
                                     <label htmlFor="company">Company Name</label>
                                     <input
                                         type="text"
@@ -68,7 +68,7 @@ class ClientJobForm extends Component {
                             </div>
 
                             <div className="form-row">
-                                <div className="form-group col-md-6">
+                                <div className="form-group col-md-18">
                                     <label htmlFor="location"> Location</label>
                                     <input
                                         type="text"
@@ -80,8 +80,10 @@ class ClientJobForm extends Component {
                                         autoComplete="off"
                                         onChange={this.handleChange}/>
                                 </div>
+                            </div>
 
-                                <div className="form-group col-md-6">
+                            <div className="form-row">
+                                <div className="form-group col-md-18">
                                     <label htmlFor="description"> Description </label>
                                     <input
                                         type="text"
