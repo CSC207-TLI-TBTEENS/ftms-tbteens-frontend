@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import './Submit.css';
 import SubmitItem from './SubmitItem';
 
 class SubmitList extends Component {
@@ -9,18 +8,6 @@ class SubmitList extends Component {
         this.state = {
             details: props.details
         }
-
-        if (this.state.details === null || this.state.details.length === 0) {
-            this.state = {
-                details: [
-                    {name: "Start Time", value: "10:12"},
-                    {name: "End Time", value: "13:09"},
-                    {name: "Travel Time", value: "00:30"},
-                    {name: "Costs", value: "$350"}
-                ]
-            }
-        }
-
     }
 
     handleInputChange = (event, index) => {
@@ -35,11 +22,12 @@ class SubmitList extends Component {
         })
     }
 
-    createTable = () => {
+    createForm = () => {
         return this.state.details.map((detail, index) => {
             return <SubmitItem
                 name={detail.name}
                 value={detail.value}
+                pattern={detail.inputRegex}
                 handleChange={(event) => this.handleInputChange(event, index)}
                 key={index}
             />
@@ -49,9 +37,11 @@ class SubmitList extends Component {
     render() {
         return (
             <div className="container bg-purple rounded">
-                <table className="table">
-                    {this.createTable()}
-                </table>
+                <div className="container">
+                    <form>
+                        {this.createForm()}
+                    </form>
+                </div>
             </div>
         )
     }
