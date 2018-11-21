@@ -18,7 +18,9 @@ class Companies extends Component {
             {label: "Email", value: null}, 
             {label: "Number", value: null}],
             loading: true,
-            listToggle: 0
+            listToggle: 0,
+            changeKey: true,
+            previousKey: ''
         }
         this.addCompany= this.addCompany.bind(this);
         this.searchRet = this.searchRet.bind(this);
@@ -66,9 +68,11 @@ class Companies extends Component {
     }
 
     async sortCompanies(key) {
-        let sortedList = await sorter.sortTable([...this.state.companies], [...this.state.companiesShow], key, this.state.listToggle);
-        this.setState({companies: sortedList[0], companiesShow: sortedList[1], listToggle: sortedList[2]});
-        console.log(this.state.companies);
+        let changeKey = (key !== this.state.previousKey) ? true : this.state.changeKey;
+        let sortedList = await sorter.sortTable([...this.state.companies], [...this.state.companiesShow], 
+                                                key, this.state.listToggle, changeKey);
+        this.setState({companies: sortedList[0], companiesShow: sortedList[1], listToggle: sortedList[2],
+                        changeKey: !changeKey, previousKey: key});
     }
 
     async confirmDeletion(id, name) {
@@ -91,7 +95,6 @@ class Companies extends Component {
               message: "Deletion cancelled!"
             });
         });
-        console.log(deleted)
         if (deleted) {
             let currentCompanies = [...this.state.companies];
             for (let i = 0; i < currentCompanies.length; i++) {
@@ -102,8 +105,6 @@ class Companies extends Component {
             };
             this.setState({companiesShow: currentCompanies, companies: currentCompanies});
         }
-        console.log(this.state);
-        console.log(this.state.companies)
     }
 
     render() {
