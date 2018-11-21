@@ -1,14 +1,14 @@
 import React from 'react';
-import './Submit.css';
 
-const SubmitItem = (props) => (
+const SubmitItem = ({name, pattern, handleChange, value}) => (
     <tr className="bg-purple">
-        <td className="align-middle fit"><h5>{props.name}</h5></td>
+        <td className="align-bottom fit"><h5>{name}</h5></td>
         <td>
             <input type="text"
                    className="form-control user-input"
-                   value={props.value}
-                   onChange={props.handleChange}
+                   value={value}
+                   onChange={handleChange}
+                   pattern={pattern}
             />
         </td>
     </tr>

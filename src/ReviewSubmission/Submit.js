@@ -8,10 +8,10 @@ class Submit extends Component {
         super(props);
         this.state = {
             details:
-                [{name: "Start Time", value: "12:34"},
-                {name: "End Time", value: "23:45"},
-                {name: "Travel Time", value: "00:00"},
-                {name: "Costs", value: "$1,000,000"}]
+                [{name: "Start Time", value: "12:34", inputRegex: "[0-2]*[0-9]:[0-9]{2}"},
+                {name: "End Time", value: "23:45", inputRegex: "[0-2]*[0-9]:[0-9]{2}"},
+                {name: "Travel Time", value: "00:00", inputRegex: "[0-9]+:[0-9]{2}"},
+                {name: "Costs", value: "1,000,000", inputRegex: "[0-9$,]*"}]
         }
     }
 
@@ -27,9 +27,12 @@ class Submit extends Component {
         return (
             <div className="container">
                 <header className="jumbotron bg-purple">
-                    <h1 className="display-4">Review and Submit</h1>
-                    {/*TODO: Change this "Task Name" to be from props*/}
-                    <p className="h4">Task Name</p>
+                    <div className="container">
+                        <h1 className="display-4">Review and Submit</h1>
+                        <hr className="my-4"/>
+                        {/*TODO: Change this "Task Name" to be from props*/}
+                        <p className="h4">Task Name</p>
+                    </div>
                 </header>
 
                 <SubmitList details={this.state.details}/>
