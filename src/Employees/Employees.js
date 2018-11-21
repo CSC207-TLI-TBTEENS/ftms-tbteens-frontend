@@ -100,15 +100,17 @@ class Employees extends Component {
     }
 
     formChangeHandler = (event, index) => {
-        const changed = {...this.state.employeeViewed[index]};
-        changed.value = event.target.value;
+        if (index !== 2) {
+            const changed = {...this.state.employeeViewed[index]};
+            changed.value = event.target.value;
 
-        const newEmployeeViewed = [...this.state.employeeViewed];
-        newEmployeeViewed[index] = changed;
+            const newEmployeeViewed = [...this.state.employeeViewed];
+            newEmployeeViewed[index] = changed;
 
-        this.setState({
-            employeeViewed: newEmployeeViewed    
-        })
+            this.setState({
+                employeeViewed: newEmployeeViewed    
+            })
+        }
     }
 
     async handleEmployeeEdit(id, firstname, lastname, email, number) {

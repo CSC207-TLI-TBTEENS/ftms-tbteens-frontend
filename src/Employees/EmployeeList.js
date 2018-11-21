@@ -12,9 +12,9 @@ class EmployeeList extends Component {
                 curr = {this.props.parent}
             />
         ));
-
+        let num = 0;
         const modals = this.props.employees.map(emp => {
-            let num = 0;
+            num++;
             return (
                 <div class="modal fade" id={"employee" + emp.id} tabindex="-1" role="dialog" aria-labelledby="viewEmployeeDetails" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -32,7 +32,7 @@ class EmployeeList extends Component {
                                             return (
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">{field.label}</label>
-                                                    <input type="email" class="form-control" id={field.label} aria-describedby="emailHelp" 
+                                                    <input type="email" class="form-control" id={field.label + num} aria-describedby="emailHelp" 
                                                         value={field.value} onChange={(event) => this.props.formHandler(event, index)}/>
                                                 </div>
                                             )
