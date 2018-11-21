@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import ClientJobList from './ClientJobList';
+import SearchBar from "../components/Search";
 
 class ClientJobs extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            clientJobs: []
+            clientJobs: [],
+            clientJobsShow:[],
         }
+        this.searchRet = this.searchRet.bind(this);
     }
 
     componentWillMount() {
@@ -14,11 +17,16 @@ class ClientJobs extends Component {
     }
 
     async loadClientJobs() {
-        let clientJob = {id: 1, siteLocation: "UofT", employees: ["Clara", "Nancy", "Person X"], jobDescription: "This is a new job", tasks: 0};
-        let clientJobs = [clientJob];
+        let clientJob1 = {id: 1, siteLocation: "UofT", employees: ["Clara", "Nancy", "Person X"], jobDescription: "Cute Job", tasks: 5};
+        let clientJob2 = {id: 2, siteLocation: "NewBrunswick", employees: ["William", "Felicia", "Person Y"], jobDescription: "Nice Job!", tasks: 1};
+        let clientJobs = [clientJob1, clientJob2];
         // let jobs = await apiCalls.getEmployeesJobs();
-        this.setState({clientJobs});
+        this.setState({clientJobs, clientJobsShow: [...clientJobs]});
         //let clientJobs = await apiCalls.getEmployees();
+    }
+
+    searchRet(data){
+        this.setState({clientJobsShow : [...data]});
     }
 
     render() {
@@ -36,8 +44,9 @@ class ClientJobs extends Component {
                     </div>
                 </header>
 
+                <SearchBar data={this.state.clientJobs} onchange={this.searchRet}/>
                 <ClientJobList
-                    jobs = {this.state.clientJobs}
+                    jobs = {this.state.clientJobsShow}
                 />
 
             </div>
