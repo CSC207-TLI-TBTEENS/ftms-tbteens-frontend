@@ -4,7 +4,8 @@ import EmployeeForm from './EmployeeForm';
 import EmployeeList from './EmployeeList';
 import Loading from '../components/Loading.js';
 import SearchBar from '../components/Search.js';
-import { Message, MessageBox } from 'element-react'
+import { Message, MessageBox } from 'element-react';
+import * as sorter from '../components/Sorter.js';
 
 class Employees extends Component {
     constructor(props) {
@@ -16,10 +17,12 @@ class Employees extends Component {
                             {label: "Last name", value: null}, 
                             {label: "Email", value: null}, 
                             {label: "Phone", value: null}],
-            loading: true
+            loading: true,
+            listToggle: 0
         }
         this.addEmployee = this.addEmployee.bind(this);
         this.searchRet = this.searchRet.bind(this);
+        this.sortEmployees = this.sortEmployees.bind(this);
     }
 
     componentWillMount() {
@@ -41,53 +44,9 @@ class Employees extends Component {
         this.setState({employeesShow: [...data]});
     }
 
-    async sortEmployee(key, toggleState) {
-        let employees = [...this.state.employees];
-        let employeesShow = [...this.state.employeesShow];
-        if (toggleState === 0) {
-            employees = await this.sortByAscending(employees, key);
-            employeesShow = await this.sortByAscending([...this.state.employeesShow], key);
-        }
-        else if (toggleState === 1) {
-            employees = await this.sortByDescending(employees, key);
-            employeesShow = await this.sortByDescending([...this.state.employeesShow], key);
-        }
-
-        let listToggle = await this.incrementToggle();
-        this.setState({employees: employees, employeesShow: employeesShow, listToggle: listToggle});
-    }
-
-    async sortByAscending(arr, key) {
-        let newArr = [...arr];
-        newArr.sort(function(a, b) {
-            if (a[key] < b[key])
-                return -1;
-            else if (a[key] > b[key])
-                return 1;
-            return 0; 
-        });
-
-        return newArr;
-    }
-
-    async sortByDescending(arr, key) {
-        let newArr = [...arr];
-        newArr.sort(function(a, b) {
-            if (a[key] > b[key])
-                return -1;
-            else if (a[key] < b[key])
-                return 1;
-            return 0; 
-        });
-
-        return newArr;
-    }
-
-    async incrementToggle() {
-        let listToggle = this.state.listToggle;
-        listToggle = listToggle ? 0 : 1;
-        
-        return listToggle;
+    async sortEmployees(key, toggleState) {
+        let sortedList = await sorter.sortTable([...this.state.employees], [...this.state.employeesShow], key, this.state.listToggle);
+        this.setState({employees: sortedList[0], employeesShow: sortedList[1], listToggle: sortedList[2]});
     }
 
     setEmployeeViewing = (firstname, lastname, email, phone) => {
@@ -153,12 +112,15 @@ class Employees extends Component {
         } else {
             content = (<div>
                     <SearchBar data={this.state.employees} onchange={this.searchRet}/>
-                    <EmployeeList employees = {this.state.employeesShow} 
+                    <EmployeeList employees = {this.state.employees} 
+                                employeesShow = {this.state.employeesShow}
                                 employeeViewed={this.state.employeeViewed}
                                 viewHandler={this.setEmployeeViewing}
                                 formHandler={this.formChangeHandler}
                                 deletionHandler={this.confirmDeletion}
-                                parent={this}/> 
+                                parent={this}
+                                sortEmployees={this.sortEmployees}
+                                listToggle={this.state.listToggle}/> 
                 </div>);
         }
         return (
