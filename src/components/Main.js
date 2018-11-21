@@ -1,9 +1,6 @@
 import React from "react";
-import { Switch, Route, withRouter, Redirect } from "react-router-dom";
-import {
-    CSSTransition,
-    TransitionGroup,
-  } from 'react-transition-group';
+import { Switch, Route, withRouter} from "react-router-dom";
+import {CSSTransition, TransitionGroup} from 'react-transition-group';
 import Employees from "../Employees/Employees";
 import Companies from "../Companies/Companies";
 import Login from "../Login/Login.js";
@@ -23,7 +20,7 @@ const Main = props => {
                 >
                 <div className="page">
                     <Switch location={location}>
-                        <Route exact path="/login" component={Login} />
+                        <Route exact path="/login" render={(prop) => <Login onLogin={props.onLogin} {...prop} />} />
                         <Route exact path="/employees" component={Employees} />
                         <Route exact path="/companies" component={Companies} />
                         <Route exact path="/jobsview" component={JobsView} />
@@ -38,4 +35,4 @@ const Main = props => {
     )
 }
 
-export default Main;
+export default withRouter(Main);
