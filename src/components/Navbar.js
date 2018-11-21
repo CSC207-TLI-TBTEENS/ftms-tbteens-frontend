@@ -40,6 +40,10 @@ class Navbar extends Component {
                             <li className="nav-item">
                                 <Link className="nav-link" to={"/review"}> Review and Submit </Link>
                             </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to={"/viewhistory"}> View History </Link>
+                            </li>
+
                         </ul>
                     </div>
                 </div>

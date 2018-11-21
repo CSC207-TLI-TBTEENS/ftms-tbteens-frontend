@@ -12,6 +12,7 @@ import JobAssignment from "../JobAssignment/JobAssignment.js";
 import Submit from "../ReviewSubmission/Submit.js";
 import Timesheets from "../Timesheets/Jobs";
 import ClientJobs from "../ClientJobs/ClientJobs"
+import ViewHistory from "../ViewHistory/ViewHistory.js";
 
 const Main = props => {
     return (
@@ -32,6 +33,7 @@ const Main = props => {
                         <Route exact path="/review" component={Submit} />
                         <Route exact path="/clientJobs" component={ClientJobs}/>
                         <Route exact path="/timesheets" component={Timesheets}/>
+                        <Route exact path="/viewhistory" component={ViewHistory}/>
                     </Switch>
                 </div>
                 </CSSTransition>
