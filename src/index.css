@@ -24,6 +24,9 @@ code {
 }
 
 /* Nav */
+.el-icon-edit:hover {
+  color: red
+}
 
 .bg-purple {
   background-color: rgb(90, 85, 121);
@@ -40,6 +43,12 @@ code {
   color: rgb(203, 200, 228);
   text-decoration: underline;
   cursor: pointer;
+}
+
+.save-changes-btn {
+  background-color: rgb(160, 218, 113);
+  border: none;
+  color: rgb(53, 46, 66)
 }
 
 .navbar-brand > img {

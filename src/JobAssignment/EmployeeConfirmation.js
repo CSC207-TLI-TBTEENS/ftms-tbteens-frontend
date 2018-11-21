@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Tree, MessageBox, Message} from 'element-react';
+import {MessageBox, Message} from 'element-react';
 
 const onClick = () => {
   MessageBox.confirm('This will delete this job from this employee. Continue?', 'Confirmation', {
@@ -29,9 +29,9 @@ const EmployeeConfirmation = (props) => {
   return (
     <div class="card" style={cardStyle}>
         <div class="card-body">
-            <h5 class="card-title">{props.currentEmployee.name}</h5>
+            <h5 class="card-title">Hello</h5>
             <h6 class="card-subtitle mb-2">Employee's Tasks Queue</h6>
-            {
+            {/* {
                 props.currentEmployee.currentJobs.map(job => {
                     return (
                         <div>
@@ -42,7 +42,7 @@ const EmployeeConfirmation = (props) => {
                         </div>
                     )
                 })
-            }
+            } */}
         </div>
     </div>
 )

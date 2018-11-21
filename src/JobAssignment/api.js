@@ -1,22 +1,30 @@
-const COMPANYAPI = "/api/companies/";
+const JOBAPI = "/api/jobs/";
+const TASKAPI = "/api/tasks";
+const JOBEMPLOYEES = JOBAPI + "employees"
 
-export async function deleteCompany(input) {
-    let address = COMPANYAPI + input.toString();
-    console.log(address)
-    return fetch(address, {
-        method: "DELETE",
-        headers: { 'Content-Type': 'application/json' }
-    })
-    // .then(resp => {return ValidateHTTPStatus(resp)})
-} 
-
-export async function getCompanies() {
-    return fetch(COMPANYAPI)
+export async function getTasks() {
+    return fetch(TASKAPI)
     .then(resp => {return ValidateHTTPStatus(resp)});
 }
 
-export async function createCompany(input) {
-    return fetch(COMPANYAPI, {
+export async function getJobsFromEmployee(input) {
+    return fetch(JOBEMPLOYEES, {
+        method: "post",
+        headers: new Headers({
+            "Content-Type": "application/json"
+        }),
+        body: JSON.stringify({...input})
+    })
+    .then(resp => {return ValidateHTTPStatus(resp)})
+}
+
+export async function getJobs() {
+    return fetch(JOBAPI)
+    .then(resp => {return ValidateHTTPStatus(resp)});
+}
+
+export async function createJob(input) {
+    return fetch(JOBAPI, {
         method: "post",
         headers: new Headers({
             "Content-Type" : "application/json"
