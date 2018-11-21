@@ -14,7 +14,7 @@ export async function getEmployees() {
 // Create Employee
 export async function createEmployee(input) {
     return request({
-        url: EMPLOYEEAPI,
+        url: "/api/auth/signup",
         method: 'POST',
         body: JSON.stringify({...input})
     });
