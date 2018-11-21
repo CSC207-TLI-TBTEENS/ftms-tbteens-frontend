@@ -21,3 +21,7 @@ form div.row {
     padding-bottom: 0.5rem;
     padding-top: 0.5rem;
 }
+
+.form-error {
+    color: rgb(204, 0, 0);
+}
