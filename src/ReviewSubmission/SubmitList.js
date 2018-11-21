@@ -30,6 +30,7 @@ class SubmitList extends Component {
                 pattern={detail.inputRegex}
                 handleChange={(event) => this.handleInputChange(event, index)}
                 key={index}
+                errorMsg={detail.errorMsg}
             />
         })
     }

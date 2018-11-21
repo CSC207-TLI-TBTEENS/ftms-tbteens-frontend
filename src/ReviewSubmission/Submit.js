@@ -5,9 +5,9 @@ import './Submit.css';
 class Submit extends Component {
     constructor(props) {
         super(props);
-        const regexTime = "([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]";
-        const regexHour = "[0-9]+:[0-9]{2}";
-        const regexMoney = "[$]{0,1}[0-9]*(,[0-9]{3})*(.[0-9]{2}){0,1}";
+        const regexTime = "^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$";
+        const regexHour = "^[0-9]+:[0-9]{2}$";
+        const regexMoney = "^[$]{0,1}[0-9]*(,[0-9]{3})*(.[0-9]{2}){0,1}$";
         this.state = {
             details:
                 [{name: "Start Time", value: "12:34", inputRegex: regexTime},
@@ -22,7 +22,19 @@ class Submit extends Component {
     }
 
     handleClick = () => {
-        // TODO: Do back end submission
+        var inputs = document.getElementsByClassName("user-input");
+        var errorMsgs = document.getElementsByClassName("form-error");
+        // Loops through the inputs and makes sure they match their regex
+        // If not it sets the error msg
+        for(var i = 0; i < inputs.length; i++) {
+            var re = new RegExp(this.state.details[i].inputRegex);
+            if (re.test(inputs[i].value)) {
+                errorMsgs[i].innerHTML = "";
+            }
+            else {
+                errorMsgs[i].innerHTML = "This is not a valid input";
+            }
+        }
     }
 
     render() {
@@ -34,11 +46,12 @@ class Submit extends Component {
                         <hr className="my-4"/>
                         {/*TODO: Change this "Task Name" to be from props*/}
                         <p className="h4">Task Name</p>
+                        <p id="par"></p>
                     </div>
                 </header>
 
                 <SubmitList details={this.state.details}/>
-
+                
                 <button type="button" className="btn btn-submit" onClick={this.handleClick}>
                     Submit Form
                 </button>
