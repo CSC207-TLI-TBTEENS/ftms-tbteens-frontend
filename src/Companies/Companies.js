@@ -5,6 +5,7 @@ import CompanyList from './CompanyList';
 import Loading from '../components/Loading';
 import SearchBar from '../components/Search.js';
 import { MessageBox, Message} from 'element-react';
+import * as sorter from '../components/Sorter.js'
 
 class Companies extends Component {
     constructor(props) {
@@ -16,10 +17,12 @@ class Companies extends Component {
             {label: "Logo", value: null}, 
             {label: "Email", value: null}, 
             {label: "Number", value: null}],
-            loading: true
+            loading: true,
+            listToggle: 0
         }
         this.addCompany= this.addCompany.bind(this);
         this.searchRet = this.searchRet.bind(this);
+        this.sortCompanies = this.sortCompanies.bind(this);
     }
     componentWillMount() {
         this.loadCompanies();
@@ -60,6 +63,12 @@ class Companies extends Component {
         this.setState({
             companyViewed: newCompanyViewed    
         })
+    }
+
+    async sortCompanies(key) {
+        let sortedList = await sorter.sortTable([...this.state.companies], [...this.state.companiesShow], key, this.state.listToggle);
+        this.setState({companies: sortedList[0], companiesShow: sortedList[1], listToggle: sortedList[2]});
+        console.log(this.state.companies);
     }
 
     async confirmDeletion(id, name) {
@@ -109,7 +118,8 @@ class Companies extends Component {
                                 formHandler={this.formChangeHandler}
                                 companyViewed={this.state.companyViewed}
                                 deletionHandler={this.confirmDeletion}
-                                curr={this}/>
+                                curr={this}
+                                sortCompanies={this.sortCompanies}/>
                     </div>);
         }
         return (

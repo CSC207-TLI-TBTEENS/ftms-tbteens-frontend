@@ -4,10 +4,10 @@ import EmployeeItem from './EmployeeItem';
 class EmployeeList extends Component {
 
     sortEmployees(key) {
-        this.props.sortEmployees(key, this.props.listToggle);
+        this.props.sortEmployees(key);
     }
     render() {
-        const employees = this.props.employeesShow.map(emp => (
+        const employees = this.props.employees.map(emp => (
             <EmployeeItem
                 key={emp.id}
                 {...emp}
@@ -17,7 +17,7 @@ class EmployeeList extends Component {
             />
         ));
 
-        const modals = this.props.employeesShow.map(emp => {
+        const modals = this.props.employees.map(emp => {
             return (
                 <div class="modal fade" id={"employee" + emp.id} tabindex="-1" role="dialog" aria-labelledby="viewEmployeeDetails" aria-hidden="true">
                     <div class="modal-dialog" role="document">

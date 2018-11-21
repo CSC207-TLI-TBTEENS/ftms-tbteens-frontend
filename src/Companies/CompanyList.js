@@ -3,6 +3,10 @@ import CompanyItem from './CompanyItem';
 
 class CompanyList extends Component {
 
+    sortCompanies(key) {
+        this.props.sortCompanies(key);
+    }
+
     render() {
         const companies = this.props.companies.map(cmp => (
             <CompanyItem
@@ -54,8 +58,8 @@ class CompanyList extends Component {
                 <thead>
                     <tr className="table-head">
                         <th scope="col">Logo</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Contact Email</th>
+                        <th scope="col" onClick={() => this.sortCompanies('name')}>Name</th>
+                        <th scope="col" onClick={() => this.sortCompanies('email')}>Contact Email</th>
                         <th scole="col"></th>
                     </tr>
                 </thead>

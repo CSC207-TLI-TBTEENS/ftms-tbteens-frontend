@@ -44,7 +44,7 @@ class Employees extends Component {
         this.setState({employeesShow: [...data]});
     }
 
-    async sortEmployees(key, toggleState) {
+    async sortEmployees(key) {
         let sortedList = await sorter.sortTable([...this.state.employees], [...this.state.employeesShow], key, this.state.listToggle);
         this.setState({employees: sortedList[0], employeesShow: sortedList[1], listToggle: sortedList[2]});
     }
@@ -112,15 +112,13 @@ class Employees extends Component {
         } else {
             content = (<div>
                     <SearchBar data={this.state.employees} onchange={this.searchRet}/>
-                    <EmployeeList employees = {this.state.employees} 
-                                employeesShow = {this.state.employeesShow}
+                    <EmployeeList employees = {this.state.employeesShow} 
                                 employeeViewed={this.state.employeeViewed}
                                 viewHandler={this.setEmployeeViewing}
                                 formHandler={this.formChangeHandler}
                                 deletionHandler={this.confirmDeletion}
                                 parent={this}
-                                sortEmployees={this.sortEmployees}
-                                listToggle={this.state.listToggle}/> 
+                                sortEmployees={this.sortEmployees}/> 
                 </div>);
         }
         return (
