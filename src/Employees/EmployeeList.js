@@ -14,6 +14,7 @@ class EmployeeList extends Component {
         ));
 
         const modals = this.props.employees.map(emp => {
+            let num = 0;
             return (
                 <div class="modal fade" id={"employee" + emp.id} tabindex="-1" role="dialog" aria-labelledby="viewEmployeeDetails" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -31,7 +32,7 @@ class EmployeeList extends Component {
                                             return (
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">{field.label}</label>
-                                                    <input type="email" class="form-control" id="firstName" aria-describedby="emailHelp" 
+                                                    <input type="email" class="form-control" id={field.label} aria-describedby="emailHelp" 
                                                         value={field.value} onChange={(event) => this.props.formHandler(event, index)}/>
                                                 </div>
                                             )
