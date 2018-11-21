@@ -1,5 +1,4 @@
 import React from 'react';
-import { Icon } from 'element-react';
 
 const editStyle = {
     backgroundColor: "rgb(160, 218, 113)",
