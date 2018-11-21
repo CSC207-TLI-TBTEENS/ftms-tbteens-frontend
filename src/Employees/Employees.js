@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import * as apiCalls from './api';
 import EmployeeForm from './EmployeeForm';
 import EmployeeList from './EmployeeList';
-import Loading from '../components/Loading';
-import SearchBar from '../components/Search.js'
+import Loading from '../components/Loading.js';
+import SearchBar from '../components/Search.js';
+import { Message, MessageBox } from 'element-react'
 
 class Employees extends Component {
     constructor(props) {
@@ -11,11 +12,16 @@ class Employees extends Component {
         this.state = {
             employees: [],
             employeesShow:[],
+            employeeViewed: [{label: "First Name", value: null}, 
+                            {label: "Last name", value: null}, 
+                            {label: "Email", value: null}, 
+                            {label: "Phone", value: null}],
             loading: true
         }
         this.addEmployee = this.addEmployee.bind(this);
         this.searchRet = this.searchRet.bind(this);
     }
+
     componentWillMount() {
         this.loadEmployees();
     }
@@ -27,7 +33,8 @@ class Employees extends Component {
 
     async addEmployee(employee) {
         let newEmployee = await apiCalls.createEmployee(employee);
-        this.setState({employees : [...this.state.employees, newEmployee]});
+        this.setState({employees : [...this.state.employees, newEmployee], 
+                    employeesShow : [...this.state.employeesShow, newEmployee]});
     }
 
     searchRet(data){
@@ -89,7 +96,12 @@ class Employees extends Component {
         } else {
             content = (<div>
                     <SearchBar data={this.state.employees} onchange={this.searchRet}/>
-                    <EmployeeList employees = {this.state.employeesShow} /> 
+                    <EmployeeList employees = {this.state.employeesShow} 
+                                employeeViewed={this.state.employeeViewed}
+                                viewHandler={this.setEmployeeViewing}
+                                formHandler={this.formChangeHandler}
+                                deletionHandler={this.confirmDeletion}
+                                parent={this}/> 
                 </div>);
         }
         return (
@@ -111,21 +123,21 @@ class Employees extends Component {
             {content}
 
             <div className="modal fade" id="employeeForm" tabindex="-1" role="dialog" aria-labelledby="createNewEmployee" aria-hidden="true">
-            <div className="modal-dialog" role="document">
-                <div className="modal-content">
-                <div className="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Adding New Employee</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Adding New Employee</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                            <EmployeeForm
+                                addEmployee = {this.addEmployee}
+                            />
+                        </div>
+                    </div>
                 </div>
-                <div className="modal-body">
-                <EmployeeForm
-                    addEmployee = {this.addEmployee}
-                />
-                </div>
-                </div>
-            </div>
             </div>
         </div>
         );

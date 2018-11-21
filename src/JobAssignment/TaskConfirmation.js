@@ -29,9 +29,9 @@ const TaskConfirmation = (props) => {
     return (
         <div class="card" style={cardStyle}>
             <div class="card-body">
-                <h5 class="card-title">{props.currentJob.name}</h5>
+                <h5 class="card-title">Hello</h5>
                 <h6 class="card-subtitle mb-2">Employees on Task</h6>
-                {
+                {/* {
                     props.currentJob.currentEmployees.map(employee => {
                         return (
                             <div>
@@ -42,7 +42,7 @@ const TaskConfirmation = (props) => {
                             </div>
                         )
                     })
-                }
+                } */}
             </div>
         </div>
     )

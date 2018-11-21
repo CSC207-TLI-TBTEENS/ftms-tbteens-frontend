@@ -3,7 +3,8 @@ import * as apiCalls from './api';
 import CompanyForm from './CompanyForm';
 import CompanyList from './CompanyList';
 import Loading from '../components/Loading';
-import SearchBar from '../components/Search.js'
+import SearchBar from '../components/Search.js';
+import { MessageBox, Message} from 'element-react';
 
 class Companies extends Component {
     constructor(props) {
@@ -11,6 +12,10 @@ class Companies extends Component {
         this.state = {
             companies: [],
             companiesShow:[],
+            companyViewed: [{label: "Name", value: null}, 
+            {label: "Logo", value: null}, 
+            {label: "Email", value: null}, 
+            {label: "Number", value: null}],
             loading: true
         }
         this.addCompany= this.addCompany.bind(this);
@@ -27,11 +32,69 @@ class Companies extends Component {
 
     async addCompany(company) {
         let newCompany= await apiCalls.createCompany(company);
-        this.setState({companies : [...this.state.companies, newCompany]});
+        this.setState({companies : [...this.state.companies, newCompany],
+                        companiesShow: [...this.state.companiesShow, newCompany]});
     }
 
     searchRet(data){
         this.setState({companiesShow : [...data]});
+    }
+
+    setCompanyViewing = (name, logo, email, phone) => {
+        console.log(name, logo, email, phone)
+        this.setState({companyViewed: [
+            {label: "Name", value: name}, 
+            {label: "Logo", value: logo}, 
+            {label: "Email", value: email}, 
+            {label: "Number", value: phone}
+        ]})
+    }
+
+    formChangeHandler = (event, index) => {
+        const changed = {...this.state.companyViewed[index]};
+        changed.value = event.target.value;
+
+        const newCompanyViewed = [...this.state.companyViewed];
+        newCompanyViewed[index] = changed;
+
+        this.setState({
+            companyViewed: newCompanyViewed    
+        })
+    }
+
+    async confirmDeletion(id, name) {
+        let deleted = false;
+        console.log(this);
+        await MessageBox.confirm('This action will remove COMPANY #' + id + ' ' + name + ' from the database. Continue?', 'Warning', {
+            confirmButtonText: 'OK',
+            cancelButtonText: 'Cancel',
+            type: 'warning'
+        }).then(async() => {
+            deleted = true;
+            await apiCalls.deleteCompany(id);
+            await Message({
+              type: 'success',
+              message: 'Deleted COMPANY #' + id + ' ' + name + ' successfully!'
+            });
+        }).catch(() => {
+            Message({
+              type: 'info',
+              message: "Deletion cancelled!"
+            });
+        });
+        console.log(deleted)
+        if (deleted) {
+            let currentCompanies = [...this.state.companies];
+            for (let i = 0; i < currentCompanies.length; i++) {
+                if (currentCompanies[i].id == id) {
+                    currentCompanies.splice(i, 1);
+                    break;
+                }
+            };
+            this.setState({companiesShow: currentCompanies, companies: currentCompanies});
+        }
+        console.log(this.state);
+        console.log(this.state.companies)
     }
 
     render() {
@@ -41,7 +104,12 @@ class Companies extends Component {
         } else {
             content = (<div> 
                     <SearchBar data={this.state.companies} onchange={this.searchRet}/>
-                    <CompanyList companies = {this.state.companiesShow} />
+                    <CompanyList companies = {this.state.companiesShow}
+                                viewHandler={this.setCompanyViewing} 
+                                formHandler={this.formChangeHandler}
+                                companyViewed={this.state.companyViewed}
+                                deletionHandler={this.confirmDeletion}
+                                curr={this}/>
                     </div>);
         }
         return (

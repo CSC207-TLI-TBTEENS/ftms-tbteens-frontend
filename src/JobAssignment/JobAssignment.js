@@ -4,6 +4,8 @@ import EmployeesList from './EmployeesList.js';
 import TaskConfirmation from './TaskConfirmation.js';
 import EmployeeConfirmation from './EmployeeConfirmation.js';
 import Confirmation from './Confirmation.js';
+import * as jobAPI from './api.js';
+import * as employeeAPI from '../Employees/api.js';
 
 const style = {
     height: "10vh"
@@ -11,64 +13,53 @@ const style = {
 
 export class JobAssignment extends Component {
     state = {
-
-        jobs: [
-            {id: 1, name: "Fix this thing", site: "A27", descript: "Fix truck number 25", currentEmployees: ["Bob", "Linda", "Jones"]},
-            {id: 1, name: "Fix this thing", site: "A27", descript: "Fix truck number 25", currentEmployees: ["Bob", "Linda", "Jones"]},
-            {id: 1, name: "Fix this thing", site: "A27", descript: "Fix truck number 25", currentEmployees: ["Bob", "Linda", "Jones"]},
-            {id: 1, name: "Fix this thing", site: "A27", descript: "Fix truck number 25", currentEmployees: ["Bob", "Linda", "Jones"]},
-            {id: 1, name: "Fix this thing", site: "A27", descript: "Fix truck number 25", currentEmployees: ["Bob", "Linda", "Jones"]},
-            {id: 1, name: "Fix this thing", site: "A27", descript: "Fix truck number 25", currentEmployees: ["Bob", "Linda", "Jones"]},
-            {id: 1, name: "Fix this thing", site: "A27", descript: "Fix truck number 25", currentEmployees: ["Bob", "Linda", "Jones"]},
-            {id: 1, name: "Fix this thing", site: "A27", descript: "Fix truck number 25", currentEmployees: ["Bob", "Linda", "Jones"]},
-            {id: 1, name: "Fix this thing", site: "A27", descript: "Fix truck number 25", currentEmployees: ["Bob", "Linda", "Jones"]},
-            {id: 1, name: "Fix this thing", site: "A27", descript: "Fix truck number 25", currentEmployees: ["Bob", "Linda", "Jones"]},
-            {id: 1, name: "Fix this thing", site: "A27", descript: "Fix truck number 25", currentEmployees: ["Bob", "Linda", "Jones"]},
-            {id: 1, name: "Fix this thing", site: "A27", descript: "Fix truck number 25", currentEmployees: ["Bob", "Linda", "Jones"]},
-            {id: 1, name: "Fix this thing", site: "A27", descript: "Fix truck number 25", currentEmployees: ["Bob", "Linda", "Jones"]},
-            {id: 1, name: "Fix this thing", site: "A27", descript: "Fix truck number 25", currentEmployees: ["Bob", "Linda", "Jones"]},
-            {id: 1, name: "Fix this thing", site: "A27", descript: "Fix truck number 25", currentEmployees: ["Bob", "Linda", "Jones"]},
-            {id: 1, name: "Fix this thing", site: "A27", descript: "Fix truck number 25", currentEmployees: ["Bob", "Linda", "Jones"]}
-        ],
-
-        employees: [
-            {id: 1, name: "Bob", skill: "Great", currentJobs: ["Build 1", "Build 2", "Build 3"]},
-            {id: 1, name: "Bob", skill: "Great", currentJobs: ["Build 1", "Build 2", "Build 3"]},
-            {id: 1, name: "Bob", skill: "Great", currentJobs: ["Build 1", "Build 2", "Build 3"]},
-            {id: 1, name: "Bob", skill: "Great", currentJobs: ["Build 1", "Build 2", "Build 3"]},
-            {id: 1, name: "Bob", skill: "Great", currentJobs: ["Build 1", "Build 2", "Build 3"]},
-            {id: 1, name: "Bob", skill: "Great", currentJobs: ["Build 1", "Build 2", "Build 3"]},
-            {id: 1, name: "Bob", skill: "Great", currentJobs: ["Build 1", "Build 2", "Build 3"]},
-            {id: 1, name: "Bob", skill: "Great", currentJobs: ["Build 1", "Build 2", "Build 3"]},
-            {id: 1, name: "Bob", skill: "Great", currentJobs: ["Build 1", "Build 2", "Build 3"]},
-            {id: 1, name: "Bob", skill: "Great", currentJobs: ["Build 1", "Build 2", "Build 3"]},
-            {id: 1, name: "Bob", skill: "Great", currentJobs: ["Build 1", "Build 2", "Build 3"]},
-            {id: 1, name: "Bob", skill: "Great", currentJobs: ["Build 1", "Build 2", "Build 3"]},
-            {id: 1, name: "Bob", skill: "Great", currentJobs: ["Build 1", "Build 2", "Build 3"]},
-            {id: 1, name: "Bob", skill: "Great", currentJobs: ["Build 1", "Build 2", "Build 3"]},
-            {id: 1, name: "Bob", skill: "Great", currentJobs: ["Build 1", "Build 2", "Build 3"]},
-            {id: 1, name: "Bob", skill: "Great", currentJobs: ["Build 1", "Build 2", "Build 3"]},
-            {id: 1, name: "Bob", skill: "Great", currentJobs: ["Build 1", "Build 2", "Build 3"]},
-            {id: 1, name: "Bob", skill: "Great", currentJobs: ["Build 1", "Build 2", "Build 3"]},
-            {id: 1, name: "Bob", skill: "Great", currentJobs: ["Build 1", "Build 2", "Build 3"]},
-            {id: 1, name: "Bob", skill: "Great", currentJobs: ["Build 1", "Build 2", "Build 3"]},
-        ],
-        taskToConfirm: {id: "N/A", name: "No Task Chosen", site: "N/A", descript: "N/A", currentEmployees: ["N/A", "N/A", "N/A"]},
-        employeeToConfirm: {id: "N/A", name: "No Employee Chosen", skill: "N/A", currentJobs: ["N/A", "N/A", "N/A"]}
+        jobs: [],
+        employees: [],
+        tasks: [],
+        jobToConfirm: {job: "N/A", employees: []},
+        employeeToConfirm: {employee: "N/A", jobs: []},
     }
 
-    handleTaskChosen = (task) => {
+    componentWillMount() {
+        this.getAllEmployees();
+        this.getAllJobs();
+        this.getAllTasks();
+    }
+
+    async getAllTasks() {
+        let allTasks = await jobAPI.getTasks();
+        this.setState({tasks: allTasks})
+    }
+
+    async getAllJobs() {
+        let allJobs = await jobAPI.getJobs();
+        this.setState({jobs: allJobs});
+    }
+
+    async getAllEmployees() {
+        let allEmployees = await employeeAPI.getEmployees();
+        this.setState({employees: allEmployees});
+    }
+
+    async getJobsFromEmployee(employee, tasks) {
+        let inputs = [employee, tasks];
+        let jobsFromEmloyee = await employeeAPI.getJobsFromEmployee({...inputs});
+        return jobsFromEmloyee;
+    }
+
+    handleTaskChosen = (job, employees) => {
         this.setState(
             {
-                taskToConfirm: task
+                jobToConfirm: {job: job, employees: employees}
             }
         )
     }
 
-    handleEmployeeChosen = (employee) => {
+    handleEmployeeChosen = (employee, jobs) => {
+        let jobsFromEmployee = this.getJobsFromEmployee(employee, this.state.tasks);
         this.setState(
             {
-                employeeToConfirm: employee
+                employeeToConfirm: {employee: employee, jobs: jobsFromEmployee}
             }
         )
     }
@@ -125,19 +116,3 @@ export class JobAssignment extends Component {
 }
 
 export default JobAssignment;
-
- {/* <div className="col-6">
-                        <div className="row justify-content-center">
-                            <div className="col-md-7 mb-3">
-                                <TaskConfirmation currentJob={this.state.taskToConfirm}/>
-                            </div>
-                            <div className="col-md-7 mb-3">
-                                <EmployeeConfirmation currentEmployee={this.state.employeeToConfirm}/>
-                            </div>
-                         </div>
-                        <div className="row justify-content-center">
-                            <div className="col-md-12 d-flex justify-content-center">
-                                <Confirmation />
-                            </div>
-                        </div>
-                    </div> */}

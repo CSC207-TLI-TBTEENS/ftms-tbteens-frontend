@@ -1,6 +1,5 @@
 import React from 'react';
 import './Login.css';
-import { Button, Checkbox, AutoComplete } from 'element-react';
 import Federation from './FedLogin.js';
 import Logo from "../images/norweld-logo.png";
 
