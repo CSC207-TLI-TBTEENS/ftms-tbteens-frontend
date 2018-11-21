@@ -12,5 +12,12 @@
 .table th.fit {
     white-space: nowrap;
     width: 15%;
-    text-align: right;
+    text-align: left;
+}
+
+form div.row {
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
 }
