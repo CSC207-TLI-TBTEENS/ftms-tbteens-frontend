@@ -164,7 +164,7 @@ class Employees extends Component {
         } else {
             content = (<div>
                     <SearchBar data={this.state.employees} onchange={this.searchRet}/>
-                    <EmployeeList employees = {this.state.employees} 
+                    <EmployeeList employees = {this.state.employeesShow} 
                                 employeeViewed={this.state.employeeViewed}
                                 viewHandler={this.setEmployeeViewing}
                                 formHandler={this.formChangeHandler}
