@@ -88,6 +88,7 @@ class ClientJobForm extends Component {
                                         className="form-control"
                                         name="description"
                                         id="description"
+                                        placeholder={'Enter the job description...'}
                                         value={description}
                                         autoComplete="off"
                                         onChange={this.handleChange}/>

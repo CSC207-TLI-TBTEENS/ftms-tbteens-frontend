@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import ClientJobList from './ClientJobList';
 import ClientJobForm from './ClientJobForm';
-import * as apiCalls from "../Companies/api";
+import SearchBar from "../components/Search";
+
 
 
 class ClientJobs extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            clientJobs: []
+            clientJobs: [],
+            clientJobsShow:[],
         }
         this.addJob= this.addJob.bind(this);
+        this.searchRet = this.searchRet.bind(this);
     }
 
     componentWillMount() {
@@ -18,17 +21,23 @@ class ClientJobs extends Component {
     }
 
     async loadClientJobs() {
-        let clientJob = {id: 1, siteLocation: "UofT", employees: ["Clara", "Nancy", "Person X"], jobDescription: "This is a new job", tasks: 0};
-        let clientJobs = [clientJob];
+        let clientJob1 = {id: 1, siteLocation: "UofT", employees: ["Clara", "Nancy", "Person X"], jobDescription: "This is a new job", tasks: 0};
+        let clientJob2 = {id: 2, siteLocation: "NewBrunswick", employees: ["William", "Felicia", "Person Y"], jobDescription: "Nice Job!", tasks: 1};
+        let clientJobs = [clientJob1, clientJob2];
         // let jobs = await apiCalls.getEmployeesJobs();
-        this.setState({clientJobs});
+        this.setState({clientJobs, clientJobsShow: [...clientJobs]});
         //let clientJobs = await apiCalls.getEmployees();
     }
 
     async addJob(job) {
-        let newJob= {id: 2, siteLocation: "not UofT", employees: ["Person X", "Person"], jobDescription: "This is a new job", tasks: 10};
+        let newJob= {id: 2, siteLocation: "U of T" , employees: ["Person X", "Person"], jobDescription: ":(", tasks: 10};
         this.setState({clientJobs : [...this.state.clientJobs, newJob]});
     }
+
+    searchRet(data){
+        this.setState({clientJobsShow : [...data]});
+    }
+
     render() {
         return (
             <div className="container">
@@ -61,8 +70,10 @@ class ClientJobs extends Component {
                         </div>
                     </div>
                 </div>
+
+                <SearchBar data={this.state.clientJobs} onchange={this.searchRet}/>
                 <ClientJobList
-                    jobs = {this.state.clientJobs}
+                    jobs = {this.state.clientJobsShow}
                 />
 
             </div>
