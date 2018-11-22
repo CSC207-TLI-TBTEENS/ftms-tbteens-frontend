@@ -17,7 +17,7 @@ const groupStyle = {
     float: "right"
 }
 
-const ClientJobItem = ({id, deletionHandler, viewHandler, siteLocation, jobDescription, curr}) => (
+const ClientJobItem = ({id, jobTitle, deletionHandler, viewHandler, siteLocation, jobDescription, curr}) => (
     <tr>
         <td>{jobTitle}</td>
         <td>{siteLocation}</td>
