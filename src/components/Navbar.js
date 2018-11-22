@@ -35,6 +35,7 @@ class Navbar extends Component {
                                 <li className="nav-item">
                                     <Link className="nav-link" to={"/jobsview"}> Jobs </Link>
                                 </li>
+                            </ul>
                         }
 
                         <ul className="navbar-nav ml-auto">
