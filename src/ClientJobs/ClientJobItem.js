@@ -19,6 +19,7 @@ const groupStyle = {
 
 const ClientJobItem = ({id, deletionHandler, viewHandler, siteLocation, jobDescription, curr}) => (
     <tr>
+        <td>{jobTitle}</td>
         <td>{siteLocation}</td>
         <td>{jobDescription}</td>
         <td>

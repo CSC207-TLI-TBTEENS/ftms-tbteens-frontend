@@ -7,7 +7,7 @@ const buttonStyle = {
 }
 
 const onClick = () => {
-    MessageBox.confirm('This will assign the below job to the below employee. Continue?', 'Confirmation', {
+    MessageBox.confirm('This will assign the below job to the above employee. Continue?', 'Confirmation', {
       confirmButtonText: 'OK',
       cancelButtonText: 'Cancel',
       type: 'info'
