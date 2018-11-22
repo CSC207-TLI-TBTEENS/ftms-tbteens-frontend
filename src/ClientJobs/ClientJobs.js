@@ -22,7 +22,8 @@ class ClientJobs extends Component {
 
     async loadClientJobs() {
         let jobs = await apiCalls.getJobs();
-        this.setState({clientJobs : jobs, loading : false, clientJobssShow: [...jobs]});
+        this.setState({clientJobs : jobs, loading : false, clientJobsShow: [...jobs]});
+        console.log(this.state.clientJobsShow)
     }
 
     async createJob(job) {

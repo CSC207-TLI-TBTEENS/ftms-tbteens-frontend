@@ -7,6 +7,7 @@ class ClientJobList extends Component {
         const clientJobs = this.props.jobs.map(clientJob => (
             <ClientJobItem
                 key={clientJob.id}
+                jobTitle = {clientJob.jobTitle}
                 siteLocation = {clientJob.siteName}
                 jobDescription = {clientJob.description}
                 {...clientJob}
@@ -18,6 +19,7 @@ class ClientJobList extends Component {
             <table className="table">
                 <thead>
                 <tr className="table-head">
+                    <th scope="col">Job Title</th>
                     <th scope="col">Site Location</th>
                     <th scope="col">Job Description</th>
                     <th scope="col">Employees</th>

@@ -2,8 +2,9 @@ import React from 'react';
 import './clientJobDetails.css';
 
 
-const ClientJobItem = ({siteLocation, jobDescription}) => (
+const ClientJobItem = ({jobTitle, siteLocation, jobDescription}) => (
     <tr>
+        <td>{jobTitle}</td>
         <td>{siteLocation}</td>
         <td>{jobDescription}</td>
         <td>
