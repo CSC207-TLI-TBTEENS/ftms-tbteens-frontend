@@ -5,9 +5,7 @@ class ClientJobForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            job: '',
-            company: '',
-            location: '',
+            siteName: '',
             description: ''
         };
         this.handleChange = this.handleChange.bind(this);
@@ -20,48 +18,30 @@ class ClientJobForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.addJob({...this.state});
+        this.props.createJob({...this.state});
         this.setState({
-            job: '',
-            company: '',
-            location: '',
+            siteName: '',
             description: ''
         });
     }
 
     render() {
-        const {job, company, location, description} = this.state;
+        const {siteName, description} = this.state;
         return (
             <div className="container">
                 <div className="row align-items-center justify-content-center h-100">
                     <div className="popup-form">
                         <form onSubmit={this.handleSubmit}>
-
                             <div className="form-row">
                                 <div className="form-group col-md-18">
-                                    <label htmlFor="job">Job Name</label>
+                                    <label htmlFor="siteName"> Location</label>
                                     <input
                                         type="text"
                                         className="form-control"
-                                        name="job"
-                                        id="job"
-                                        placeholder={'Job Name'}
-                                        value={job}
-                                        autoComplete="off"
-                                        onChange={this.handleChange}/>
-                                </div>
-                            </div>
-
-                            <div className="form-row">
-                                <div className="form-group col-md-18">
-                                    <label htmlFor="location"> Location</label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        name="location"
-                                        id="location"
+                                        name="siteName"
+                                        id="siteName"
                                         placeholder={'Location'}
-                                        value={location}
+                                        value={siteName}
                                         autoComplete="off"
                                         onChange={this.handleChange}/>
                                 </div>

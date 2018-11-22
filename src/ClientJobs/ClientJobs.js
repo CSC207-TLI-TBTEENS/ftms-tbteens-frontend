@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ClientJobList from './ClientJobList';
 import ClientJobForm from './ClientJobForm';
 import SearchBar from "../components/Search";
-
+import * as apiCalls from './api';
 
 
 class ClientJobs extends Component {
@@ -12,7 +12,7 @@ class ClientJobs extends Component {
             clientJobs: [],
             clientJobsShow:[],
         }
-        this.addJob= this.addJob.bind(this);
+        this.createJob = this.createJob.bind(this);
         this.searchRet = this.searchRet.bind(this);
     }
 
@@ -21,18 +21,14 @@ class ClientJobs extends Component {
     }
 
     async loadClientJobs() {
-        let clientJob1 = {id: 1, siteLocation: "UofT", employees: [{name: "Clara", id: "5", skill: "A"}, {name: "Nancy", id: "6", skill: "B"}, {name: "William", id: "7", skill: "C"}],
-            jobDescription: "This is a new job", tasks: 0};
-        let clientJob2 = {id: 2, siteLocation: "NewBrunswick", employees: ["William", "Felicia", "Person Y"], jobDescription: "Nice Job!", tasks: 1};
-        let clientJobs = [clientJob1, clientJob2];
-        // let jobs = await apiCalls.getEmployeesJobs();
-        this.setState({clientJobs, clientJobsShow: [...clientJobs]});
-        //let clientJobs = await apiCalls.getEmployees();
+        let jobs = await apiCalls.getJobs();
+        this.setState({clientJobs : jobs, loading : false, clientJobssShow: [...jobs]});
     }
 
-    async addJob(job) {
-        let newJob= {id: 2, siteLocation: "U of T" , employees: ["Person X", "Person"], jobDescription: ":(", tasks: 10};
-        this.setState({clientJobs : [...this.state.clientJobs, newJob]});
+    async createJob(job) {
+        let newJob = await apiCalls.createJob(job);
+        this.setState({clientJobs : [...this.state.clientJobs, newJob],
+                        clientJobsShow: [...this.state.clientJobsShow, newJob]});
     }
 
     searchRet(data){
@@ -58,14 +54,14 @@ class ClientJobs extends Component {
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Adding New Job</h5>
+                                <h5 className="modal-title" id="exampleModalLabel">Adding New Job</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div className="modal-body">
                                 <ClientJobForm
-                                    addJob = {this.addJob}
+                                    createJob = {this.createJob}
                                 />
                             </div>
                         </div>

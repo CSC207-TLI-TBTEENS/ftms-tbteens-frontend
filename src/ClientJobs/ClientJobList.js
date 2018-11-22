@@ -7,8 +7,11 @@ class ClientJobList extends Component {
         const clientJobs = this.props.jobs.map(clientJob => (
             <ClientJobItem
                 key={clientJob.id}
+                siteLocation = {clientJob.siteName}
+                jobDescription = {clientJob.description}
                 {...clientJob}
             />
+            
         ));
         return (
             <div className="table-responsive">

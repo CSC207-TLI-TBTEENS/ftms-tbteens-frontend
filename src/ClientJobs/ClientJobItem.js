@@ -2,7 +2,7 @@ import React from 'react';
 import './clientJobDetails.css';
 
 
-const ClientJobItem = ({siteLocation, employees, jobDescription}) => (
+const ClientJobItem = ({siteLocation, jobDescription}) => (
     <tr>
         <td>{siteLocation}</td>
         <td>{jobDescription}</td>
@@ -31,7 +31,7 @@ const ClientJobItem = ({siteLocation, employees, jobDescription}) => (
                                 <th scope="col"> Skill </th>
                             </tr>
                             </thead>
-                            {
+                            {/* {
                                 employees.map(emp => {
                                     return (
                                         <tbody>
@@ -44,7 +44,7 @@ const ClientJobItem = ({siteLocation, employees, jobDescription}) => (
                                         </tbody>
                                     )
                             })
-                            }
+                            } */}
                         </table>
                     </div>
                     <div className="modal-footer">
