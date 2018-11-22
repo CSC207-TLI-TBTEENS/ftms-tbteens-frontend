@@ -27,11 +27,11 @@ export async function getCompanies() {
     return request({
          url: COMPANYAPI,
          method: 'GET'
-    })
+    });
 }
 
 export async function createCompany(input) {
-    return fetch({
+    return request({
         url: COMPANYAPI,
         method: "POST",
         body: JSON.stringify({...input})
