@@ -1,6 +1,7 @@
 import React from 'react';
 import './clientJobDetails.css';
 
+
 const ClientJobItem = ({siteLocation, employees, jobDescription}) => (
     <tr>
         <td>{siteLocation}</td>
@@ -22,15 +23,28 @@ const ClientJobItem = ({siteLocation, employees, jobDescription}) => (
                         </button>
                     </div>
                     <div className="modal-body">
-                        <table className="table">
-                            <thead>
+                        <table className="table" id="table-job">
+                            <thead >
                             <tr className="table-head">
                                 <th scope="col"> Employee Name</th>
-                                <th scope="col"> Task </th>
-                                <th scope="col"> Task Description </th>
+                                <th scope="col"> ID </th>
+                                <th scope="col"> Skill </th>
                             </tr>
                             </thead>
+                            {
+                                employees.map(emp => {
+                                    return (
+                                        <tbody>
+                                            <tr>
+                                                <td scope="col"> {emp.name} </td>
+                                                <td scope="col"> {emp.id} </td>
+                                                <td scope="col"> {emp.skill} </td>
+                                            </tr>
 
+                                        </tbody>
+                                    )
+                            })
+                            }
                         </table>
                     </div>
                     <div className="modal-footer">
