@@ -15,12 +15,14 @@ class JobList extends Component {
                 {...job}
             />
         ));
+        
         return (
             <div className="table-responsive">
             <table className="table" id="table-job">
                 <thead>
                     <tr className="table-head">
                         <th scope="col" >Job Description</th>
+                        <th scope="col" >Site</th>
                     </tr>
                 </thead>
                 <tbody id= "data">

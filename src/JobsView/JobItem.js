@@ -2,10 +2,11 @@ import React from 'react';
 
 
 //Toggle for Job Detail View Enabled
-const JobItem = ({description, job, getEmployees}) => (
+const JobItem = ({description, siteName, job, getEmployees}) => (
         <tr data-toggle="modal" data-target={"#Job" +job.id}>
                 <td>{description}</td>
-                <div class="modal fade" id={"Job" + job.id} tabindex="-1" role="dialog" aria-labelledby="viewJobDetails" aria-hidden="true">
+                <td>{siteName}</td>
+                <div class="modal fade" id={"Job" + job.id} tabIndex="-1" role="dialog" aria-labelledby="viewJobDetails" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -15,7 +16,42 @@ const JobItem = ({description, job, getEmployees}) => (
                                 </button>
                             </div>
                             <div class="modal-body">
-                                Test
+                                <div className="table-responsive">
+                                    <table className="table" id="table-job-all">
+                                        <thead>
+                                            <tr className="table-head">
+                                                <th scope="col" >Employees</th>
+                                                <th scope="col" >Tasks</th>
+                                                <th scope="col" >Timesheets</th>
+                                                <th scope="col" >Review Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id= "data">
+                                        {/* {getEmployees(job).map(emp => (
+                                            <tr>
+                                            <td>{emp.name}</td>
+                                            <td>{emp.name}</td>
+                                            <td>None</td>
+                                            <td>Not Reviewed</td>
+                                        </tr>
+                                        )
+                                        ) */}
+                                            <tr>
+                                                <td>Chris</td>
+                                                <td>Fix DA2 unit</td>
+                                                <td>None</td>
+                                                <td>Not Reviewed</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Chris</td>
+                                                <td>Fix DA2 unit</td>
+                                                <td>None</td>
+                                                <td>Not Reviewed</td>
+                                            </tr>
+                                        </tbody>
+                                        
+                                    </table>
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

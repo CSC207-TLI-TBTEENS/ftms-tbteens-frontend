@@ -9,8 +9,7 @@ class Jobs extends Component {
         super(props);
         this.state = {
             jobs: [],
-            jobsShow: [],
-            query: ''
+            jobsShow: []
         }
         this.searchRet = this.searchRet.bind(this);
         this.getEmployeesFromJob = this.getEmployeesFromJob.bind(this);
@@ -35,7 +34,7 @@ class Jobs extends Component {
     }
 
     render() {
-        const {query, jobs, jobsShow} = this.state;
+        const {jobsShow} = this.state;
 
         return (
         <div className="container">
@@ -52,13 +51,14 @@ class Jobs extends Component {
             <JobList
                 jobs = {jobsShow} getEmployees = {this.getEmployeesFromJob}
             />
+            
 
-            <div className="modal fade" id="jobForm" tabindex="-1" role="dialog" aria-labelledby="createNewJob" aria-hidden="true">
+            <div className="modal fade" id="jobForm" tabIndex="-1" role="dialog" aria-labelledby="createNewJob" aria-hidden="true">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                 <div className="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Adding New Job</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <h5 className="modal-title" id="exampleModalLabel">Adding New Job</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
                 </div>

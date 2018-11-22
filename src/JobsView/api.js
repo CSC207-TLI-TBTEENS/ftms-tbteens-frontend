@@ -1,9 +1,13 @@
+import request from "../Services/apiServices";
+
 const JOBAPI = "/api/jobs/";
 const JOBEMPLOYEES = JOBAPI + "employees";
 
 export async function getJobs() {
-    return fetch(JOBAPI)
-    .then(resp => {return ValidateHTTPStatus(resp)});
+    return request({
+         url: JOBAPI,
+         method: 'GET'
+    })
 }
 
 export async function getEmployeesFromJob(input) {
