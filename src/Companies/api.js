@@ -1,32 +1,39 @@
+import request from "../Services/apiServices";
 const COMPANYAPI = "/api/companies/";
 
+export async function deleteCompany(input) {
+    let address = COMPANYAPI + input.toString();
+    return request({
+        url: address,
+        method: "DELETE",
+    })
+} 
+
+export async function editCompany(input) {
+    let id = input.id.toString();
+    let name = input.name;
+    let logo = input.logo;
+    let email = input.email;
+    let phone = input.number;
+    let address = (COMPANYAPI + id + "?name=" + name + "&logo=" + 
+                logo + "&email=" + email + "&phone=" + phone);
+    return request({
+        url: address,
+        method: "PUT",
+    })
+}
+
 export async function getCompanies() {
-    return fetch(COMPANYAPI)
-    .then(resp => {return ValidateHTTPStatus(resp)});
+    return request({
+         url: COMPANYAPI,
+         method: 'GET'
+    });
 }
 
 export async function createCompany(input) {
-    return fetch(COMPANYAPI, {
-        method: "post",
-        headers: new Headers({
-            "Content-Type" : "application/json"
-        }),
+    return request({
+        url: COMPANYAPI,
+        method: "POST",
         body: JSON.stringify({...input})
     })
-    .then(resp => {return ValidateHTTPStatus(resp)});
-}
-
-function ValidateHTTPStatus(resp) {
-    if (!resp.ok) {
-        if(resp.status >= 400 && resp.status < 500) {
-            return resp.json().then(data => {
-                let err = {errorMessage : data.message};
-                throw err;
-            });
-        } else {
-            let err = {errorMessage: "Server is not responding!"}
-            throw err;
-        }
-    }
-    return resp.json();
 }

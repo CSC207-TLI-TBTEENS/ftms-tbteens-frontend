@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import {Card, Button} from 'element-react';
+import React from 'react';
 import './JobAssignment.css'
 
 const style = {
@@ -18,8 +17,8 @@ const EmployeesList = (props) => {
                             <div class="card">
                                 <div class="card-header" id="headingOne">
                                 <h5 class="mb-0">
-                                    <button onClick={props.employeeHandler.bind(this, employee)}class="btn btn-link" type="button" data-toggle="collapse" data-target={"#employee" + num} aria-expanded="false" aria-controls={"employee" + num}>
-                                    {employee.name}
+                                    <button onClick={props.employeeHandler.bind(this, employee)} class="btn btn-link" type="button" data-toggle="collapse" data-target={"#employee" + num} aria-expanded="false" aria-controls={"employee" + num}>
+                                    {employee.firstname + " " + employee.lastname}
                                     </button>
                                 </h5>
                                 </div>
@@ -27,7 +26,8 @@ const EmployeesList = (props) => {
                                 <div id={"employee" + num} class="collapse multi-collapse" aria-labelledby="headingOne" data-parent="#accordionExample2">
                                 <div class="card-body" style={style}>
                                     <p>EMPLOYEE ID: {employee.id}</p>
-                                    <p>EMPLOYEE SKILL: {employee.skill}</p>
+                                    <p>EMPLOYEE EMAIL: {employee.email}</p>
+                                    <p>EMPLOYEE NUMBER: {employee.number}</p>
                                 </div>
                                 </div>
                             </div>

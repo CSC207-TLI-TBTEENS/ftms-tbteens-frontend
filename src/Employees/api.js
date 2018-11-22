@@ -1,32 +1,55 @@
+import request from "../Services/apiServices";
 const EMPLOYEEAPI = "/api/employees/";
+const EMPLOYEEJOBS = EMPLOYEEAPI + "jobs";
 
+
+// Get Employees
 export async function getEmployees() {
-    return fetch(EMPLOYEEAPI)
-    .then(resp => {return ValidateHTTPStatus(resp)});
+    return request({
+        url: EMPLOYEEAPI,
+        method: 'GET'
+    });
 }
 
+// Create Employee
 export async function createEmployee(input) {
-    return fetch(EMPLOYEEAPI, {
-        method: "post",
-        headers: new Headers({
-            "Content-Type" : "application/json"
-        }),
+    return request({
+        url: "/api/auth/signup",
+        method: 'POST',
         body: JSON.stringify({...input})
-    })
-    .then(resp => {return ValidateHTTPStatus(resp)});
+    });
 }
 
-function ValidateHTTPStatus(resp) {
-    if (!resp.ok) {
-        if(resp.status >= 400 && resp.status < 500) {
-            return resp.json().then(data => {
-                let err = {errorMessage : data.message};
-                throw err;
-            });
-        } else {
-            let err = {errorMessage: "Server is not responding!"}
-            throw err;
-        }
-    }
-    return resp.json();
+// Edit Employee
+export async function editEmployee(input) {
+    let id = input.id.toString();
+    let firstname = input.firstname;
+    let lastname = input.lastname;
+    let email = input.email;
+    let phone = input.number;
+    let address = (EMPLOYEEAPI + id + "?firstName=" + firstname + "&lastName=" + 
+                    lastname + "&email=" + email + "&phone=" + phone);
+    return request({
+        url: address,
+        method: "PUT",
+        body: {...input}
+    })
+}
+
+// Delete Employee
+export async function deleteEmployee(input) {
+    let address = EMPLOYEEAPI + input.toString();
+    return request({
+        url: address,
+        method: 'DELETE',
+    });
+}
+
+// get Jobs from Employee
+export async function getJobsFromEmployee(input) {
+    return request({
+        url: EMPLOYEEJOBS,
+        method: 'POST',
+        body: JSON.stringify({...input})
+    });
 }

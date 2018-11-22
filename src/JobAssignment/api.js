@@ -1,18 +1,15 @@
-import request from "../Services/apiServices";
-
 const JOBAPI = "/api/jobs/";
-const JOBEMPLOYEES = JOBAPI + "employees";
+const TASKAPI = "/api/tasks";
+const JOBEMPLOYEES = JOBAPI + "employees"
 
-export async function getJobs() {
-    return request({
-         url: JOBAPI,
-         method: 'GET'
-    })
+export async function getTasks() {
+    return fetch(TASKAPI)
+    .then(resp => {return ValidateHTTPStatus(resp)});
 }
 
-export async function getEmployeesFromJob(input) {
+export async function getJobsFromEmployee(input) {
     return fetch(JOBEMPLOYEES, {
-        method: "POST",
+        method: "post",
         headers: new Headers({
             "Content-Type": "application/json"
         }),
@@ -21,7 +18,21 @@ export async function getEmployeesFromJob(input) {
     .then(resp => {return ValidateHTTPStatus(resp)})
 }
 
+export async function getJobs() {
+    return fetch(JOBAPI)
+    .then(resp => {return ValidateHTTPStatus(resp)});
+}
 
+export async function createJob(input) {
+    return fetch(JOBAPI, {
+        method: "post",
+        headers: new Headers({
+            "Content-Type" : "application/json"
+        }),
+        body: JSON.stringify({...input})
+    })
+    .then(resp => {return ValidateHTTPStatus(resp)});
+}
 
 function ValidateHTTPStatus(resp) {
     if (!resp.ok) {
