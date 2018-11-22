@@ -12,7 +12,7 @@
 }
 
 .accordion {
-    height: 75vh;
+    max-height: 50vh;
     overflow-y: scroll;
 }
 

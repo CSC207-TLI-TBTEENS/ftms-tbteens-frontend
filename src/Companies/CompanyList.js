@@ -3,6 +3,10 @@ import CompanyItem from './CompanyItem';
 
 class CompanyList extends Component {
 
+    sortCompanies(key) {
+        this.props.sortCompanies(key);
+    }
+
     render() {
         const companies = this.props.companies.map(cmp => (
             <CompanyItem
@@ -42,7 +46,12 @@ class CompanyList extends Component {
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary save-changes-btn">Save changes</button>
+                                <button onClick={this.props.editHandler.bind(this.props.curr, 
+                                        cmp.id, this.props.companyViewed[0].value, 
+                                        this.props.companyViewed[1].value, 
+                                        this.props.companyViewed[2].value, 
+                                        this.props.companyViewed[3].value)}
+                                type="button" class="btn btn-primary save-changes-btn">Save changes</button>
                             </div>
                         </div>
                     </div>
@@ -50,20 +59,22 @@ class CompanyList extends Component {
             )
         })
         return (
+            <div className="table-responsive">
             <table className="table">
                 <thead>
                     <tr className="table-head">
                         <th scope="col">Logo</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Contact Email</th>
+                        <th scope="col" onClick={() => this.sortCompanies('name')}>Name</th>
+                        <th scope="col" onClick={() => this.sortCompanies('email')}>Contact Email</th>
                         <th scole="col"></th>
                     </tr>
                 </thead>
                 <tbody>
-                {companies}
-                {modals}
+                    {companies}
+                    {modals}
                 </tbody>
             </table>
+            </div>            
         )
     }
 }

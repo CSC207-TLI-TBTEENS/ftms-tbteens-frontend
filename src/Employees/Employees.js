@@ -4,7 +4,8 @@ import EmployeeForm from './EmployeeForm';
 import EmployeeList from './EmployeeList';
 import Loading from '../components/Loading.js';
 import SearchBar from '../components/Search.js';
-import { Message, MessageBox } from 'element-react'
+import { Message, MessageBox } from 'element-react';
+import * as sorter from '../components/Sorter.js';
 
 class Employees extends Component {
     constructor(props) {
@@ -16,10 +17,14 @@ class Employees extends Component {
                             {label: "Last name", value: null}, 
                             {label: "Email", value: null}, 
                             {label: "Phone", value: null}],
-            loading: true
+            loading: true,
+            listToggle: 0,
+            changeKey: true,
+            previousKey: ''
         }
         this.addEmployee = this.addEmployee.bind(this);
         this.searchRet = this.searchRet.bind(this);
+        this.sortEmployees = this.sortEmployees.bind(this);
     }
 
     componentWillMount() {
@@ -41,53 +46,12 @@ class Employees extends Component {
         this.setState({employeesShow: [...data]});
     }
 
-    async sortEmployee(key, toggleState) {
-        let employees = [...this.state.employees];
-        let employeesShow = [...this.state.employeesShow];
-        if (toggleState === 0) {
-            employees = await this.sortByAscending(employees, key);
-            employeesShow = await this.sortByAscending([...this.state.employeesShow], key);
-        }
-        else if (toggleState === 1) {
-            employees = await this.sortByDescending(employees, key);
-            employeesShow = await this.sortByDescending([...this.state.employeesShow], key);
-        }
-
-        let listToggle = await this.incrementToggle();
-        this.setState({employees: employees, employeesShow: employeesShow, listToggle: listToggle});
-    }
-
-    async sortByAscending(arr, key) {
-        let newArr = [...arr];
-        newArr.sort(function(a, b) {
-            if (a[key] < b[key])
-                return -1;
-            else if (a[key] > b[key])
-                return 1;
-            return 0; 
-        });
-
-        return newArr;
-    }
-
-    async sortByDescending(arr, key) {
-        let newArr = [...arr];
-        newArr.sort(function(a, b) {
-            if (a[key] > b[key])
-                return -1;
-            else if (a[key] < b[key])
-                return 1;
-            return 0; 
-        });
-
-        return newArr;
-    }
-
-    async incrementToggle() {
-        let listToggle = this.state.listToggle;
-        listToggle = listToggle ? 0 : 1;
-        
-        return listToggle;
+    async sortEmployees(key) {
+        let changeKey = (key !== this.state.previousKey) ? true : this.state.changeKey;
+        let sortedList = await sorter.sortTable([...this.state.employees], [...this.state.employeesShow],
+                         key, this.state.listToggle, changeKey);
+        this.setState({employees: sortedList[0], employeesShow: sortedList[1], 
+                        listToggle: sortedList[2], changeKey: !changeKey, previousKey: key});
     }
 
     setEmployeeViewing = (firstname, lastname, email, phone) => {
@@ -100,15 +64,61 @@ class Employees extends Component {
     }
 
     formChangeHandler = (event, index) => {
-        const changed = {...this.state.employeeViewed[index]};
-        changed.value = event.target.value;
+        if (index !== 2) {
+            const changed = {...this.state.employeeViewed[index]};
+            changed.value = event.target.value;
 
-        const newEmployeeViewed = [...this.state.employeeViewed];
-        newEmployeeViewed[index] = changed;
+            const newEmployeeViewed = [...this.state.employeeViewed];
+            newEmployeeViewed[index] = changed;
 
-        this.setState({
-            employeeViewed: newEmployeeViewed    
-        })
+            this.setState({
+                employeeViewed: newEmployeeViewed    
+            })
+        }
+    }
+
+    async handleEmployeeEdit(id, firstname, lastname, email, number) {
+        let edited = false;
+        console.log("this", this);
+        console.log("id", id)
+        await MessageBox.confirm('Update this employee\'s information?', 'Warning', {
+            confirmButtonText: 'OK',
+            cancelButtonText: 'Cancel',
+            type: 'warning'
+        }).then(async() => {
+            edited = true;
+            await apiCalls.editEmployee({id, firstname, lastname, email, number});
+            await Message({
+              type: 'success',
+              message: 'Edited EMPLOYEE #' + id + ' ' + firstname + ' ' + lastname + ' successfully!'
+            });
+        }).catch((error) => {
+            console.log(error)
+            Message({
+              type: 'info',
+              message: "Deletion cancelled!"
+            });
+        });
+        if (edited) {
+            let currentEmployees = [...this.state.employees];
+            for (let i = 0; i < currentEmployees.length; i++) {
+                if (currentEmployees[i].id == id) {
+                    let editedEmployee = {
+                        id: id,
+                        firstname: firstname,
+                        lastname: lastname,
+                        email: email,
+                        number: number
+                    };
+                    currentEmployees[i] = editedEmployee;
+                    break;
+                }
+            }
+            this.setState({employees: currentEmployees, 
+                employeesShow: currentEmployees});
+            
+            console.log(this.state.employees, this.state.employeesShow)
+        }
     }
 
     async confirmDeletion(id, firstname, lastname) {
@@ -125,7 +135,8 @@ class Employees extends Component {
               type: 'success',
               message: 'Deleted EMPLOYEE #' + id + ' ' + firstname + ' ' + lastname + ' successfully!'
             });
-        }).catch(() => {
+        }).catch((error) => {
+            console.log(error)
             Message({
               type: 'info',
               message: "Deletion cancelled!"
@@ -135,7 +146,7 @@ class Employees extends Component {
         if (deleted) {
             let currentEmployees = [...this.state.employees];
             for (let i = 0; i < currentEmployees.length; i++) {
-                if (currentEmployees[i].id == id) {
+                if (currentEmployees[i].id === id) {
                     currentEmployees.splice(i, 1);
                     break;
                 }
@@ -158,7 +169,10 @@ class Employees extends Component {
                                 viewHandler={this.setEmployeeViewing}
                                 formHandler={this.formChangeHandler}
                                 deletionHandler={this.confirmDeletion}
+                                sortEmployees={this.sortEmployees}
+                                editHandler={this.handleEmployeeEdit}
                                 parent={this}/> 
+>>>>>>> master
                 </div>);
         }
         return (

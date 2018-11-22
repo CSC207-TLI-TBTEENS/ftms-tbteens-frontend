@@ -5,6 +5,7 @@ import CompanyList from './CompanyList';
 import Loading from '../components/Loading';
 import SearchBar from '../components/Search.js';
 import { MessageBox, Message} from 'element-react';
+import * as sorter from '../components/Sorter.js'
 
 class Companies extends Component {
     constructor(props) {
@@ -16,10 +17,14 @@ class Companies extends Component {
             {label: "Logo", value: null}, 
             {label: "Email", value: null}, 
             {label: "Number", value: null}],
-            loading: true
+            loading: true,
+            listToggle: 0,
+            changeKey: true,
+            previousKey: ''
         }
         this.addCompany= this.addCompany.bind(this);
         this.searchRet = this.searchRet.bind(this);
+        this.sortCompanies = this.sortCompanies.bind(this);
     }
     componentWillMount() {
         this.loadCompanies();
@@ -62,6 +67,58 @@ class Companies extends Component {
         })
     }
 
+    async sortCompanies(key) {
+        let changeKey = (key !== this.state.previousKey) ? true : this.state.changeKey;
+        let sortedList = await sorter.sortTable([...this.state.companies], [...this.state.companiesShow], 
+                                                key, this.state.listToggle, changeKey);
+        this.setState({companies: sortedList[0], companiesShow: sortedList[1], listToggle: sortedList[2],
+                        changeKey: !changeKey, previousKey: key});
+    }
+
+    async handleEmployeeEdit(id, name, logo, email, number) {
+        let edited = false;
+        console.log("this", this);
+        console.log("id", id)
+        await MessageBox.confirm('Update this company\'s information?', 'Warning', {
+            confirmButtonText: 'OK',
+            cancelButtonText: 'Cancel',
+            type: 'warning'
+        }).then(async() => {
+            edited = true;
+            await apiCalls.editCompany({id, name, logo, email, number});
+            await Message({
+              type: 'success',
+              message: 'Edited COMPANY #' + id + ' ' + name + ' successfully!'
+            });
+        }).catch((error) => {
+            console.log(error)
+            Message({
+              type: 'info',
+              message: "Deletion cancelled!"
+            });
+        });
+        if (edited) {
+            let currentCompanies = [...this.state.companies];
+            for (let i = 0; i < currentCompanies.length; i++) {
+                if (currentCompanies[i].id == id) {
+                    let editedCompany = {
+                        id: id,
+                        name: name,
+                        logo: logo,
+                        email: email,
+                        number: number
+                    };
+                    currentCompanies[i] = editedCompany;
+                    break;
+                }
+            }
+            this.setState({companies: currentCompanies, 
+                companiesShow: currentCompanies});
+            
+            console.log(this.state.companies, this.state.companiesShow)
+        }
+    }
+
     async confirmDeletion(id, name) {
         let deleted = false;
         console.log(this);
@@ -82,7 +139,6 @@ class Companies extends Component {
               message: "Deletion cancelled!"
             });
         });
-        console.log(deleted)
         if (deleted) {
             let currentCompanies = [...this.state.companies];
             for (let i = 0; i < currentCompanies.length; i++) {
@@ -93,8 +149,6 @@ class Companies extends Component {
             };
             this.setState({companiesShow: currentCompanies, companies: currentCompanies});
         }
-        console.log(this.state);
-        console.log(this.state.companies)
     }
 
     render() {
@@ -109,6 +163,8 @@ class Companies extends Component {
                                 formHandler={this.formChangeHandler}
                                 companyViewed={this.state.companyViewed}
                                 deletionHandler={this.confirmDeletion}
+                                sortCompanies={this.sortCompanies}
+                                editHandler={this.handleEmployeeEdit}
                                 curr={this}/>
                     </div>);
         }

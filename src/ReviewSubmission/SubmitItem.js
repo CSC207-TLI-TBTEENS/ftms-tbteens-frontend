@@ -1,17 +1,18 @@
 import React from 'react';
-import './Submit.css';
 
-const SubmitItem = (props) => (
-    <tr className="bg-purple">
-        <td className="align-middle fit"><h5>{props.name}</h5></td>
-        <td>
-            <input type="text"
-                   className="form-control user-input"
-                   value={props.value}
-                   onChange={props.handleChange}
-            />
-        </td>
-    </tr>
+const SubmitItem = ({name, pattern, handleChange, value}) => (
+    <div className="form-group row">
+        <label htmlFor="colFormLabel" className="col-sm-2 col-form-label"><h4>{name}</h4></label>
+        <div className="col-sm-10">
+            <input type="text" 
+                className="form-control user-input" 
+                id="colFormLabel" 
+                value={value} 
+                onChange={handleChange} 
+                pattern={pattern}/>
+            <div className="form-control-feedback form-error"></div>
+        </div>
+    </div>
 )
 
 export default SubmitItem;

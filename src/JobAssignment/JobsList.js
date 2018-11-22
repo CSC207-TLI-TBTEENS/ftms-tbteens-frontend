@@ -26,9 +26,7 @@ const JobsList = (props) => {
 
                                 <div id={"job" + num} class="collapse multi-collapse" aria-labelledby="headingOne" data-parent="#accordionExample1">
                                 <div class="card-body" style={style}>
-                                    {/* <p>TASK ID: {job.id}</p>
-                                    <p>TASK SITE: {job.site}</p>
-                                    <p>DESCRIPTION: {job.descript}</p> */}
+                                    <p>TASK ID: {job.id}</p>
                                 </div>
                                 </div>
                             </div>

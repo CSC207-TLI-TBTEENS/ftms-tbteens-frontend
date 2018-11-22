@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 import EmployeeItem from './EmployeeItem';
 
 class EmployeeList extends Component {
+
+    sortEmployees(key) {
+        this.props.sortEmployees(key);
+    }
     render() {
         const employees = this.props.employees.map(emp => (
             <EmployeeItem
@@ -9,11 +13,12 @@ class EmployeeList extends Component {
                 {...emp}
                 viewHandler = {this.props.viewHandler}
                 deletionHandler = {this.props.deletionHandler}
-                curr = {this.props.parent}  
+                curr = {this.props.parent}
             />
         ));
-
+        let num = 0;
         const modals = this.props.employees.map(emp => {
+            num++;
             return (
                 <div class="modal fade" id={"employee" + emp.id} tabindex="-1" role="dialog" aria-labelledby="viewEmployeeDetails" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -31,7 +36,7 @@ class EmployeeList extends Component {
                                             return (
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">{field.label}</label>
-                                                    <input type="email" class="form-control" id="firstName" aria-describedby="emailHelp" 
+                                                    <input type="email" class="form-control" id={field.label + num} aria-describedby="emailHelp" 
                                                         value={field.value} onChange={(event) => this.props.formHandler(event, index)}/>
                                                 </div>
                                             )
@@ -41,7 +46,12 @@ class EmployeeList extends Component {
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary save-changes-btn">Save changes</button>
+                                <button onClick={this.props.editHandler.bind(this.props.parent, 
+                                        emp.id, this.props.employeeViewed[0].value, 
+                                        this.props.employeeViewed[1].value, 
+                                        this.props.employeeViewed[2].value, 
+                                        this.props.employeeViewed[3].value)}
+                                type="button" class="btn btn-primary save-changes-btn">Save changes</button>
                             </div>
                         </div>
                     </div>
@@ -49,20 +59,22 @@ class EmployeeList extends Component {
             )
         })
         return (
+            <div className="table-responsive">
             <table className="table">
                 <thead>
                     <tr className="table-head">
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Email</th>
+                        <th scope="col" onClick={() => this.sortEmployees('firstname')}>First</th>
+                        <th scope="col" onClick={() => this.sortEmployees('lastname')}>Last</th>
+                        <th scope="col" onClick={() => this.sortEmployees('email')}>Email</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
-                {employees}
-                {modals}
+                    {employees}
+                    {modals}
                 </tbody>
             </table>
+            </div>
         )
     }
 }
