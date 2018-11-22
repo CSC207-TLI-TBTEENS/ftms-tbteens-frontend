@@ -7,11 +7,29 @@ export async function getJobs() {
     return request({
          url: JOBAPI,
          method: 'GET'
-    });
+    })
+}
+export async function deleteJob(input) {
+    let address = JOBAPI + input.toString();
+    return request({
+        url: address,
+        method: "DELETE",
+    })
+} 
+
+export async function editJob(input) {
+    let id = input.id.toString();
+    let siteName = input.siteName;
+    let description = input.description;
+    let address = (JOBAPI + id + "?siteName=" + siteName + "&description=" + 
+                description);
+    return request({
+        url: address,
+        method: "PUT",
+    })
 }
 
 export async function createJob(input) {
-    console.log(input)
     return request({
         url: JOBAPI,
         method: "POST",

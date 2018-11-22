@@ -1,8 +1,23 @@
 import React from 'react';
 import './clientJobDetails.css';
 
+const editStyle = {
+    backgroundColor: "rgb(160, 218, 113)",
+    border: "none",
+    display: "inline-block",
+}
 
-const ClientJobItem = ({siteLocation, jobDescription}) => (
+const deleteStyle = {
+    backgroundColor: "red",
+    border: "none",
+    display: "inline-block",
+}
+
+const groupStyle = {
+    float: "right"
+}
+
+const ClientJobItem = ({id, deletionHandler, viewHandler, siteLocation, jobDescription, curr}) => (
     <tr>
         <td>{siteLocation}</td>
         <td>{jobDescription}</td>
@@ -11,7 +26,20 @@ const ClientJobItem = ({siteLocation, jobDescription}) => (
                     View Employees
                 </button>
         </td>
-
+        <td>
+        <div style={groupStyle} class="btn-group" role="group" aria-label="deletion-edit">
+            <button onClick={deletionHandler.bind(curr, id, siteLocation, jobDescription)}
+                    style={deleteStyle} type="button" class="btn btn-primary">
+                    <i className="el-icon-delete"></i>
+            </button> 
+            <button onClick={viewHandler.bind(this, siteLocation, jobDescription)} 
+                    style={editStyle} type="button" class="btn btn-primary" 
+                    data-toggle="modal" data-target={"#job" + id}>
+                    <i className="el-icon-edit"></i>
+            </button>
+        </div>
+        </td>
+        
         {<div className="modal fade" id="viewEmployees" tabindex="-1" role="dialog" aria-labelledby="viewEmployees" aria-hidden="true">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
