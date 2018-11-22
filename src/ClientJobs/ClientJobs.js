@@ -21,7 +21,8 @@ class ClientJobs extends Component {
     }
 
     async loadClientJobs() {
-        let clientJob1 = {id: 1, siteLocation: "UofT", employees: ["Clara", "Nancy", "Person X"], jobDescription: "This is a new job", tasks: 0};
+        let clientJob1 = {id: 1, siteLocation: "UofT", employees: [{name: "Clara", id: "5", skill: "A"}, {name: "Nancy", id: "6", skill: "B"}, {name: "William", id: "7", skill: "C"}],
+            jobDescription: "This is a new job", tasks: 0};
         let clientJob2 = {id: 2, siteLocation: "NewBrunswick", employees: ["William", "Felicia", "Person Y"], jobDescription: "Nice Job!", tasks: 1};
         let clientJobs = [clientJob1, clientJob2];
         // let jobs = await apiCalls.getEmployeesJobs();

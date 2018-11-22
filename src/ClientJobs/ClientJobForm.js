@@ -54,21 +54,6 @@ class ClientJobForm extends Component {
 
                             <div className="form-row">
                                 <div className="form-group col-md-18">
-                                    <label htmlFor="company">Company Name</label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        name="company"
-                                        id="company"
-                                        placeholder={'Company Name'}
-                                        value={company}
-                                        autoComplete="off"
-                                        onChange={this.handleChange}/>
-                                </div>
-                            </div>
-
-                            <div className="form-row">
-                                <div className="form-group col-md-18">
                                     <label htmlFor="location"> Location</label>
                                     <input
                                         type="text"
@@ -97,12 +82,17 @@ class ClientJobForm extends Component {
                                 </div>
                             </div>
 
-                            <button
-                                type="submit"
-                                className="btn btn-submit btn-block"
-                            >
-                                Create
-                            </button>
+                            <div className="form-row justify-content-center">
+                                <div className="form-group col-md-8">
+                                    <button
+                                        type="submit" id = "login"
+                                        className="btn btn-submit btn-block"
+                                    >
+                                        Create
+                                    </button>
+                                </div>
+                            </div>
+
                         </form>
                     </div>
                 </div>
