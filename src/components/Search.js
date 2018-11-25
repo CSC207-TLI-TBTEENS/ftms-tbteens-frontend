@@ -49,7 +49,7 @@ class SearchBar extends Component {
             name="query"
             id="query"
             value = {this.state.query}
-            placeholder="search"
+            placeholder="Search..."
             autoComplete="off"
             onChange={this.searching}
             />
