@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import './Login.css';
-import { withRouter} from "react-router-dom";
 import Federation from './FedLogin.js';
-import { login } from '../Services/authApi';
+import { Message } from 'element-react';
 import Logo from "../images/norweld-logo.png";
 
 class Login extends Component {
@@ -10,41 +9,53 @@ class Login extends Component {
         super(props);
         this.state = {
             email: '',
-            password: '',
+            password: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(e) {
+        this.props.removeError();
 		this.setState({[e.target.name] : e.target.value});
     }
 
     handleSubmit(event) {
         event.preventDefault();
         const loginRequest = {...this.state};
-        login(loginRequest)
-        .then(response => {
-            localStorage.setItem('accessToken', response.accessToken);
-            this.props.onLogin();
-            this.props.history.push("/employees");
-        }).catch(error => {
-            if(error.status === 401) {
-                console.log("Username or Password is incorrect.")                  
-            } else {
-                console.log(error)
-                console.log("Something went wrong!")                                         
-            }
+        this.props.onAuth(loginRequest)
+        .then(() => {
+            this.props.history.push("/");
+        })
+        .catch(() => {
+            return;
         });
     }
 
     render() {
         const {email, password} = this.state;
+        const {
+            errors,
+            history,
+            removeError
+          } = this.props;
+
+        history.listen(() => {
+            removeError();
+        });
+        
         return (
             <div className="container">
+                {errors.message && (
+                    Message({
+                        type: 'error',
+                        message: errors.message,
+                        showClose: true
+                    })
+                )} 
                 <div className="row">
                     <div className="container container-style">
-                        <img className="logo-header pt-3" src={Logo} alt="Logo"/>    
+                        <img className="logo-header pt-3" src={Logo} alt="Logo"/>   
                         <div className="field">
                             <form className="login-form" onSubmit={this.handleSubmit}>
                                 <div className="form-group">
@@ -93,4 +104,4 @@ class Login extends Component {
     }
 }
 
-export default withRouter(Login);
+export default Login;
