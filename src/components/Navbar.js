@@ -29,7 +29,7 @@ class Navbar extends Component {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNav">
-                        {this.props.currentUser.isAuthenticated &&
+                        {this.props.currentUser.user.role === "ROLE_ADMIN" &&
                             <ul className="navbar-nav mr-auto">    
                                 <li className="nav-item">
                                     <Link className="nav-link" to={"/employees"}> Employees </Link>
@@ -39,6 +39,17 @@ class Navbar extends Component {
                                 </li>
                                 <li className="nav-item">
                                     <Link className="nav-link" to={"/jobsview"}> Jobs </Link>
+                                </li>
+                            </ul>
+                        }
+
+                        {this.props.currentUser.user.role === "ROLE_EMPLOYEE" &&
+                            <ul className="navbar-nav mr-auto">    
+                                <li className="nav-item">
+                                    <Link className="nav-link" to={"/timesheets"}> Timesheets </Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to={"/review"}> Review and Submit </Link>
                                 </li>
                             </ul>
                         }

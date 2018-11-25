@@ -16,6 +16,7 @@ class Login extends Component {
     }
 
     handleChange(e) {
+        this.props.removeError();
 		this.setState({[e.target.name] : e.target.value});
     }
 
