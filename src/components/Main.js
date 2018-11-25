@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route, withRouter} from "react-router-dom";
-import {CSSTransition, TransitionGroup} from 'react-transition-group';
+import { connect } from "react-redux";
 import Employees from "../Employees/Employees";
 import Companies from "../Companies/Companies";
 import Login from "../Login/Login.js";
@@ -10,33 +10,42 @@ import Submit from "../ReviewSubmission/Submit.js";
 import Timesheets from "../Timesheets/Jobs";
 import ClientJobs from "../ClientJobs/ClientJobs"
 import ViewHistory from "../ViewHistory/ViewHistory.js";
+import { authUser } from "../store/actions/auth";
+import { removeError } from "../store/actions/errors";
+import withAuth from "../hocs/withAuth";
 
 const Main = props => {
+    const { authUser, errors, removeError, currentUser } = props;
     return (
         <Route render={({location}) => (
-            <TransitionGroup>
-                <CSSTransition
-                    key={location.key}
-                    timeout={750}
-                    classNames="fade"
-                >
-                <div className="page">
-                    <Switch location={location}>
-                        <Route exact path="/login" render={(prop) => <Login onLogin={props.onLogin} {...prop} />} />
-                        <Route exact path="/employees" component={Employees} />
-                        <Route exact path="/companies" component={Companies} />
-                        <Route exact path="/jobsview" component={JobsView} />
-                        <Route exact path="/jobassign" component={JobAssignment} />
-                        <Route exact path="/review" component={Submit} />
-                        <Route exact path="/clientJobs" component={ClientJobs}/>
-                        <Route exact path="/timesheets" component={Timesheets}/>
-                        <Route exact path="/viewhistory" component={ViewHistory}/>
-                    </Switch>
-                </div>
-                </CSSTransition>
-            </TransitionGroup>
+            <Switch location={location}>
+                <Route exact path="/login" render={(props) => 
+                <Login 
+                    removeError={removeError}
+                    errors={errors}
+                    onAuth={authUser}
+                    {...props}
+                />} />
+                <Route exact path="/employees" component={withAuth(Employees)} />
+                <Route exact path="/companies" component={withAuth(Companies)} />
+                <Route exact path="/jobsview" component={withAuth(JobsView)} />
+                <Route exact path="/jobassign" component={withAuth(JobAssignment)} />
+                <Route exact path="/review" component={withAuth(Submit)} />
+                <Route exact path="/clientJobs" component={withAuth(ClientJobs)}/>
+                <Route exact path="/timesheets" component={withAuth(Timesheets)}/>
+                <Route exact path="/viewhistory" component={withAuth(ViewHistory)}/>
+            </Switch>
         )} />
     )
 }
 
-export default withRouter(Main);
+function mapStateToProps(state) {
+    return {
+      currentUser: state.currentUser,
+      errors: state.errors
+    };
+}
+  
+export default withRouter(
+    connect(mapStateToProps, { authUser, removeError })(Main)
+);

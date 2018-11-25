@@ -21,14 +21,14 @@ const fedButton = () => {
         <div>
             <div className="row justify-content-center mb-1">
                 <div className="col-xs-12 col-md-6">
-                    <button type="button" class="btn btn-primary" style={google}>
+                    <button type="button" className="btn btn-primary" style={google}>
                         Google
                     </button>
                 </div>
             </div>
             <div className="row justify-content-center">
                 <div className="col-xs-12 col-md-6">
-                    <button type="button" class="btn btn-primary" style={facebook}>
+                    <button type="button" className="btn btn-primary" style={facebook}>
                         Facebook
                     </button>
                 </div>
