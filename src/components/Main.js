@@ -12,7 +12,6 @@ import ClientJobs from "../ClientJobs/ClientJobs"
 import ViewHistory from "../ViewHistory/ViewHistory.js";
 import { authUser } from "../store/actions/auth";
 import { removeError } from "../store/actions/errors";
-import withAuth from "../hocs/withAuth";
 
 const Main = props => {
     const { authUser, errors, removeError, currentUser } = props;
@@ -26,14 +25,14 @@ const Main = props => {
                     onAuth={authUser}
                     {...props}
                 />} />
-                <Route exact path="/employees" component={withAuth(Employees)} />
-                <Route exact path="/companies" component={withAuth(Companies)} />
-                <Route exact path="/jobsview" component={withAuth(JobsView)} />
-                <Route exact path="/jobassign" component={withAuth(JobAssignment)} />
-                <Route exact path="/review" component={withAuth(Submit)} />
-                <Route exact path="/clientJobs" component={withAuth(ClientJobs)}/>
-                <Route exact path="/timesheets" component={withAuth(Timesheets)}/>
-                <Route exact path="/viewhistory" component={withAuth(ViewHistory)}/>
+                <Route exact path="/employees" component={Employees} />
+                <Route exact path="/companies" component={Companies} />
+                <Route exact path="/jobsview" component={JobsView} />
+                <Route exact path="/jobassign" component={JobAssignment} />
+                <Route exact path="/review" component={Submit} />
+                <Route exact path="/clientJobs" component={ClientJobs}/>
+                <Route exact path="/timesheets" component={Timesheets}/>
+                <Route exact path="/viewhistory" component={ViewHistory}/>
             </Switch>
         )} />
     )
