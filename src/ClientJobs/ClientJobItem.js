@@ -51,7 +51,7 @@ const ClientJobItem = ({id, jobTitle, deletionHandler, viewHandler, siteLocation
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div className="modal-body">
+                    <div className="modal-body table-responsive">
                         <table className="table" id="table-job">
                             <thead >
                             <tr className="table-head">
