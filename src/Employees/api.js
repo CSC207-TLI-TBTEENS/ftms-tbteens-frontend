@@ -21,15 +21,6 @@ export async function createEmployee(input) {
     });
 }
 
-// Delete Employee
-export async function deleteEmployee(input) {
-    let address = EMPLOYEEAPI + input.toString();
-    return request({
-        url: address,
-        method: 'DELETE',
-    });
-}
-
 // Edit Employee
 export async function editEmployee(input) {
     let id = input.id.toString();
@@ -44,6 +35,15 @@ export async function editEmployee(input) {
         method: "PUT",
         body: {...input}
     })
+}
+
+// Delete Employee
+export async function deleteEmployee(input) {
+    let address = EMPLOYEEAPI + input.toString();
+    return request({
+        url: address,
+        method: 'DELETE',
+    });
 }
 
 // get Jobs from Employee

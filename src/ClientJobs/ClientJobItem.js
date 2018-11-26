@@ -1,8 +1,25 @@
 import React from 'react';
 import './clientJobDetails.css';
 
-const ClientJobItem = ({siteLocation, employees, jobDescription}) => (
+const editStyle = {
+    backgroundColor: "rgb(160, 218, 113)",
+    border: "none",
+    display: "inline-block",
+}
+
+const deleteStyle = {
+    backgroundColor: "red",
+    border: "none",
+    display: "inline-block",
+}
+
+const groupStyle = {
+    float: "right"
+}
+
+const ClientJobItem = ({id, jobTitle, deletionHandler, viewHandler, siteLocation, jobDescription, curr}) => (
     <tr>
+        <td>{jobTitle}</td>
         <td>{siteLocation}</td>
         <td>{jobDescription}</td>
         <td>
@@ -10,7 +27,20 @@ const ClientJobItem = ({siteLocation, employees, jobDescription}) => (
                     View Employees
                 </button>
         </td>
-
+        <td>
+        <div style={groupStyle} class="btn-group" role="group" aria-label="deletion-edit">
+            <button onClick={deletionHandler.bind(curr, id, siteLocation, jobDescription)}
+                    style={deleteStyle} type="button" class="btn btn-primary">
+                    <i className="el-icon-delete"></i>
+            </button> 
+            <button onClick={viewHandler.bind(this, siteLocation, jobDescription)} 
+                    style={editStyle} type="button" class="btn btn-primary" 
+                    data-toggle="modal" data-target={"#job" + id}>
+                    <i className="el-icon-edit"></i>
+            </button>
+        </div>
+        </td>
+        
         {<div className="modal fade" id="viewEmployees" tabindex="-1" role="dialog" aria-labelledby="viewEmployees" aria-hidden="true">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
@@ -22,15 +52,28 @@ const ClientJobItem = ({siteLocation, employees, jobDescription}) => (
                         </button>
                     </div>
                     <div className="modal-body">
-                        <table className="table">
-                            <thead>
+                        <table className="table" id="table-job">
+                            <thead >
                             <tr className="table-head">
                                 <th scope="col"> Employee Name</th>
-                                <th scope="col"> Task </th>
-                                <th scope="col"> Task Description </th>
+                                <th scope="col"> ID </th>
+                                <th scope="col"> Skill </th>
                             </tr>
                             </thead>
+                            {/* {
+                                employees.map(emp => {
+                                    return (
+                                        <tbody>
+                                            <tr>
+                                                <td scope="col"> {emp.name} </td>
+                                                <td scope="col"> {emp.id} </td>
+                                                <td scope="col"> {emp.skill} </td>
+                                            </tr>
 
+                                        </tbody>
+                                    )
+                            })
+                            } */}
                         </table>
                     </div>
                     <div className="modal-footer">

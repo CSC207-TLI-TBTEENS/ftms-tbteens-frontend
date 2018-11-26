@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 import EmployeeItem from './EmployeeItem';
 
 class EmployeeList extends Component {
+
+    sortEmployees(key) {
+        this.props.sortEmployees(key);
+    }
     render() {
         const employees = this.props.employees.map(emp => (
             <EmployeeItem
@@ -55,20 +59,22 @@ class EmployeeList extends Component {
             )
         })
         return (
+            <div className="table-responsive">
             <table className="table">
                 <thead>
                     <tr className="table-head">
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Email</th>
+                        <th scope="col" onClick={() => this.sortEmployees('firstname')}>First</th>
+                        <th scope="col" onClick={() => this.sortEmployees('lastname')}>Last</th>
+                        <th scope="col" onClick={() => this.sortEmployees('email')}>Email</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
-                {employees}
-                {modals}
+                    {employees}
+                    {modals}
                 </tbody>
             </table>
+            </div>
         )
     }
 }

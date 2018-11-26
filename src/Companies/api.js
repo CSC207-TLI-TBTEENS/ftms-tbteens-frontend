@@ -1,5 +1,4 @@
 import request from "../Services/apiServices";
-
 const COMPANYAPI = "/api/companies/";
 
 
