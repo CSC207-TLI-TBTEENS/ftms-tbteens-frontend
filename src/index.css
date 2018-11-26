@@ -104,7 +104,15 @@ code {
   background-color: rgb(165, 176, 214);
   color: rgb(53, 46, 66);
 }
+#table-job-all tbody tr:nth-child(even):hover {
+  background-color: rgb(66, 62, 90);
+  color: rgb(203, 200, 228);
+}
 
+#table-job-all tbody tr:nth-child(odd):hover {
+  background-color: rgb(127, 135, 165);
+  color: rgb(53, 46, 66);
+}
 .table tbody tr:nth-child(odd):hover {
   background-color: rgb(127, 135, 165);
   color: rgb(53, 46, 66);
@@ -114,6 +122,13 @@ code {
   background-color: rgb(90, 85, 121);
   color: rgb(203, 200, 228);
 }
+
+
+#table-job tbody tr:nth-child(odd) {
+  background-color: rgb(127, 135, 165);
+  color: rgb(53, 46, 66);
+}
+
 
 .table tbody tr:nth-child(even):hover {
   background-color: rgb(66, 62, 90);
@@ -171,8 +186,6 @@ code {
     border-radius: 5px;
     float: right;
 }
-
-
 /* Loading Rings  */
 @keyframes lds-double-ring {
   0% {

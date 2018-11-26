@@ -4,7 +4,7 @@ import EmployeesList from './EmployeesList.js';
 import TaskConfirmation from './TaskConfirmation.js';
 import EmployeeConfirmation from './EmployeeConfirmation.js';
 import Confirmation from './Confirmation.js';
-import * as jobAPI from './api.js';
+import * as jobAPI from '../ClientJobs/api.js';
 import * as employeeAPI from '../Employees/api.js';
 
 const style = {
@@ -16,20 +16,20 @@ export class JobAssignment extends Component {
         jobs: [],
         employees: [],
         tasks: [],
-        jobToConfirm: {job: "N/A", employees: []},
-        employeeToConfirm: {employee: "N/A", jobs: []},
+        jobToConfirm: {jobTitle: "No Task Chosen", employees: []},
+        employeeToConfirm: {firstname: "No Employee Chosen", lastname: ""}
     }
 
     componentWillMount() {
         this.getAllEmployees();
         this.getAllJobs();
-        this.getAllTasks();
+        // this.getAllTasks();
     }
 
-    async getAllTasks() {
-        let allTasks = await jobAPI.getTasks();
-        this.setState({tasks: allTasks})
-    }
+    // async getAllTasks() {
+    //     let allTasks = await jobAPI.getTasks();
+    //     this.setState({tasks: allTasks})
+    // }
 
     async getAllJobs() {
         let allJobs = await jobAPI.getJobs();
@@ -47,21 +47,24 @@ export class JobAssignment extends Component {
         return jobsFromEmloyee;
     }
 
-    handleTaskChosen = (job, employees) => {
+    handleTaskChosen = (job) => {
         this.setState(
             {
-                jobToConfirm: {job: job, employees: employees}
+                jobToConfirm: {...job}
             }
         )
+        console.log(this.state.jobToConfirm)
+
     }
 
-    handleEmployeeChosen = (employee, jobs) => {
-        let jobsFromEmployee = this.getJobsFromEmployee(employee, this.state.tasks);
+    handleEmployeeChosen = (employee) => {
+        // let jobsFromEmployee = this.getJobsFromEmployee(employee, this.state.tasks);
         this.setState(
             {
-                employeeToConfirm: {employee: employee, jobs: jobsFromEmployee}
+                employeeToConfirm: {...employee}
             }
         )
+        console.log(this.state.employeeToConfirm)
     }
 
     render() {
@@ -88,11 +91,11 @@ export class JobAssignment extends Component {
                                 employeeHandler={this.handleEmployeeChosen}/> 
                     </div>
                     <div className="col-md-6">
-                        <div className="row align-items-center justify-content-center" style={style}>
-                        </div>
+                        {/* <div className="row align-items-center justify-content-center" style={style}>
+                        </div> */}
                         <div className="row align-items-center justify-content-center">
                             <div className="col-md-12 mb-3 d-flex justify-content-center">
-                                <TaskConfirmation currentJob={this.state.taskToConfirm}/>
+                                <TaskConfirmation currentJob={this.state.jobToConfirm}/>
                             </div>
                         </div>
                         <div className="row align-items-center justify-content-center">
@@ -102,7 +105,7 @@ export class JobAssignment extends Component {
                          </div>
                         <div className="row justify-content-center">
                             <div className="col-md-12 d-flex justify-content-center">
-                                <Confirmation />
+                                <Confirmation employee={this.state.employeeToConfirm} job={this.state.jobToConfirm} />
                             </div>
                         </div>
                     </div> 

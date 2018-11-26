@@ -5,10 +5,9 @@ class ClientJobForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            job: '',
-            company: '',
-            location: '',
-            description: ''
+            jobTitle: '',
+            siteName: '',
+            description: '',
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,92 +19,69 @@ class ClientJobForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.addJob({...this.state});
+        console.log({...this.state})
+        this.props.createJob({...this.state});
         this.setState({
-            job: '',
-            company: '',
-            location: '',
-            description: ''
+            jobTitle: '',
+            siteName: '',
+            description: '',
         });
     }
 
     render() {
-        const {job, company, location, description} = this.state;
+        const {jobTitle, siteName, description} = this.state;
         return (
             <div className="container">
-                <div className="row align-items-center justify-content-center h-100">
-                    <div className="popup-form">
-                        <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit}>
+                    <div className="form-group col-md-18">
+                            <label htmlFor="jobTitle"> Job Title</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="jobTitle"
+                                id="jobTitle"
+                                placeholder={'Job Title'}
+                                value={jobTitle}
+                                autoComplete="off"
+                                onChange={this.handleChange}/>
+                        </div>
 
-                            <div className="form-row">
-                                <div className="form-group col-md-18">
-                                    <label htmlFor="job">Job Name</label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        name="job"
-                                        id="job"
-                                        placeholder={'Job Name'}
-                                        value={job}
-                                        autoComplete="off"
-                                        onChange={this.handleChange}/>
-                                </div>
-                            </div>
+                        <div className="form-group col-md-18">
+                            <label htmlFor="siteName"> Location</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="siteName"
+                                id="siteName"
+                                placeholder={'Location'}
+                                value={siteName}
+                                autoComplete="off"
+                                onChange={this.handleChange}/>
+                        </div>
 
-                            <div className="form-row">
-                                <div className="form-group col-md-18">
-                                    <label htmlFor="company">Company Name</label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        name="company"
-                                        id="company"
-                                        placeholder={'Company Name'}
-                                        value={company}
-                                        autoComplete="off"
-                                        onChange={this.handleChange}/>
-                                </div>
-                            </div>
+                        <div className="form-group col-md-18">
+                            <label htmlFor="description"> Description </label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="description"
+                                id="description"
+                                placeholder={'Enter the job description...'}
+                                value={description}
+                                autoComplete="off"
+                                onChange={this.handleChange}/>
+                        </div>
 
-                            <div className="form-row">
-                                <div className="form-group col-md-18">
-                                    <label htmlFor="location"> Location</label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        name="location"
-                                        id="location"
-                                        placeholder={'Location'}
-                                        value={location}
-                                        autoComplete="off"
-                                        onChange={this.handleChange}/>
-                                </div>
-                            </div>
-
-                            <div className="form-row">
-                                <div className="form-group col-md-18">
-                                    <label htmlFor="description"> Description </label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        name="description"
-                                        id="description"
-                                        placeholder={'Enter the job description...'}
-                                        value={description}
-                                        autoComplete="off"
-                                        onChange={this.handleChange}/>
-                                </div>
-                            </div>
-
+                    <div className="form-row justify-content-center">
+                        <div className="form-group col-md-5">
                             <button
-                                type="submit"
-                                className="btn btn-submit btn-block"
-                            >
+                                type="submit" id = "login"
+                                className="btn btn-submit btn-block">
                                 Create
                             </button>
-                        </form>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         )
     }

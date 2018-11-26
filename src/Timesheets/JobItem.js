@@ -42,7 +42,7 @@ const JobItem = ({jobId, jobName, clientName, jobDescription, jobLocation}) => (
                             Back
                         </button>
                         <Link className="nav-link" to={"/timesheets/edit"}>
-                            <button type="button" className="btn btn-main ml-1" >
+                            <button type="button" className="btn btn-main ml-1" data-toggle="modal" data-target="#jobDetails">
                                 Edit Timesheet
                             </button>
                         </Link>
