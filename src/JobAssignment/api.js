@@ -3,21 +3,25 @@ import { apiCall} from "../Services/api";
 const JOBAPI = "/api/jobs/";
 const TASKAPI = "/api/tasks";
 const JOBEMPLOYEES = JOBAPI + "employees"
+let newtimesheet= {job: "", employee: " "};
 
 export async function getJobsFromEmployee(input) {
     return fetch(JOBEMPLOYEES, {
         method: "post",
         headers: new Headers({
             "Content-Type": "application/json"
-        }),
+        }), 
         body: JSON.stringify({...input})
     })
     .then(resp => {return ValidateHTTPStatus(resp)})
 }
 
 
-export async function assignJob(selection){
-    return apiCall("PUT","/api/jobsassign",  {...selection});
+export async function assignJob(timesheet){
+    if (newtimesheet.job != timesheet.job && newtimesheet.employee != timesheet.employee){
+        newtimesheet = {job: timesheet.job, employee: timesheet.employee}
+        return apiCall("PUT","/api/jobsassign" ,  {...newtimesheet});
+    }
 }
 
 
