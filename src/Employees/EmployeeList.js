@@ -35,9 +35,9 @@ class EmployeeList extends Component {
                                         this.props.employeeViewed.map((field, index) => {
                                             return (
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">{field.label}</label>
+                                                    <label htmlFor="exampleInputEmail1">{field.label}</label>
                                                     <input type="email" class="form-control" id={field.label + num} aria-describedby="emailHelp" 
-                                                        value={field.value} onChange={(event) => this.props.formHandler(event, index)}/>
+                                                        value={field.value} onChange={(event) => this.props.formHandler(event, index)} disabled/>
                                                 </div>
                                             )
                                         })
@@ -71,9 +71,9 @@ class EmployeeList extends Component {
                 </thead>
                 <tbody>
                     {employees}
-                    {modals}
                 </tbody>
             </table>
+            {modals}
             </div>
         )
     }
