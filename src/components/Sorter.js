@@ -1,7 +1,6 @@
 export async function sortTable(mainArray, searchArray, key, toggleState, changeKey) {
     let sortedMainArray = [...mainArray];
     let sortedSearchArray = [...searchArray];
-    let newChangeKey = changeKey
 
     if (toggleState === 0 || changeKey === true) {
        sortedMainArray = await sortByAscending(sortedMainArray, key);

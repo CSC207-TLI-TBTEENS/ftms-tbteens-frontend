@@ -100,7 +100,7 @@ class Companies extends Component {
         if (edited) {
             let currentCompanies = [...this.state.companies];
             for (let i = 0; i < currentCompanies.length; i++) {
-                if (currentCompanies[i].id == id) {
+                if (currentCompanies[i].id === id) {
                     let editedCompany = {
                         id: id,
                         name: name,
@@ -142,7 +142,7 @@ class Companies extends Component {
         if (deleted) {
             let currentCompanies = [...this.state.companies];
             for (let i = 0; i < currentCompanies.length; i++) {
-                if (currentCompanies[i].id == id) {
+                if (currentCompanies[i].id === id) {
                     currentCompanies.splice(i, 1);
                     break;
                 }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import * as apiCalls from './api';
-import JobForm from './JobForm';
 import JobList from './JobList';
 import SearchBar from '../components/Search.js'
 
