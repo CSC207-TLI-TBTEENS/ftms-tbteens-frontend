@@ -13,10 +13,10 @@ class Employees extends Component {
         this.state = {
             employees: [],
             employeesShow:[],
-            employeeViewed: [{label: "First Name", value: null}, 
-                            {label: "Last name", value: null}, 
-                            {label: "Email", value: null}, 
-                            {label: "Phone", value: null}],
+            employeeViewed: [{label: "First Name", value: ""}, 
+                            {label: "Last name", value: ""}, 
+                            {label: "Email", value: ""}, 
+                            {label: "Phone", value: ""}],
             loading: true,
             listToggle: 0,
             changeKey: true,
@@ -43,6 +43,7 @@ class Employees extends Component {
     }
 
     searchRet(data){
+        console.log("data", data)
         this.setState({employeesShow: [...data]});
     }
 
@@ -184,12 +185,12 @@ class Employees extends Component {
 
             {content}
 
-            <div className="modal fade" id="employeeForm" tabindex="-1" role="dialog" aria-labelledby="createNewEmployee" aria-hidden="true">
+            <div className="modal fade" id="employeeForm" tabIndex="-1" role="dialog" aria-labelledby="createNewEmployee" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Adding New Employee</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <h5 className="modal-title" id="exampleModalLabel">Adding New Employee</h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>

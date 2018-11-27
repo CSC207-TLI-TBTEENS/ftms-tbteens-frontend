@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './Login.css';
 import Federation from './FedLogin.js';
+import ForgotCredentials from './ForgotCredentials.js';
 import { Message } from 'element-react';
 import Logo from "../images/norweld-logo.png";
 
@@ -9,10 +10,15 @@ class Login extends Component {
         super(props);
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            forgot: false
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleForgotCreds = () => {
+        this.setState({forgot: true});
     }
 
     handleChange(e) {
@@ -43,8 +49,8 @@ class Login extends Component {
         history.listen(() => {
             removeError();
         });
-        
-        return (
+
+        let display = (
             <div className="container">
                 {errors.message && (
                     Message({
@@ -83,23 +89,39 @@ class Login extends Component {
                                     onChange={this.handleChange} 
                                     />
                                 </div>
-                                <div className="form-group form-check">
-                                    <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
-                                    <label className="form-check-label" htmlFor="exampleCheck1">Remember me</label>
+                                <div className="row justify-content-between">
+                                    <div className="col">
+                                        <div className="form-group form-check">
+                                            <input type="checkbox" className="form-check-input" id="remember"/>
+                                            <label className="form-check-label" htmlFor="remember">Remember me</label>
+                                        </div>
+                                    </div>
+                                    <div className="col">
+                                        <p className="forgot-acc" onClick={this.handleForgotCreds}>Forgot your credentials?</p>
+                                    </div>
                                 </div>
                                 <div className="login-submit">
                                     <button type="submit" id = "login" className="btn btn-submit">Login</button>
                                 </div>
                             </form>
                             <div className="third-party-buttons">
-                                <hr className="divider"/>
-                                <p className="third-party-login">Login using your Google or Facebook account</p>
+                                <hr className="row justify-content-center divider"/>
+                                <p className="row justify-content-center third-party-login">Login with Google or Facebook</p>
                                 <Federation />
                             </div>     
                         </div>
                     </div>
                 </div>
             </div>
+        )
+        if (this.state.forgot) {
+            display = (
+                <ForgotCredentials />
+            )
+        }
+        
+        return (
+            display
         )
     }
 }

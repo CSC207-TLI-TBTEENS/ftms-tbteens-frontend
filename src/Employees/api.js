@@ -11,6 +11,7 @@ export async function getEmployees() {
 
 // Create Employee
 export async function createEmployee(input) {
+    console.log({...input})
     return apiCall('POST',"/api/auth/signup", {...input});
 }
 
@@ -23,16 +24,16 @@ export async function editEmployee(input) {
     let phone = input.number;
     let address = (EMPLOYEEAPI + id + "?firstName=" + firstname + "&lastName=" + 
                     lastname + "&email=" + email + "&phone=" + phone);
-    return apiCall('PUT',address, {...input});
+    return apiCall('PUT', address, {...input});
 }
 
 // Delete Employee
 export async function deleteEmployee(input) {
     let address = EMPLOYEEAPI + input.toString();
-    return apiCall('DELETE',address, {...input});
+    return apiCall('DELETE', address, {...input});
 }
 
 // get Jobs from Employee
 export async function getJobsFromEmployee(input) {
-    return apiCall('POST',EMPLOYEEJOBS, {...input});
+    return apiCall('POST', EMPLOYEEJOBS, {...input});
 }
