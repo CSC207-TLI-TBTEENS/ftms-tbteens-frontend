@@ -14,6 +14,7 @@ export async function getEmployees() {
 
 // Create Employee
 export async function createEmployee(input) {
+    console.log(JSON.stringify({...input}))
     return request({
         url: SIGNUPEMPLOYEE,
         method: 'POST',

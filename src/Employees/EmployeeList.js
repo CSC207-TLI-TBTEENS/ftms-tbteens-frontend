@@ -17,26 +17,28 @@ class EmployeeList extends Component {
             />
         ));
         let num = 0;
+        let key = 0
         const modals = this.props.employees.map(emp => {
             num++;
             return (
-                <div class="modal fade" id={"employee" + emp.id} tabindex="-1" role="dialog" aria-labelledby="viewEmployeeDetails" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="viewEmployeeDetails">{emp.firstname + " " + emp.lastname}</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span key={num} className="modal fade" id={"employee" + emp.id} tabIndex="-1" role="dialog" aria-labelledby="viewEmployeeDetails" aria-hidden="true">
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="viewEmployeeDetails">{emp.firstname + " " + emp.lastname}</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">
+                            <div className="modal-body">
                                 <form>
                                     {
                                         this.props.employeeViewed.map((field, index) => {
+                                            key++;
                                             return (
-                                                <div class="form-group">
-                                                    <label htmlFor="exampleInputEmail1">{field.label}</label>
-                                                    <input type="email" class="form-control" id={field.label + num} aria-describedby="emailHelp" 
+                                                <div className="form-group" key={key}>
+                                                    <label htmlFor="employeeInfo">{field.label}</label>
+                                                    <input type="text" className="form-control" id={field.label + num} aria-describedby="emailHelp" 
                                                         value={field.value} onChange={(event) => this.props.formHandler(event, index)} disabled/>
                                                 </div>
                                             )
@@ -44,18 +46,18 @@ class EmployeeList extends Component {
                                     }
                                 </form>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button onClick={this.props.editHandler.bind(this.props.parent, 
                                         emp.id, this.props.employeeViewed[0].value, 
                                         this.props.employeeViewed[1].value, 
                                         this.props.employeeViewed[2].value, 
                                         this.props.employeeViewed[3].value)}
-                                type="button" class="btn btn-primary save-changes-btn">Save changes</button>
+                                type="button" className="btn btn-primary save-changes-btn">Save changes</button>
                             </div>
                         </div>
                     </div>
-                </div>
+                </span>
             )
         })
         return (
@@ -66,6 +68,7 @@ class EmployeeList extends Component {
                         <th scope="col" onClick={() => this.sortEmployees('firstname')}>First</th>
                         <th scope="col" onClick={() => this.sortEmployees('lastname')}>Last</th>
                         <th scope="col" onClick={() => this.sortEmployees('email')}>Email</th>
+                        <th scope="col" onClick={() => this.sortEmployees('role')}>Role</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>

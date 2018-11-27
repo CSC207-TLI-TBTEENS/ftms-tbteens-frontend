@@ -22,14 +22,14 @@ const CompanyItem = ({id, logo, name, email, number, viewHandler, deletionHandle
         <td>{name}</td>
         <td>{email}</td>
         <td>
-        <div style={groupStyle} class="btn-group" role="group" aria-label="deletion-edit">
+        <div style={groupStyle} className="btn-group" role="group" aria-label="deletion-edit">
             <button onClick={deletionHandler.bind(curr, id, name)}
-                    style={deleteStyle} type="button" class="btn btn-primary">
+                    style={deleteStyle} type="button" className="btn btn-primary">
                     <i className="el-icon-delete"></i>
             </button> 
             <button  
                     style={editStyle} onClick={viewHandler.bind(this, name, logo, email, number)} 
-                    type="button" class="btn btn-primary" 
+                    type="button" className="btn btn-primary" 
                     data-toggle="modal" data-target={"#company" + id}>
                     <i className="el-icon-edit"></i>
             </button>

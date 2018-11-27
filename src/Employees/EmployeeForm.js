@@ -8,14 +8,16 @@ class EmployeeForm extends Component {
             lastname: '',
             email: '',
             number: '',
-            password: ''
+            password: '',
+            role: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(e) {
-		this.setState({[e.target.name] : e.target.value});
+    async handleChange(e) {
+        await this.setState({[e.target.name] : e.target.value});
+        console.log(this.state.role)
     }
     
     handleSubmit(e) {
@@ -26,12 +28,13 @@ class EmployeeForm extends Component {
             lastname: '',
             email: '',
             number: '',
-            password: ''
+            password: '',
+            role: ''
         });
       }
     
     render() {
-        const {firstname, lastname, email, number, password} = this.state;
+        const {firstname, lastname, email, number, password, role} = this.state;
         return (
             <div className="container">
 	        <div className="row align-items-center justify-content-center h-100">
@@ -89,7 +92,7 @@ class EmployeeForm extends Component {
                             onChange={this.handleChange}/>
                         </div>
                     </div>
-                    <div className="form-row">
+                    <div className="form-row justify-content-center">
                         <div className="form-group col-md-6">
                             <label htmlFor="password">Password</label>
                             <input 
@@ -103,12 +106,23 @@ class EmployeeForm extends Component {
                             onChange={this.handleChange}/>
                         </div>
                     </div>
-                    <button
-                        type="submit"
-                        className="btn btn-submit btn-block"
-                    >
-                    Create
-                    </button>
+                    <div className="row justify-content-center">
+                        <div className="form-group">
+                            <label htmlFor="select-employee-type">Employee Type</label>
+                            <select onChange={this.handleChange} value={role} name="role" className="custom-select" id="select-employee-type">
+                                <option value="ROLE_EMPLOYEE">Regular</option>
+                                <option value="ROLE_SUPERVISOR">Supervisor</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div className="row justify-content-center">
+                        <button
+                            type="submit"
+                            className="btn btn-submit btn-block"
+                        >
+                        Create
+                        </button>
+                    </div>
                 </form>
             </div>
             </div>

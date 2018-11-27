@@ -17,26 +17,29 @@ class CompanyList extends Component {
                 curr = {this.props.curr}
             />
         ));
-
+        let num = 0;
+        let key = 0;
         const modals = this.props.companies.map(cmp => {
+            num++;
             return (
-                <div class="modal fade" id={"company" + cmp.id} tabindex="-1" role="dialog" aria-labelledby="viewCompanyDetails" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="viewCompanyDetails">{cmp.name}</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span key={num} className="modal fade" id={"company" + cmp.id} tabIndex="-1" role="dialog" aria-labelledby="viewCompanyDetails" aria-hidden="true">
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="viewCompanyDetails">{cmp.name}</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">
+                            <div className="modal-body">
                                 <form>
                                     {
                                         this.props.companyViewed.map((field, index) => {
+                                            key++;
                                             return (
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">{field.label}</label>
-                                                    <input type="email" class="form-control" id="firstName" aria-describedby="emailHelp" 
+                                                <div key={key} className="form-group">
+                                                    <label htmlFor="employee-info">{field.label}</label>
+                                                    <input type="email" className="form-control" id={field.label + num} aria-describedby="emailHelp" 
                                                         value={field.value} onChange={(event) => this.props.formHandler(event, index)}/>
                                                 </div>
                                             )
@@ -44,18 +47,18 @@ class CompanyList extends Component {
                                     }
                                 </form>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button onClick={this.props.editHandler.bind(this.props.curr, 
                                         cmp.id, this.props.companyViewed[0].value, 
                                         this.props.companyViewed[1].value, 
                                         this.props.companyViewed[2].value, 
                                         this.props.companyViewed[3].value)}
-                                type="button" class="btn btn-primary save-changes-btn">Save changes</button>
+                                type="button" className="btn btn-primary save-changes-btn">Save changes</button>
                             </div>
                         </div>
                     </div>
-                </div>
+                </span>
             )
         })
         return (
