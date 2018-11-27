@@ -18,7 +18,7 @@ class SearchBar extends Component {
             const values = Object.values(this.props.data)
             for (let i = 0; i < values.length; i++) {
                 let data = Object.values(values[i])
-                for (let j = 1; j < data.length; j++){
+                for (let j = 1; j < 4; j++){
                     if (typeof data[j] === typeof "a"){
                         let tableString = data[j].toLowerCase()
                         if (tableString.indexOf(e.target.value.toLowerCase()) !== -1 && !newData.includes(values[i])){   
@@ -49,7 +49,7 @@ class SearchBar extends Component {
             name="query"
             id="query"
             value = {this.state.query}
-            placeholder="search"
+            placeholder="Search..."
             autoComplete="off"
             onChange={this.searching}
             />

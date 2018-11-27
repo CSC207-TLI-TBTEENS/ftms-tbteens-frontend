@@ -17,7 +17,7 @@ const groupStyle = {
     float: "right"
 }
 
-const ClientJobItem = ({id, jobTitle, deletionHandler, viewHandler, siteLocation, jobDescription, curr}) => (
+const ClientJobItem = ({id, deletionHandler, viewHandler, jobTitle ,siteLocation, jobDescription, curr}) => (
     <tr>
         <td>{jobTitle}</td>
         <td>{siteLocation}</td>
@@ -40,7 +40,6 @@ const ClientJobItem = ({id, jobTitle, deletionHandler, viewHandler, siteLocation
             </button>
         </div>
         </td>
-        
         {<div className="modal fade" id="viewEmployees" tabindex="-1" role="dialog" aria-labelledby="viewEmployees" aria-hidden="true">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
