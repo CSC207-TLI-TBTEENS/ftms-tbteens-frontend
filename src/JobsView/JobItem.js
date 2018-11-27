@@ -6,20 +6,21 @@ class JobItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            employees:[]
+            employees: []
         }
     }
 
     async getEmployeesFromJob(job){
         let newemployees = await apiCalls.getEmployeesFromJob(job);
         console.log(newemployees)
-        this.setState({employees: {...newemployees}});
+        this.setState({employees: [...newemployees]});
     }
     componentWillMount() {
         this.getEmployeesFromJob(this.props.job);
     }
 
     render(){
+        const employees = this.state.employees
         return(
         <tr data-toggle="modal" data-target={"#Job" +this.props.job.id}>
                 <td>{this.props.description}</td>
@@ -43,18 +44,22 @@ class JobItem extends Component {
                                                 <th scope="col" >Review Status</th>
                                             </tr>
                                         </thead>
-                                        <tbody id= "data">
-                                        {console.log(this.state.employees)
-                                        // .map(emp => (
-                                        //     <tr>
-                                        //     <td>{emp.name}</td>
-                                        //     <td>{emp.name}</td>
-                                        //     <td>None</td>
-                                        //     <td>Not Reviewed</td>
-                                        // </tr>
-                                        // ))} 
+                                        
+                                        {
+                                            employees.map(emp => {
+                                                return (
+                                                <tbody id= "data">
+                                                    <tr>
+                                                        <td>{emp.firstname + " " + emp.lastname}</td>
+                                                        <td>{emp.name}</td>
+                                                        <td>Not Reviewed</td>
+                                                    </tr>
+                                                </tbody>
+                                                )
+                                        })
                                         }
-                                            <tr>
+                                        
+                                            {/* <tr>
                                                 <td>Chris</td>
                                                 <td>Fix DA2 unit</td>
                                                 <td>None</td>
@@ -65,8 +70,8 @@ class JobItem extends Component {
                                                 <td>Fix DA2 unit</td>
                                                 <td>None</td>
                                                 <td>Not Reviewed</td>
-                                            </tr>
-                                        </tbody>
+                                            </tr> */}
+                                        
                                         
                                     </table>
                                 </div>
