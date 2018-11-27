@@ -7,7 +7,7 @@ export async function getJobs() {
 }
 export async function deleteJob(input) {
     let address = JOBAPI + input.toString();
-    return apiCall("DELETE", address);
+    return apiCall("DELETE", address, {...input});
 } 
 
 export async function editJob(input) {
