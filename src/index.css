@@ -186,16 +186,10 @@ code {
 .search {
     color: rgb(90, 85, 121);
     border-color: rgb(79, 75, 107);
-    background-color: rgb(203, 200, 228);
     padding: 5px 20px;
     border-radius: 5px;
     float: right;
 }
-
-.search:focus {
-  background-color: rgb(203, 200, 228);
-}
-
 /* Loading Rings  */
 @keyframes lds-double-ring {
   0% {

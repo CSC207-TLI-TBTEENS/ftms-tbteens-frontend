@@ -24,7 +24,7 @@ class ClientJobForm extends Component {
         this.setState({
             jobTitle: '',
             siteName: '',
-            description: ''
+            description: '',
         });
     }
 

@@ -37,15 +37,17 @@ class ForgotCredentials extends React.Component {
         let result;
         try {
             result = await API.verifyRecoverPassword(this.state.forgotPassword);
+            console.log(result)
             Message({
                 type: 'success',
                 message: result.message
             });
             this.setState({passwordVerified: true})
         } catch (error) {
+            console.log(error)
             Message({
                 type: 'error',
-                message: error.errorMessage
+                message: error.message
             })
         }
         
@@ -63,7 +65,7 @@ class ForgotCredentials extends React.Component {
         } catch (error) {
             Message({
                 type: 'error',
-                message: error.errorMessage
+                message: error.message
             })
         }
     }

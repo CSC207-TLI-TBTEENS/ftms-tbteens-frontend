@@ -1,25 +1,18 @@
-import request from "../Services/apiServices";
-const SIGNUPEMPLOYEE = "/api/auth/signup";
+import {apiCall} from "../Services/api";
+import EmployeesList from "../JobAssignment/EmployeesList";
 const EMPLOYEEAPI = "/api/employees/";
 const EMPLOYEEJOBS = EMPLOYEEAPI + "jobs";
 
 
 // Get Employees
 export async function getEmployees() {
-    return request({
-        url: EMPLOYEEAPI,
-        method: 'GET'
-    });
+    return apiCall('GET',EMPLOYEEAPI);
 }
 
 // Create Employee
 export async function createEmployee(input) {
-    console.log(JSON.stringify({...input}))
-    return request({
-        url: SIGNUPEMPLOYEE,
-        method: 'POST',
-        body: JSON.stringify({...input})
-    });
+    console.log({...input})
+    return apiCall('POST',"/api/auth/signup", {...input});
 }
 
 // Edit Employee
@@ -31,27 +24,16 @@ export async function editEmployee(input) {
     let phone = input.number;
     let address = (EMPLOYEEAPI + id + "?firstName=" + firstname + "&lastName=" + 
                     lastname + "&email=" + email + "&phone=" + phone);
-    return request({
-        url: address,
-        method: "PUT",
-        body: {...input}
-    })
+    return apiCall('PUT', address, {...input});
 }
 
 // Delete Employee
 export async function deleteEmployee(input) {
     let address = EMPLOYEEAPI + input.toString();
-    return request({
-        url: address,
-        method: 'DELETE',
-    });
+    return apiCall('DELETE', address, {...input});
 }
 
 // get Jobs from Employee
 export async function getJobsFromEmployee(input) {
-    return request({
-        url: EMPLOYEEJOBS,
-        method: 'POST',
-        body: JSON.stringify({...input})
-    });
+    return apiCall('POST', EMPLOYEEJOBS, {...input});
 }

@@ -9,7 +9,7 @@ class EmployeeForm extends Component {
             email: '',
             number: '',
             password: '',
-            role: ''
+            role: 'ROLE_EMPLOYEE'
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
