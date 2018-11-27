@@ -12,7 +12,6 @@ class Jobs extends Component {
             jobsShow: []
         }
         this.searchRet = this.searchRet.bind(this);
-        this.getEmployeesFromJob = this.getEmployeesFromJob.bind(this);
     }
  
     searchRet(data){
@@ -28,10 +27,7 @@ class Jobs extends Component {
         this.setState({jobs, jobsShow:[...jobs]});
     }
 
-    getEmployeesFromJob(job){
-        let employees = apiCalls.getEmployeesFromJob(job);
-        return employees;
-    }
+   
 
     render() {
         const {jobsShow} = this.state;
