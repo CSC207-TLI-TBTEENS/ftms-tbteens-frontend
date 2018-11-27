@@ -7,10 +7,6 @@ import Confirmation from './Confirmation.js';
 import * as jobAPI from '../ClientJobs/api.js';
 import * as employeeAPI from '../Employees/api.js';
 
-const style = {
-    height: "10vh"
-}
-
 export class JobAssignment extends Component {
     state = {
         jobs: [],
@@ -23,13 +19,7 @@ export class JobAssignment extends Component {
     componentWillMount() {
         this.getAllEmployees();
         this.getAllJobs();
-        // this.getAllTasks();
     }
-
-    // async getAllTasks() {
-    //     let allTasks = await jobAPI.getTasks();
-    //     this.setState({tasks: allTasks})
-    // }
 
     async getAllJobs() {
         let allJobs = await jobAPI.getJobs();

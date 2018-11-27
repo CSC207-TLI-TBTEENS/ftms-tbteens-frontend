@@ -79,8 +79,6 @@ class Employees extends Component {
 
     async handleEmployeeEdit(id, firstname, lastname, email, number) {
         let edited = false;
-        console.log("this", this);
-        console.log("id", id)
         await MessageBox.confirm('Update this employee\'s information?', 'Warning', {
             confirmButtonText: 'OK',
             cancelButtonText: 'Cancel',
@@ -93,7 +91,6 @@ class Employees extends Component {
               message: 'Edited EMPLOYEE #' + id + ' ' + firstname + ' ' + lastname + ' successfully!'
             });
         }).catch((error) => {
-            console.log(error)
             Message({
               type: 'info',
               message: "Deletion cancelled!"
@@ -102,7 +99,7 @@ class Employees extends Component {
         if (edited) {
             let currentEmployees = [...this.state.employees];
             for (let i = 0; i < currentEmployees.length; i++) {
-                if (currentEmployees[i].id == id) {
+                if (currentEmployees[i].id === id) {
                     let editedEmployee = {
                         id: id,
                         firstname: firstname,
@@ -116,8 +113,6 @@ class Employees extends Component {
             }
             this.setState({employees: currentEmployees, 
                 employeesShow: currentEmployees});
-            
-            console.log(this.state.employees, this.state.employeesShow)
         }
     }
 
@@ -142,7 +137,6 @@ class Employees extends Component {
               message: "Deletion cancelled!"
             });
         });
-        console.log(deleted)
         if (deleted) {
             let currentEmployees = [...this.state.employees];
             for (let i = 0; i < currentEmployees.length; i++) {
@@ -153,8 +147,6 @@ class Employees extends Component {
             };
             this.setState({employeesShow: currentEmployees, employees: currentEmployees});
         }
-        console.log(this.state);
-        console.log(this.state.currentEmployees)
     }
 
     render() {
