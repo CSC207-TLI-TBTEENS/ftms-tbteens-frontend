@@ -13,10 +13,10 @@ class Companies extends Component {
         this.state = {
             companies: [],
             companiesShow:[],
-            companyViewed: [{label: "Name", value: null}, 
-            {label: "Logo", value: null}, 
-            {label: "Email", value: null}, 
-            {label: "Number", value: null}],
+            companyViewed: [{label: "Name", value: ""}, 
+            {label: "Logo", value: ""}, 
+            {label: "Email", value: ""}, 
+            {label: "Number", value: ""}],
             loading: true,
             listToggle: 0,
             changeKey: true,
@@ -100,7 +100,7 @@ class Companies extends Component {
         if (edited) {
             let currentCompanies = [...this.state.companies];
             for (let i = 0; i < currentCompanies.length; i++) {
-                if (currentCompanies[i].id == id) {
+                if (currentCompanies[i].id === id) {
                     let editedCompany = {
                         id: id,
                         name: name,
@@ -142,7 +142,7 @@ class Companies extends Component {
         if (deleted) {
             let currentCompanies = [...this.state.companies];
             for (let i = 0; i < currentCompanies.length; i++) {
-                if (currentCompanies[i].id == id) {
+                if (currentCompanies[i].id === id) {
                     currentCompanies.splice(i, 1);
                     break;
                 }
@@ -184,12 +184,12 @@ class Companies extends Component {
                 
                 {content}
 
-                <div className="modal fade" id="companyForm" tabindex="-1" role="dialog" aria-labelledby="createNewCompany" aria-hidden="true">
+                <div className="modal fade" id="companyForm" tabIndex="-1" role="dialog" aria-labelledby="createNewCompany" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                     <div className="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Adding New Company</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h5 className="modal-title" id="exampleModalLabel">Adding New Company</h5>
+                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                     </div>

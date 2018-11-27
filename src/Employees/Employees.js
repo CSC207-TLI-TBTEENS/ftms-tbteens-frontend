@@ -13,10 +13,10 @@ class Employees extends Component {
         this.state = {
             employees: [],
             employeesShow:[],
-            employeeViewed: [{label: "First Name", value: null}, 
-                            {label: "Last name", value: null}, 
-                            {label: "Email", value: null}, 
-                            {label: "Phone", value: null}],
+            employeeViewed: [{label: "First Name", value: ""}, 
+                            {label: "Last name", value: ""}, 
+                            {label: "Email", value: ""}, 
+                            {label: "Phone", value: ""}],
             loading: true,
             listToggle: 0,
             changeKey: true,
@@ -43,6 +43,7 @@ class Employees extends Component {
     }
 
     searchRet(data){
+        console.log("data", data)
         this.setState({employeesShow: [...data]});
     }
 
@@ -79,8 +80,6 @@ class Employees extends Component {
 
     async handleEmployeeEdit(id, firstname, lastname, email, number) {
         let edited = false;
-        console.log("this", this);
-        console.log("id", id)
         await MessageBox.confirm('Update this employee\'s information?', 'Warning', {
             confirmButtonText: 'OK',
             cancelButtonText: 'Cancel',
@@ -93,7 +92,6 @@ class Employees extends Component {
               message: 'Edited EMPLOYEE #' + id + ' ' + firstname + ' ' + lastname + ' successfully!'
             });
         }).catch((error) => {
-            console.log(error)
             Message({
               type: 'info',
               message: "Deletion cancelled!"
@@ -102,7 +100,7 @@ class Employees extends Component {
         if (edited) {
             let currentEmployees = [...this.state.employees];
             for (let i = 0; i < currentEmployees.length; i++) {
-                if (currentEmployees[i].id == id) {
+                if (currentEmployees[i].id === id) {
                     let editedEmployee = {
                         id: id,
                         firstname: firstname,
@@ -116,8 +114,6 @@ class Employees extends Component {
             }
             this.setState({employees: currentEmployees, 
                 employeesShow: currentEmployees});
-            
-            console.log(this.state.employees, this.state.employeesShow)
         }
     }
 
@@ -142,7 +138,6 @@ class Employees extends Component {
               message: "Deletion cancelled!"
             });
         });
-        console.log(deleted)
         if (deleted) {
             let currentEmployees = [...this.state.employees];
             for (let i = 0; i < currentEmployees.length; i++) {
@@ -153,8 +148,6 @@ class Employees extends Component {
             };
             this.setState({employeesShow: currentEmployees, employees: currentEmployees});
         }
-        console.log(this.state);
-        console.log(this.state.currentEmployees)
     }
 
     render() {
@@ -172,7 +165,6 @@ class Employees extends Component {
                                 sortEmployees={this.sortEmployees}
                                 editHandler={this.handleEmployeeEdit}
                                 parent={this}/> 
->>>>>>> master
                 </div>);
         }
         return (
@@ -193,12 +185,12 @@ class Employees extends Component {
 
             {content}
 
-            <div className="modal fade" id="employeeForm" tabindex="-1" role="dialog" aria-labelledby="createNewEmployee" aria-hidden="true">
+            <div className="modal fade" id="employeeForm" tabIndex="-1" role="dialog" aria-labelledby="createNewEmployee" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Adding New Employee</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <h5 className="modal-title" id="exampleModalLabel">Adding New Employee</h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>

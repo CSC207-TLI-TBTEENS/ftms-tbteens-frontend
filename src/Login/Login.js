@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import './Login.css';
-import { withRouter} from "react-router-dom";
 import Federation from './FedLogin.js';
-import { login } from '../Services/authApi';
+import ForgotCredentials from './ForgotCredentials.js';
+import { Message } from 'element-react';
 import Logo from "../images/norweld-logo.png";
 
 class Login extends Component {
@@ -11,40 +11,57 @@ class Login extends Component {
         this.state = {
             email: '',
             password: '',
+            forgot: false
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    handleForgotCreds = () => {
+        this.setState({forgot: true});
+    }
+
     handleChange(e) {
+        this.props.removeError();
 		this.setState({[e.target.name] : e.target.value});
     }
 
     handleSubmit(event) {
         event.preventDefault();
         const loginRequest = {...this.state};
-        login(loginRequest)
-        .then(response => {
-            localStorage.setItem('accessToken', response.accessToken);
-            this.props.onLogin();
-            this.props.history.push("/employees");
-        }).catch(error => {
-            if(error.status === 401) {
-                console.log("Username or Password is incorrect.")                  
-            } else {
-                console.log(error)
-                console.log("Something went wrong!")                                         
-            }
+        this.props.onAuth(loginRequest)
+        .then(() => {
+            this.props.history.push("/");
+        })
+        .catch(() => {
+            return;
         });
     }
 
     render() {
         const {email, password} = this.state;
-        return (
+        const {
+            errors,
+            history,
+            removeError
+          } = this.props;
+
+        history.listen(() => {
+            removeError();
+        });
+
+        let display = (
             <div className="container">
+                {errors.message && (
+                    Message({
+                        type: 'error',
+                        message: errors.message,
+                        showClose: true
+                    })
+                )} 
                 <div className="row">
                     <div className="container container-style">
-                        <img className="logo-header pt-3" src={Logo} alt="Logo"/>    
+                        <img className="logo-header pt-3" src={Logo} alt="Logo"/>   
                         <div className="field">
                             <form className="login-form" onSubmit={this.handleSubmit}>
                                 <div className="form-group">
@@ -72,17 +89,24 @@ class Login extends Component {
                                     onChange={this.handleChange} 
                                     />
                                 </div>
-                                <div className="form-group form-check">
-                                    <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
-                                    <label className="form-check-label" htmlFor="exampleCheck1">Remember me</label>
+                                <div className="row justify-content-between">
+                                    <div className="col">
+                                        <div className="form-group form-check">
+                                            <input type="checkbox" className="form-check-input" id="remember"/>
+                                            <label className="form-check-label" htmlFor="remember">Remember me</label>
+                                        </div>
+                                    </div>
+                                    <div className="col">
+                                        <p className="forgot-acc" onClick={this.handleForgotCreds}>Forgot your credentials?</p>
+                                    </div>
                                 </div>
                                 <div className="login-submit">
                                     <button type="submit" id = "login" className="btn btn-submit">Login</button>
                                 </div>
                             </form>
                             <div className="third-party-buttons">
-                                <hr className="divider"/>
-                                <p className="third-party-login">Login using your Google or Facebook account</p>
+                                <hr className="row justify-content-center divider"/>
+                                <p className="row justify-content-center third-party-login">Login with Google or Facebook</p>
                                 <Federation />
                             </div>     
                         </div>
@@ -90,7 +114,16 @@ class Login extends Component {
                 </div>
             </div>
         )
+        if (this.state.forgot) {
+            display = (
+                <ForgotCredentials />
+            )
+        }
+        
+        return (
+            display
+        )
     }
 }
 
-export default withRouter(Login);
+export default Login;

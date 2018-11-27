@@ -25,24 +25,26 @@ const cardStyle = {
   overflowX: "scroll"
 }
 
+const tempJobs = ["Fix truck number 25", "Fix crane number 30", "Dig this mine"]
+
 const EmployeeConfirmation = (props) => { 
   return (
     <div class="card" style={cardStyle}>
         <div class="card-body">
-            <h5 class="card-title">Hello</h5>
+            <h5 class="card-title">{props.currentEmployee.firstname + ' ' + props.currentEmployee.lastname}</h5>
             <h6 class="card-subtitle mb-2">Employee's Tasks Queue</h6>
-            {/* {
-                props.currentEmployee.currentJobs.map(job => {
+            {
+                tempJobs.map(job => {
                     return (
                         <div>
                             <p className="card-text">
                                 <i className="el-icon-delete el-icon-left" onClick={onClick}></i>
-                                {"                 " + job}
+                                {job}
                             </p>
                         </div>
                     )
                 })
-            } */}
+            }
         </div>
     </div>
 )
