@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as apiCalls from './api';
 import JobList from './JobList';
+import Loading from '../components/Loading.js';
 import SearchBar from '../components/Search.js'
 
 class Jobs extends Component {
@@ -8,6 +9,7 @@ class Jobs extends Component {
         super(props);
         this.state = {
             jobs: [],
+            loading: true,
             jobsShow: []
         }
         this.searchRet = this.searchRet.bind(this);
@@ -23,13 +25,25 @@ class Jobs extends Component {
 
     async loadJobs() {
         let jobs = await apiCalls.getJobs();
-        this.setState({jobs, jobsShow:[...jobs]});
+        this.setState({jobs, loading : false, jobsShow:[...jobs]});
     }
 
    
 
     render() {
+        let content;
         const {jobsShow} = this.state;
+        if (this.state.loading) {
+            content = <Loading/>;
+        } else {
+            content = (<div>
+                    <SearchBar data={this.state.jobs} onchange={this.searchRet}/>
+
+                    <JobList
+                        jobs = {jobsShow} getEmployees = {this.getEmployeesFromJob}
+                    />
+                </div>);
+        }
 
         return (
         <div className="container">
@@ -41,11 +55,7 @@ class Jobs extends Component {
             </header>
             
             
-            <SearchBar data={this.state.jobs} onchange={this.searchRet}/>
-
-            <JobList
-                jobs = {jobsShow} getEmployees = {this.getEmployeesFromJob}
-            />
+            {content}
             
 
             <div className="modal fade" id="jobForm" tabIndex="-1" role="dialog" aria-labelledby="createNewJob" aria-hidden="true">

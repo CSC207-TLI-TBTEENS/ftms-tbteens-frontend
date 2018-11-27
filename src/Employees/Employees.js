@@ -164,7 +164,6 @@ class Employees extends Component {
                                 sortEmployees={this.sortEmployees}
                                 editHandler={this.handleEmployeeEdit}
                                 parent={this}/> 
->>>>>>> master
                 </div>);
         }
         return (
