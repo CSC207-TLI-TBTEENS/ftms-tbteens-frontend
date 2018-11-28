@@ -16,7 +16,7 @@ export async function getJobsFromEmployee(input) {
     .then(resp => {return ValidateHTTPStatus(resp)})
 }
 
-
+//Assign Job 
 export async function assignJob(timesheet){
     if (newtimesheet.job != timesheet.job && newtimesheet.employee != timesheet.employee){
         newtimesheet = {job: timesheet.job, employee: timesheet.employee}
