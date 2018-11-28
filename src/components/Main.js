@@ -13,7 +13,8 @@ import ViewHistory from "../ViewHistory/ViewHistory.js";
 import { authUser } from "../store/actions/auth";
 import { removeError } from "../store/actions/errors";
 import withAuth from "../hocs/withAuth";
-
+import UserRegistration from "../Registration/UserRegistration.js";
+import ClientRegistration from "../Registration/ClientRegistration.js";
 const Main = props => {
     const adminOnly = ["ROLE_ADMIN"];
     const allUsers  = ["ROLE_ADMIN", "ROLE_EMPLOYEE"];
@@ -36,6 +37,8 @@ const Main = props => {
                 <Route exact path="/clientJobs" component={withAuth(allUsers, ClientJobs)}/>
                 <Route exact path="/timesheets" component={withAuth(allUsers, Timesheets)}/>
                 <Route exact path="/viewhistory" component={withAuth(allUsers, ViewHistory)}/>
+                <Route exact path="/clientregistration" component={withAuth(allUsers, ClientRegistration)}/>
+                <Route exact path="/userregistration" component={withAuth(allUsers, UserRegistration)}/>
             </Switch>
         )} />
     )
