@@ -1,10 +1,6 @@
 import React from 'react';
 import './JobAssignment.css'
 
-const style = {
-    backgroundColor: "rgb(160, 218, 113)"
-}
-
 const EmployeesList = (props) => {
     let num = 1;
     return (
@@ -24,7 +20,7 @@ const EmployeesList = (props) => {
                                 </div>
 
                                 <div id={"employee" + num} class="collapse multi-collapse" aria-labelledby="headingOne" data-parent="#accordionExample2">
-                                <div class="card-body" style={style}>
+                                <div class="card-body card-body-green" >
                                     <p>EMPLOYEE ID: {employee.id}</p>
                                     <p>EMPLOYEE EMAIL: {employee.email}</p>
                                     <p>EMPLOYEE NUMBER: {employee.number}</p>

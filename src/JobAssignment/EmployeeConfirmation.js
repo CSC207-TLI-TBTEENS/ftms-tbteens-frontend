@@ -19,17 +19,11 @@ const onClick = () => {
   });
 }
 
-const cardStyle = {
-  backgroundColor: "rgb(90, 85, 121)",
-  overflowY: "scroll",
-  overflowX: "scroll"
-}
-
 const tempJobs = ["Fix truck number 25", "Fix crane number 30", "Dig this mine"]
 
 const EmployeeConfirmation = (props) => { 
   return (
-    <div class="card" style={cardStyle}>
+    <div class="card card-scroll">
         <div class="card-body">
             <h5 class="card-title">{props.currentEmployee.firstname + ' ' + props.currentEmployee.lastname}</h5>
             <h6 class="card-subtitle mb-2">Employee's Tasks Queue</h6>
@@ -47,7 +41,7 @@ const EmployeeConfirmation = (props) => {
             }
         </div>
     </div>
-)
+  )
 }
 
 export default EmployeeConfirmation;

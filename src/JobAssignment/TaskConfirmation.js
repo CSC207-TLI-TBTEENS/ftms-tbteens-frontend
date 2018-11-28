@@ -19,17 +19,11 @@ const onClick = () => {
     });
   }
 
-const cardStyle = {
-    backgroundColor: "rgb(90, 85, 121)",
-    overflowY: "scroll",
-    overflowX: "scroll"
-}
-
 const tempEmployees = ["Bob", "Judy", "Monica", "Ross", "Treeger"]
 
 const TaskConfirmation = (props) => {   
     return (
-        <div class="card" style={cardStyle}>
+        <div class="card card-scroll">
             <div class="card-body">
                 <h5 class="card-title">{props.currentJob.jobTitle}</h5>
                 <h6 class="card-subtitle mb-2">Employees on Task</h6>

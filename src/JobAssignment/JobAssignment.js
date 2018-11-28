@@ -81,8 +81,6 @@ export class JobAssignment extends Component {
                                 employeeHandler={this.handleEmployeeChosen}/> 
                     </div>
                     <div className="col-md-6">
-                        {/* <div className="row align-items-center justify-content-center" style={style}>
-                        </div> */}
                         <div className="row align-items-center justify-content-center">
                             <div className="col-md-12 mb-3 d-flex justify-content-center">
                                 <TaskConfirmation currentJob={this.state.jobToConfirm}/>
