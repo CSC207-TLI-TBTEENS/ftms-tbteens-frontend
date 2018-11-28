@@ -40,7 +40,7 @@ class TimesheetEdit extends Component {
                         <button type="button" className="btn btn-second mr-1" data-toggle="modal" data-target="#requestForm">
                             Request Parts
                         </button>
-                        <button type="button" className="btn btn-submit mr-1">
+                        <button type="button" className="btn btn-submit mr-1 width-auto">
                             Review and Submit Timesheet
                         </button>
                     </div>
@@ -67,7 +67,7 @@ class TimesheetEdit extends Component {
                                 <button type="button" className="btn btn-second mr-1" data-dismiss="modal">
                                     Back
                                 </button>
-                                <button type="button" className="btn btn-submit ml-1" data-toggle="modal" data-target="#requestForm">
+                                <button type="button" className="btn btn-submit ml-1 width-auto" data-toggle="modal" data-target="#requestForm">
                                     Submit
                                 </button>
                              </div>
