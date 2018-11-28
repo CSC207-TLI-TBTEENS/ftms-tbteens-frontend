@@ -343,3 +343,229 @@ h6 {
 		font-size: 18px !important;
 	}
 }
+
+.user-input {
+  color: rgb(90, 85, 121);
+  border-color: rgb(79, 75, 107);
+  background-color: rgb(203, 200, 228);
+}
+
+.user-input:focus {
+  background-color: rgb(203, 200, 228);
+}
+
+.table td.fit,
+.table th.fit {
+  white-space: nowrap;
+  width: 15%;
+  text-align: left;
+}
+
+form div.row {
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+.form-error {
+  color: rgb(204, 0, 0);
+}
+
+.Button {
+  background-color:rgb(160, 218, 113);
+  border-radius: 1rem;
+}
+
+.welcome-text{
+  font-size: 1.8rem
+}
+
+.field {
+  margin-top: 2vh;
+}
+
+.field-form {
+  height: 16%;
+  width: 23.5vw;
+  border-radius: 1rem;
+  background-color: rgb(32, 30, 46);  
+  color: rgb(203, 200, 228);
+  border-color: black;  
+  margin: 0.5vh;
+}
+.field-form:focus{
+  outline:none
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgb(203, 200, 228);
+  opacity: 1; /* Firefox */
+}
+
+.login-button {
+  margin: 2%;
+  margin-left: 40%;
+}
+
+.third-party-login {
+  color: rgb(203, 200, 228);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.divider {
+  border-color: rgb(203, 200, 228);
+}
+
+.password-forgot {
+  color: rgb(203, 200, 228);
+  font-size: 85%;
+  margin-top: -9.3%;
+  margin-left: 52%;
+}
+
+.el_checkbox__original {
+  width: 0.5vh;
+  height: 1vw;
+}
+
+.login-google {
+  margin-top: 10%;
+  height: 10vh;
+}
+
+.form-group {
+  color: rgb(203, 200, 228);
+  text-align: left;
+}
+
+.form-check-label {
+  color: rgb(203, 200, 228)
+}
+
+.login-submit {
+  margin-left: 0vw;
+}
+
+.btn-submit {
+  width: 10rem
+}
+
+.third-party-buttons {
+  margin: 6vh
+}
+
+.logo-header {
+  width: 16rem;
+  height: 10rem
+}
+
+.container-style {
+  background-color: rgb(90, 85, 121);
+  margin: auto;
+  border-radius: 1vh;
+  color: rgb(203, 200, 228);
+  text-align: center;
+  height: 35rem;
+  width: 45%;
+  min-width: 320px;
+}
+
+.forgot-acc {
+  color: rgb(203, 200, 228);
+  cursor: pointer;
+}
+
+.forgot-acc:hover {
+  color: rgb(203, 200, 228);
+  text-decoration: underline;
+}
+
+.fa {
+  color: rgb(203, 200, 228);
+}
+
+.fb-button {
+  background-color: #3b5998;
+  /* width: 4vw */
+}
+
+.gg-button {
+  background-color: #dd4b39;
+  /* width: 4vw */
+}
+
+.btn-secondary {
+  border-color: rgb(203, 200, 228)
+}
+
+.forgot-item-select {
+  margin: 1vw
+}
+
+.forgot-form {
+  margin: 1vw
+}
+
+.submit-forgot {
+  background-color: rgb(160, 218, 113);
+  border: none;
+  color: rgb(32, 30, 46)
+}
+
+.submit-forgot:focus {
+  background-color: rgb(160, 218, 113);
+  border: none;
+  color: rgb(32, 30, 46)
+}
+
+.submit-forgot:hover {
+  background-color: rgb(160, 218, 113);
+  border: none;
+  color: rgb(32, 30, 46)
+}
+
+.submit-forgot:focus {
+  background-color: rgb(160, 218, 113);
+  border: none;
+  color: rgb(32, 30, 46);
+  outline: none
+}
+
+.container-forgot {
+  background-color: rgb(90, 85, 121);
+  margin: auto;
+  border-radius: 1vh;
+  color: rgb(203, 200, 228);
+  text-align: center;
+  height: 28rem;
+  width: 45%;
+  min-width: 320px;
+}
+
+.success-message {
+  font-size: 5vw
+}
+
+.detail {
+  background-color: #ffffff;
+  border: solid rgb(90, 85, 121) 1px;
+  border-radius: 5px;
+  display: inline-block;
+  min-height: 22px;
+  padding-left: 5px;
+  color: #000000;
+}
+
+.test{
+  color: darkslateblue;
+  font-family: "Courier New";
+  font-size: 19px;
+  padding:3px;
+  border-radius: 5px;
+  border: none;
+  display: block;
+  box-sizing: border-box;
+
+}

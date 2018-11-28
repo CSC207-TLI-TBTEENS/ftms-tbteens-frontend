@@ -1,5 +1,5 @@
 import React from 'react';
-import './JobDetails.css';
+import '../index.css';
 import { Link } from 'react-router-dom';
 
 const JobItem = ({jobId, jobName, clientName, jobDescription, jobLocation}) => (

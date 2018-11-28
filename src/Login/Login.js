@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './Login.css';
+import '../index.css';
 import Federation from './FedLogin.js';
 import ForgotCredentials from './ForgotCredentials.js';
 import { Message } from 'element-react';

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import SubmitList from './SubmitList';
-import './Submit.css';
+import '../index.css';
 
 class Submit extends Component {
     constructor(props) {

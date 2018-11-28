@@ -1,5 +1,5 @@
 import React from 'react';
-import './Login.css';
+import '../index.css';
 
 // const google = {
 //     textAlign: "center",

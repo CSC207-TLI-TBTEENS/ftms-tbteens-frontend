@@ -1,5 +1,5 @@
 import React from 'react';
-import '../Login/Login.css';
+import '../index.css';
 import { Button, Checkbox } from 'element-react';
 
 
