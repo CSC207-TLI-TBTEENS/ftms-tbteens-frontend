@@ -5,6 +5,7 @@ import PartRequestForm from "./PartRequestForm";
 class TimesheetEdit extends Component {
     state = {
         jobId: null,
+        location: "",
         taskList: []
     }
 //    componentDidMount() {
@@ -56,7 +57,11 @@ class TimesheetEdit extends Component {
                                  </button>
                              </div>
                              <div className="modal-body">
-                                <p>Hi</p>
+                                <PartRequestForm
+                                    submitPartRequest = {this.submitPartRequest}
+                                    jobId = {this.state.jobId}
+                                    location = {this.state.location}
+                                />
                              </div>
                              <div className="modal-footer">
                                 <button type="button" className="btn btn-second mr-1" data-dismiss="modal">
