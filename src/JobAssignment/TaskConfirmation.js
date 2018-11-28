@@ -1,5 +1,5 @@
 import React from 'react';
-import {MessageBox, Message, Button} from 'element-react'
+import {MessageBox, Message} from 'element-react'
 
 const onClick = () => {
     MessageBox.confirm('This will delete this employee from this job. Continue?', 'Confirmation', {

@@ -82,7 +82,7 @@ class ClientJobs extends Component {
         if (edited) {
             let currentJobs = [...this.state.clientJobs];
             for (let i = 0; i < currentJobs.length; i++) {
-                if (currentJobs[i].id == id) {
+                if (currentJobs[i].id === id) {
                     let editedJob = {
                         id: id,
                         siteName: siteName,
@@ -134,7 +134,7 @@ class ClientJobs extends Component {
         if (deleted) {
             let currentJobs = [...this.state.clientJobs];
             for (let i = 0; i < currentJobs.length; i++) {
-                if (currentJobs[i].id == id) {
+                if (currentJobs[i].id === id) {
                     currentJobs.splice(i, 1);
                     break;
                 }

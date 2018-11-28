@@ -16,21 +16,29 @@ const groupStyle = {
     float: "right"
 }
 
-const EmployeeItem = ({id, firstname, lastname, email, number, viewHandler, 
+const roles = (role) => {
+    if (role === "ROLE_EMPLOYEE") {
+        return "EMPLOYEE";
+    } else {
+        return "SUPERVISOR";
+    }
+}
+
+const EmployeeItem = ({id, firstname, lastname, email, number, role, viewHandler, 
                     deletionHandler, curr}) => (
     <tr>
         <td>{firstname}</td>
         <td>{lastname}</td>
-        <td>{email}
-        </td>
+        <td>{email}</td>
+        <td>{roles(role)}</td>
         <td>
-        <div style={groupStyle} class="btn-group" role="group" aria-label="deletion-edit">
+        <div style={groupStyle} className="btn-group" role="group" aria-label="deletion-edit">
             <button onClick={deletionHandler.bind(curr, id, firstname, lastname)}
-                    style={deleteStyle} type="button" class="btn btn-primary">
+                    style={deleteStyle} type="button" className="btn btn-primary">
                     <i className="el-icon-delete"></i>
             </button> 
             <button onClick={viewHandler.bind(this, firstname, lastname, email, number)} 
-                    style={editStyle} type="button" class="btn btn-primary" 
+                    style={editStyle} type="button" className="btn btn-primary" 
                     data-toggle="modal" data-target={"#employee" + id}>
                     <i className="el-icon-edit"></i>
             </button>

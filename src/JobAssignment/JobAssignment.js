@@ -7,40 +7,28 @@ import Confirmation from './Confirmation.js';
 import * as jobAPI from '../ClientJobs/api.js';
 import * as employeeAPI from '../Employees/api.js';
 
-const style = {
-    height: "10vh"
-}
-
 export class JobAssignment extends Component {
     state = {
         jobs: [],
         employees: [],
         tasks: [],
         jobToConfirm: {jobTitle: "No Task Chosen", employees: []},
-        employeeToConfirm: {firstname: "No Employee Chosen", lastname: ""},
+        employeeToConfirm: {firstname: "No Employee Chosen", lastname: ""}
     }
 
     componentWillMount() {
         this.getAllEmployees();
         this.getAllJobs();
-        // this.getAllTasks();
     }
-
-    // async getAllTasks() {
-    //     let allTasks = await jobAPI.getTasks();
-    //     this.setState({tasks: allTasks})
-    // }
 
     async getAllJobs() {
         let allJobs = await jobAPI.getJobs();
         this.setState({jobs: allJobs});
-        console.log(this.state.jobs)
     }
 
     async getAllEmployees() {
         let allEmployees = await employeeAPI.getEmployees();
         this.setState({employees: allEmployees});
-        console.log(this.state.employees)
     }
 
     async getJobsFromEmployee(employee, tasks) {
@@ -52,7 +40,7 @@ export class JobAssignment extends Component {
     handleTaskChosen = (job) => {
         this.setState(
             {
-                jobToConfirm: job
+                jobToConfirm: {...job}
             }
         )
         console.log(this.state.jobToConfirm)
@@ -63,7 +51,7 @@ export class JobAssignment extends Component {
         // let jobsFromEmployee = this.getJobsFromEmployee(employee, this.state.tasks);
         this.setState(
             {
-                employeeToConfirm: employee
+                employeeToConfirm: {...employee}
             }
         )
         console.log(this.state.employeeToConfirm)
@@ -107,7 +95,7 @@ export class JobAssignment extends Component {
                          </div>
                         <div className="row justify-content-center">
                             <div className="col-md-12 d-flex justify-content-center">
-                                <Confirmation />
+                                <Confirmation employee={this.state.employeeToConfirm} job={this.state.jobToConfirm} />
                             </div>
                         </div>
                     </div> 

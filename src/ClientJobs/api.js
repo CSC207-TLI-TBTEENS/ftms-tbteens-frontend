@@ -1,20 +1,13 @@
-import request from "../Services/apiServices";
-
+import {apiCall} from "../Services/api";
 const JOBAPI = "/api/jobs/";
 const JOBEMPLOYEES = JOBAPI + "employees";
 
 export async function getJobs() {
-    return request({
-         url: JOBAPI,
-         method: 'GET'
-    })
+    return apiCall("GET", JOBAPI);
 }
 export async function deleteJob(input) {
     let address = JOBAPI + input.toString();
-    return request({
-        url: address,
-        method: "DELETE",
-    })
+    return apiCall("DELETE", address, {...input});
 } 
 
 export async function editJob(input) {
@@ -23,18 +16,11 @@ export async function editJob(input) {
     let description = input.description;
     let address = (JOBAPI + id + "?siteName=" + siteName + "&description=" + 
                 description);
-    return request({
-        url: address,
-        method: "PUT",
-    })
+    return apiCall("PUT", address);
 }
 
 export async function createJob(input) {
-    return request({
-        url: JOBAPI,
-        method: "POST",
-        body: JSON.stringify({...input})
-    })
+    return apiCall("POST", JOBAPI, {...input});
     
 }
 

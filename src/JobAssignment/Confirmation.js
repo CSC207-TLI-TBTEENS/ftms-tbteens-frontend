@@ -1,4 +1,5 @@
 import React from 'react';
+import * as assignAPI from './api.js'
 import {MessageBox, Message} from 'element-react';
 
 const buttonStyle = {
@@ -6,8 +7,15 @@ const buttonStyle = {
     color: "rgb(203, 200, 228)"
 }
 
-const onClick = () => {
-    MessageBox.confirm('This will assign the below job to the above employee. Continue?', 'Confirmation', {
+const assignJob = (employee, job) => {
+  console.log("Confiremd assign now")
+  let inputs = {"job": job, "employee": employee}
+  assignAPI.assignJob(inputs);
+}
+
+const onclick = (employee,job) => {
+    
+    MessageBox.confirm('This will assign the below job to the below employee. Continue?', 'Confirmation', {
       confirmButtonText: 'OK',
       cancelButtonText: 'Cancel',
       type: 'info'
@@ -16,6 +24,7 @@ const onClick = () => {
         type: 'success',
         message: 'Assignment completed!'
       });
+      assignJob(employee, job);
     }).catch(() => {
       Message({
         type: 'info',
@@ -24,11 +33,11 @@ const onClick = () => {
     });
   }
 
-const Confirmation = () => {
+const Confirmation = (props) => {
     return (
       <div className="row">
         <div className="col-md-4">
-        <button style={buttonStyle} onClick={onClick} type="button" class="btn btn-outline-primary">Assign</button>
+          <button style={buttonStyle} onClick={onclick.bind(this, props.employee, props.job)} type="button" class="btn btn-outline-primary">Assign</button>
         </div>
       </div>
         

@@ -2,6 +2,9 @@
 
 html {
   height: 100%;
+  min-width: 100%;
+  margin: 0;
+  padding: 0
 }
 
 body {
@@ -14,6 +17,7 @@ body {
   -moz-osx-font-smoothing: grayscale; */
   background: rgb(32, 30, 46);  /* fallback for old browsers */
   height: 100%;
+  width: 100%;
 }
 
 ::-webkit-scrollbar {
@@ -184,16 +188,10 @@ code {
 .search {
     color: rgb(90, 85, 121);
     border-color: rgb(79, 75, 107);
-    background-color: rgb(203, 200, 228);
     padding: 5px 20px;
     border-radius: 5px;
     float: right;
 }
-
-.search:focus {
-  background-color: rgb(203, 200, 228);
-}
-
 /* Loading Rings  */
 @keyframes lds-double-ring {
   0% {
