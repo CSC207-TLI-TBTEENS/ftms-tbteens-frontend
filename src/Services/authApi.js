@@ -21,7 +21,6 @@ export function getCurrentUser() {
     if(!localStorage.getItem('accessToken')) {
         return Promise.reject("No access token set.");
     }
-
     return request({
         url: "/api/users/me",
         method: 'GET'
