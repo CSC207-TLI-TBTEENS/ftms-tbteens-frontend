@@ -1,5 +1,4 @@
 import {apiCall} from "../Services/api";
-import EmployeesList from "../JobAssignment/EmployeesList";
 const EMPLOYEEAPI = "/api/employees/";
 const EMPLOYEEJOBS = EMPLOYEEAPI + "jobs";
 
