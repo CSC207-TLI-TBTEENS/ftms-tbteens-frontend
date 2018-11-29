@@ -27,14 +27,14 @@ const Registration = (props) => {
         <div className="Header">
         <h1 className="welcome-header">
         Register yourself in the system here! <br/> Please fill in details below.</h1>
-    <div className="field">
-        <input className="field-form" type="text" placeholder=" Password..." />
+            <div className="field">
+                <input className="field-form" type="text" placeholder=" Password..." />
 
-    <div className="login-button">
-        <Button className ="Button btn-submit" type="primary" style={buttonStyle} onClick={props.click}>Submit</Button>
-    </div>
-    </div>
-    </div>
+                <div className="login-button">
+                    <Button className ="Button btn-submit" type="primary" style={buttonStyle} onClick={props.click}>Submit</Button>
+                </div>
+            </div>
+        </div>
 )
 }
 

@@ -23,7 +23,7 @@ export function getCurrentUser() {
     }
 
     return request({
-        url: "/api/employees/me",
+        url: "/api/users/me",
         method: 'GET'
     });
 }
