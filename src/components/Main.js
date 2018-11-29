@@ -11,7 +11,7 @@ import Timesheets from "../Timesheets/Jobs";
 import ClientJobs from "../ClientJobs/ClientJobs"
 import ViewHistory from "../ViewHistory/ViewHistory.js";
 import { authUser } from "../store/actions/auth";
-import { removeError } from "../store/actions/errors";
+import { removeError, addError } from "../store/actions/errors";
 import withAuth from "../hocs/withAuth";
 import UserRegistration from "../Registration/UserRegistration.js";
 
@@ -29,6 +29,14 @@ const Main = props => {
                     onAuth={authUser}
                     {...props}
                 />} />
+                <Route exact path="/usersignup/:id" render={(props) => 
+                <UserRegistration
+                    removeError={removeError}
+                    errors={errors}
+                    onAuth={authUser}
+                    addError={addError}
+                    {...props}
+                />} />
                 <Route exact path="/employees" component={withAuth(adminOnly, Employees)} />
                 <Route exact path="/companies" component={withAuth(adminOnly,Companies)} />
                 <Route exact path="/jobsview" component={withAuth(adminOnly, JobsView)} />
@@ -37,7 +45,6 @@ const Main = props => {
                 <Route exact path="/clientJobs" component={withAuth(allUsers, ClientJobs)}/>
                 <Route exact path="/timesheets" component={withAuth(allUsers, Timesheets)}/>
                 <Route exact path="/viewhistory" component={withAuth(allUsers, ViewHistory)}/>
-                <Route exact path="/usersignup/:id" component={(UserRegistration)}/>
             </Switch>
         )} />
     )
@@ -51,5 +58,5 @@ function mapStateToProps(state) {
 }
   
 export default withRouter(
-    connect(mapStateToProps, { authUser, removeError })(Main)
+    connect(mapStateToProps, { authUser, removeError, addError })(Main)
 );
