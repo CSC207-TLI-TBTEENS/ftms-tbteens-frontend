@@ -150,6 +150,12 @@ code {
   background-color: rgb(160, 218, 113);
   border-color: rgb(160, 218, 113);
   color: rgb(53, 46, 66);
+  margin-right: 5px;
+  margin-left: 5px;
+  padding: 5px;
+  -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+            border-radius: 8px;
 }
 
 .btn-submit:hover, .btn-submit:focus {
