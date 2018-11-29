@@ -1,23 +1,4 @@
 import React from 'react';
-// import {MessageBox, Message} from 'element-react'
-
-// const onClick = () => {
-//     MessageBox.confirm('This will delete this employee from this job. Continue?', 'Confirmation', {
-//       confirmButtonText: 'OK',
-//       cancelButtonText: 'Cancel',
-//       type: 'warning'
-//     }).then(() => {
-//       Message({
-//         type: 'success',
-//         message: 'Deletion completed!'
-//       });
-//     }).catch(() => {
-//       Message({
-//         type: 'info',
-//         message: 'Deletion cancelled'
-//       });
-//     });
-//   }
 
 const tempEmployees = ["Bob", "Judy", "Monica", "Ross", "Treeger"]
 
@@ -47,7 +28,7 @@ const TaskConfirmation = (props) => {
 
                                       <div class="modal-footer modal-footer-confirm">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                                        <button type="button" class="btn btn-confirmation" data-dismiss="modal">OK</button>
                                       </div>
 
                                     </div>
