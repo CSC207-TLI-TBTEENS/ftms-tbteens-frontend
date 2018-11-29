@@ -13,6 +13,7 @@ class Employees extends Component {
         this.state = {
             employees: [],
             employeesShow:[],
+            // The employee current looked at through edit option (at first is no one)
             employeeViewed: [{label: "First Name", value: ""}, 
                             {label: "Last name", value: ""}, 
                             {label: "Email", value: ""}, 
@@ -43,7 +44,6 @@ class Employees extends Component {
     }
 
     searchRet(data){
-        console.log("data", data)
         this.setState({employeesShow: [...data]});
     }
 
@@ -56,6 +56,7 @@ class Employees extends Component {
     }
 
     setEmployeeViewing = (firstname, lastname, email, phone) => {
+        // When an employee is viewed through edit button, update the employee currently viewed
         this.setState({employeeViewed: [
             {label: "First Name", value: firstname}, 
             {label: "Last Name", value: lastname}, 
@@ -64,9 +65,13 @@ class Employees extends Component {
         ]})
     }
 
+    // Handle the editting of a particular form
     formChangeHandler = (event, index) => {
+        // If the item being changed is not the email (email is unique, cannot be changed)
         if (index !== 2) {
+            // Find the item being changed
             const changed = {...this.state.employeeViewed[index]};
+            // Set to new value
             changed.value = event.target.value;
 
             const newEmployeeViewed = [...this.state.employeeViewed];
@@ -78,6 +83,7 @@ class Employees extends Component {
         }
     }
 
+    // The edit employee info form is submitted
     async handleEmployeeEdit(id, firstname, lastname, email, number) {
         let edited = false;
         await MessageBox.confirm('Update this employee\'s information?', 'Warning', {
@@ -86,18 +92,22 @@ class Employees extends Component {
             type: 'warning'
         }).then(async() => {
             edited = true;
-            await apiCalls.editEmployee({id, firstname, lastname, email, number});
+            // Call backend edit function
+            let result = await apiCalls.editEmployee({id, firstname, lastname, email, number});
             await Message({
               type: 'success',
-              message: 'Edited EMPLOYEE #' + id + ' ' + firstname + ' ' + lastname + ' successfully!'
+              // Display success message
+              message: result.message
             });
         }).catch((error) => {
             Message({
               type: 'info',
-              message: "Deletion cancelled!"
+              message: error.message
             });
         });
+        // If no errors in editting 
         if (edited) {
+            // Update the employees that are showed and the current list of employees
             let currentEmployees = [...this.state.employees];
             for (let i = 0; i < currentEmployees.length; i++) {
                 if (currentEmployees[i].id === id) {
@@ -117,25 +127,29 @@ class Employees extends Component {
         }
     }
 
+    // When a delete request is made by clicking the delete button
     async confirmDeletion(id, firstname, lastname) {
         let deleted = false;
-        console.log(this);
         await MessageBox.confirm('This action will remove EMPLOYEE #' + id + ' ' + firstname + ' ' + lastname + ' from the database. Continue?', 'Warning', {
             confirmButtonText: 'OK',
             cancelButtonText: 'Cancel',
             type: 'warning'
         }).then(async() => {
             deleted = true;
-            await apiCalls.deleteEmployee(id);
+            // Call delete function from backend
+            let result = await apiCalls.deleteEmployee(id);
             await Message({
               type: 'success',
-              message: 'Deleted EMPLOYEE #' + id + ' ' + firstname + ' ' + lastname + ' successfully!'
+              message: result.message
             });
         }).catch((error) => {
-            console.log(error)
+            let message = "Deletion cancelled!"
+            if (error !== undefined) {
+                message = error.message
+            }
             Message({
               type: 'info',
-              message: "Deletion cancelled!"
+              message: message
             });
         });
         if (deleted) {
