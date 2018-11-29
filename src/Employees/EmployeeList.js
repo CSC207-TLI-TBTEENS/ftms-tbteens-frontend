@@ -39,7 +39,7 @@ class EmployeeList extends Component {
                                                 <div className="form-group" key={key}>
                                                     <label htmlFor="employeeInfo">{field.label}</label>
                                                     <input type="text" className="form-control" id={field.label + num} aria-describedby="emailHelp" 
-                                                        value={field.value} onChange={(event) => this.props.formHandler(event, index)} disabled/>
+                                                        value={field.value} onChange={(event) => this.props.formHandler(event, index)}/>
                                                 </div>
                                             )
                                         })
