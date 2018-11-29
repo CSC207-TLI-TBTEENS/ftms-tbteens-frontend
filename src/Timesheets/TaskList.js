@@ -1,16 +1,14 @@
 import React, {Component} from 'react';
-import EmployeeItem from './EmployeeItem';
+import TaskItem from './TaskItem';
 
-class EmployeeList extends Component {
+class TaskList extends Component {
 
-    sortEmployees(key) {
-        this.props.sortEmployees(key);
-    }
     render() {
-        const employees = this.props.employees.map(emp => (
-            <EmployeeItem
-                key={emp.id}
-                {...emp}
+        const task = this.props.task.map(task => (
+           <TaskItem
+                
+                key={task.id}
+                {...task}
                 viewHandler = {this.props.viewHandler}
                 deletionHandler = {this.props.deletionHandler}
                 curr = {this.props.parent}
@@ -18,14 +16,14 @@ class EmployeeList extends Component {
         ));
         let num = 0;
         let key = 0
-        const modals = this.props.employees.map(emp => {
+        const modals = this.props.task.map(task => {
             num++;
             return (
-                <span key={num} className="modal fade" id={"employee" + emp.id} tabIndex="-1" role="dialog" aria-labelledby="viewEmployeeDetails" aria-hidden="true">
+                <span key={num} className="modal fade" id={"task" + task.id} tabIndex="-1" role="dialog" aria-labelledby="viewTaskDetails" aria-hidden="true">
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <h5 className="modal-title" id="viewEmployeeDetails">{emp.firstname + " " + emp.lastname}</h5>
+                                <h5 className="modal-title" id="viewTaskDetails">{task.taskname}</h5>
                                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
@@ -33,13 +31,13 @@ class EmployeeList extends Component {
                             <div className="modal-body">
                                 <form>
                                     {
-                                        this.props.employeeViewed.map((field, index) => {
+                                        this.props.taskViewed.map((field, index) => {
                                             key++;
                                             return (
                                                 <div className="form-group" key={key}>
-                                                    <label htmlFor="employeeInfo">{field.label}</label>
+                                                    <label htmlFor="TASKInfo">{field.label}</label>
                                                     <input type="text" className="form-control" id={field.label + num} aria-describedby="emailHelp" 
-                                                        value={field.value} onChange={(event) => this.props.formHandler(event, index)}/>
+                                                        value={field.value} onChange={(event) => this.props.formHandler(event, index)} disabled/>
                                                 </div>
                                             )
                                         })
@@ -49,10 +47,9 @@ class EmployeeList extends Component {
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button onClick={this.props.editHandler.bind(this.props.parent, 
-                                        emp.id, this.props.employeeViewed[0].value, 
-                                        this.props.employeeViewed[1].value, 
-                                        this.props.employeeViewed[2].value, 
-                                        this.props.employeeViewed[3].value)}
+                                        task.id, this.props.taskViewed[0].value, 
+                                        this.props.taskViewed[1].value,  
+                                        this.props.taskViewed[2].value)}
                                 type="button" className="btn btn-primary save-changes-btn">Save changes</button>
                             </div>
                         </div>
@@ -65,21 +62,19 @@ class EmployeeList extends Component {
             <table className="table">
                 <thead>
                     <tr className="table-head">
-                        <th scope="col" onClick={() => this.sortEmployees('firstname')}>First</th>
-                        <th scope="col" onClick={() => this.sortEmployees('lastname')}>Last</th>
-                        <th scope="col" onClick={() => this.sortEmployees('email')}>Email</th>
-                        <th scope="col" onClick={() => this.sortEmployees('role')}>Role</th>
-                        <th scope="col"></th>
+                        <th scope="col">Task Name</th>
+                        <th scope="col">Task Description</th>
+                        <th scope="col">Start Time</th>
+                        <th scope="col">End Time</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {employees}
+                {task}
                 </tbody>
             </table>
-            {modals}
             </div>
         )
     }
 }
 
-export default EmployeeList;
+export default TaskList;

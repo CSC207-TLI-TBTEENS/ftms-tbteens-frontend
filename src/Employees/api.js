@@ -17,14 +17,7 @@ export async function createEmployee(input) {
 
 // Edit Employee
 export async function editEmployee(input) {
-    let id = input.id.toString();
-    let firstname = input.firstname;
-    let lastname = input.lastname;
-    let email = input.email;
-    let phone = input.number;
-    let address = (EMPLOYEEAPI + id + "?firstName=" + firstname + "&lastName=" + 
-                    lastname + "&email=" + email + "&phone=" + phone);
-    return apiCall('PUT', address, {...input});
+    return apiCall('PUT', EMPLOYEEAPI, {...input});
 }
 
 // Delete Employee

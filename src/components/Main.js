@@ -8,6 +8,7 @@ import JobsView from "../JobsView/Jobs.js";
 import JobAssignment from "../JobAssignment/JobAssignment.js";
 import Submit from "../ReviewSubmission/Submit.js";
 import Timesheets from "../Timesheets/Jobs";
+import TimesheetEdit from "../Timesheets/TimesheetEdit";
 import ClientJobs from "../ClientJobs/ClientJobs"
 import ViewHistory from "../ViewHistory/ViewHistory.js";
 import { authUser } from "../store/actions/auth";
@@ -35,6 +36,7 @@ const Main = props => {
                 <Route exact path="/review" component={withAuth(allUsers, Submit)} />
                 <Route exact path="/clientJobs" component={withAuth(allUsers, ClientJobs)}/>
                 <Route exact path="/timesheets" component={withAuth(allUsers, Timesheets)}/>
+                <Route exact path="/timesheets/edit" component={withAuth(allUsers, TimesheetEdit)}/>
                 <Route exact path="/viewhistory" component={withAuth(allUsers, ViewHistory)}/>
             </Switch>
         )} />
