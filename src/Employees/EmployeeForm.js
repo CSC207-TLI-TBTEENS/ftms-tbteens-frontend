@@ -8,7 +8,6 @@ class EmployeeForm extends Component {
             lastname: '',
             email: '',
             number: '',
-            password: '',
             role: 'ROLE_EMPLOYEE'
         };
         this.handleChange = this.handleChange.bind(this);
@@ -28,13 +27,12 @@ class EmployeeForm extends Component {
             lastname: '',
             email: '',
             number: '',
-            password: '',
             role: ''
         });
       }
     
     render() {
-        const {firstname, lastname, email, number, password, role} = this.state;
+        const {firstname, lastname, email, number, role} = this.state;
         return (
             <div className="container">
 	        <div className="row align-items-center justify-content-center h-100">
@@ -88,20 +86,6 @@ class EmployeeForm extends Component {
                             id="number" 
                             placeholder="289-400-2393"
                             value={number}
-                            autoComplete="off"
-                            onChange={this.handleChange}/>
-                        </div>
-                    </div>
-                    <div className="form-row justify-content-center">
-                        <div className="form-group col-md-6">
-                            <label htmlFor="password">Password</label>
-                            <input 
-                            type="password"
-                            className="form-control"
-                            name="password"
-                            id="password" 
-                            placeholder="Password"
-                            value={password}
                             autoComplete="off"
                             onChange={this.handleChange}/>
                         </div>

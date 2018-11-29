@@ -51,12 +51,6 @@ class Navbar extends Component {
                                 <li className="nav-item">
                                     <Link className="nav-link" to={"/review"}> Review and Submit </Link>
                                 </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to={"/userregistration"}> User Registration (beta) </Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to={"/clientregistration"}> Client Registration (beta) </Link>
-                                </li>
                             </ul>
                         }
 

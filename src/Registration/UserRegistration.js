@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../index.css';
+import '../Login/Login.css';
 import {apiCall} from "../Services/api";
 import Logo from "../images/norweld-logo.png";
 
@@ -23,13 +23,13 @@ class UserRegistration extends Component {
     handleSubmit(event) {
         event.preventDefault();
         const registerRequest = {"id": this.props.match.params.id, "password": this.state.password};
-        // // this.props.onAuth(loginRequest)
-        // .then(() => {
-        //     this.props.history.push("/");
-        // })
-        // .catch(() => {
-        //     return;
-        // });
+        apiCall("POST", "/api/auth/signup", registerRequest)
+        .then(() => {
+            this.props.history.push("/");
+        })
+        .catch(() => {
+            console.log("something went wrong!");
+        });
     }
 
     handleChange(e) {
@@ -37,11 +37,12 @@ class UserRegistration extends Component {
     }
 
     async getEmployeeInfo(id) {
-        let employee = await apiCall("GET", "/api/employees/" + this.props.match.params.id);
-        console.log(employee);
+        let employee = await apiCall("GET", "/api/auth/user/" + this.props.match.params.id);
         this.setState({ employee })
     }
     render() {
+        const {firstname, lastname} = this.state.employee;
+        const password = this.state.password;
         return (
             <div className="container">
                 <div className="row">
@@ -49,19 +50,8 @@ class UserRegistration extends Component {
                         <img className="logo-header pt-3" src={Logo} alt="Logo"/>   
                         <div className="field">
                             <form className="login-form" onSubmit={this.handleSubmit}>
-                                <h3 className="infoshow">
-                                    <small class="text-muted">{this.state.employee.firstname}</small>
-                                </h3>
-                                <h3>
-                                    Last Name
-                                    <small class="text-muted">{this.state.employee.lastname}</small>
-                                </h3>
-                                <h3>
-                                    Email
-                                    <small class="text-muted">{this.state.employee.email}</small>                                </h3>
-                                <h3>
-                                    Phone
-                                    <small class="text-muted">{this.state.employee.number}</small>                                </h3>
+                                <h3 className="display-6">Welcome {firstname} {lastname}!</h3>
+                                <p>Please choose a password to complete your registration.</p>
                                 <div className="form-group">
                                     <input 
                                     type="password"
@@ -70,7 +60,7 @@ class UserRegistration extends Component {
                                     id="password" 
                                     placeholder="Password"
                                     autoComplete="off"
-                                    //value = {password}
+                                    value = {password}
                                     onChange={this.handleChange} 
                                     />
                                 </div>
