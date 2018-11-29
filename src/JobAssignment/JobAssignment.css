@@ -98,14 +98,24 @@
 
 
 
-
-/* .employee-head {
-    margin-left: 0.5vw
+.modal-header-confirm {
+  background-color: rgb(90, 85, 121);
+  border-color: rgb(79, 75, 107);
+  color: rgb(203, 200, 228);
+  border-bottom: 0px solid black;
+  padding: 1rem 1rem 0.5rem 1rem;
 }
 
-.job-head {
-    margin-left: 4vw
-} */
+.modal-content-confirm {
+  background-color: rgb(90, 85, 121);
+  color: rgb(203, 200, 228);
+}
 
-
+.modal-footer-confirm {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0rem 1rem 1rem 1rem;
+    border-top: 0px solid black;
+}
 
