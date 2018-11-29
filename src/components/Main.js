@@ -37,7 +37,6 @@ const Main = props => {
                 <Route exact path="/clientJobs" component={withAuth(allUsers, ClientJobs)}/>
                 <Route exact path="/timesheets" component={withAuth(allUsers, Timesheets)}/>
                 <Route exact path="/timesheets/edit" component={withAuth(allUsers, TimesheetEdit)}/>
-                //Route exact path="/timesheets/edit" component={withAuth(allUsers, TimesheetEdit)}/>
                 <Route exact path="/viewhistory" component={withAuth(allUsers, ViewHistory)}/>
             </Switch>
         )} />

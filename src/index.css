@@ -158,6 +158,7 @@ code {
 
 .btn-main, .btn-main:hover, .btn-main:focus {
     background-color: rgb(203, 200, 228);
+    border-color: rgb(79, 75, 107);
     color: rgb(53, 46, 66);
 }
 
