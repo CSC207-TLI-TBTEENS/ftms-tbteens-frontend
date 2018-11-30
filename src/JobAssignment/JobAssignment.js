@@ -7,6 +7,7 @@ import Confirmation from './Confirmation.js';
 import * as jobAPI from '../ClientJobs/api.js';
 import * as employeeAPI from '../Employees/api.js';
 import './JobAssignment.css';
+import 'element-theme-default';
 
 export class JobAssignment extends Component {
     state = {
@@ -63,17 +64,17 @@ export class JobAssignment extends Component {
             <div className="container h-80">
                 <div class="row justify-content-center align-items-center">
                     <div class="col-4 align-items-center job-manage-header">
-                        Jobs Manager
+                        <h3>Jobs Manager</h3>
                     </div>
                 </div>
                 <div class="row justify-content-between align-items-center">
                     <div class="col-3 align-items-center job-manage-header">
-                        Employees
+                        <h3>Employees</h3>
                     </div>
                     <div class="col-6 align-items-center job-manage-header">
                     </div>
                     <div class="col-3 justify-content-end job-manage-header">
-                        Jobs
+                        <h3>Jobs</h3>
                     </div>
                 </div>
                 <div class="row justify-content-center h-100">

@@ -1,49 +1,12 @@
-.card {
-    width: 20vw;
-    border: none;
+/* Sets dimensions to fill parent*/
+/* ONLY shows scroll if content exceeds parent*/
+.accordion-jobassign-desktop {
+    height: fill;
+    width: fill;
+    overflow-y: auto;
 }
-
-.card-header {
-    background-color: rgb(90, 85, 121);
-    text-align: center;
-    border-bottom: none;
-}
-
-.card-body {
-    font-size: 1vw;
-}
-
-.card-body-green {
-    background-color: rgb(160, 218, 113);
-}
-
-.card-title {
-    color: white;
-    font-size: 2vw;
-}
-
-.card-subtitle {
-    color: rgb(203, 200, 228);
-    font-size: 1.6vw;
-}
-
-.card-text{
-    color: white;
-    font-size: 1.5vw;
-}
-
-.card-scroll {
-    background-color: rgb(90, 85, 121);
-    /*overflow-y: scroll;
-    overflow-x: scroll;*/
-}
-
-
-
 
 .btn-link {
-    font-size: 1.2vw;
-    width: -1vw;
     color: rgb(203, 200, 228);
 }
 
@@ -70,6 +33,55 @@
 
 
 
+
+.card-borderless {
+    border: none;
+}
+
+.card-header-purple {
+    background-color: rgb(90, 85, 121);
+    text-align: center;
+    border-bottom: none;
+}
+
+.card-body-green {
+    background-color: rgb(160, 218, 113);
+}
+
+.card-title {
+    color: white;
+}
+
+.card-subtitle {
+    color: rgb(203, 200, 228);
+}
+
+.card-text{
+    color: white;
+}
+
+.card-scroll {
+    background-color: rgb(90, 85, 121);
+    overflow-y: auto;
+    overflow-x: auto;
+    width: 65%;
+}
+
+/*@media (max-width: 48em) {
+    .card-scroll {
+        width: 100%;
+    }   
+}*/
+
+
+
+.closer-p {
+    margin-bottom: 0.1rem;
+}
+
+
+
+/* This gives the trash cans color (Element React thing) */
 .el-tree-node__content {
     border-radius: 0.5rem;
 }
@@ -80,32 +92,14 @@
 
 
 
-.list-group-item-action {
-    width: 25vw;
-}
-
-.list-header {
-    color: rgb(203, 200, 228);
-    font-size: 2vw;
-}
-
-
-
-.accordion {
-    max-height: 50vh;
-    /*overflow-y: scroll;*/
-}
-
 .job-manage-header {
     color: rgb(203, 200, 228);
     text-align: center;
-    font-size: 2vw;
 }
 
 .jobs-list-header {
-    /*overflow-x: scroll;*/
+    overflow-x: auto;
 }
-
 
 
 .modal-header-confirm {
@@ -129,7 +123,3 @@
     border-top: 0px solid black;
 }
 
-
-.closer-p {
-    margin-bottom: 0.1rem;
-}

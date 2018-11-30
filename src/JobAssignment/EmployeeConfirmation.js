@@ -6,7 +6,7 @@ const EmployeeConfirmation = (props) => {
   return (
     <div class="card card-scroll">
         <div class="card-body">
-            <h5 class="card-title">{props.currentEmployee.firstname + ' ' + props.currentEmployee.lastname}</h5>
+            <h4 class="card-title">{props.currentEmployee.firstname + ' ' + props.currentEmployee.lastname}</h4>
             <h6 class="card-subtitle mb-2">Employee's Tasks Queue</h6>
             {
                 tempJobs.map(job => {

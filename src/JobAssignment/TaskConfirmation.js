@@ -6,7 +6,7 @@ const TaskConfirmation = (props) => {
     return (
         <div class="card card-scroll">
             <div class="card-body">
-                <h5 class="card-title">{props.currentJob.jobTitle}</h5>
+                <h4 class="card-title">{props.currentJob.jobTitle}</h4>
                 <h6 class="card-subtitle mb-2">Employees on Task</h6>
                 {
                     tempEmployees.map(employee => {
