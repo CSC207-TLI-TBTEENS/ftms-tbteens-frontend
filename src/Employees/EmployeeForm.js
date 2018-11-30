@@ -8,26 +8,25 @@ class EmployeeForm extends Component {
             lastname: '',
             email: '',
             number: '',
-            role: 'ROLE_EMPLOYEE'
+            role: "ROLE_EMPLOYEE"
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     async handleChange(e) {
-        await this.setState({[e.target.name] : e.target.value});
-        console.log(this.state.role)
+        this.setState({[e.target.name] : e.target.value});
     }
     
     handleSubmit(e) {
         e.preventDefault();
-        this.props.addEmployee({...this.state});
+        this.props.addEmployee(this.state);
         this.setState({
             firstname: '',
             lastname: '',
             email: '',
             number: '',
-            role: ''
+            role: "ROLE_EMPLOYEE"
         });
       }
     
@@ -94,7 +93,7 @@ class EmployeeForm extends Component {
                         <div className="form-group">
                             <label htmlFor="select-employee-type">Employee Type</label>
                             <select onChange={this.handleChange} value={role} name="role" className="custom-select" id="select-employee-type">
-                                <option value="ROLE_EMPLOYEE">Regular</option>
+                                <option value="ROLE_EMPLOYEE" selected="selected">Regular</option>
                                 <option value="ROLE_SUPERVISOR">Supervisor</option>
                             </select>
                         </div>

@@ -20,7 +20,7 @@ class SearchBar extends Component {
             
             for (let i = 0; i < values.length; i++) {
                 let data = Object.values(values[i])
-
+                
                 for (let j = 1; j < 4; j++){
                     if (typeof data[j] === typeof "a"){
                         let tableString = data[j].toLowerCase()
