@@ -1,3 +1,15 @@
+:root{
+    --background: rgb(215, 215, 215);
+    --button_green: rgb(178, 178, 178);
+    --button_border: rgb(153, 153, 153);
+    --table_dark_purple: rgb(91, 91, 91);
+    --table_light_purple: rgb(198, 198, 198);
+    --dark_font_color: rgb(64, 64, 66);
+    --light_font_color: rgb(214, 214, 214);
+    --table_delete_button: rgb(118, 118, 118);
+    --table_edit_button: rgb(212, 209, 215);
+}
+
 html {
   height: 100%;
   min-width: 100%;
@@ -13,22 +25,44 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; */
-  background: rgb(32, 30, 46);  /* fallback for old browsers */
+
+  /*Main Background  */
+  background: var(--background);  /* fallback for old browsers */
   height: 100%;
   width: 100%;
 }
+
+/*jumbotron image*/
+.image-bg {
+    background-image: url("images/pattern4.svg");
+    /*border: 1px rgb(191, 190, 188) solid;*/
+    box-shadow: 5px 6px 10px rgb(89, 88, 87);
+}
+
+/*Scrollbar*/
+/* width */
 
 ::-webkit-scrollbar {
   width: 12px;
 }
 
+/* Track */
 ::-webkit-scrollbar-track {
   border-radius: 10px;
+    background: #e0e0e0;
 }
 
+/* Handle */
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
+    background: #888;
 }
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #636363;
+}
+
 
 #root {
   height: 100%;
@@ -39,21 +73,22 @@ code {
     monospace;
 }
 
-/* Nav */
-.el-icon-edit:hover {
-  color: red
-}
-
+/* Navigation Bar */
 .bg-purple {
-  background-color: rgb(90, 85, 121);
-  border-color: rgb(79, 75, 107);
-  color: rgb(203, 200, 228);
+    background-color: rgba(24, 24, 24, 0.84);
+    border-color: rgb(162, 162, 162);
+    color: rgb(203, 200, 228);
 }
 
 .navbar a {
   font-weight: bold;
   color: rgb(203, 200, 228);
 }
+
+/*.clara {*/
+    /*font-weight: bold;*/
+    /*color: rgb(203, 200, 228);*/
+/*}*/
 
 .navbar a:hover {
   color: rgb(203, 200, 228);
@@ -62,11 +97,12 @@ code {
 }
 
 .save-changes-btn {
-  background-color: rgb(160, 218, 113);
+  background-color: var(--button_green);
   border: none;
   color: rgb(53, 46, 66)
 }
 
+/*This is for the FTMS logo*/
 .navbar-brand > img {
   display: inline-block;
   height: 30px;
@@ -89,41 +125,62 @@ code {
   border-top: none;
 }
 
-.table thead tr{
-  background-color: rgb(90, 85, 121);
-  color: rgb(203, 200, 228);
+/*Head of the table*/
+
+.table-shadow{
+    box-shadow: 4px 5px 10px rgb(97, 96, 95);
+    border-color: var(--table_dark_purple);
 }
+
+.table thead tr{
+  background-color: rgba(24, 24, 24, 0.84);
+  color: var(--light_font_color);
+}
+#table-job-all thead tr{
+    background-color: rgba(24, 24, 24, 0.84);
+    color: var(--light_font_color);
+}
+
+/*Body of the table*/
+
+/*Dark Rows*/
+.table tbody tr:nth-child(even){
+    background-color: var(--table_dark_purple);
+    color: var(--light_font_color);
+}
+
+.table tbody tr:nth-child(even):hover {
+    background-color: rgb(111, 111, 111);
+    color: var(--light_font_color);
+}
+
+/*light Rows*/
 
 .table tbody tr:nth-child(odd){
-  background-color: rgb(165, 176, 214);
-  color: rgb(53, 46, 66);
+  background-color: var(--table_light_purple);
+  color: var(--dark_font_color);
 }
 
-#table-job-all thead tr{
-  background-color: rgb(90, 85, 121);
-  color: rgb(203, 200, 228);
+.table tbody tr:nth-child(odd):hover {
+    background-color: rgb(179, 177, 184);
+    color: var(--dark_font_color);
 }
+/*Light Rows*/
 
 #table-job-all tbody tr:nth-child(odd){
-  background-color: rgb(165, 176, 214);
+  background-color: var(--table_light_purple);
   color: rgb(53, 46, 66);
-}
-#table-job-all tbody tr:nth-child(even):hover {
-  background-color: rgb(66, 62, 90);
-  color: rgb(203, 200, 228);
 }
 
 #table-job-all tbody tr:nth-child(odd):hover {
-  background-color: rgb(127, 135, 165);
-  color: rgb(53, 46, 66);
-}
-.table tbody tr:nth-child(odd):hover {
-  background-color: rgb(127, 135, 165);
-  color: rgb(53, 46, 66);
+    background-color: rgb(127, 135, 165);
+    color: rgb(53, 46, 66);
 }
 
-.table tbody tr:nth-child(even){
-  background-color: rgb(90, 85, 121);
+/*Dark Rows*/
+
+#table-job-all tbody tr:nth-child(even):hover {
+  background-color: rgb(66, 62, 90);
   color: rgb(203, 200, 228);
 }
 
@@ -133,27 +190,25 @@ code {
   color: rgb(53, 46, 66);
 }
 
-
-.table tbody tr:nth-child(even):hover {
-  background-color: rgb(66, 62, 90);
-  color: rgb(203, 200, 228);
-}
-
 .popup-form {
   margin-top: 25px;
   margin-bottom: 50px;
 }
 
+
+/*Buttons*/
+
 .btn-submit {
-  background-color: rgb(160, 218, 113);
-  border-color: rgb(160, 218, 113);
-  color: rgb(53, 46, 66);
+  background-color: var(--button_green);
+  border-color: var(--button_border);
+  color: var(--dark_font_color);
+    box-shadow: 4px 5px 10px rgb(97, 96, 95);
 }
 
 .btn-submit:hover, .btn-submit:focus {
-  background-color: rgb(130, 179, 91);
-  border-color: rgb(130, 179, 91);
-  color: rgb(53, 46, 66);
+  background-color: rgb(189, 189, 189);
+  border-color:var(--button_border);
+  color: var(--dark_font_color);
 }
 
 .btn-main, .btn-main:hover, .btn-main:focus {
@@ -173,6 +228,7 @@ code {
   border-color: rgb(79, 75, 107);
   color: rgb(203, 200, 228);
 }
+
 .modal-content {
   background-color: rgb(32, 30, 46);
   color: rgb(203, 200, 228);
@@ -183,14 +239,37 @@ code {
   text-shadow: none;
 }
 
+/*Delete and edit icons*/
+.el-icon-edit {
+    color: rgb(114, 114, 114);
+}
+
+.el-icon-edit:hover {
+    color: var(--table_dark_purple)
+}
+
+.el-icon-edit {
+    color: rgb(114, 114, 114);
+}
+
+.el-icon-delete:hover {
+    color: rgb(192, 196, 197)
+}
+
+/*The search bar*/
+::placeholder {
+    color: red;
+    opacity: 1;
+}
 .search {
-    color: rgb(90, 85, 121);
-    border-color: rgb(79, 75, 107);
+    color: var(--dark_font_color);
+    border-color: rgb(189, 183, 208);
     padding: 5px 20px;
     border-radius: 5px;
     float: right;
+    background-color: rgb(222, 219, 226)
 }
-/* Loading Rings  */
+/* The Loading Rings Animation */
 @keyframes lds-double-ring {
   0% {
     -webkit-transform: rotate(0);
@@ -245,7 +324,7 @@ code {
   left: 20px;
   border-radius: 50%;
   border: 8px solid #000;
-  border-color: #a0da71 transparent #a0da71 transparent;
+  border-color: var(--table_dark_purple) transparent var(--table_dark_purple) transparent;
   -webkit-animation: lds-double-ring 1.2s linear infinite;
   animation: lds-double-ring 1.2s linear infinite;
 }
@@ -254,7 +333,7 @@ code {
   height: 140px;
   top: 30px;
   left: 30px;
-  border-color: transparent #cbc8e4 transparent #cbc8e4;
+  border-color: transparent #dedbf7 transparent #dedbf7;
   -webkit-animation: lds-double-ring_reverse 1.2s linear infinite;
   animation: lds-double-ring_reverse 1.2s linear infinite;
 }
@@ -264,6 +343,16 @@ code {
   -webkit-transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
   transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
 
+}
+/*.clara-margins-container{*/
+    /*font-family: SansSerif;*/
+/*}**/
+
+
+.bg_page_title{
+    background-color: rgba(191, 191, 191, 0.68);
+    border-color: rgb(126, 124, 124);
+    /*color: rgb(203, 200, 228);*/
 }
 
 

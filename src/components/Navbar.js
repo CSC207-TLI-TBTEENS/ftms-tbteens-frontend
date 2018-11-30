@@ -22,7 +22,7 @@ class Navbar extends Component {
             // Adding in Navbar
             <nav className="navbar navbar-dark bg-purple navbar-expand-lg mb-3 w-100">
                 <div className="container">
-                    <div className="navbar-brand">
+                    <div className="navbar-brand clara ">
                         <img src={Logo} alt="FTMS Home" /> FTMS
                     </div>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

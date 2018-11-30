@@ -170,10 +170,10 @@ class Companies extends Component {
         }
         return (
             <div className="container">
-                <header className="jumbotron bg-purple">
+                <header className="jumbotron image-bg">
                             <div className="container">
                                 <h1 className="display-4">Companies</h1>
-                                <hr className="my-4"/>
+
                                 <p>
                                     <button type="button" className="btn btn-submit" data-toggle="modal" data-target="#companyForm">
                                         Add Company

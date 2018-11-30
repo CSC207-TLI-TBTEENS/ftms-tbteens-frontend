@@ -1,14 +1,14 @@
 import React from 'react';
 
 const editStyle = {
-    backgroundColor: "rgb(160, 218, 113)",
-    border: "none",
+    backgroundColor: "rgb(186, 186, 186)",
+    border: "white",
     display: "inline-block",
 }
 
 const deleteStyle = {
-    backgroundColor: "red",
-    border: "none",
+    backgroundColor: "rgb(118, 118, 118)",
+    border: "white",
     display: "inline-block",
 }
 
