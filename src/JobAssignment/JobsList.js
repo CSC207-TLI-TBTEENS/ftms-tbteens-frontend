@@ -1,10 +1,4 @@
 import React from 'react';
-import 'element-theme-default';
-import './JobAssignment.css'
-
-const style = {
-    backgroundColor: "rgb(160, 218, 113)"
-}
 
 const JobsList = (props) => {
     let num = 1;
@@ -25,7 +19,7 @@ const JobsList = (props) => {
                                 </div>
 
                                 <div id={"job" + num} class="collapse multi-collapse" aria-labelledby="headingOne" data-parent="#jobList">
-                                <div class="card-body" style={style}>
+                                <div class="card-body card-body-green" >
                                     <p>JOB ID: {job.id}</p>
                                     <p>JOB SITE: {job.siteName}</p>
                                     <p>DESCRIPTION: {job.description}</p>

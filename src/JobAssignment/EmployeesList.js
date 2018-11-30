@@ -1,11 +1,10 @@
 import React from 'react';
-import './JobAssignment.css'
 
 const EmployeesList = (props) => {
     let num = 1;
     return (
         <div class="row">
-            <div class="accordion" id="accordionExample2">
+            <div class="accordion" id="accordionEmployees">
                 {
                     props.employees.map(employee => {
                         num++;
@@ -19,7 +18,7 @@ const EmployeesList = (props) => {
                                 </h5>
                                 </div>
 
-                                <div id={"employee" + num} class="collapse multi-collapse" aria-labelledby="headingOne" data-parent="#accordionExample2">
+                                <div id={"employee" + num} class="collapse multi-collapse" aria-labelledby="headingOne" data-parent="#accordionEmployees">
                                 <div class="card-body card-body-green" >
                                     <p>EMPLOYEE ID: {employee.id}</p>
                                     <p>EMPLOYEE EMAIL: {employee.email}</p>
