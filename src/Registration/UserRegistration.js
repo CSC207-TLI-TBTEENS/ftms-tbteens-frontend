@@ -57,7 +57,7 @@ class UserRegistration extends Component {
         }
 
         let display;
-        if (!completed) {
+        if (!completed && this.state.password == null) {
             display = (
             <div className="row">
                 <div className="container container-style">
@@ -98,9 +98,18 @@ class UserRegistration extends Component {
                     </div>
                 </div>
             </div>)
-        } else {
+        } else if (this.state.password != null) {
+            display = (
+                <div class="jumbotron">
+                    <h1 class="display-4">This user has already been registered</h1>
+                </div>
+            )
+            
+        }    
+        else {
             display = <p>User Registration complete! Please login!</p>
         }
+        
         return (
             <div className="container">
                 {errors.message && (
@@ -110,6 +119,7 @@ class UserRegistration extends Component {
                         showClose: true
                     })
                 )} 
+                
                 {display}
             </div>
         )
