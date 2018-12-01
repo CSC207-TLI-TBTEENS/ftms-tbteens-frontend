@@ -44,7 +44,7 @@ class JobItem extends Component {
                                                 <th scope="col" >Review Status</th>
                                             </tr>
                                         </thead>
-                                        
+
                                         {
                                             employees.map(emp => {
                                                 return (
@@ -58,7 +58,7 @@ class JobItem extends Component {
                                                 )
                                         })
                                         }
-                                        
+
                                             {/* <tr>
                                                 <td>Chris</td>
                                                 <td>Fix DA2 unit</td>
@@ -71,7 +71,7 @@ class JobItem extends Component {
                                                 <td>None</td>
                                                 <td>Not Reviewed</td>
                                             </tr> */}
-                                        
+
                                         
                                     </table>
                                 </div>

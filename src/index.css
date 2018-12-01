@@ -160,7 +160,15 @@ code {
   background-color: var(--table_light_purple);
   color: var(--dark_font_color);
 }
+#table-job-all tbody tr:nth-child(even):hover {
+  background-color: rgb(66, 62, 90);
+  color: rgb(203, 200, 228);
+}
 
+#table-job-all tbody tr:nth-child(odd):hover {
+  background-color: rgb(127, 135, 165);
+  color: rgb(53, 46, 66);
+}
 .table tbody tr:nth-child(odd):hover {
     background-color: rgb(179, 177, 184);
     color: var(--dark_font_color);
@@ -177,9 +185,16 @@ code {
     color: rgb(53, 46, 66);
 }
 
+
 /*Dark Rows*/
 
-#table-job-all tbody tr:nth-child(even):hover {
+#table-job tbody tr:nth-child(odd) {
+  background-color: rgb(127, 135, 165);
+  color: rgb(53, 46, 66);
+}
+
+
+.table tbody tr:nth-child(even):hover {
   background-color: rgb(66, 62, 90);
   color: rgb(203, 200, 228);
 }
