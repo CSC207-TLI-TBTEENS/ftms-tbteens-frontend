@@ -22,7 +22,7 @@ class Login extends Component {
     }
 
     handleChange(e) {
-        this.props.removeError();
+        this.props.removeAlert();
 		this.setState({[e.target.name] : e.target.value});
     }
 
@@ -41,21 +41,21 @@ class Login extends Component {
     render() {
         const {email, password} = this.state;
         const {
-            errors,
+            alerts,
             history,
-            removeError
+            removeAlert
           } = this.props;
 
         history.listen(() => {
-            removeError();
+            removeAlert();
         });
 
         let display = (
             <div className="container">
-                {errors.message && (
+                {alerts.message && (
                     Message({
-                        type: 'error',
-                        message: errors.message,
+                        type: alerts.category,
+                        message: alerts.message,
                         showClose: true
                     })
                 )} 

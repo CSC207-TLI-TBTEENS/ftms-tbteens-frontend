@@ -1,25 +1,24 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addError } from "../store/actions/errors";
-import { getCurrentUser } from '../Services/authApi';
+import { addAlert} from "../store/actions/alerts";
 
 export default function withAuth(validRoles, ComponentToBeRendered) {
   class Authenticate extends Component {
     componentWillMount() {
         if (this.props.isAuthenticated === false) {
-            this.props.addError("You must be logged in to view that page!");
+            this.props.addAlert("error", "You must be logged in to view that page!");
             this.props.history.push("/login");
         } else if (!validRoles.includes(this.props.role)) {
-            this.props.addError("You do not have permission to view this page!");
+            this.props.addAlert("error", "You do not have permission to view this page!");
             this.props.history.push("/");
         }
     }
     componentWillUpdate(nextProps) {
         if (this.props.isAuthenticated === false) {
-            this.props.addError("You must be logged in to view that page!");
+            this.props.addAlert("error", "You must be logged in to view that page!");
             this.props.history.push("/login");
         } else if (!validRoles.includes(this.props.role)) {
-            this.props.addError("You do not have permission to view this page!");
+            this.props.addAlert("error", "You do not have permission to view this page!");
             this.props.history.push("/");
         }
     }
@@ -32,5 +31,5 @@ export default function withAuth(validRoles, ComponentToBeRendered) {
     return { isAuthenticated: state.currentUser.isAuthenticated, role: state.currentUser.user.role};
   }
 
-  return connect(mapStateToProps, { addError })(Authenticate);
+  return connect(mapStateToProps, { addAlert })(Authenticate);
 }
