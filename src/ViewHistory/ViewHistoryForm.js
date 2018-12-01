@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../css files/style.css';
+import '../css/style.css';
 
 class ViewHistoryForm extends Component {
     constructor(props) {

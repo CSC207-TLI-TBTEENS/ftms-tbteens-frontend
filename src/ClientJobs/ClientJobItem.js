@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css files/clientJobDetails.css';
+import '../css/clientJobDetails.css';
 
 const editStyle = {
     backgroundColor: "rgb(160, 218, 113)",

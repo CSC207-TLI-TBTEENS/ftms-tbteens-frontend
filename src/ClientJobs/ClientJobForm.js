@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../css files/clientJobDetails.css';
+import '../css/clientJobDetails.css';
 
 class ClientJobForm extends Component {
     constructor(props) {
