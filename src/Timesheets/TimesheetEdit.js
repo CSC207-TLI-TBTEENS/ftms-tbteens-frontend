@@ -17,7 +17,7 @@ class TimesheetEdit extends Component {
             taskViewed: [{label: "Task Name", value:""},
                         {label: "Start Time", value: ""}, 
                         {label: "End Time", value: ""}]
-        }
+        };
     this.addTask = this.addTask.bind(this);
     }
 //    componentDidMount() {
@@ -52,7 +52,7 @@ class TimesheetEdit extends Component {
             {label: "Start Time", value: starttime},
             {label: "End Time", value: endtime}
         ]})
-    }
+    };
 
     formChangeHandler = (event, index) => {
         if (index !== 2) {
@@ -66,7 +66,7 @@ class TimesheetEdit extends Component {
                 taskViewed: newTaskViewed    
             })
         }
-    }
+    };
     async handleTaskEdit(id, taskname, starttime, endtime) {
         let edited = false;
         await MessageBox.confirm('Update this Task\'s name?', 'Warning', {
@@ -120,7 +120,7 @@ class TimesheetEdit extends Component {
               message: 'Deleted Task#' + id + ' ' + taskname + ' successfully!'
             });
         }).catch((error) => {
-            console.log(error)
+            console.log(error);
             Message({
               type: 'info',
               message: "Deletion cancelled!"
@@ -133,7 +133,7 @@ class TimesheetEdit extends Component {
                     currentTasks.splice(i, 1);
                     break;
                 }
-            };
+            }
             this.setState({taskShow: currentTasks, tasks: currentTasks});
         }
     }
