@@ -11,6 +11,7 @@ const EmployeeConfirmation = (props) => {
                     return (
                         <div>
                             <p className="card-text closer-p">
+                              <i className="el-icon-delete"/>
                                 {job.jobTitle}
                             </p>
 

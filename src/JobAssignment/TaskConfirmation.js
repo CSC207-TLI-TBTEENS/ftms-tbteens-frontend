@@ -11,6 +11,7 @@ const TaskConfirmation = (props) => {
                         return (
                             <div>
                                 <p className="card-text closer-p">
+                                  <i className="el-icon-delete"/>
                                     {"                 " + employee.firstname + " " + employee.lastname}
                                 </p>
 
