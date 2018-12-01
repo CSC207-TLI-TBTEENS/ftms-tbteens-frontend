@@ -9,12 +9,14 @@ class JobItem extends Component {
             employees: []
         }
     }
-
+    
+    //Get list of all employees from specific job
     async getEmployeesFromJob(job){
         let newemployees = await apiCalls.getEmployeesFromJob(job);
         console.log(newemployees)
         this.setState({employees: [...newemployees]});
     }
+
     componentWillMount() {
         this.getEmployeesFromJob(this.props.job);
     }
@@ -58,20 +60,6 @@ class JobItem extends Component {
                                                 )
                                         })
                                         }
-                                        
-                                            {/* <tr>
-                                                <td>Chris</td>
-                                                <td>Fix DA2 unit</td>
-                                                <td>None</td>
-                                                <td>Not Reviewed</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Chris</td>
-                                                <td>Fix DA2 unit</td>
-                                                <td>None</td>
-                                                <td>Not Reviewed</td>
-                                            </tr> */}
-                                        
                                         
                                     </table>
                                 </div>

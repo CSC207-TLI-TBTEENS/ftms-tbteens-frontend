@@ -38,7 +38,6 @@ const JobsList = (props) => {
              </div>               
         </div>
     )
-
 }
 
 export default JobsList;
