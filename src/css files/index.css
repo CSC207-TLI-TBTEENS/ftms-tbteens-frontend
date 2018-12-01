@@ -1,5 +1,5 @@
 :root{
-    --background: rgb(229, 229, 229);
+    --background: rgb(207, 207, 207);
     --button_green: rgb(189, 189, 189);
     --button_border: rgb(153, 153, 153);
     --table_dark_purple: rgb(91, 91, 91);
@@ -166,82 +166,40 @@ code {
     background-color: var(--table_light_purple);
     color: var(--dark_font_color);
 }
-#table-job-all tbody tr:nth-child(even):hover {
-  background-color: rgb(66, 62, 90);
-  color: rgb(203, 200, 228);
-}
 
-#table-job-all tbody tr:nth-child(odd):hover {
-  background-color: rgb(127, 135, 165);
-  color: rgb(53, 46, 66);
-}
+
 .table tbody tr:nth-child(odd):hover {
     background-color: rgb(179, 177, 184);
     color: var(--dark_font_color);
 }
-/*Light Rows*/
+
+
+#table-job-all tbody tr:nth-child(even):hover {
+    background-color: rgb(66, 62, 90);
+    color: rgb(203, 200, 228);
+}
+
+#table-job-all tbody tr:nth-child(odd):hover {
+    background-color: rgb(127, 135, 165);
+    color: rgb(53, 46, 66);
+}
+
+
+#table-job tbody tr:nth-child(odd) {
+    background-color: rgb(127, 135, 165);
+    color: rgb(53, 46, 66);
+}
+
 
 #table-job-all tbody tr:nth-child(odd){
     background-color: var(--table_light_purple);
     color: rgb(53, 46, 66);
 }
 
-#table-job-all tbody tr:nth-child(odd):hover {
-    background-color: rgb(127, 135, 165);
-    color: rgb(53, 46, 66);
-}
-
-
-/*Dark Rows*/
-
-#table-job tbody tr:nth-child(odd) {
-  background-color: rgb(127, 135, 165);
-  color: rgb(53, 46, 66);
-}
-
-
-.table tbody tr:nth-child(even):hover {
-    background-color: rgb(66, 62, 90);
-    color: rgb(203, 200, 228);
-}
-
-
-#table-job tbody tr:nth-child(odd) {
-    background-color: rgb(127, 135, 165);
-    color: rgb(53, 46, 66);
-}
 
 .popup-form {
     margin-top: 25px;
     margin-bottom: 50px;
-}
-
-
-/*Buttons*/
-
-.btn-submit {
-    background-color: var(--button_green);
-    border-color: var(--button_border);
-    color: var(--dark_font_color);
-    box-shadow: 4px 5px 10px rgb(97, 96, 95);
-}
-
-.btn-submit:hover, .btn-submit:focus {
-  background-color: rgb(216, 215, 223);
-  border-color: var(--button_border);
-  color: var(--dark_font_color);
-}
-
-.btn-main, .btn-main:hover, .btn-main:focus {
-    background-color: rgb(203, 200, 228);
-    border-color: rgb(79, 75, 107);
-    color: rgb(53, 46, 66);
-}
-
-.btn-secondary, .btn-secondary:hover, .btn-secondary:focus {
-    background-color: rgb(90, 85, 121);
-    border-color: rgb(79, 75, 107);
-    color: rgb(203, 200, 228);
 }
 
 /*Code for the modal popups(forms which pop up when we click on "Add Companies, etc)*/
@@ -263,6 +221,9 @@ code {
 .form-group {
     color: rgb(188, 191, 190);
     text-align: left;
+}
+.form-control{
+    background-color: #dddddd;
 }
 
 .close {
