@@ -28,10 +28,10 @@ export function authUser(userData) {
         return apiCall("POST", "/api/auth/signin", userData)
         .then((response) => {
             localStorage.setItem('accessToken', response.accessToken);
+            setAuthorizationToken(localStorage.accessToken);
             return getCurrentUser()
         })
         .then((user) => {
-          console.log(user)
           dispatch(setCurrentUser(user));
           dispatch(removeError());
           resolve(); // indicate that the API call succeeded

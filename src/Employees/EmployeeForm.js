@@ -8,33 +8,30 @@ class EmployeeForm extends Component {
             lastname: '',
             email: '',
             number: '',
-            password: '',
-            role: 'ROLE_EMPLOYEE'
+            role: "ROLE_EMPLOYEE"
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     async handleChange(e) {
-        await this.setState({[e.target.name] : e.target.value});
-        console.log(this.state.role)
+        this.setState({[e.target.name] : e.target.value});
     }
     
     handleSubmit(e) {
         e.preventDefault();
-        this.props.addEmployee({...this.state});
+        this.props.addEmployee(this.state);
         this.setState({
             firstname: '',
             lastname: '',
             email: '',
             number: '',
-            password: '',
-            role: ''
+            role: "ROLE_EMPLOYEE"
         });
       }
     
     render() {
-        const {firstname, lastname, email, number, password, role} = this.state;
+        const {firstname, lastname, email, number, role} = this.state;
         return (
             <div className="container">
 	        <div className="row align-items-center justify-content-center h-100">
@@ -92,25 +89,11 @@ class EmployeeForm extends Component {
                             onChange={this.handleChange}/>
                         </div>
                     </div>
-                    <div className="form-row justify-content-center">
-                        <div className="form-group col-md-6">
-                            <label htmlFor="password">Password</label>
-                            <input 
-                            type="password"
-                            className="form-control"
-                            name="password"
-                            id="password" 
-                            placeholder="Password"
-                            value={password}
-                            autoComplete="off"
-                            onChange={this.handleChange}/>
-                        </div>
-                    </div>
                     <div className="row justify-content-center">
                         <div className="form-group">
                             <label htmlFor="select-employee-type">Employee Type</label>
                             <select onChange={this.handleChange} value={role} name="role" className="custom-select" id="select-employee-type">
-                                <option value="ROLE_EMPLOYEE">Regular</option>
+                                <option value="ROLE_EMPLOYEE" selected="selected">Regular</option>
                                 <option value="ROLE_SUPERVISOR">Supervisor</option>
                             </select>
                         </div>
