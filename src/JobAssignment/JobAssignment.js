@@ -42,7 +42,6 @@ export class JobAssignment extends Component {
     }
 
     async getJobsFromEmployee(employee) {
-        console.log(JSON.stringify(employee));
         let jobsFromEmployee = await employeeAPI.getJobsFromEmployee(employee.id);
         this.setState({employeeJobs: jobsFromEmployee});
     }
@@ -59,7 +58,7 @@ export class JobAssignment extends Component {
             }
         );
         this.getEmployeesFromJob({...job});
-        console.log(this.state.jobToConfirm);
+        console.log(JSON.stringify(this.state.jobEmployees));
     };
 
     handleEmployeeChosen = (employee) => {
@@ -69,7 +68,7 @@ export class JobAssignment extends Component {
             }
         );
         this.getJobsFromEmployee({...employee});
-        console.log(this.state.employeeToConfirm);
+        console.log(JSON.stringify(this.state.employeeJobs));
     };
 
     render() {
@@ -92,7 +91,6 @@ export class JobAssignment extends Component {
                 </div>
                 {/*The main content*/}
                 <div class="row justify-content-center h-100">
-                  {/*Employees list:  this holds the employees to select*/}
                     <div className="col-md-3 d-flex justify-content-center">
                             <EmployeesList employees={this.state.employees} employeeHandler={this.handleEmployeeChosen}/>
                     </div>
