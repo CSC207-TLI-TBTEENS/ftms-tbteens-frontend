@@ -3,6 +3,7 @@ import '../Login/Login.css';
 import {apiCall} from "../Services/api";
 import { Message } from 'element-react';
 import Logo from "../images/norweld-logo.png";
+import alerts from '../store/reducers/alerts';
 
 
 
@@ -25,7 +26,7 @@ class UserRegistration extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        this.props.removeError();
+        this.props.removeAlert();
         if (this.state.password === this.state.confirmPassword) {
             const registerRequest = {"id": this.props.match.params.id, "password": this.state.password};
             apiCall("POST", "/api/auth/signup", registerRequest)
@@ -35,7 +36,7 @@ class UserRegistration extends Component {
             .catch(() => {
             });
         } else {
-            this.props.addError("Password don't match!");
+            this.props.addAlert("Password don't match!");
         }
     }
 
@@ -50,7 +51,7 @@ class UserRegistration extends Component {
     render() {
         const {firstname, lastname} = this.state.employee;
         const {password, confirmPassword, completed} = this.state;
-        const {errors} = this.props;
+        const {alerts} = this.props;
         let passwordMessage = "";
         if (password !== confirmPassword) {
             passwordMessage = "Passwords don't match."
@@ -112,10 +113,10 @@ class UserRegistration extends Component {
         
         return (
             <div className="container">
-                {errors.message && (
+                {alerts.message && (
                     Message({
-                        type: 'error',
-                        message: errors.message,
+                        type: alerts.category,
+                        message: alerts.message,
                         showClose: true
                     })
                 )} 

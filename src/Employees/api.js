@@ -8,7 +8,6 @@ export async function getEmployees() {
 
 // Create Employee
 export async function createEmployee(input) {
-    console.log({...input})
     return apiCall('POST',EMPLOYEEAPI, {...input});
 }
 
