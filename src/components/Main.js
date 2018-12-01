@@ -8,11 +8,13 @@ import JobsView from "../JobsView/Jobs.js";
 import JobAssignment from "../JobAssignment/JobAssignment.js";
 import Submit from "../ReviewSubmission/Submit.js";
 import Timesheets from "../Timesheets/Jobs";
+import TimesheetEdit from "../Timesheets/TimesheetEdit";
 import ClientJobs from "../ClientJobs/ClientJobs"
 import ViewHistory from "../ViewHistory/ViewHistory.js";
 import { authUser } from "../store/actions/auth";
-import { removeError } from "../store/actions/errors";
+import { removeError, addError } from "../store/actions/errors";
 import withAuth from "../hocs/withAuth";
+import UserRegistration from "../Registration/UserRegistration.js";
 
 const Main = props => {
     const adminOnly = ["ROLE_ADMIN"];
@@ -28,6 +30,14 @@ const Main = props => {
                     onAuth={authUser}
                     {...props}
                 />} />
+                <Route exact path="/usersignup/:id" render={(props) => 
+                <UserRegistration
+                    removeError={removeError}
+                    errors={errors}
+                    onAuth={authUser}
+                    addError={addError}
+                    {...props}
+                />} />
                 <Route exact path="/employees" component={withAuth(adminOnly, Employees)} />
                 <Route exact path="/companies" component={withAuth(adminOnly,Companies)} />
                 <Route exact path="/jobsview" component={withAuth(adminOnly, JobsView)} />
@@ -35,6 +45,7 @@ const Main = props => {
                 <Route exact path="/review" component={withAuth(allUsers, Submit)} />
                 <Route exact path="/clientJobs" component={withAuth(allUsers, ClientJobs)}/>
                 <Route exact path="/timesheets" component={withAuth(allUsers, Timesheets)}/>
+                <Route exact path="/timesheets/edit" component={withAuth(allUsers, TimesheetEdit)}/>
                 <Route exact path="/viewhistory" component={withAuth(allUsers, ViewHistory)}/>
             </Switch>
         )} />
@@ -49,5 +60,5 @@ function mapStateToProps(state) {
 }
   
 export default withRouter(
-    connect(mapStateToProps, { authUser, removeError })(Main)
+    connect(mapStateToProps, { authUser, removeError, addError })(Main)
 );

@@ -1,8 +1,8 @@
 import React from 'react';
-import './JobDetails.css';
+import '../css files/JobDetails.css';
 import { Link } from 'react-router-dom';
 
-const JobItem = ({jobId, jobName, clientName, jobDescription, jobLocation}) => (
+const JobItem = ({id, jobName, clientName, jobDescription, jobLocation}) => (
     <tr>
         <td>{jobName}</td>
         <td>{clientName}</td>

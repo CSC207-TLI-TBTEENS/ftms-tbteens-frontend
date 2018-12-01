@@ -1,5 +1,5 @@
 import React from 'react';
-import './clientJobDetails.css';
+import '../css files/clientJobDetails.css';
 
 const editStyle = {
     backgroundColor: "rgb(160, 218, 113)",
@@ -50,7 +50,7 @@ const ClientJobItem = ({id, deletionHandler, viewHandler, jobTitle ,siteLocation
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div className="modal-body">
+                    <div className="modal-body table-responsive">
                         <table className="table" id="table-job">
                             <thead >
                             <tr className="table-head">

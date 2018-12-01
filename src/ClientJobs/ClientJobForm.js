@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './clientJobDetails.css';
+import '../css files/clientJobDetails.css';
 
 class ClientJobForm extends Component {
     constructor(props) {
@@ -7,7 +7,7 @@ class ClientJobForm extends Component {
         this.state = {
             jobTitle: '',
             siteName: '',
-            description: '',
+            description: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);

@@ -10,6 +10,7 @@ class SubmitList extends Component {
         }
     }
 
+    // This sets up 2 way binding so editing text auto changes the state and display
     handleInputChange = (event, index) => {
         const detailChanged = {...this.state.details[index]};
         detailChanged.value = event.target.value;
@@ -22,6 +23,8 @@ class SubmitList extends Component {
         })
     }
 
+    // Creates a list of Submit items to show in the form 
+    // If there are n number of elements in the state.details, it prints out n input fields
     createForm = () => {
         return this.state.details.map((detail, index) => {
             return <SubmitItem

@@ -1,5 +1,5 @@
 .Button {
-    background-color:rgb(160, 218, 113);
+    background-color: rgb(196, 195, 183);
     border-radius: 1rem;
 }
 
@@ -25,7 +25,7 @@
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: rgb(203, 200, 228);
+    color: rgb(106, 106, 109);
     opacity: 1; /* Firefox */
 }
 
@@ -59,11 +59,6 @@
 .login-google {
     margin-top: 10%;
     height: 10vh;
-}
-
-.form-group {
-    color: rgb(203, 200, 228);
-    text-align: left;
 }
 
 .form-check-label {
