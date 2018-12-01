@@ -10,7 +10,9 @@ import './JobAssignment.css';
 import 'element-theme-default';
 
 export class JobAssignment extends Component {
-    state = {
+    constructor(props) {
+      super(props);
+      this.state = {
         jobs: [],
         employees: [],
         tasks: [],
@@ -18,7 +20,11 @@ export class JobAssignment extends Component {
         employeeToConfirm: {firstname: "No Employee Chosen", lastname: ""},
         employeeJobs: [],
         jobEmployees: []
-    };
+      };
+
+      this.getJobsFromEmployees = this.getJobsFromEmployee.bind(this);
+      this.getEmployeesFromJob = this.getEmployeesFromJob.bind(this);
+    }
 
     componentWillMount() {
         this.getAllEmployees();
@@ -36,36 +42,34 @@ export class JobAssignment extends Component {
     }
 
     async getJobsFromEmployee(employee) {
-        let inputs = [employee];
-        let jobsFromEmployee = await employeeAPI.getJobsFromEmployee({...inputs});
+        console.log(JSON.stringify(employee));
+        let jobsFromEmployee = await employeeAPI.getJobsFromEmployee(employee.id);
         this.setState({employeeJobs: jobsFromEmployee});
     }
 
     async getEmployeesFromJob(job) {
-        let inputs = [job];
-        let employeesFromJob = await jobAPI.getEmployeesFromJob({...inputs});
+        let employeesFromJob = await jobAPI.getEmployeesFromJob(job.id);
         this.setState({jobEmployees: employeesFromJob});
     }
 
     handleTaskChosen = (job) => {
-        this.getEmployeesFromJob(job);
         this.setState(
             {
                 jobToConfirm: {...job}
             }
         );
-        console.log(this.state.jobToConfirm)
-
+        this.getEmployeesFromJob({...job});
+        console.log(this.state.jobToConfirm);
     };
 
     handleEmployeeChosen = (employee) => {
-        this.getJobsFromEmployee(employee);
         this.setState(
             {
                 employeeToConfirm: {...employee}
             }
         );
-        console.log(this.state.employeeToConfirm)
+        this.getJobsFromEmployee({...employee});
+        console.log(this.state.employeeToConfirm);
     };
 
     render() {
@@ -86,7 +90,9 @@ export class JobAssignment extends Component {
                         <h3>Jobs</h3>
                     </div>
                 </div>
+                {/*The main content*/}
                 <div class="row justify-content-center h-100">
+                  {/*Employees list:  this holds the employees to select*/}
                     <div className="col-md-3 d-flex justify-content-center">
                             <EmployeesList employees={this.state.employees} employeeHandler={this.handleEmployeeChosen}/>
                     </div>

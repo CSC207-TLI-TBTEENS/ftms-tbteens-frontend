@@ -1,6 +1,6 @@
 import {apiCall} from "../Services/api";
 const JOBAPI = "/api/jobs/";
-const JOBEMPLOYEES = JOBAPI + "employees";
+const JOBEMPLOYEES = JOBAPI + "employees/";
 
 export async function getJobs() {
     return apiCall("GET", JOBAPI);
@@ -25,14 +25,7 @@ export async function createJob(input) {
 }
 
 export async function getEmployeesFromJob(input) {
-    return fetch(JOBEMPLOYEES, {
-        method: "POST",
-        headers: new Headers({
-            "Content-Type": "application/json"
-        }),
-        body: JSON.stringify({...input})
-    })
-    .then(resp => {return ValidateHTTPStatus(resp)})
+  return apiCall('GET', JOBEMPLOYEES + input);
 }
 
 function ValidateHTTPStatus(resp) {
