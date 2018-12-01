@@ -50,11 +50,6 @@ class SearchBar extends Component {
     render (){
         return(
         <div>
-            {/*<div className="input-group-prepend">*/}
-                {/*<span className="input-group-text" id="inputGroup-sizing-sm">*/}
-                    {/*<i className="el-icon-search"/>*/}
-                {/*</span>*/}
-            {/*</div>*/}
             <input 
             aria-label="Small"
             aria-describedby="inputGroup-sizing-sm"
@@ -66,10 +61,8 @@ class SearchBar extends Component {
             placeholder="Search..."
             autoComplete="off"
             onChange={this.searching}
-            >
-            </input>
+            />
         </div>
-        
         )
     }
 }

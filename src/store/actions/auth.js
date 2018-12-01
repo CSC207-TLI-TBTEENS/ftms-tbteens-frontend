@@ -25,7 +25,6 @@ export function authUser(userData) {
   return dispatch => {
     // wrap our thunk in a promise so we can wait for the API call
     return new Promise((resolve, reject) => {
-        console.log("HEY")
         return apiCall("POST", "/api/auth/signin", userData)
         .then((response) => {
             localStorage.setItem('accessToken', response.accessToken);
