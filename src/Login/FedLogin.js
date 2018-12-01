@@ -1,22 +1,6 @@
 import React from 'react';
 import '../css files/Login.css';
 
-// const google = {
-//     textAlign: "center",
-//     width: "10rem",
-//     backgroundColor: "#bd5045",
-//     borderColor: "#ffffff",
-//     color: "#ffffff",
-// }
-
-// const facebook = {
-//     textAlign: "center",
-//     width: "10rem",
-//     backgroundColor: "#38569E",
-//     borderColor: "rgb(71, 117, 209)",
-//     color: "rgb(203, 200, 228)",
-// }
-
 const fedButton = () => {
     return (
         <div>

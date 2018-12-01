@@ -112,9 +112,32 @@
     /* width: 4vw */
 }
 
+.fb-button:hover {
+    background-color: #3b5998;
+    border-color: rgb(203, 200, 228);
+    color: rgb(160, 218, 113)
+    /* width: 4vw */
+}
+
 .gg-button {
     background-color: #dd4b39;
     /* width: 4vw */
+}
+
+.gg-button:hover {
+    background-color: #dd4b39;
+    border-color: rgb(203, 200, 228);
+    /* width: 4vw */
+}
+
+.fa-facebook:hover {
+    color: white;
+    text-decoration: none
+}
+
+.fa-google:hover {
+    color: white;
+    text-decoration: none
 }
 
 .btn-secondary {
@@ -160,11 +183,20 @@
     border-radius: 1vh;
     color: rgb(203, 200, 228);
     text-align: center;
-    height: 28rem;
     width: 45%;
     min-width: 320px;
 }
 
 .success-message {
-    font-size: 5vw
+    font-size: 5vw;
+}
+
+.return-to-login {
+    padding: 2%;
+    text-align: left
+}
+
+.return-to-login:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }

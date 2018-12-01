@@ -17,8 +17,8 @@ class Login extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleForgotCreds = () => {
-        this.setState({forgot: true});
+    handleForgotCreds = (tof) => {
+        this.setState({forgot: tof});
     }
 
     handleChange(e) {
@@ -97,7 +97,7 @@ class Login extends Component {
                                         </div>
                                     </div>
                                     <div className="col">
-                                        <p className="forgot-acc" onClick={this.handleForgotCreds}>Forgot your credentials?</p>
+                                        <p className="forgot-acc" onClick={this.handleForgotCreds.bind(this, true)}>Forgot your credentials?</p>
                                     </div>
                                 </div>
                                 <div className="login-submit">
@@ -116,7 +116,7 @@ class Login extends Component {
         )
         if (this.state.forgot) {
             display = (
-                <ForgotCredentials />
+                <ForgotCredentials switchBack={this.handleForgotCreds} parent={this}/>
             )
         }
         
