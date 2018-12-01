@@ -60,6 +60,7 @@ export class JobAssignment extends Component {
     }
 
     render() {
+        let jobs = this.getJobsFromEmployee(this.state.employeeToConfirm, this.state.tasks);
         return (
             <div className="container h-80">
                 <div class="row justify-content-center align-items-center">
@@ -90,7 +91,7 @@ export class JobAssignment extends Component {
                         </div>
                         <div className="row align-items-center justify-content-center">
                             <div className="col-md-12 mb-3 d-flex justify-content-center">
-                                <EmployeeConfirmation currentEmployee={this.state.employeeToConfirm}/>
+                                <EmployeeConfirmation currentEmployee={this.state.employeeToConfirm} jobs={[]}/>
                             </div>
                          </div>
                         <div className="row justify-content-center">
