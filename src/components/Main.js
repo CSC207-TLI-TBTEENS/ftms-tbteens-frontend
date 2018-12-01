@@ -15,6 +15,7 @@ import { authUser } from "../store/actions/auth";
 import { removeError, addError } from "../store/actions/errors";
 import withAuth from "../hocs/withAuth";
 import UserRegistration from "../Registration/UserRegistration.js";
+import errorPage from "./404.js";
 
 const Main = props => {
     const adminOnly = ["ROLE_ADMIN"];
@@ -47,6 +48,8 @@ const Main = props => {
                 <Route exact path="/timesheets" component={withAuth(allUsers, Timesheets)}/>
                 <Route exact path="/timesheets/edit" component={withAuth(allUsers, TimesheetEdit)}/>
                 <Route exact path="/viewhistory" component={withAuth(allUsers, ViewHistory)}/>
+
+                <Route component={errorPage}/>
             </Switch>
         )} />
     )
