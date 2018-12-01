@@ -12,8 +12,9 @@ import TimesheetEdit from "../Timesheets/TimesheetEdit";
 import ClientJobs from "../ClientJobs/ClientJobs"
 import ViewHistory from "../ViewHistory/ViewHistory.js";
 import { authUser } from "../store/actions/auth";
-import { removeError } from "../store/actions/errors";
+import { removeError, addError } from "../store/actions/errors";
 import withAuth from "../hocs/withAuth";
+import UserRegistration from "../Registration/UserRegistration.js";
 
 const Main = props => {
     const adminOnly = ["ROLE_ADMIN"];
@@ -27,6 +28,14 @@ const Main = props => {
                     removeError={removeError}
                     errors={errors}
                     onAuth={authUser}
+                    {...props}
+                />} />
+                <Route exact path="/usersignup/:id" render={(props) => 
+                <UserRegistration
+                    removeError={removeError}
+                    errors={errors}
+                    onAuth={authUser}
+                    addError={addError}
                     {...props}
                 />} />
                 <Route exact path="/employees" component={withAuth(adminOnly, Employees)} />
@@ -51,5 +60,5 @@ function mapStateToProps(state) {
 }
   
 export default withRouter(
-    connect(mapStateToProps, { authUser, removeError })(Main)
+    connect(mapStateToProps, { authUser, removeError, addError })(Main)
 );

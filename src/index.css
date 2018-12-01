@@ -1,3 +1,5 @@
+@import 'mobile.css';
+
 html {
   height: 100%;
   min-width: 100%;
@@ -148,6 +150,12 @@ code {
   background-color: rgb(160, 218, 113);
   border-color: rgb(160, 218, 113);
   color: rgb(53, 46, 66);
+  margin-right: 5px;
+  margin-left: 5px;
+  padding: 5px;
+  -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+            border-radius: 8px;
 }
 
 .btn-submit:hover, .btn-submit:focus {
@@ -173,6 +181,7 @@ code {
   border-color: rgb(79, 75, 107);
   color: rgb(203, 200, 228);
 }
+
 .modal-content {
   background-color: rgb(32, 30, 46);
   color: rgb(203, 200, 228);
@@ -266,80 +275,3 @@ code {
 
 }
 
-
-
-html,
-body {
-	font-size: 14px !important;
-}
-h1 {
-	font-size: 1.602em;
-}
-h2 {
-	font-size: 1.424em;
-}
-h3 {
-	font-size: 1.266em;
-}
-h4 {
-	font-size: 1.125em;
-}
-h5 {
-	font-size: 0.889em;
-}
-h6 {
-	font-size: 0.79em;
-}
-.display-1 {
-	font-size: 3.906em;
-}
-.display-2 {
-	font-size: 3.125em;
-}
-.display-3 {
-	font-size: 2.5em;
-}
-.display-4 {
-	font-size: 2em;
-}
-
-@media (min-width: 48em) {
-	h1 {
-	  font-size: 2.441em;
-	}
-	h2 {
-		font-size: 1.953em;
-	}
-	h3 {
-		font-size: 1.563em;
-	}
-	h4 {
-		font-size: 1.25em;
-	}
-	.display-1 {
-		font-size: 6em;
-	}
-	.display-2 {
-		font-size: 5.5em;
-	}
-	.display-3 {
-		font-size: 4.5em;
-	}
-	.display-4 {
-		font-size: 3.5em;
-	}
-}
-
-@media (min-width: 62em) {
-	html,
-	body {
-		font-size: 16px !important;
-	}
-}
-
-@media (min-width: 75em) {
-	html,
-	body {
-		font-size: 18px !important;
-	}
-}

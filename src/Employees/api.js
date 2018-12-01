@@ -1,8 +1,5 @@
 import {apiCall} from "../Services/api";
-import EmployeesList from "../JobAssignment/EmployeesList";
 const EMPLOYEEAPI = "/api/employees/";
-const EMPLOYEEJOBS = EMPLOYEEAPI + "jobs";
-
 
 // Get Employees
 export async function getEmployees() {
@@ -12,7 +9,7 @@ export async function getEmployees() {
 // Create Employee
 export async function createEmployee(input) {
     console.log({...input})
-    return apiCall('POST',"/api/auth/signup", {...input});
+    return apiCall('POST',EMPLOYEEAPI, {...input});
 }
 
 // Edit Employee
@@ -28,5 +25,6 @@ export async function deleteEmployee(input) {
 
 // get Jobs from Employee
 export async function getJobsFromEmployee(input) {
+    const EMPLOYEEJOBS = EMPLOYEEAPI + "jobs";
     return apiCall('POST', EMPLOYEEJOBS, {...input});
 }
