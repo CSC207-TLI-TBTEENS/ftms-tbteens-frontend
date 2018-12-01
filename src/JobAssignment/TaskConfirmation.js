@@ -1,7 +1,5 @@
 import React from 'react';
 
-const tempEmployees = ["Bob", "Judy", "Monica", "Ross", "Treeger"]
-
 const TaskConfirmation = (props) => {   
     return (
         <div class="card card-scroll">
@@ -9,12 +7,11 @@ const TaskConfirmation = (props) => {
                 <h4 class="card-title">{props.currentJob.jobTitle}</h4>
                 <h6 class="card-subtitle mb-2">Employees on Task</h6>
                 {
-                    tempEmployees.map(employee => {
+                    props.employees.map(employee => {
                         return (
                             <div>
                                 <p className="card-text closer-p">
-                                    <i className="el-icon-delete el-icon-left" data-toggle="modal" data-target="#deleteJobCenterModal"></i>
-                                    {"                 " + employee}
+                                    {"                 " + employee.firstname + " " + employee.lastname}
                                 </p>
 
                                 <div class="modal fade" id="deleteJobCenterModal" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
