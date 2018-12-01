@@ -226,6 +226,10 @@ class ForgotCredentials extends React.Component {
         return (
             <div className="container">
                 <div className="forgot-container container-forgot">
+                    <p className="return-to-login" onClick={this.props.switchBack.bind(this.props.parent, false)}>
+                        <i className="el-icon-arrow-left"/>
+                        Return to login
+                    </p>
                     <h1>Credentials Recovery</h1>
                     <div className="form-group forgot-item-select">
                         <label htmlFor="forgot-item">Which of your credentials did you forget?</label>
