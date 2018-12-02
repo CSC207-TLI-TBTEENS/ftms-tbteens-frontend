@@ -3,9 +3,6 @@ import '../Login/Login.css';
 import {apiCall} from "../Services/api";
 import { Message } from 'element-react';
 import Logo from "../images/norweld-logo.png";
-import alerts from '../store/reducers/alerts';
-
-
 
 class UserRegistration extends Component {
     constructor(props) {
@@ -31,7 +28,7 @@ class UserRegistration extends Component {
             const registerRequest = {"id": this.props.match.params.id, "password": this.state.password};
             apiCall("POST", "/api/auth/signup", registerRequest)
             .then(() => {
-                this.props.history.push("/");
+                this.props.history.push("/login");
             })
             .catch(() => {
             });
@@ -58,7 +55,7 @@ class UserRegistration extends Component {
         }
 
         let display;
-        if (!completed && this.state.password == null) {
+        if (!completed && this.state.employee.password === null) {
             display = (
             <div className="row">
                 <div className="container container-style">
@@ -120,7 +117,6 @@ class UserRegistration extends Component {
                         showClose: true
                     })
                 )} 
-                
                 {display}
             </div>
         )

@@ -93,7 +93,8 @@
     border-radius: 1vh;
     color: rgb(203, 200, 228);
     text-align: center;
-    height: 35rem;
+    height: auto;
+    padding: 5px;
     width: 45%;
     min-width: 320px;
 }
