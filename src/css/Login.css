@@ -12,8 +12,8 @@
     border-color: var(--light_font_color);
 }
 
-.login-submit {
-
+.center-container {
+    float: center
 }
 
 
@@ -96,10 +96,15 @@
 
 .return-to-login {
     padding: 2%;
-    text-align: left
+    text-align: left;
+    color: black
 }
 
 .return-to-login:hover {
     text-decoration: underline;
     cursor: pointer;
+}
+
+.text-black {
+    color: black;
 }
