@@ -15,6 +15,7 @@ import { authUser } from "../store/actions/auth";
 import { removeAlert, addAlert } from "../store/actions/alerts";
 import withAuth from "../hocs/withAuth";
 import UserRegistration from "../Registration/UserRegistration.js";
+import CompanyRegistration from "../Registration/CompanyRegistration.js";
 
 const Main = props => {
     const adminOnly = ["ROLE_ADMIN"];
@@ -36,6 +37,16 @@ const Main = props => {
                 {/* User Registration route. */}
                 <Route exact path="/usersignup/:id" render={(props) => 
                 <UserRegistration
+                    removeAlert={removeAlert}
+                    alerts={alerts}
+                    onAuth={authUser}
+                    addAlert={addAlert}
+                    {...props}
+                />} />
+
+                {/* Company Registration route. */}
+                <Route exact path="/companysignup/:id" render={(props) => 
+                <CompanyRegistration
                     removeAlert={removeAlert}
                     alerts={alerts}
                     onAuth={authUser}
