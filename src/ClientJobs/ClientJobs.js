@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ClientJobList from './ClientJobList';
 import ClientJobForm from './ClientJobForm';
 import SearchBar from "../components/Search";
-import { MessageBox, Message} from 'element-react';
+
 import * as apiCalls from './api';
 import * as sorter from '../components/Sorter.js'
 
@@ -50,98 +50,7 @@ class ClientJobs extends Component {
     searchRet(data){
         this.setState({clientJobsShow : [...data]});
     }
-    setJobViewing = (siteName, description) => {
-        this.setState({jobViewed: [
-            {label: "SiteName", value: siteName}, 
-            {label: "Description", value: description}
-        ]})
-    }
-
-    async handleJobEdit(id, siteName, description) {
-        let edited = false;
-        console.log("this", this);
-        console.log("id", id)
-        await MessageBox.confirm('Update this job\'s information?', 'Warning', {
-            confirmButtonText: 'OK',
-            cancelButtonText: 'Cancel',
-            type: 'warning'
-        }).then(async() => {
-            edited = true;
-            await apiCalls.editJob({id, siteName, description});
-            await Message({
-              type: 'success',
-              message: 'Edited JOB #' + id + ' ' + description + ' successfully!'
-            });
-        }).catch((error) => {
-            console.log(error)
-            Message({
-              type: 'info',
-              message: "Deletion cancelled!"
-            });
-        });
-        if (edited) {
-            let currentJobs = [...this.state.clientJobs];
-            for (let i = 0; i < currentJobs.length; i++) {
-                if (currentJobs[i].id === id) {
-                    let editedJob = {
-                        id: id,
-                        siteName: siteName,
-                        description: description
-                    };
-                    currentJobs[i] = editedJob;
-                    break;
-                }
-            }
-            this.setState({clientJobs: currentJobs, 
-                clientJobsShow: currentJobs});
-            
-            console.log(this.state.clientJobs, this.state.clientJobsShow)
-        }
-    }
-
-    formChangeHandler = (event, index) => {
-        const changed = {...this.state.jobViewed[index]};
-        changed.value = event.target.value;
-
-        const newJobViewed = [...this.state.jobViewed];
-        newJobViewed[index] = changed;
-
-        this.setState({
-            jobViewed: newJobViewed    
-        })
-    }
-
-    async confirmDeletion(id, siteName, description) {
-        let deleted = false;
-        console.log(this);
-        await MessageBox.confirm('This action will remove JOB #' + id + ' ' + description + ' from the database. Continue?', 'Warning', {
-            confirmButtonText: 'OK',
-            cancelButtonText: 'Cancel',
-            type: 'warning'
-        }).then(async() => {
-            deleted = true;
-            await apiCalls.deleteJob(id);
-            await Message({
-              type: 'success',
-              message: 'Deleted JOB #' + id + ' ' + description + ' successfully!'
-            });
-        }).catch(() => {
-            Message({
-              type: 'info',
-              message: "Deletion cancelled!"
-            });
-        });
-        if (deleted) {
-            let currentJobs = [...this.state.clientJobs];
-            for (let i = 0; i < currentJobs.length; i++) {
-                if (currentJobs[i].id === id) {
-                    currentJobs.splice(i, 1);
-                    break;
-                }
-            };
-            this.setState({clientJobsShow: [...currentJobs], clientJobs: [...currentJobs]});
-        }
-    }
+    
 
     render() {
         return (
@@ -178,13 +87,7 @@ class ClientJobs extends Component {
 
                 <SearchBar data={this.state.clientJobs} onchange={this.searchRet}/>
                 <ClientJobList
-                    jobs = {this.state.clientJobsShow}
-                    editHandler={this.handleJobEdit}
-                    formHandler={this.formChangeHandler}
-                    deletionHandler={this.confirmDeletion}
-                    curr={this}
-                    jobViewed={this.state.jobViewed} 
-                    viewHandler={this.setJobViewing} 
+                    jobs = {this.state.clientJobsShow} 
                     sortJobs={this.sortJobs}
                 />
 

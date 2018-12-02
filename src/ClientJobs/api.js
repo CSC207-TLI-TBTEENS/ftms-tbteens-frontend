@@ -5,19 +5,7 @@ const JOBEMPLOYEES = JOBAPI + "employees";
 export async function getJobs() {
     return apiCall("GET", JOBAPI);
 }
-export async function deleteJob(input) {
-    let address = JOBAPI + input.toString();
-    return apiCall("DELETE", address, {...input});
-} 
 
-export async function editJob(input) {
-    let id = input.id.toString();
-    let siteName = input.siteName;
-    let description = input.description;
-    let address = (JOBAPI + id + "?siteName=" + siteName + "&description=" + 
-                description);
-    return apiCall("PUT", address);
-}
 
 export async function createJob(input) {
     return apiCall("POST", JOBAPI, {...input});
