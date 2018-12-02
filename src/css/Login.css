@@ -1,5 +1,5 @@
 .Button {
-    background-color:rgb(160, 218, 113);
+    background-color: rgb(196, 195, 183);
     border-radius: 1rem;
 }
 
@@ -15,9 +15,9 @@
     height: 16%;
     width: 23.5vw;
     border-radius: 1rem;
-    background-color: rgb(32, 30, 46);  
+    background-color: rgb(32, 30, 46);
     color: rgb(203, 200, 228);
-    border-color: black;  
+    border-color: black;
     margin: 0.5vh;
 }
 .field-form:focus{
@@ -25,7 +25,7 @@
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: rgb(203, 200, 228);
+    color: rgb(106, 106, 109);
     opacity: 1; /* Firefox */
 }
 
@@ -61,11 +61,6 @@
     height: 10vh;
 }
 
-.form-group {
-    color: rgb(203, 200, 228);
-    text-align: left;
-}
-
 .form-check-label {
     color: rgb(203, 200, 228)
 }
@@ -74,9 +69,6 @@
     margin-left: 0vw;
 }
 
-.btn-submit {
-    width: 10rem
-}
 
 .third-party-buttons {
     margin: 6vh
@@ -93,8 +85,7 @@
     border-radius: 1vh;
     color: rgb(203, 200, 228);
     text-align: center;
-    height: auto;
-    padding: 5px;
+    height: 35rem;
     width: 45%;
     min-width: 320px;
 }

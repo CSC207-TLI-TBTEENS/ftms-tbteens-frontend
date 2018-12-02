@@ -6,12 +6,43 @@
     overflow-y: auto;
 }
 
+/*Buttons*/
+
+.btn-submit {
+    background-color: var(--button_green);
+    border-color: var(--button_border);
+    color: var(--dark_font_color);
+    box-shadow: 4px 5px 10px rgb(116, 115, 113);
+}
+
+.btn-submit {
+    width: 10rem
+}
+
+.btn-submit:hover, .btn-submit:focus {
+    background-color: rgb(216, 215, 223);
+    border-color: var(--button_border);
+    color: var(--dark_font_color);
+}
+
+.btn-main, .btn-main:hover, .btn-main:focus {
+    background-color: rgb(203, 200, 228);
+    border-color: rgb(79, 75, 107);
+    color: rgb(53, 46, 66);
+}
+
+.btn-secondary, .btn-secondary:hover, .btn-secondary:focus {
+    background-color: rgb(90, 85, 121);
+    border-color: rgb(79, 75, 107);
+    color: rgb(203, 200, 228);
+}
+
 .btn-link {
     color: rgb(203, 200, 228);
 }
 
 .btn-link:hover {
-    color: rgb(160, 218, 113);
+    color: rgb(207, 210, 199);
 }
 
 .btn-assign {
@@ -20,15 +51,15 @@
 }
 
 .btn-confirmation {
-  background-color: rgb(160, 218, 113); 
-  border-color: rgb(160, 218, 113); 
-  color: rgb(53, 46, 66);
+  background-color: rgb(166, 165, 159);
+  border-color: rgb(117, 116, 114);
+  color: rgb(41, 40, 40);
 }
 
 .btn-confirmation:hover, .btn-submit:focus {
-  background-color: rgb(130, 179, 91); 
-  border-color: rgb(130, 179, 91); 
-  color: rgb(53, 46, 66); 
+  background-color: rgb(179, 178, 173);
+  border-color: rgb(176, 179, 171);
+  color: rgb(39, 39, 38);
 }
 
 
@@ -45,7 +76,7 @@
 }
 
 .card-body-green {
-    background-color: rgb(160, 218, 113);
+    background-color: rgb(218, 217, 216);
 }
 
 .card-title {
@@ -81,15 +112,9 @@
 
 
 
-/* This gives the trash cans color (Element React thing) */
 .el-tree-node__content {
     border-radius: 0.5rem;
 }
-
-.el-icon-delete:hover {
-    color: rgb(160, 218, 113);
-}
-
 
 
 .job-manage-header {

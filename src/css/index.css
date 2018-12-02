@@ -1,0 +1,323 @@
+:root{
+    --background: rgb(207, 207, 207);
+    --button_green: rgb(189, 189, 189);
+    --button_border: rgb(153, 153, 153);
+    --table_dark_purple: rgb(91, 91, 91);
+    --table_light_purple: rgb(198, 198, 198);
+    --dark_font_color: rgb(64, 64, 66);
+    --light_font_color: rgb(214, 214, 214);
+    --table_delete_button: rgb(118, 118, 118);
+    --table_edit_button: rgb(212, 209, 215);
+}
+
+html {
+    height: 100%;
+    min-width: 100%;
+    margin: 0;
+    padding: 0
+}
+
+body {
+    /* margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; */
+
+    /*Main Background  */
+    background: var(--background);  /* fallback for old browsers */
+    height: 100%;
+    width: 100%;
+}
+
+/*jumbotron image*/
+.image-bg {
+    background-image: url("../images/pattern4.svg");
+    /*border: 1px rgb(191, 190, 188) solid;*/
+    box-shadow: 5px 6px 10px rgb(89, 88, 87);
+}
+
+
+/*Scrollbar*/
+/* width */
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: #e0e0e0;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #888;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #636363;
+}
+
+
+#root {
+    height: 100%;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/*Code for the delete and edit icons*/
+
+.el-icon-delete:hover {
+    color: rgb(166, 169, 163);
+}
+
+.el-icon-edit:hover {
+    color: rgb(98, 99, 93);
+}
+
+
+
+/* Navigation Bar */
+.bg-purple {
+    background-color: rgba(24, 24, 24, 0.84);
+    border-color: rgb(162, 162, 162);
+    color: rgb(203, 200, 228);
+}
+
+.navbar a {
+    font-weight: bold;
+    color: rgb(203, 200, 228);
+}
+
+.navbar a:hover {
+    color: rgb(203, 200, 228);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.save-changes-btn {
+    background-color: var(--button_green);
+    border: none;
+    color: rgb(53, 46, 66)
+}
+
+/*This is for the FTMS logo*/
+.navbar-brand > img {
+    display: inline-block;
+    height: 30px;
+    margin-bottom: 2px;
+    margin-right: 5px;
+    border-radius: 2px;
+}
+
+.navbar-header {
+    margin: 0 auto;
+}
+
+/* Entities */
+
+.table thead th {
+    border-bottom: none;
+}
+
+.table td, .table th {
+    border-top: none;
+}
+
+/*Head of the table*/
+
+.table-shadow{
+    box-shadow: 4px 5px 10px rgb(97, 96, 95);
+    border-color: var(--table_dark_purple);
+}
+
+.table thead tr{
+    background-color: rgba(24, 24, 24, 0.84);
+    color: var(--light_font_color);
+}
+#table-job-all thead tr{
+    background-color: rgba(24, 24, 24, 0.84);
+    color: var(--light_font_color);
+}
+
+/*Body of the table*/
+
+/*Dark Rows*/
+.table tbody tr:nth-child(even){
+    background-color: var(--table_dark_purple);
+    color: var(--light_font_color);
+}
+
+.table tbody tr:nth-child(even):hover {
+    background-color: rgb(111, 111, 111);
+    color: var(--light_font_color);
+}
+
+/*light Rows*/
+
+.table tbody tr:nth-child(odd){
+    background-color: var(--table_light_purple);
+    color: var(--dark_font_color);
+}
+
+
+.table tbody tr:nth-child(odd):hover {
+    background-color: rgb(179, 177, 184);
+    color: var(--dark_font_color);
+}
+
+
+#table-job-all tbody tr:nth-child(even):hover {
+    background-color: rgb(66, 62, 90);
+    color: rgb(203, 200, 228);
+}
+
+#table-job-all tbody tr:nth-child(odd):hover {
+    background-color: rgb(127, 135, 165);
+    color: rgb(53, 46, 66);
+}
+
+
+#table-job tbody tr:nth-child(odd) {
+    background-color: rgb(127, 135, 165);
+    color: rgb(53, 46, 66);
+}
+
+
+#table-job-all tbody tr:nth-child(odd){
+    background-color: var(--table_light_purple);
+    color: rgb(53, 46, 66);
+}
+
+
+.popup-form {
+    margin-top: 25px;
+    margin-bottom: 50px;
+}
+
+/*Code for the modal popups(forms which pop up when we click on "Add Companies, etc)*/
+.modal-header {
+  background-color: rgba(41, 41, 41, 0.84);
+  border-color: rgb(121, 123, 121);
+    border-width: medium;
+  color: var(--light_font_color);
+}
+
+.modal-content {
+  background-color: rgba(83, 83, 83, 0.97);
+  color: rgb(238, 238, 238);
+    border-width: thin;
+    border-color: #69666a;
+}
+
+/*Code for the modal body (font color, etc)*/
+.form-group {
+    color: rgb(188, 191, 190);
+    text-align: left;
+}
+.form-control{
+    background-color: #dddddd;
+}
+
+.close {
+  color: rgb(205, 202, 230);
+  text-shadow: none;
+}
+
+
+/*The search bar*/
+
+.search {
+    color: var(--dark_font_color);
+    box-shadow: 1px 1px 10px rgb(114, 113, 112);
+    background-color: #dddddd;
+    padding: 5px 20px;
+    border-radius: 2px;
+    border: thin rgb(214, 212, 219);
+    float: right;
+}
+
+/* Loading Rings  */
+@keyframes lds-double-ring {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes lds-double-ring {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes lds-double-ring_reverse {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(-360deg);
+    transform: rotate(-360deg);
+  }
+}
+@-webkit-keyframes lds-double-ring_reverse {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(-360deg);
+    transform: rotate(-360deg);
+  }
+}
+.lds-double-ring {
+  margin: auto;
+  position: relative;
+  width:100%;
+  height:100%
+}
+.lds-double-ring div {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  top: 20px;
+  left: 20px;
+  border-radius: 50%;
+  border: 8px solid #000;
+  border-color: var(--table_dark_purple) transparent var(--table_dark_purple) transparent;
+  -webkit-animation: lds-double-ring 1.2s linear infinite;
+  animation: lds-double-ring 1.2s linear infinite;
+}
+.lds-double-ring div:nth-child(2) {
+  width: 140px;
+  height: 140px;
+  top: 30px;
+  left: 30px;
+  border-color: transparent var(--table_light_purple) transparent var(--table_light_purple);
+  -webkit-animation: lds-double-ring_reverse 1.2s linear infinite;
+  animation: lds-double-ring_reverse 1.2s linear infinite;
+}
+.lds-double-ring {
+  width: 200px !important;
+  height: 200px !important;
+  -webkit-transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+  transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+
+}
+
+
