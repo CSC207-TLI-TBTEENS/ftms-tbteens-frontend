@@ -12,33 +12,46 @@ import TimesheetEdit from "../Timesheets/TimesheetEdit";
 import ClientJobs from "../ClientJobs/ClientJobs"
 import ViewHistory from "../ViewHistory/ViewHistory.js";
 import { authUser } from "../store/actions/auth";
-import { removeError, addError } from "../store/actions/errors";
+import { removeAlert, addAlert } from "../store/actions/alerts";
 import withAuth from "../hocs/withAuth";
 import UserRegistration from "../Registration/UserRegistration.js";
 
 const Main = props => {
     const adminOnly = ["ROLE_ADMIN"];
     const allUsers  = ["ROLE_ADMIN", "ROLE_EMPLOYEE"];
-    const { authUser, errors, removeError, currentUser } = props;
+    const { authUser, alerts, removeAlert,  currentUser } = props;
     return (
         <Route render={({location}) => (
             <Switch location={location}>
+                
+                {/* This is the login route. */}
                 <Route exact path="/login" render={(props) => 
                 <Login 
-                    removeError={removeError}
-                    errors={errors}
+                    removeAlert={removeAlert}
+                    alerts={alerts}
                     onAuth={authUser}
                     {...props}
                 />} />
+
+                {/* User Registration route. */}
                 <Route exact path="/usersignup/:id" render={(props) => 
                 <UserRegistration
-                    removeError={removeError}
-                    errors={errors}
+                    removeAlert={removeAlert}
+                    alerts={alerts}
                     onAuth={authUser}
-                    addError={addError}
+                    addAlert={addAlert}
                     {...props}
                 />} />
-                <Route exact path="/employees" component={withAuth(adminOnly, Employees)} />
+
+                {/* Employees route, only accessed by admins. */}
+                <Route exact path="/employees"  render={(props) => 
+                    <Employees
+                        removeAlert={removeAlert}
+                        alerts={alerts}
+                        addAlert={addAlert}
+                        {...props}
+                />} />
+
                 <Route exact path="/companies" component={withAuth(adminOnly,Companies)} />
                 <Route exact path="/jobsview" component={withAuth(adminOnly, JobsView)} />
                 <Route exact path="/jobassign" component={withAuth(allUsers, JobAssignment)} />
@@ -55,10 +68,10 @@ const Main = props => {
 function mapStateToProps(state) {
     return {
       currentUser: state.currentUser,
-      errors: state.errors
+      alerts: state.alerts
     };
 }
   
 export default withRouter(
-    connect(mapStateToProps, { authUser, removeError, addError })(Main)
+    connect(mapStateToProps, { authUser, removeAlert, addAlert })(Main)
 );
