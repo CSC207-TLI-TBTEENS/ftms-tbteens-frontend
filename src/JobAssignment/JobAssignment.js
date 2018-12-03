@@ -51,6 +51,11 @@ export class JobAssignment extends Component {
         this.setState({jobEmployees: employeesFromJob});
     }
 
+    // Just a dummy until I have time to implement and test the real onclick for deleting workers/jobs from each other.
+    async dummyOnClick() {
+        alert("Button pressed");
+    }
+
     handleTaskChosen = (job) => {
         this.setState(
             {
@@ -102,12 +107,12 @@ export class JobAssignment extends Component {
                         </div>
                         <div className="row align-items-center justify-content-center">
                             <div className="col-md-12 mb-3 d-flex justify-content-center">
-                                <EmployeeConfirmation currentEmployee={this.state.employeeToConfirm} jobs={this.state.employeeJobs}/>
+                                <EmployeeConfirmation currentEmployee={this.state.employeeToConfirm} jobs={this.state.employeeJobs} onClick={this.dummyOnClick()}/>
                             </div>
                          </div>
                         <div className="row justify-content-center">
                             <div className="col-md-12 d-flex justify-content-center">
-                                <Confirmation employee={this.state.employeeToConfirm} job={this.state.jobToConfirm}/>
+                                <Confirmation employee={this.state.employeeToConfirm} job={this.state.jobToConfirm} onClick={this.dummyOnClick()}/>
                             </div>
                         </div>
                     </div> 
