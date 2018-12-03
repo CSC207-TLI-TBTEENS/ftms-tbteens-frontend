@@ -8,11 +8,10 @@ const ClientJobItem = ({id, jobTitle ,siteLocation, jobDescription}) => (
         <td>{siteLocation}</td>
         <td>{jobDescription}</td>
         <td>
-                <button type="button" className="btn btn-second mr-1" data-toggle="modal" data-target="#viewEmployees">
-                    View Employees
-                </button>
+            <button type="button" className="btn btn-table mr-1" data-toggle="modal" data-target="#viewEmployees">
+                View Employees
+            </button>
         </td>
-
         {<div className="modal fade" id="viewEmployees" tabindex="-1" role="dialog" aria-labelledby="viewEmployees" aria-hidden="true">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
@@ -23,8 +22,8 @@ const ClientJobItem = ({id, jobTitle ,siteLocation, jobDescription}) => (
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div className="modal-body table-responsive">
-                        <table className="table" id="table-job">
+                    <div className="modal-body table-responsive table-shadow mb-2">
+                        <table className="table mb-0" id="table-job">
                             <thead >
                             <tr className="table-head">
                                 <th scope="col"> Employee Name</th>
@@ -49,7 +48,7 @@ const ClientJobItem = ({id, jobTitle ,siteLocation, jobDescription}) => (
                         </table>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-second mr-1" data-dismiss="modal">
+                        <button type="button" className="btn btn-submit mr-1" data-dismiss="modal">
                             Back
                         </button>
                     </div>

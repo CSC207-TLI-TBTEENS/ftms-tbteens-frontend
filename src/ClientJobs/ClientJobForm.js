@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import './clientJobDetails.css';
 
 class ClientJobForm extends Component {
     constructor(props) {

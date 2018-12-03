@@ -1,5 +1,4 @@
 import React from 'react';
-import './JobDetails.css';
 import { Link } from 'react-router-dom';
 
 const JobItem = ({id, jobName, clientName, jobDescription, jobLocation}) => (
@@ -8,11 +7,11 @@ const JobItem = ({id, jobName, clientName, jobDescription, jobLocation}) => (
         <td>{clientName}</td>
         <td>
             <center>
-                <button type="button" className="btn btn-second mr-1" data-toggle="modal" data-target="#jobDetails">
+                <button type="button" className="btn btn-table mr-1" data-toggle="modal" data-target="#jobDetails">
                     Job Details
                 </button>
                 <Link to={"/timesheets/edit"}>
-                    <button type="button" className="btn btn-main ml-1" >
+                    <button type="button" className="btn btn-table ml-1" >
                         Edit Timesheet
                     </button>
                 </Link>
@@ -30,19 +29,19 @@ const JobItem = ({id, jobName, clientName, jobDescription, jobLocation}) => (
                          </button>
                      </div>
                      <div className="modal-body">
-                        <h6>Client Company</h6>
+                        <h4>Client Company</h4>
                         <p className="detail">{clientName}</p>
-                        <h6>Description</h6>
+                        <h4>Description</h4>
                         <p className="detail">{jobDescription}</p>
-                        <h6>Location</h6>
+                        <h4>Location</h4>
                         <p className="detail">{jobLocation}</p>
                      </div>
                      <div className="modal-footer">
-                        <button type="button" className="btn btn-second mr-1" data-dismiss="modal">
+                        <button type="button" className="btn btn-submit mr-1" data-dismiss="modal">
                             Back
                         </button>
                         <Link className="nav-link" to={"/timesheets/edit"}>
-                            <button type="button" className="btn btn-main ml-1" data-toggle="modal" data-target="#jobDetails">
+                            <button type="button" className="btn btn-submit ml-1" data-toggle="modal" data-target="#jobDetails">
                                 Edit Timesheet
                             </button>
                         </Link>

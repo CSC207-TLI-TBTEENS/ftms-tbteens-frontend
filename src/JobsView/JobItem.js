@@ -1,21 +1,6 @@
 import React, {Component} from 'react';
 import * as apiCalls from './api';
 
-const editStyle = {
-    backgroundColor: "rgb(160, 218, 113)",
-    border: "none",
-    display: "inline-block",
-}
-
-const deleteStyle = {
-    backgroundColor: "red",
-    border: "none",
-    display: "inline-block",
-}
-
-const groupStyle = {
-    float: "right"
-}
 
 //Toggle for Job Detail View Enabled
 class JobItem extends Component {
@@ -49,14 +34,14 @@ class JobItem extends Component {
                     </button>
                 </td>
                 <td>
-                    <div style={groupStyle} class="btn-group" role="group" aria-label="deletion-edit">
-                        <button onClick={this.props.deletionHandler.bind(this.props.curr, this.props.id,this.props.siteLocation, this.props.jobDescription)}
-                                style={deleteStyle} type="button" class="btn btn-primary">
+                    <div className="btn-group float-right" role="group" aria-label="deletion-edit">
+                        <button onClick={deletionHandler.bind(this.props.curr, this.props.id, this.props.siteLocation, this.props.jobDescription)}
+                                type="button" class="btn delete-button">
                                 <i className="el-icon-delete"></i>
                         </button> 
-                        <button onClick={this.props.viewHandler.bind(this, this.props.siteLocation, this.props.jobDescription)} 
-                                style={editStyle} type="button" class="btn btn-primary" 
-                                data-toggle="modal" data-target={"#job" + this.props.id}>
+                        <button onClick={viewHandler.bind(this, this.props.siteLocation, this.props.jobDescription)} 
+                                type="button" class="btn edit-button" 
+                                data-toggle="modal" data-target={"#job" + id}>
                                 <i className="el-icon-edit"></i>
                         </button>
                     </div>
@@ -71,8 +56,8 @@ class JobItem extends Component {
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <div className="table-responsive">
-                                    <table className="table" id="table-job-all">
+                                <div className="table-responsive table-shadow mb-2">
+                                    <table className="table mb-0" id="table-job-all">
                                         <thead>
                                             <tr className="table-head">
                                                 <th scope="col" >Employees</th>
@@ -108,6 +93,6 @@ class JobItem extends Component {
         );
             
 
-                                    }
-                                }
+    }
+}
 export default JobItem;

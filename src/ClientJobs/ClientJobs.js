@@ -55,10 +55,9 @@ class ClientJobs extends Component {
     render() {
         return (
             <div className="container">
-                <header className="jumbotron bg-purple">
+                <header className="jumbotron bg-image">
                     <div className="container">
-                        <h1 className="display-4">Client Job List</h1>
-                        <hr className="my-4"/>
+                        <h1 className="display-4 pb-3">Client Job List</h1>
                         <p>
                             <button type="button" className="btn btn-submit" data-toggle="modal" data-target="#clientJobForm">
                                 Add Job

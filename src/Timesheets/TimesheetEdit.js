@@ -152,26 +152,26 @@ class TimesheetEdit extends Component {
     
         return(
             <div className="container">
-                <header className="jumbotron">
+                <header className="jumbotron bg-image">
                     <div className="container">
-                        <h1 className="display-4">{this.state.jobId}</h1>
-                        <hr className="my-4"/>
+                        <h1 className="display-4 pb-3">{this.state.jobId}</h1>
                         <p>
                             Job Description here!!
                         </p>
-                        <button type="button" className="btn btn-main mr-1" data-toggle="modal" data-target="#taskForm">
+                        <button type="button" className="btn btn-table mr-1" data-toggle="modal" data-target="#taskForm">
                             Add Task
                         </button>
-                        <button type="button" className="btn btn-second mr-1" data-toggle="modal" data-target="#requestForm">
+                        <button type="button" className="btn btn-table mr-1" data-toggle="modal" data-target="#requestForm">
                             Request Parts
                         </button>
-                        <button type="button" className="btn btn-submit mr-1 width-auto">
+                        <button type="button" className="btn btn-table mr-1 w-auto">
                             Review and Submit Timesheet
                         </button>
 
 
                     {/* //     <br/> <br/>
-                    //     <table class="table">
+                    //   <div class="table-responsive table-shadow mb-4">  
+                    //      <table class="table mb-0">
                     //         <thead>
                     //             <tr>
                     //                 <th scope="col">Task Name</th>
@@ -200,6 +200,7 @@ class TimesheetEdit extends Component {
                     //         </tr>
                     //      </tbody>
                     //     </table>
+                    //   </div>
                          */}
                     </div>
                 </header>
@@ -242,10 +243,10 @@ class TimesheetEdit extends Component {
                                 />
                              </div>
                              <div className="modal-footer">
-                                <button type="button" className="btn btn-second mr-1" data-dismiss="modal">
+                                <button type="button" className="btn btn-submit mr-1" data-dismiss="modal">
                                     Back
                                 </button>
-                                <button type="button" className="btn btn-submit ml-1 width-auto" data-toggle="modal" data-target="#requestForm">
+                                <button type="button" className="btn btn-submit ml-1 w-auto" data-toggle="modal" data-target="#requestForm">
                                     Submit
                                 </button>
                              </div>
