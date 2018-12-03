@@ -1,0 +1,13 @@
+.user-input {
+    color: var(--dark_font_color);
+    border: none;
+    background-color: var(table_light);
+}
+
+.user-input:focus {
+    background-color: var(table_light_hover);
+}
+
+.form-error {
+    color: var(--error-color);
+}

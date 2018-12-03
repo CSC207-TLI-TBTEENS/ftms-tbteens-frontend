@@ -46,10 +46,9 @@ class ViewHistory extends Component {
         }
         return (
             <div className="container">
-                <header className="jumbotron bg-purple">
+                <header className="jumbotron bg-image">
                     <div className="container">
-                        <h1 className="display-4">Personal History</h1>
-                        <hr className="my-4"/>
+                        <h1 className="display-4 pb-3">Personal History</h1>
                         <p>
                             <button type="button" className="btn btn-submit" data-toggle="modal" data-target="#ViewHistoryForm">
                                 Add Completed Job

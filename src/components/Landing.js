@@ -24,12 +24,11 @@ class Landing extends Component {
                 })
             )} 
             
-        <header className="jumbotron bg-purple">
-                <div className="container">
-                    <h1 className="display-4">Welcome {currentUser.user.firstname} {currentUser.user.lastname}</h1>
-                    <hr className="my-4"/>
-                    <p>This is your Norweld dashboard. From here you can conquer the world!</p>
-                </div>
+        <header className="jumbotron bg-image">
+            <div className="container">
+                <h1 className="display-4 pb-2">Welcome {currentUser.user.firstname} {currentUser.user.lastname}</h1>
+                <p>This is your Norweld dashboard. From here you can conquer the world!</p>
+            </div>
         </header>
     </div>
         )

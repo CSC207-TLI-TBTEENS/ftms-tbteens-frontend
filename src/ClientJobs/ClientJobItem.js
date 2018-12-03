@@ -1,21 +1,4 @@
 import React from 'react';
-import './clientJobDetails.css';
-
-const editStyle = {
-    backgroundColor: "rgb(160, 218, 113)",
-    border: "none",
-    display: "inline-block",
-}
-
-const deleteStyle = {
-    backgroundColor: "red",
-    border: "none",
-    display: "inline-block",
-}
-
-const groupStyle = {
-    float: "right"
-}
 
 const ClientJobItem = ({id, deletionHandler, viewHandler, jobTitle ,siteLocation, jobDescription, curr}) => (
     <tr>
@@ -23,18 +6,18 @@ const ClientJobItem = ({id, deletionHandler, viewHandler, jobTitle ,siteLocation
         <td>{siteLocation}</td>
         <td>{jobDescription}</td>
         <td>
-                <button type="button" className="btn btn-second mr-1" data-toggle="modal" data-target="#viewEmployees">
-                    View Employees
-                </button>
+            <button type="button" className="btn btn-table mr-1" data-toggle="modal" data-target="#viewEmployees">
+                View Employees
+            </button>
         </td>
         <td>
-        <div style={groupStyle} class="btn-group" role="group" aria-label="deletion-edit">
+        <div className="btn-group float-right" role="group" aria-label="deletion-edit">
             <button onClick={deletionHandler.bind(curr, id, siteLocation, jobDescription)}
-                    style={deleteStyle} type="button" class="btn btn-primary">
+                    type="button" class="btn delete-button">
                     <i className="el-icon-delete"></i>
             </button> 
             <button onClick={viewHandler.bind(this, siteLocation, jobDescription)} 
-                    style={editStyle} type="button" class="btn btn-primary" 
+                    type="button" class="btn edit-button" 
                     data-toggle="modal" data-target={"#job" + id}>
                     <i className="el-icon-edit"></i>
             </button>
@@ -50,8 +33,8 @@ const ClientJobItem = ({id, deletionHandler, viewHandler, jobTitle ,siteLocation
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div className="modal-body table-responsive">
-                        <table className="table" id="table-job">
+                    <div className="modal-body table-responsive table-shadow mb-2">
+                        <table className="table mb-0" id="table-job">
                             <thead >
                             <tr className="table-head">
                                 <th scope="col"> Employee Name</th>
@@ -76,7 +59,7 @@ const ClientJobItem = ({id, deletionHandler, viewHandler, jobTitle ,siteLocation
                         </table>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-second mr-1" data-dismiss="modal">
+                        <button type="button" className="btn btn-submit mr-1" data-dismiss="modal">
                             Back
                         </button>
                     </div>

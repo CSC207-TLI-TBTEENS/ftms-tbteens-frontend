@@ -37,8 +37,8 @@ class JobItem extends Component {
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <div className="table-responsive">
-                                    <table className="table" id="table-job-all">
+                                <div className="table-responsive table-shadow mb-2">
+                                    <table className="table mb-0" id="table-job-all">
                                         <thead>
                                             <tr className="table-head">
                                                 <th scope="col" >Employees</th>
@@ -74,6 +74,6 @@ class JobItem extends Component {
         );
             
 
-                                    }
-                                }
+    }
+}
 export default JobItem;

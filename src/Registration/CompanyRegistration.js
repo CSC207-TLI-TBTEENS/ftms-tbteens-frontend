@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import '../Login/Login.css';
 import {apiCall} from "../Services/api";
 import { Message } from 'element-react';
 import Logo from "../images/norweld-logo.png";
