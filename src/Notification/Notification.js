@@ -33,7 +33,7 @@ class Notification extends Component {
                         <div>
                             <p className="card-text box-size">
                                 {this.state.notifications.map(notification => <a className="dropdown-item wrap" href="#">
-                                {notification.message}</a>)}
+                                {notification.message + notification.createdAt}</a>)}
                             </p>
                         </div>
                     </div>

@@ -13,7 +13,7 @@ class Navbar extends Component {
     };
     render() {
         // Whether to display login or logout.
-        let login = (this.props.currentUser.isAuthenticated ? 
+        let login = (this.props.currentUser.isAuthenticated ?
             <a href onClick={this.logout} className="nav-link"> 
                 Logout
             </a>
@@ -56,9 +56,16 @@ class Navbar extends Component {
                         }
 
                         <ul className="navbar-nav ml-auto">
+                            {this.props.currentUser.user.role === "ROLE_ADMIN" &&
+                                <li>
+                                    <Notification />
+                                </li>
+                            }
+                            {this.props.currentUser.user.role === "ROLE_EMPLOYEE" &&
                             <li>
                                 <Notification />
                             </li>
+                            }
                             <li className="nav-item">
                                 {login}
                             </li>
