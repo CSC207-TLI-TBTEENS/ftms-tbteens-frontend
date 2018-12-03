@@ -4,7 +4,7 @@ import React from 'react';
 const SubmitItem = ({name, pattern, handleChange, value}) => (
     <div className="form-group row my-2">
         <label htmlFor="colFormLabel" className="col-sm-2 col-form-label"><h4>{name}</h4></label>
-        <div className="col-sm-10 vertical-center">
+        <div className="col-sm-10">
             <input type="text" 
                 className="form-control user-input" 
                 id="colFormLabel" 

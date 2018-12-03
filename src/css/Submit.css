@@ -11,8 +11,3 @@
 .form-error {
     color: var(--error-color);
 }
-
-.vertical-center {
-    display: flex;
-    align-items: center;
-}
