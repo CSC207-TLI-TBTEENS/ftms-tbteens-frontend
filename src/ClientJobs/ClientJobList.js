@@ -51,7 +51,7 @@ class ClientJobList extends Component {
                                 <button onClick={this.props.editHandler.bind(this.props.curr, 
                                         job.id, this.props.jobViewed[0].value, 
                                         this.props.jobViewed[1].value)}
-                                type="button" class="btn btn-primary save-changes-btn">Save changes</button>
+                                type="button" class="btn save-changes-btn">Save changes</button>
                             </div>
                         </div>
                     </div>

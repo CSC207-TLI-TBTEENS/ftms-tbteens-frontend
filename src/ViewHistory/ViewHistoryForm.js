@@ -58,7 +58,7 @@ class ViewHistoryForm extends Component {
                                     <label htmlFor="DateInfo">Date</label>
                                     <input
                                         type="date"
-                                        className= "test"
+                                        className= "view-history-time"
                                         name="DateInfo"
                                         id="DateInfo"
                                         value={DateInfo}

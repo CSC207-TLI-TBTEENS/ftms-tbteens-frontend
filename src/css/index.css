@@ -1,13 +1,19 @@
 :root{
     --background: rgb(207, 207, 207);
-    --button_green: rgb(189, 189, 189);
-    --button_border: rgb(153, 153, 153);
+    --button_v_light: rgb(242, 242, 242);
+    --button_light: rgb(189, 189, 189); 
+    --button_medium: rgb(153, 153, 153);
+    --button_medium_dark: rgb(120, 120, 120);
+    --button_dark: rgb(95, 95, 95);
     --table_dark_purple: rgb(91, 91, 91);
     --table_light_purple: rgb(198, 198, 198);
     --dark_font_color: rgb(64, 64, 66);
     --light_font_color: rgb(214, 214, 214);
-    --table_delete_button: rgb(118, 118, 118);
-    --table_edit_button: rgb(212, 209, 215);
+    --delete-color: rgb(255, 0, 0);
+    --delete-color-hover: rgb(204, 0, 0);
+    --edit-color: rgb(160, 218, 113); 
+    --edit-color-hover: rgb(133, 208, 73);
+    --white-icon: rgb(255,255,255); 
 }
 
 html {
@@ -33,16 +39,20 @@ body {
 }
 
 /*jumbotron image*/
-.image-bg {
+.bg-image {
     background-image: url("../images/pattern4.svg");
-    /*border: 1px rgb(191, 190, 188) solid;*/
-    box-shadow: 5px 6px 10px rgb(89, 88, 87);
+    /*box-shadow: 5px 6px 10px var(--button_dark);*/
 }
 
 
+.bg-black {
+    background-color: rgba(24, 24, 24, 0.84);
+    border-color: rgb(162, 162, 162);
+    color: rgb(203, 200, 228);
+}
+
 /*Scrollbar*/
 /* width */
-
 ::-webkit-scrollbar {
     width: 12px;
 }
@@ -72,25 +82,7 @@ code {
     monospace;
 }
 
-/*Code for the delete and edit icons*/
-
-.el-icon-delete:hover {
-    color: rgb(166, 169, 163);
-}
-
-.el-icon-edit:hover {
-    color: rgb(98, 99, 93);
-}
-
-
-
 /* Navigation Bar */
-.bg-purple {
-    background-color: rgba(24, 24, 24, 0.84);
-    border-color: rgb(162, 162, 162);
-    color: rgb(203, 200, 228);
-}
-
 .navbar a {
     font-weight: bold;
     color: rgb(203, 200, 228);
@@ -102,13 +94,7 @@ code {
     cursor: pointer;
 }
 
-.save-changes-btn {
-    background-color: var(--button_green);
-    border: none;
-    color: rgb(53, 46, 66)
-}
-
-/*This is for the FTMS logo*/
+/* FTMS logo */
 .navbar-brand > img {
     display: inline-block;
     height: 30px;
@@ -196,12 +182,6 @@ code {
     color: rgb(53, 46, 66);
 }
 
-
-.popup-form {
-    margin-top: 25px;
-    margin-bottom: 50px;
-}
-
 /*Code for the modal popups(forms which pop up when we click on "Add Companies, etc)*/
 .modal-header {
   background-color: rgba(41, 41, 41, 0.84);
@@ -233,7 +213,6 @@ code {
 
 
 /*The search bar*/
-
 .search {
     color: var(--dark_font_color);
     box-shadow: 1px 1px 10px rgb(114, 113, 112);
@@ -244,7 +223,7 @@ code {
     float: right;
 }
 
-/* Loading Rings  */
+/* Loading Rings */
 @keyframes lds-double-ring {
   0% {
     -webkit-transform: rotate(0);

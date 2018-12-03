@@ -39,7 +39,7 @@ class SubmitList extends Component {
 
     render() {
         return (
-            <div className="container bg-purple rounded">
+            <div className="container bg-black rounded">
                 <div className="container">
                     <form>
                         {this.createForm()}

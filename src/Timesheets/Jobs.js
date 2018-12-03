@@ -30,9 +30,9 @@ class Jobs extends Component {
     render() {
         return (
             <div className="container">
-                <header className="jumbotron">
+                <header className="jumbotron bg-image">
                     <div className="container">
-                        <h1 className="display-4">Job List</h1>
+                        <h1 className="display-4 pb-3">Job List</h1>
                     </div>
                 </header>
 
