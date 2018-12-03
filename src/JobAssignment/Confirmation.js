@@ -2,8 +2,8 @@ import React from 'react';
 import * as assignAPI from './api.js'
 
 const assignJob = (employee, job) => {
-  console.log("Confirmed assign now")
   let inputs = {"job": job, "employee": employee}
+  
   assignAPI.assignJob(inputs);
 }
 

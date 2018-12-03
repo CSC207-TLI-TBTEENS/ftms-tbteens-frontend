@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ClientJobItem = ({id, deletionHandler, viewHandler, jobTitle ,siteLocation, jobDescription, curr}) => (
+const ClientJobItem = ({id, jobTitle ,siteLocation, jobDescription}) => (
     <tr>
         <td>{jobTitle}</td>
         <td>{siteLocation}</td>
@@ -9,19 +9,6 @@ const ClientJobItem = ({id, deletionHandler, viewHandler, jobTitle ,siteLocation
             <button type="button" className="btn btn-table mr-1" data-toggle="modal" data-target="#viewEmployees">
                 View Employees
             </button>
-        </td>
-        <td>
-        <div className="btn-group float-right" role="group" aria-label="deletion-edit">
-            <button onClick={deletionHandler.bind(curr, id, siteLocation, jobDescription)}
-                    type="button" class="btn delete-button">
-                    <i className="el-icon-delete"></i>
-            </button> 
-            <button onClick={viewHandler.bind(this, siteLocation, jobDescription)} 
-                    type="button" class="btn edit-button" 
-                    data-toggle="modal" data-target={"#job" + id}>
-                    <i className="el-icon-edit"></i>
-            </button>
-        </div>
         </td>
         {<div className="modal fade" id="viewEmployees" tabindex="-1" role="dialog" aria-labelledby="viewEmployees" aria-hidden="true">
             <div className="modal-dialog" role="document">
