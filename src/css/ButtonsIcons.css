@@ -36,7 +36,7 @@
     background-color: var(--button_light);
     border: none;
     color: var(--dark_font_color);
-    /*box-shadow: 4px 5px 10px var(--button_dark);*/
+    box-shadow: 4px 5px 10px var(--button_dark);
     width: auto;
 }
 
@@ -59,13 +59,26 @@
 .btn-secondary, .btn-secondary:after {
     background-color: var(--button_medium_dark);
     border: none;
-    box-shadow: none;
+    box-shadow: 4px 5px 10px var(--button_dark);
     outline: none;
 }
 
 .btn-secondary:hover, .btn-secondary:focus {
 	background-color: var(--button_dark);
 }
+
+.btn-dark, .btn-dark:after {
+    background-color: var(--dark-translucent);
+    border: none;
+    color: var(--light_font_color);
+    box-shadow: 4px 5px 10px var(--button_dark);
+}
+
+.btn-dark:hover, .btn-dark:focus {
+    background-color: var(--dark-translucent);
+    color: var(--light_font_color);
+}
+
 
 .btn-link {
     color: white;

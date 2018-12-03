@@ -1,27 +1,18 @@
 .user-input {
-    color: rgb(90, 85, 121);
-    border-color: rgb(79, 75, 107);
-    background-color: rgb(203, 200, 228);
+    color: var(--dark_font_color);
+    border: none;
+    background-color: var(table_light);
 }
 
 .user-input:focus {
-    background-color: rgb(203, 200, 228);
-}
-
-.table td.fit,
-.table th.fit {
-    white-space: nowrap;
-    width: 15%;
-    text-align: left;
-}
-
-form div.row {
-    margin-bottom: 0.5rem;
-    margin-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-top: 0.5rem;
+    background-color: var(table_light_hover);
 }
 
 .form-error {
-    color: rgb(204, 0, 0);
+    color: var(--error-color);
+}
+
+.vertical-center {
+    display: flex;
+    align-items: center;
 }

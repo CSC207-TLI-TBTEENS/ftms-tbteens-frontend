@@ -28,6 +28,8 @@
 
     --dark-translucent: rgba(24, 24, 24, 0.84);
     --medium-translucent: rgba(83, 83, 83, 0.97);
+
+    --error-color: rgb(255, 0, 0);
 }
 
 html {

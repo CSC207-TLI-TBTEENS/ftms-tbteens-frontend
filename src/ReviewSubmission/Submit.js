@@ -62,9 +62,11 @@ class Submit extends Component {
 
                 <SubmitList details={this.state.details}/>
                 
-                <button type="button" className="btn btn-submit" onClick={this.handleClick}>
-                    Submit Form
-                </button>
+                <div className="mb-2">
+                    <button type="button" className="btn btn-dark" onClick={this.handleClick}>
+                        Submit Form
+                    </button>
+                </div>
             </div>
         );
     }
