@@ -60,8 +60,8 @@ body {
 
 .bg-black {
     background-color: var(--dark-translucent);
-    border-color: rgb(162, 162, 162);
-    color: rgb(203, 200, 228);
+    border-color: var(--button_light);
+    color: var(--light_font_color);
 }
 
 /*Scrollbar*/

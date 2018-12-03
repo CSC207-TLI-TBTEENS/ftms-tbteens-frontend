@@ -1,89 +1,35 @@
-.Button {
-    background-color: rgb(196, 195, 183);
-    border-radius: 1rem;
-}
-
-.welcome-text{
-    font-size: 1.8rem
-}
-
-.field {
-    margin-top: 2vh;
-}
-
-.field-form {
-    height: 16%;
-    width: 23.5vw;
-    border-radius: 1rem;
-    background-color: rgb(32, 30, 46);
-    color: rgb(203, 200, 228);
-    border-color: black;
-    margin: 0.5vh;
-}
-.field-form:focus{
-    outline:none
-}
-
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: rgb(106, 106, 109);
+    color: var(--button_dark);
     opacity: 1; /* Firefox */
 }
 
-.login-button {
-    margin: 2%;
-    margin-left: 40%;
-}
-
 .third-party-login {
-    color: rgb(203, 200, 228);
-    font-size: 0.8rem;
+    color: var(--light_font_color);
     text-align: center;
 }
 
 .divider {
-    border-color: rgb(203, 200, 228);
-}
-
-.password-forgot {
-    color: rgb(203, 200, 228);
-    font-size: 85%;
-    margin-top: -9.3%;
-    margin-left: 52%;
-}
-
-.el_checkbox__original {
-    width: 0.5vh;
-    height: 1vw;
-}
-
-.login-google {
-    margin-top: 10%;
-    height: 10vh;
-}
-
-.form-check-label {
-    color: rgb(203, 200, 228)
+    border-color: var(--light_font_color);
 }
 
 .login-submit {
-    margin-left: 0vw;
+
 }
 
 
 .third-party-buttons {
-    margin: 6vh
+    margin: 2.5em;
 }
 
 .logo-header {
-    width: 16rem;
-    height: 10rem
+    width: 16em;
+    height: 10em;
 }
 
 .container-style {
-    background-color: rgb(90, 85, 121);
-    margin: auto;
-    border-radius: 1vh;
-    color: rgb(203, 200, 228);
+    background-color: var(--button_v_dark);
+    border-radius: 5px;
+    color: var(--light_font_color);
     text-align: center;
     height: 35rem;
     width: 45%;
@@ -91,40 +37,31 @@
 }
 
 .forgot-acc {
-    color: rgb(203, 200, 228);
     cursor: pointer;
 }
 
 .forgot-acc:hover {
-    color: rgb(203, 200, 228);
     text-decoration: underline;
 }
 
 .fa {
-    color: rgb(203, 200, 228);
+    color: var(--light_font_color);
 }
 
 .fb-button {
     background-color: #3b5998;
-    /* width: 4vw */
 }
 
 .fb-button:hover {
     background-color: #3b5998;
-    border-color: rgb(203, 200, 228);
-    color: rgb(160, 218, 113)
-    /* width: 4vw */
 }
 
 .gg-button {
     background-color: #dd4b39;
-    /* width: 4vw */
 }
 
 .gg-button:hover {
     background-color: #dd4b39;
-    border-color: rgb(203, 200, 228);
-    /* width: 4vw */
 }
 
 .fa-facebook:hover {
@@ -137,55 +74,24 @@
     text-decoration: none
 }
 
-.btn-secondary {
-    border-color: rgb(203, 200, 228)
-}
-
-.forgot-item-select {
-    margin: 1vw
-}
-
-.forgot-form {
-    margin: 1vw
-}
-
 .submit-forgot {
-    background-color: rgb(160, 218, 113);
+    background-color: var(--button_light);
     border: none;
-    color: rgb(32, 30, 46)
+    color: var(--dark_font_color);
 }
 
-.submit-forgot:focus {
-    background-color: rgb(160, 218, 113);
+.submit-forgot:focus, .submit-forgot:hover {
+    background-color: var(--button_medium);
     border: none;
-    color: rgb(32, 30, 46)
-}
-
-.submit-forgot:hover {
-    background-color: rgb(160, 218, 113);
-    border: none;
-    color: rgb(32, 30, 46)
-}
-
-.submit-forgot:focus {
-    background-color: rgb(160, 218, 113);
-    border: none;
-    color: rgb(32, 30, 46);
-    outline: none
+    color: var(--dark_font_color);
 }
 
 .container-forgot {
-    background-color: rgb(90, 85, 121);
-    margin: auto;
-    border-radius: 1vh;
-    color: rgb(203, 200, 228);
+    border-radius: 5px;
     text-align: center;
     width: 45%;
     min-width: 320px;
-}
-
-.success-message {
-    font-size: 5vw;
+    position: center;
 }
 
 .return-to-login {

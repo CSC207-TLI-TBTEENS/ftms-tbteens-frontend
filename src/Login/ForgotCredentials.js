@@ -79,7 +79,7 @@ class ForgotCredentials extends React.Component {
                     <h1 className="display-4">
                         <i className="el-icon-check"></i>
                     </h1>
-                    <h1 className="display-4 success-message">
+                    <h1>
                         Your information has been verified
                     </h1>
                     <div className="row justify-content-center align-items-center">
@@ -120,10 +120,10 @@ class ForgotCredentials extends React.Component {
                     <h1 className="display-4">
                         <i className="el-icon-check"></i>
                     </h1>
-                    <h1 className="display-4 success-message">
+                    <h1>
                         Your information has been verified
                     </h1>
-                    <div className="row justify-content-center align-items-center">
+                    <div className="row justify-content-center align-items-center pb-2">
                         <button type="button" className="btn btn-primary submit-forgot" data-toggle="modal" data-target="#forgotEmailBoth">
                             Proceed
                         </button>
@@ -159,7 +159,7 @@ class ForgotCredentials extends React.Component {
                 display = (
                     <div className="forgot-password">
                         <form>
-                            <div className="form-group forgot-form">
+                            <div className="form-group m-1">
                                 <label htmlFor="email">Enter your email:</label>
                                 <input onChange={this.handleEditPassword.bind(this)}
                                     value={this.state.forgotPassword.email}
@@ -181,7 +181,7 @@ class ForgotCredentials extends React.Component {
                 display = (
                     <div className="forgot-email-both">
                         <form>
-                            <div className="form-group forgot-form">
+                            <div className="form-group m-1">
                                 <label htmlFor="fname">Enter your first name:</label>
                                 <input onChange={this.handleEditEmailBoth.bind(this)}
                                         name="firstname"
@@ -191,7 +191,7 @@ class ForgotCredentials extends React.Component {
                                         id="fname" 
                                         placeholder="First Name"/>
                             </div>
-                            <div className="form-group forgot-form">
+                            <div className="form-group m-1">
                                 <label htmlFor="lname">Enter your last name:</label>
                                 <input onChange={this.handleEditEmailBoth.bind(this)}
                                         type="text" 
@@ -201,7 +201,7 @@ class ForgotCredentials extends React.Component {
                                         id="lname" 
                                         placeholder="Last Name"/>
                             </div>
-                            <div className="form-group forgot-form">
+                            <div className="form-group m-1">
                                 <label htmlFor="phone">Enter your phone number:</label>
                                 <input onChange={this.handleEditEmailBoth.bind(this)}
                                         type="text" 
@@ -223,28 +223,26 @@ class ForgotCredentials extends React.Component {
             }
         }
         return (
-            <div className="container">
-                <div className="forgot-container container-forgot">
-                    <p className="return-to-login" onClick={this.props.switchBack.bind(this.props.parent, false)}>
-                        <i className="el-icon-arrow-left"/>
-                        Return to login
-                    </p>
-                    <h1>Credentials Recovery</h1>
-                    <div className="form-group forgot-item-select">
-                        <label htmlFor="forgot-item">Which of your credentials did you forget?</label>
-                        <select name="itemForgot" 
-                                className="form-control custom-select"
-                                value={this.state.itemForgot}
-                                onChange={this.handleItemChosen.bind(this)} 
-                                id="forgot-item">
-                            <option value="password">Password</option>
-                            <option value="email">Email</option>
-                            <option value="both">Both</option>
-                        </select>
-                    </div>
-                    <div className="info-required">
-                        {display}
-                    </div>
+            <div className="container container-forgot bg-black">
+                <p className="return-to-login" onClick={this.props.switchBack.bind(this.props.parent, false)}>
+                    <i className="el-icon-arrow-left"/>
+                    Return to login
+                </p>
+                <h1>Credentials Recovery</h1>
+                <div className="form-group m-1">
+                    <label htmlFor="forgot-item">Which of your credentials did you forget?</label>
+                    <select name="itemForgot" 
+                            className="form-control custom-select"
+                            value={this.state.itemForgot}
+                            onChange={this.handleItemChosen.bind(this)} 
+                            id="forgot-item">
+                        <option value="password">Password</option>
+                        <option value="email">Email</option>
+                        <option value="both">Both</option>
+                    </select>
+                </div>
+                <div className="info-required">
+                    {display}
                 </div>
             </div>
         )

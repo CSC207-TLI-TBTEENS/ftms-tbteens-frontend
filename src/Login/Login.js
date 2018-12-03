@@ -59,9 +59,9 @@ class Login extends Component {
                     })
                 )} 
                 <div className="row">
-                    <div className="container container-style">
+                    <div className="container container-style mb-3">
                         <img className="logo-header pt-3" src={Logo} alt="Logo"/>   
-                        <div className="field">
+                        <div className="pt-3">
                             <form className="login-form" onSubmit={this.handleSubmit}>
                                 <div className="form-group">
                                     <input 
@@ -105,7 +105,7 @@ class Login extends Component {
                             </form>
                             <div className="third-party-buttons">
                                 <hr className="row justify-content-center divider"/>
-                                <p className="row justify-content-center third-party-login">Login with Google or Facebook</p>
+                                <h6 className="row justify-content-center third-party-login">Login with Google or Facebook</h6>
                                 <Federation />
                             </div>     
                         </div>
