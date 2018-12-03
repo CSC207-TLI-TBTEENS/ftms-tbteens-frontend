@@ -170,7 +170,8 @@ class TimesheetEdit extends Component {
 
 
                     {/* //     <br/> <br/>
-                    //     <table class="table">
+                    //   <div class="table-responsive table-shadow mb-4">  
+                    //      <table class="table mb-0">
                     //         <thead>
                     //             <tr>
                     //                 <th scope="col">Task Name</th>
@@ -199,6 +200,7 @@ class TimesheetEdit extends Component {
                     //         </tr>
                     //      </tbody>
                     //     </table>
+                    //   </div>
                          */}
                     </div>
                 </header>
