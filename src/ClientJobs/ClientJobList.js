@@ -27,7 +27,6 @@ class ClientJobList extends Component {
                     <th scope="col" onClick={() => this.sortJobs('siteName')}>Site Location</th>
                     <th scope="col" onClick={() => this.sortJobs('description')}>Job Description</th>
                     <th scope="col">Employees</th>
-                    <th scole="col"></th>
                 </tr>
                 </thead>
                 <tbody>
