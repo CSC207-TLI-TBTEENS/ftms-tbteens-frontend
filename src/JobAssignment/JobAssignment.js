@@ -6,7 +6,6 @@ import EmployeeConfirmation from './EmployeeConfirmation.js';
 import Confirmation from './Confirmation.js';
 import * as jobAPI from '../ClientJobs/api.js';
 import * as employeeAPI from '../Employees/api.js';
-import './JobAssignment.css';
 import 'element-theme-default';
 
 export class JobAssignment extends Component {

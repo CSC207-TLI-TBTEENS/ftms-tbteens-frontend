@@ -1,6 +1,7 @@
 import React from "react";
 import { Switch, Route, withRouter} from "react-router-dom";
 import { connect } from "react-redux";
+import Landing from "./Landing";
 import Employees from "../Employees/Employees";
 import Companies from "../Companies/Companies";
 import Login from "../Login/Login.js";
@@ -11,19 +12,19 @@ import Timesheets from "../Timesheets/Jobs";
 import TimesheetEdit from "../Timesheets/TimesheetEdit";
 import ClientJobs from "../ClientJobs/ClientJobs"
 import ViewHistory from "../ViewHistory/ViewHistory.js";
-import { authUser } from "../store/actions/auth";
-import { removeAlert, addAlert } from "../store/actions/alerts";
 import withAuth from "../hocs/withAuth";
 import UserRegistration from "../Registration/UserRegistration.js";
+import CompanyRegistration from "../Registration/CompanyRegistration.js";
+import { authUser } from "../store/actions/auth";
+import { removeAlert, addAlert } from "../store/actions/alerts";
 
 const Main = props => {
     const adminOnly = ["ROLE_ADMIN"];
-    const allUsers  = ["ROLE_ADMIN", "ROLE_EMPLOYEE"];
+    const allUsers  = ["ROLE_ADMIN", "ROLE_EMPLOYEE", "ROLE_SUPERVISOR", "ROLE_CLIENT"];
     const { authUser, alerts, removeAlert,  currentUser } = props;
     return (
         <Route render={({location}) => (
             <Switch location={location}>
-                
                 {/* This is the login route. */}
                 <Route exact path="/login" render={(props) => 
                 <Login 
@@ -36,6 +37,16 @@ const Main = props => {
                 {/* User Registration route. */}
                 <Route exact path="/usersignup/:id" render={(props) => 
                 <UserRegistration
+                    removeAlert={removeAlert}
+                    alerts={alerts}
+                    onAuth={authUser}
+                    addAlert={addAlert}
+                    {...props}
+                />} />
+
+                {/* Company Registration route. */}
+                <Route exact path="/companysignup/:id" render={(props) => 
+                <CompanyRegistration
                     removeAlert={removeAlert}
                     alerts={alerts}
                     onAuth={authUser}
@@ -60,6 +71,16 @@ const Main = props => {
                 <Route exact path="/timesheets" component={withAuth(allUsers, Timesheets)}/>
                 <Route exact path="/timesheets/edit" component={withAuth(allUsers, TimesheetEdit)}/>
                 <Route exact path="/viewhistory" component={withAuth(allUsers, ViewHistory)}/>
+
+                {/* This is the root route. */}
+                <Route exact path="/" render={(props) => 
+                <Landing
+                    removeAlert={removeAlert}
+                    alerts={alerts}
+                    currentUser= {currentUser}
+                    {...props}
+                />} />
+
             </Switch>
         )} />
     )

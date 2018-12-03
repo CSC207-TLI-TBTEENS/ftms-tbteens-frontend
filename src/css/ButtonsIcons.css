@@ -1,0 +1,108 @@
+/* Coloring of the edit/delete buttons */
+
+.delete-button {
+    background-color: var(--delete-color);
+	color: var(--white-icon);
+	border: none;
+}
+
+.delete-button:hover {
+	background-color: var(--delete-color-hover);
+}
+
+.edit-button {
+	background-color: var(--edit-color);
+	color: var(--white-icon);
+	border: none;
+}
+
+.edit-button:hover {
+	background-color: var(--edit-color-hover);
+}
+
+/* Icons for the delete and edit buttons */
+
+.el-icon-delete:hover {
+    color: var(--button_dark);
+}
+
+.el-icon-edit:hover {
+    color: var(--button_dark);
+}
+
+/* Submission Buttons*/
+
+.btn-submit {
+    background-color: var(--button_light);
+    border: none;
+    color: var(--dark_font_color);
+    box-shadow: 4px 5px 10px var(--button_dark);
+    width: auto;
+}
+
+.btn-submit:hover, .btn-submit:focus {
+    background-color: var(--button_medium);
+}
+
+.btn-table, .btn-table:after {
+    background-color: var(--button_v_light);
+    border: none;
+    color: var(--dark_font_color);
+    box-shadow: none;
+    outline: none;
+}
+
+.btn-table:hover, .btn-table:focus {
+    background-color: var(--button_light);
+}
+
+.btn-secondary, .btn-secondary:after {
+    background-color: var(--button_medium_dark);
+    border: none;
+    box-shadow: 4px 5px 10px var(--button_dark);
+    outline: none;
+}
+
+.btn-secondary:hover, .btn-secondary:focus {
+	background-color: var(--button_dark);
+}
+
+.btn-dark, .btn-dark:after {
+    background-color: var(--dark-translucent);
+    border: none;
+    color: var(--light_font_color);
+    box-shadow: 4px 5px 10px var(--button_dark);
+}
+
+.btn-dark:hover, .btn-dark:focus {
+    background-color: var(--dark-translucent);
+    color: var(--light_font_color);
+}
+
+
+.btn-link {
+    color: white;
+}
+
+.btn-link:hover {
+    color: var(--light_font_color);
+}
+
+
+/* Some kind of buttons */
+
+.save-changes-btn {
+    background-color: var(--button_medium);
+    border: none;
+    color: var(--white-icon);
+    box-shadow: none;
+    outline: none;
+}
+
+.save-changes-btn:hover, .save-changes-btn:focus {
+	background-color: var(--button_dark);
+}
+
+
+
+

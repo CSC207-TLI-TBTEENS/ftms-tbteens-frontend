@@ -21,7 +21,7 @@ class Navbar extends Component {
             )
         return (
             // Adding in Navbar
-            <nav className="navbar navbar-dark bg-purple navbar-expand-lg mb-3 w-100">
+            <nav className="navbar navbar-dark bg-black navbar-expand-lg mb-3 w-100">
                 <div className="container">
                     <div className="navbar-brand">
                         <img src={Logo} alt="FTMS Home" /> FTMS

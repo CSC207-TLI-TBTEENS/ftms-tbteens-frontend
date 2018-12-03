@@ -1,0 +1,311 @@
+:root{ 
+    --background: rgb(207, 207, 207);
+
+    --button_v_light: rgb(242, 242, 242);
+    --button_light: rgb(189, 189, 189); 
+    --button_medium: rgb(153, 153, 153);
+    --button_medium_dark: rgb(120, 120, 120);
+    --button_dark: rgb(95, 95, 95);
+    --button_v_dark: rgb(65, 65, 65);
+
+    --table_dark: rgb(91, 91, 91);
+    --table_dark_hover: rgb(111, 111, 111);
+    --table_light: rgb(198, 198, 198);
+    --table_light_hover:rgb(179, 177, 184);
+
+    --dark_font_color: rgb(64, 64, 66); 
+    --light_font_color: rgb(214, 214, 214);
+
+    --delete-color: rgb(255, 0, 0);
+    --delete-color-hover: rgb(204, 0, 0);
+    --edit-color: rgb(160, 218, 113); 
+    --edit-color-hover: rgb(133, 208, 73);
+    --white-icon: rgb(255,255,255); 
+
+    --scroll-light: rgb(224, 224, 224);
+    --scroll-medium: rgb(136, 136, 136);
+    --scroll-dark: rgb(100, 100, 100);
+
+    --dark-translucent: rgba(24, 24, 24, 0.84);
+    --medium-translucent: rgba(83, 83, 83, 0.97);
+
+    --error-color: rgb(255, 0, 0);
+}
+
+html {
+    height: 100%;
+    min-width: 100%;
+    margin: 0;
+    padding: 0
+}
+
+body {
+    /* margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; */
+
+    /*Main Background  */
+    background: var(--background);  /* fallback for old browsers */
+    height: 100%;
+    width: 100%;
+}
+
+/*jumbotron image*/
+.bg-image {
+    background-image: url("../images/pattern4.svg");
+    box-shadow: 5px 6px 10px var(--table_dark);
+}
+
+.bg-black {
+    background-color: var(--dark-translucent);
+    border-color: var(--button_light);
+    color: var(--light_font_color);
+}
+
+/*Scrollbar*/
+/* width */
+::-webkit-scrollbar {
+    width: 12px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: var(--scroll-light);
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: var(--scroll-medium);
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--scroll-dark);
+}
+
+
+#root {
+    height: 100%;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/* Navigation Bar */
+.navbar a {
+    font-weight: bold;
+    color: rgb(203, 200, 228);
+}
+
+.navbar a:hover {
+    color: rgb(203, 200, 228);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* FTMS logo */
+.navbar-brand > img {
+    display: inline-block;
+    height: 30px;
+    margin-bottom: 2px;
+    margin-right: 5px;
+    border-radius: 2px;
+}
+
+.navbar-header {
+    margin: 0 auto;
+}
+
+/* Entities */
+
+.table thead th {
+    border-bottom: none;
+}
+
+.table td, .table th {
+    border-top: none;
+}
+
+.table-shadow{
+    box-shadow: 4px 5px 10px var(--table_dark);
+    border-color: var(--table_dark);
+}
+
+/*Head of the table*/
+.table thead tr{
+    background-color: var(--dark-translucent);
+    color: var(--light_font_color);
+}
+
+/*Body of the table*/
+
+/*Dark Rows*/
+.table tbody tr:nth-child(even){
+    background-color: var(--table_dark);
+    color: var(--light_font_color);
+}
+
+.table tbody tr:nth-child(even):hover {
+    background-color: var(--table_dark_hover);
+}
+
+/*Light Rows*/
+.table tbody tr:nth-child(odd){
+    background-color: var(--table_light);
+    color: var(--dark_font_color);
+}
+
+.table tbody tr:nth-child(odd):hover {
+    background-color: var(--table_light_hover);
+}
+
+
+/*
+#table-job-all thead tr{
+    background-color: var(--dark-translucent);
+    color: var(--light_font_color);
+}
+#table-job-all tbody tr:nth-child(even):hover {
+    background-color: rgb(66, 62, 90);
+    color: rgb(203, 200, 228);
+}
+#table-job-all tbody tr:nth-child(odd):hover {
+    background-color: rgb(127, 135, 165);
+    color: rgb(53, 46, 66);
+}
+#table-job tbody tr:nth-child(odd) {
+    background-color: rgb(127, 135, 165);
+    color: rgb(53, 46, 66);
+}
+#table-job-all tbody tr:nth-child(odd){
+    background-color: var(--table_light);
+    color: rgb(53, 46, 66);
+}
+*/
+
+
+
+/*Code for the modal popups(forms which pop up when we click on "Add Companies, etc)*/
+.modal-header {
+    background-color: var(--dark-translucent);
+    border-color: var(--button_medium_dark);
+    border-width: thin; 
+    color: var(--light_font_color);
+}
+
+.modal-content {
+    background-color: var(--medium-translucent);
+    color: var(--button_v_light);
+    border-width: thin;
+    border-color: var(--button_medium_dark);
+}
+
+/*Code for the modal body (font color, etc)*/
+.form-group {
+    color: var(--button_v_light);
+    text-align: left;
+}
+.form-control{
+    background-color: var(--button_v_light);
+}
+
+.close {
+  color: var(--button_v_light);
+  text-shadow: none;
+}
+
+
+/*The search bar*/
+.search {
+    color: var(--dark_font_color);
+    box-shadow: 1px 1px 10px var(--table_dark);
+    background-color: var(--button_v_light);
+    padding: 5px 20px;
+    border-radius: 2px;
+    /*border: thin rgb(214, 212, 219);*/
+    border: none;
+    float: right;
+}
+
+
+/* Loading Rings */
+@keyframes lds-double-ring {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes lds-double-ring {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes lds-double-ring_reverse {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(-360deg);
+    transform: rotate(-360deg);
+  }
+}
+@-webkit-keyframes lds-double-ring_reverse {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(-360deg);
+    transform: rotate(-360deg);
+  }
+}
+.lds-double-ring {
+  margin: auto;
+  position: relative;
+  width:100%;
+  height:100%
+}
+.lds-double-ring div {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  top: 20px;
+  left: 20px;
+  border-radius: 50%;
+  border: 8px solid #000;
+  border-color: var(--button_dark) transparent var(--button_dark) transparent;
+  -webkit-animation: lds-double-ring 1.2s linear infinite;
+  animation: lds-double-ring 1.2s linear infinite;
+}
+.lds-double-ring div:nth-child(2) {
+  width: 140px;
+  height: 140px;
+  top: 30px;
+  left: 30px;
+  border-color: transparent var(--button_medium) transparent var(--button_medium);
+  -webkit-animation: lds-double-ring_reverse 1.2s linear infinite;
+  animation: lds-double-ring_reverse 1.2s linear infinite;
+}
+.lds-double-ring {
+  width: 200px !important;
+  height: 200px !important;
+  -webkit-transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+  transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+}
+
+
