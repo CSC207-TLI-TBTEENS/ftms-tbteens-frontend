@@ -12,14 +12,14 @@
 }
 
 .card-header-purple {
-    background-color: rgb(90, 85, 121);
+    background-color: var(--button_v_dark);
     text-align: center;
     border-bottom: none;
     border-radius: 0px !important;
 }
 
 .card-body-green {
-    background-color: rgb(218, 217, 216);
+    background-color: var(--button_v_light);
 }
 
 .card-title {
@@ -27,7 +27,7 @@
 }
 
 .card-subtitle {
-    color: rgb(203, 200, 228);
+    color: var(--button_light);
 }
 
 .card-text{
@@ -35,7 +35,7 @@
 }
 
 .card-scroll {
-    background-color: rgb(90, 85, 121);
+    background-color: var(--button_v_dark);
     overflow-y: auto;
     overflow-x: auto;
     width: 65%;
@@ -51,7 +51,7 @@
 
 
 .job-manage-header {
-    color: rgb(203, 200, 228);
+    color: var(--dark_font_color);
     text-align: center;
 }
 
@@ -62,16 +62,15 @@
 
 
 .modal-header-confirm {
-  background-color: rgb(90, 85, 121);
-  border-color: rgb(79, 75, 107);
-  color: rgb(203, 200, 228);
-  border-bottom: 0px solid black;
+  background-color: var(--button_v_dark);
+  border: none;
+  color: var(--light_font_color);
   padding: 1rem 1rem 0.5rem 1rem;
 }
 
 .modal-content-confirm {
-  background-color: rgb(90, 85, 121);
-  color: rgb(203, 200, 228);
+  background-color: var(--button_v_dark);
+  color: var(--light_font_color);
 }
 
 .modal-footer-confirm {

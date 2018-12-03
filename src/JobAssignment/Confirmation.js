@@ -11,7 +11,7 @@ const Confirmation = (props) => {
     return (
       <div className="row">
         <div className="col-md-4">
-          <button type="button" class="btn btn-table" data-toggle="modal" data-target="#verticalCenterModal">
+          <button type="button" class="btn btn-table mb-3" data-toggle="modal" data-target="#verticalCenterModal">
             Assign
           </button>
 
