@@ -1,14 +1,15 @@
 import { apiCall} from "../Services/api";
 
 const JOBAPI = "/api/jobs/";
-const JOBEMPLOYEES = JOBAPI + "employees";
+const JOBEMPLOYEES = "/api/jobs/employees/";
 
 export async function getJobs() {
     return apiCall("GET",JOBAPI);
 }
 
 export async function getEmployeesFromJob(input) {
-    return apiCall("POST",JOBEMPLOYEES , {...input});
+    let address = JOBEMPLOYEES + input.toString();
+    return apiCall("GET", address);
 }
 
 export async function deleteJob(input) {

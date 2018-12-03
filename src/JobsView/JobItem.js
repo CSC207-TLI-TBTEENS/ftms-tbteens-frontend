@@ -12,14 +12,14 @@ class JobItem extends Component {
     }
     
     //Get list of all employees from specific job
-    async getEmployeesFromJob(job){
-        let newemployees = await apiCalls.getEmployeesFromJob(job);
+    async getEmployeesFromJob(jobId){
+        let newemployees = await apiCalls.getEmployeesFromJob(jobId);
         console.log(newemployees)
         this.setState({employees: [...newemployees]});
     }
 
     componentWillMount() {
-        this.getEmployeesFromJob(this.props.job);
+        this.getEmployeesFromJob(this.props.job.id);
     }
 
     render(){
@@ -35,13 +35,13 @@ class JobItem extends Component {
                 </td>
                 <td>
                     <div className="btn-group float-right" role="group" aria-label="deletion-edit">
-                        <button onClick={deletionHandler.bind(this.props.curr, this.props.id, this.props.siteLocation, this.props.jobDescription)}
+                        <button onClick={this.props.deletionHandler.bind(this.props.curr, this.props.id, this.props.siteLocation, this.props.jobDescription)}
                                 type="button" class="btn delete-button">
                                 <i className="el-icon-delete"></i>
                         </button> 
-                        <button onClick={viewHandler.bind(this, this.props.siteLocation, this.props.jobDescription)} 
+                        <button onClick={this.props.viewHandler.bind(this, this.props.siteLocation, this.props.jobDescription)} 
                                 type="button" class="btn edit-button" 
-                                data-toggle="modal" data-target={"#job" + id}>
+                                data-toggle="modal" data-target={"#job" + this.props.job.id}>
                                 <i className="el-icon-edit"></i>
                         </button>
                     </div>

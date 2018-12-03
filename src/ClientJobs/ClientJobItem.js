@@ -1,6 +1,4 @@
 import React from 'react';
-import './clientJobDetails.css';
-
 
 const ClientJobItem = ({id, jobTitle ,siteLocation, jobDescription}) => (
     <tr>

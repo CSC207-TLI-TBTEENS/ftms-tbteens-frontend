@@ -63,7 +63,7 @@ class JobList extends Component {
                     <tr className="table-head">
                         <th scope="col" >Job Description</th>
                         <th scope="col" >Site</th>
-                        <th scope="col" ></th>
+                        <th scope="col" >Details</th>
                         <th scope="col" ></th>
                     </tr>
                 </thead>
