@@ -70,6 +70,7 @@ class TaskList extends Component {
                 </thead>
                 <tbody>
                 {task}
+                {modals}
                 </tbody>
             </table>
             </div>

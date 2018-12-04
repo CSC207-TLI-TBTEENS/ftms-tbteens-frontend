@@ -5,17 +5,15 @@ const TASKAPI = "/api/tasks/";
 
 
 // Get Tasks
-export async function getTask() {
-    return apiCall('GET',TASKAPI);
+export async function getTasks(jobId, employeeID) {
+    return apiCall('GET', TASKAPI + jobId + "/" + employeeID);
 }
 
-// Create Taks
+// Create Task
 export async function createTask(input) {
     console.log({...input})
     return apiCall('POST',"/api/auth/signup", {...input});
 }
-
-
 
 // Delete Task
 export async function deleteTask(input) {
@@ -33,3 +31,4 @@ export async function editTask(input) {
     return apiCall('PUT', address, {...input});
     
 }
+

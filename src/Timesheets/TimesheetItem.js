@@ -1,17 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const JobItem = ({id, jobName, clientName, jobDescription, jobLocation}) => (
+const TimesheetItem = ({id, jobTitle, company, description, siteName}) => (
     <tr>
-        <td>{jobName}</td>
-        <td>{clientName}</td>
+        <td>{jobTitle}</td>
+        <td>{company}</td>
         <td>
             <center>
-                <button type="button" className="btn btn-table mr-1" data-toggle="modal" data-target="#jobDetails">
-                    Job Details
+                <button type="button" className="btn btn-second mr-1" data-toggle="modal" data-target="#jobDetails">
+                    Timesheet Details
                 </button>
-                <Link to={"/timesheets/edit"}>
-                    <button type="button" className="btn btn-table ml-1" >
+                <Link to={"/timesheets/" + id + "/edit"}>
+                    <button type="button" className="btn btn-main ml-1" >
                         Edit Timesheet
                     </button>
                 </Link>
@@ -22,26 +22,26 @@ const JobItem = ({id, jobName, clientName, jobDescription, jobLocation}) => (
              <div className="modal-dialog" role="document">
                  <div className="modal-content">
                      <div className="modal-header">
-                         <h5 class="modal-title">{jobName} Details</h5>
+                         <h5 class="modal-title">{jobTitle} Details</h5>
 
                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                            <span aria-hidden="true">&times;</span>
                          </button>
                      </div>
                      <div className="modal-body">
-                        <h4>Client Company</h4>
-                        <p className="detail">{clientName}</p>
-                        <h4>Description</h4>
-                        <p className="detail">{jobDescription}</p>
-                        <h4>Location</h4>
-                        <p className="detail">{jobLocation}</p>
+                        <h6>Client Company</h6>
+                        <p className="detail">{company}</p>
+                        <h6>Description</h6>
+                        <p className="detail">{description}</p>
+                        <h6>Location</h6>
+                        <p className="detail">{siteName}</p>
                      </div>
                      <div className="modal-footer">
                         <button type="button" className="btn btn-submit mr-1" data-dismiss="modal">
                             Back
                         </button>
-                        <Link className="nav-link" to={"/timesheets/edit"}>
-                            <button type="button" className="btn btn-submit ml-1" data-toggle="modal" data-target="#jobDetails">
+                        <Link className="nav-link" to={"/timesheets/" + id + "/edit"}>
+                            <button type="button" className="btn btn-main ml-1">
                                 Edit Timesheet
                             </button>
                         </Link>
@@ -54,4 +54,4 @@ const JobItem = ({id, jobName, clientName, jobDescription, jobLocation}) => (
 
 )
 
-export default JobItem;
+export default TimesheetItem;

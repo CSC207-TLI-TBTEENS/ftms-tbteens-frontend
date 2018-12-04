@@ -8,7 +8,7 @@ import Login from "../Login/Login.js";
 import JobsView from "../JobsView/Jobs.js";
 import JobAssignment from "../JobAssignment/JobAssignment.js";
 import Submit from "../ReviewSubmission/Submit.js";
-import Timesheets from "../Timesheets/Jobs";
+import Timesheets from "../Timesheets/Timesheets";
 import TimesheetEdit from "../Timesheets/TimesheetEdit";
 import ClientJobs from "../ClientJobs/ClientJobs"
 import ViewHistory from "../ViewHistory/ViewHistory.js";
@@ -21,7 +21,7 @@ import { removeAlert, addAlert } from "../store/actions/alerts";
 const Main = props => {
     const adminOnly = ["ROLE_ADMIN"];
     const allUsers  = ["ROLE_ADMIN", "ROLE_EMPLOYEE", "ROLE_SUPERVISOR", "ROLE_CLIENT"];
-    const { authUser, alerts, removeAlert,  currentUser } = props;
+    const { authUser, alerts, removeAlert, currentUser } = props;
     return (
         <Route render={({location}) => (
             <Switch location={location}>
@@ -68,8 +68,17 @@ const Main = props => {
                 <Route exact path="/jobassign" component={withAuth(allUsers, JobAssignment)} />
                 <Route exact path="/review" component={withAuth(allUsers, Submit)} />
                 <Route exact path="/clientJobs" component={withAuth(allUsers, ClientJobs)}/>
-                <Route exact path="/timesheets" component={withAuth(allUsers, Timesheets)}/>
-                <Route exact path="/timesheets/edit" component={withAuth(allUsers, TimesheetEdit)}/>
+                <Route exact path="/timesheets" render={(props) => 
+                <Timesheets
+                    currentUser={currentUser}
+                    {...props}
+                />} />
+                <Route exact path="/timesheets/:id/edit" render={(props) => 
+                <TimesheetEdit
+                    currentUser={currentUser}
+                    {...props}
+                    /*component={withAuth(allUsers, TimesheetEdit)}/>*/
+                />} />
                 <Route exact path="/viewhistory" component={withAuth(allUsers, ViewHistory)}/>
 
                 {/* This is the root route. */}

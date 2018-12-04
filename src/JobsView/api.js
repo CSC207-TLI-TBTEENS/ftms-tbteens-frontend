@@ -12,6 +12,7 @@ export async function getEmployeesFromJob(input) {
     return apiCall("GET", address);
 }
 
+<<<<<<< HEAD
 export async function deleteJob(input) {
     let address = JOBAPI + input.toString();
     return apiCall("DELETE", address, {...input});
@@ -26,6 +27,11 @@ export async function editJob(input) {
     return apiCall("PUT", address);
 }
 
+=======
+export async function getJobFromId(id) {
+    return apiCall("GET", JOBAPI + id);
+}
+>>>>>>> f104e63... Enabled job title and description visibility in timesheets
 
 function ValidateHTTPStatus(resp) {
     if (!resp.ok) {
