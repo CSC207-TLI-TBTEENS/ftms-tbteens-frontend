@@ -2,26 +2,28 @@ import {apiCall} from "../Services/api";
 
 const TASKAPI = "/api/tasks/";
 
-
-
 // Get Tasks
-export async function getTask() {
-    return apiCall('GET',TASKAPI);
+export async function getTasks(timesheet_id) {
+    return apiCall('GET', `/api/timesheets/${timesheet_id}/tasks`);
 }
 
-// Create Taks
+// export async function getTasks(jobId, employeeID) {
+//     return apiCall('GET', TASKAPI + jobId + "/" + employeeID);
+// }
+
+// Create Task
 export async function createTask(input) {
-    console.log({...input})
-    return apiCall('POST',"/api/auth/signup", {...input});
+    let timesheet_id = input.timesheet; 
+
+    return apiCall('POST',`/api/timesheets/${timesheet_id}/tasks`, {...input});
 }
-
-
 
 // Delete Task
 export async function deleteTask(input) {
     let address = TASKAPI + input.toString();
     return apiCall('DELETE', address, {...input});
 }
+
 
 //Edit Task
 export async function editTask(input) {
@@ -33,3 +35,4 @@ export async function editTask(input) {
     return apiCall('PUT', address, {...input});
     
 }
+

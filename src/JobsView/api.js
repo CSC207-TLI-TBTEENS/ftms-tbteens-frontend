@@ -12,6 +12,10 @@ export async function getEmployeesFromJob(input) {
     return apiCall("GET", address);
 }
 
+export async function getJobFromId(id) {
+    return apiCall("GET", JOBAPI + id + "/timesheet");
+}
+
 export async function deleteJob(input) {
     let address = JOBAPI + input.toString();
     return apiCall("DELETE", address, {...input});
@@ -25,7 +29,6 @@ export async function editJob(input) {
                 description);
     return apiCall("PUT", address);
 }
-
 
 function ValidateHTTPStatus(resp) {
     if (!resp.ok) {
