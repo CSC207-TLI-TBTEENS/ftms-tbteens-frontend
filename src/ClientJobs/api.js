@@ -12,5 +12,5 @@ export async function createJob(company_id, input) {
 }
 
 export async function getEmployeesFromJob(input) {
-    return apiCall("POST", JOBEMPLOYEES, {...input});
+  return apiCall('GET', JOBEMPLOYEES + input);
 }
