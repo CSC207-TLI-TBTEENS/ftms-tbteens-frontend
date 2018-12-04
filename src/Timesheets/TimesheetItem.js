@@ -4,15 +4,19 @@ import { Link } from 'react-router-dom';
 const TimesheetItem = ({id, jobTitle, company, description, siteName}) => (
     <tr>
         <td>{jobTitle}</td>
-        <td>{company}</td>
+        <td>{company.name}</td>
         <td>
             <center>
                 <button type="button" className="btn btn-second mr-1" data-toggle="modal" data-target="#jobDetails">
                     Timesheet Details
                 </button>
-                <Link to={"/timesheets/" + id + "/edit"}/>
+                <Link to={"/timesheets/" + id + "/edit"}>
+                    <button type="button" className="btn btn-main ml-1">
+                        Edit Timesheet
+                    </button>
+                </Link>
             </center>
-         </td>
+        </td>
 
          <div className="modal fade" id="jobDetails" tabindex="-1" role="dialog" aria-labelledby="jobDetails" aria-hidden="true">
              <div className="modal-dialog" role="document">
@@ -26,7 +30,7 @@ const TimesheetItem = ({id, jobTitle, company, description, siteName}) => (
                      </div>
                      <div className="modal-body">
                         <h6>Client Company</h6>
-                        <p className="detail">{company}</p>
+                        <p className="detail">{company.name}</p>
                         <h6>Description</h6>
                         <p className="detail">{description}</p>
                         <h6>Location</h6>
@@ -36,11 +40,6 @@ const TimesheetItem = ({id, jobTitle, company, description, siteName}) => (
                         <button type="button" className="btn btn-submit mr-1" data-dismiss="modal">
                             Back
                         </button>
-                        <Link className="nav-link" to={"/timesheets/" + id + "/edit"}>
-                            <button type="button" className="btn btn-main ml-1">
-                                Edit Timesheet
-                            </button>
-                        </Link>
                      </div>
                  </div>
              </div>

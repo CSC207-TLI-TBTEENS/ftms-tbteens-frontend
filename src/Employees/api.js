@@ -24,6 +24,6 @@ export async function deleteEmployee(input) {
 
 // get Jobs from Employee
 export async function getJobsFromEmployee(input) {
-    const EMPLOYEEJOBS = `${EMPLOYEEAPI}${input}/jobs`;
+    const EMPLOYEEJOBS = `${EMPLOYEEAPI}/${input}/jobs`;
     return apiCall('GET', EMPLOYEEJOBS);
 }

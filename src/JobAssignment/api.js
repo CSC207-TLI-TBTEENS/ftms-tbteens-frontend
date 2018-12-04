@@ -5,15 +5,8 @@ const TASKAPI = "/api/tasks";
 const JOBEMPLOYEES = JOBAPI + "employees"
 let newtimesheet= {job: "", employee: " "};
 
-export async function getJobsFromEmployee(input) {
-    return fetch(JOBEMPLOYEES, {
-        method: "post",
-        headers: new Headers({
-            "Content-Type": "application/json"
-        }), 
-        body: JSON.stringify({...input})
-    })
-    .then(resp => {return ValidateHTTPStatus(resp)})
+export async function getAllJobs() {
+    return apiCall('GET', JOBAPI);
 }
 
 //Assign Job 

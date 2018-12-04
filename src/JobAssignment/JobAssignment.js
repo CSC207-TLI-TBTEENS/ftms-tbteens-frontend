@@ -4,7 +4,7 @@ import EmployeesList from './EmployeesList.js';
 import TaskConfirmation from './TaskConfirmation.js';
 import EmployeeConfirmation from './EmployeeConfirmation.js';
 import Confirmation from './Confirmation.js';
-import * as jobAPI from '../ClientJobs/api.js';
+import * as jobAPI from './api.js';
 import * as employeeAPI from '../Employees/api.js';
 import 'element-theme-default';
 
@@ -31,7 +31,7 @@ export class JobAssignment extends Component {
     }
 
     async getAllJobs() {
-        let allJobs = await jobAPI.getJobs();
+        let allJobs = await jobAPI.getAllJobs();
         this.setState({jobs: allJobs});
     }
 
