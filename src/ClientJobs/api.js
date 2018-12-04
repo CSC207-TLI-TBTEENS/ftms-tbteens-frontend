@@ -12,24 +12,5 @@ export async function createJob(company_id, input) {
 }
 
 export async function getEmployeesFromJob(input) {
-<<<<<<< HEAD
-  return apiCall('GET', JOBEMPLOYEES + input);
-}
-
-function ValidateHTTPStatus(resp) {
-    if (!resp.ok) {
-        if(resp.status >= 400 && resp.status < 500) {
-            return resp.json().then(data => {
-                let err = {errorMessage : data.message};
-                throw err;
-            });
-        } else {
-            let err = {errorMessage: "Server is not responding!"}
-            throw err;
-        }
-    }
-    return resp.json();
-=======
     return apiCall("POST", JOBEMPLOYEES, {...input});
->>>>>>> 7b5fccd... Added client user view, and made it possible to add jobs attached to companies
 }

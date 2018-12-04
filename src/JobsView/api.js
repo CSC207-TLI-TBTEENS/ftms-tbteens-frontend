@@ -12,14 +12,10 @@ export async function getEmployeesFromJob(input) {
     return apiCall("GET", address);
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 export async function getJobFromId(id) {
     return apiCall("GET", JOBAPI + id + "/timesheet");
 }
 
->>>>>>> 7b5fccd... Added client user view, and made it possible to add jobs attached to companies
 export async function deleteJob(input) {
     let address = JOBAPI + input.toString();
     return apiCall("DELETE", address, {...input});
@@ -32,14 +28,7 @@ export async function editJob(input) {
     let address = (JOBAPI + id + "?siteName=" + siteName + "&description=" + 
                 description);
     return apiCall("PUT", address);
-<<<<<<< HEAD
 }
-
-=======
-export async function getJobFromId(id) {
-    return apiCall("GET", JOBAPI + id);
-}
->>>>>>> f104e63... Enabled job title and description visibility in timesheets
 
 function ValidateHTTPStatus(resp) {
     if (!resp.ok) {
@@ -54,6 +43,4 @@ function ValidateHTTPStatus(resp) {
         }
     }
     return resp.json();
-=======
->>>>>>> 7b5fccd... Added client user view, and made it possible to add jobs attached to companies
 }

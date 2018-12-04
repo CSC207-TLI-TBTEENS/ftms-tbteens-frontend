@@ -72,7 +72,6 @@ export class JobAssignment extends Component {
             }
         );
         this.getJobsFromEmployee({...employee});
-        console.log(JSON.stringify(this.state.employeeJobs));
     };
 
     render() {
@@ -106,12 +105,12 @@ export class JobAssignment extends Component {
                         </div>
                         <div className="row align-items-center justify-content-center">
                             <div className="col-md-12 mb-3 d-flex justify-content-center">
-                                <EmployeeConfirmation currentEmployee={this.state.employeeToConfirm} jobs={this.state.employeeJobs} onClick={this.dummyOnClick()}/>
+                                <EmployeeConfirmation currentEmployee={this.state.employeeToConfirm} jobs={this.state.employeeJobs} onClick={this.dummyOnClick}/>
                             </div>
                          </div>
                         <div className="row justify-content-center">
                             <div className="col-md-12 d-flex justify-content-center">
-                                <Confirmation employee={this.state.employeeToConfirm} job={this.state.jobToConfirm} onClick={this.dummyOnClick()}/>
+                                <Confirmation employee={this.state.employeeToConfirm} job={this.state.jobToConfirm} onClick={this.dummyOnClick}/>
                             </div>
                         </div>
                     </div> 
