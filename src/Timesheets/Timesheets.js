@@ -22,8 +22,6 @@ class Timesheets extends Component {
     }
 
     async loadTimesheets() {
-        // let job = {id: 2, jobName: "Sami's Job", clientName: "UofT", description: "This is a new job", tasks: 0};
-        // let jobs = [job];
         let getTimesheets = await apiCalls.getJobsFromEmployee(this.props.currentUser.user.id);
         this.setState({timesheets: [...getTimesheets], timesheetsShow: [...getTimesheets]});
     }

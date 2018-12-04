@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ClientJobList from './ClientJobList';
 import ClientJobForm from './ClientJobForm';
 import SearchBar from "../components/Search";
+import withAuth from "../hocs/withAuth";
 
 import * as apiCalls from './api';
 import * as sorter from '../components/Sorter.js'
@@ -28,6 +29,13 @@ class ClientJobs extends Component {
         this.loadJobs();
     }
 
+    // Load jobs associated with the company of the current user.
+    async loadJobs() {
+        let jobs = await apiCalls.getJobs(this.props.currentUser.company);
+        this.setState({clientJobs:[...jobs],loading : false, clientJobsShow:[...jobs]});
+    }
+
+    // Sorting function for jobs.
     async sortJobs(key) {
         let changeKey = (key !== this.state.previousKey) ? true : this.state.changeKey;
         let sortedList = await sorter.sortTable([...this.state.jobs], [...this.state.jobsShow], 
@@ -36,13 +44,9 @@ class ClientJobs extends Component {
                         changeKey: !changeKey, previousKey: key});
     }
 
-    async loadJobs() {
-        let jobs = await apiCalls.getJobs();
-        this.setState({clientJobs:[...jobs],loading : false, clientJobsShow:[...jobs]});
-    }
-
+    // Create a new job, and assign it to the company of the current user.
     async createJob(job) {
-        let newJob = await apiCalls.createJob(job);
+        let newJob = await apiCalls.createJob(this.props.currentUser.company, job);
         this.setState({clientJobs : [...this.state.clientJobs, newJob],
                         clientJobsShow: [...this.state.clientJobsShow, newJob]});
     }
@@ -78,6 +82,7 @@ class ClientJobs extends Component {
                             <div className="modal-body">
                                 <ClientJobForm
                                     createJob = {this.createJob}
+                                    company = {this.props.currentUser.company}
                                 />
                             </div>
                         </div>
@@ -95,4 +100,4 @@ class ClientJobs extends Component {
     }
 }
 
-export default ClientJobs;
+export default withAuth(["ROLE_CLIENT"], ClientJobs);

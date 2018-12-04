@@ -10,11 +10,7 @@ const TimesheetItem = ({id, jobTitle, company, description, siteName}) => (
                 <button type="button" className="btn btn-second mr-1" data-toggle="modal" data-target="#jobDetails">
                     Timesheet Details
                 </button>
-                <Link to={"/timesheets/" + id + "/edit"}>
-                    <button type="button" className="btn btn-main ml-1" >
-                        Edit Timesheet
-                    </button>
-                </Link>
+                <Link to={"/timesheets/" + id + "/edit"}/>
             </center>
          </td>
 

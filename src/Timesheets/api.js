@@ -2,8 +2,6 @@ import {apiCall} from "../Services/api";
 
 const TASKAPI = "/api/tasks/";
 
-
-
 // Get Tasks
 export async function getTasks(jobId, employeeID) {
     return apiCall('GET', TASKAPI + jobId + "/" + employeeID);

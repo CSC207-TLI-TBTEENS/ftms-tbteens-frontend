@@ -67,18 +67,31 @@ const Main = props => {
                 <Route exact path="/jobsview" component={withAuth(adminOnly, JobsView)} />
                 <Route exact path="/jobassign" component={withAuth(allUsers, JobAssignment)} />
                 <Route exact path="/review" component={withAuth(allUsers, Submit)} />
-                <Route exact path="/clientJobs" component={withAuth(allUsers, ClientJobs)}/>
+
+                {/* Client Jobs route, only accessible by client users. */}
+                <Route exact path="/clientJobs" render={(props) => 
+                    <ClientJobs
+                        removeAlert={removeAlert}
+                        alerts={alerts}
+                        addAlert={addAlert}
+                        currentUser={currentUser.user}
+                        {...props}
+                />} />
+
+                {/* Timesheets Route */}
                 <Route exact path="/timesheets" render={(props) => 
                 <Timesheets
                     currentUser={currentUser}
                     {...props}
                 />} />
+
+                {/* Timesheet editing route */}
                 <Route exact path="/timesheets/:id/edit" render={(props) => 
                 <TimesheetEdit
                     currentUser={currentUser}
                     {...props}
-                    /*component={withAuth(allUsers, TimesheetEdit)}/>*/
                 />} />
+
                 <Route exact path="/viewhistory" component={withAuth(allUsers, ViewHistory)}/>
 
                 {/* This is the root route. */}
