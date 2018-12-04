@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import TaskList from "./TaskList";
+import TaskList from "../Tasks/TaskList";
 import PartRequestForm from "./PartRequestForm";
-import * as apiCalls from './api';
+import * as apiCalls from '../Tasks/api';
 import * as jobApiCalls from '../JobsView/api.js'
-import TaskForm from './TaskForm';
+import TaskForm from '../Tasks/TaskForm';
 import { Message, MessageBox } from 'element-react';
 
 
@@ -45,7 +45,6 @@ class TimesheetEdit extends Component {
     async loadJob(jobId) {
         let job = await jobApiCalls.getJobFromId(jobId);
         this.setState({job: job});
-        console.log("Print something");
     }
 
     async addTask(task) {

@@ -14,8 +14,10 @@ class TaskList extends Component {
                 curr = {this.props.parent}
             />
         ));
+
+        console.log(this.props.task);
         let num = 0;
-        let key = 0
+        let key = 0;
         const modals = this.props.task.map(task => {
             num++;
             return (
