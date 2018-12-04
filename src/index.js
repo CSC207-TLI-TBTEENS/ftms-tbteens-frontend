@@ -14,6 +14,7 @@ import './css/ButtonsIcons.css';
 import './css/Login.css';
 import './css/mobile.css';
 import './css/Submit.css';
+import './css/Notification.css';
 
 ReactDOM.render(<App />,  document.getElementById('root'));
 

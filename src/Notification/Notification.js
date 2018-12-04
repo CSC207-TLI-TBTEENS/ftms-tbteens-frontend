@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import {getNotifications, updateIsRead} from "./api";
-import "./Notification.css"
+import "../css/Notification.css"
 import {Badge} from "element-react";
 
 class Notification extends Component {
