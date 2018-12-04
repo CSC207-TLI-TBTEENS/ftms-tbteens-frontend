@@ -17,6 +17,7 @@ import UserRegistration from "../Registration/UserRegistration.js";
 import CompanyRegistration from "../Registration/CompanyRegistration.js";
 import { authUser } from "../store/actions/auth";
 import { removeAlert, addAlert } from "../store/actions/alerts";
+import SpecificTask from "../Tasks/SpecificTask";
 
 const Main = props => {
     const adminOnly = ["ROLE_ADMIN"];
@@ -88,6 +89,14 @@ const Main = props => {
                 {/* Timesheet editing route */}
                 <Route exact path="/timesheets/:id/edit" render={(props) => 
                 <TimesheetEdit
+                    currentUser={currentUser}
+                    {...props}
+                />} />
+
+                {/* Task editing route */}
+                {/* <Route exact path="/task/:id/edit" render={(props) =>  */}
+                <Route exact path="/taskedit" render={(props) => 
+                <SpecificTask
                     currentUser={currentUser}
                     {...props}
                 />} />

@@ -16,7 +16,7 @@ export async function getEmployeesFromJob(input) {
 <<<<<<< HEAD
 =======
 export async function getJobFromId(id) {
-    return apiCall("GET", JOBAPI + id);
+    return apiCall("GET", JOBAPI + id + "/timesheet");
 }
 
 >>>>>>> 7b5fccd... Added client user view, and made it possible to add jobs attached to companies

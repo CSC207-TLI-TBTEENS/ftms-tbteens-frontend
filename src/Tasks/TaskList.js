@@ -66,8 +66,9 @@ class TaskList extends Component {
                     <tr className="table-head">
                         <th scope="col">Task Name</th>
                         <th scope="col">Task Description</th>
-                        <th scope="col">Start Time</th>
-                        <th scope="col">End Time</th>
+                        {/* <th scope="col">Start Time</th>
+                        <th scope="col">End Time</th> */}
+                        <th scope="col">Edit</th>
                     </tr>
                 </thead>
                 <tbody>

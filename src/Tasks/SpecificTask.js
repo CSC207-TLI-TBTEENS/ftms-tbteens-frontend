@@ -13,15 +13,16 @@ class SpecificTask extends Component {
                 {label: "Duration", value: ""}]
         }
     }
+
     render() {
         return(
             <div className="container">
                 <header className="jumbotron bg-image">
                     <div className="container">
-                        <h1 className="display-4 pb-3">Task Name</h1>
+                        <h1 className="display-4 pb-3">{this.props.taskName}</h1>
                         {/*TODO: Change this "Task Name" to be from props*/}
                         {/*<h1 className="display-4">{this.state.taskId}</h1>*/}
-                        <p className="h4">Task Description</p>
+                        <p className="h4">{this.props.taskName}</p>
                         {/*TODO: Change this "Task description" to be from props*/}
                         </div>
                         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;

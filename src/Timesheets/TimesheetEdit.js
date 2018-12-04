@@ -25,15 +25,14 @@ class TimesheetEdit extends Component {
     }
 
    componentDidMount() {
-       const jobId = this.props.match.params.id;
+       const timesheetId = this.props.match.params.id;
        const userId = this.props.currentUser.user.id;
-       this.setState({jobId: jobId});
-       this.loadTasks(jobId, userId);
-       this.loadJob(jobId);
+       this.loadTasks(timesheetId);
+       this.loadJob(timesheetId);
    }
 
-   async loadTasks(jobId, userId) {
-       let tasks = await apiCalls.getTasks(jobId, userId);
+   async loadTasks(timesheetId) {
+       let tasks = await apiCalls.getTasks(timesheetId);
        this.setState({taskList: tasks});
        this.setState({taskShow: [...tasks]});
    }
@@ -42,8 +41,8 @@ class TimesheetEdit extends Component {
         // let newRequest = await apiCalls.createPartRequest(request);
     }
 
-    async loadJob(jobId) {
-        let job = await jobApiCalls.getJobFromId(jobId);
+    async loadJob(timesheetId) {
+        let job = await jobApiCalls.getJobFromId(timesheetId);
         this.setState({job: job});
     }
 
@@ -193,6 +192,7 @@ class TimesheetEdit extends Component {
                              <div className="modal-body">
                             <TaskForm
                             addTask = {this.addTask}
+                            timesheetId= {this.props.match.params.id}
                             />
                             </div>
                         </div>
