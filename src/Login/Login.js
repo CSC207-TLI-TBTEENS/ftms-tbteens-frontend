@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import './Login.css';
 import Federation from './FedLogin.js';
 import ForgotCredentials from './ForgotCredentials.js';
 import { Message } from 'element-react';
@@ -17,12 +16,12 @@ class Login extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleForgotCreds = () => {
-        this.setState({forgot: true});
+    handleForgotCreds = (tof) => {
+        this.setState({forgot: tof});
     }
 
     handleChange(e) {
-        this.props.removeError();
+        this.props.removeAlert();
 		this.setState({[e.target.name] : e.target.value});
     }
 
@@ -41,28 +40,28 @@ class Login extends Component {
     render() {
         const {email, password} = this.state;
         const {
-            errors,
+            alerts,
             history,
-            removeError
+            removeAlert
           } = this.props;
 
         history.listen(() => {
-            removeError();
+            removeAlert();
         });
 
         let display = (
             <div className="container">
-                {errors.message && (
+                {alerts.message && (
                     Message({
-                        type: 'error',
-                        message: errors.message,
+                        type: alerts.category,
+                        message: alerts.message,
                         showClose: true
                     })
                 )} 
                 <div className="row">
-                    <div className="container container-style">
+                    <div className="container container-style mb-3">
                         <img className="logo-header pt-3" src={Logo} alt="Logo"/>   
-                        <div className="field">
+                        <div className="pt-3">
                             <form className="login-form" onSubmit={this.handleSubmit}>
                                 <div className="form-group">
                                     <input 
@@ -97,7 +96,7 @@ class Login extends Component {
                                         </div>
                                     </div>
                                     <div className="col">
-                                        <p className="forgot-acc" onClick={this.handleForgotCreds}>Forgot your credentials?</p>
+                                        <p className="forgot-acc" onClick={this.handleForgotCreds.bind(this, true)}>Forgot your credentials?</p>
                                     </div>
                                 </div>
                                 <div className="login-submit">
@@ -106,7 +105,7 @@ class Login extends Component {
                             </form>
                             <div className="third-party-buttons">
                                 <hr className="row justify-content-center divider"/>
-                                <p className="row justify-content-center third-party-login">Login with Google or Facebook</p>
+                                <h6 className="row justify-content-center third-party-login">Login with Google or Facebook</h6>
                                 <Federation />
                             </div>     
                         </div>
@@ -116,7 +115,7 @@ class Login extends Component {
         )
         if (this.state.forgot) {
             display = (
-                <ForgotCredentials />
+                <ForgotCredentials switchBack={this.handleForgotCreds} parent={this}/>
             )
         }
         

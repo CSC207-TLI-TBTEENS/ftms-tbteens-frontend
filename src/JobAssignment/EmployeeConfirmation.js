@@ -18,7 +18,6 @@ const EmployeeConfirmation = (props) => {
 
                             <div class="modal fade" id="deleteJobCenterModal" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
                               <div class="modal-dialog modal-dialog-centered" role="document">
-
                                 <div class="modal-content modal-content-confirm">
 
                                   <div class="modal-header modal-header-confirm">
@@ -34,7 +33,6 @@ const EmployeeConfirmation = (props) => {
 
                               </div>
                             </div>
-
                         </div>
                     )
                 })
