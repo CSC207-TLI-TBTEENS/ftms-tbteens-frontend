@@ -44,6 +44,7 @@ class UserRegistration extends Component {
         let employee = await apiCall("GET", "/api/auth/user/" + this.props.match.params.id);
         this.setState({ employee })
     }
+    
     render() {
         const {firstname, lastname} = this.state.employee;
         const {password, confirmPassword, completed} = this.state;

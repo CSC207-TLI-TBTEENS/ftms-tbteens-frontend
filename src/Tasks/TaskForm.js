@@ -4,12 +4,15 @@ class TaskForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            taskname: '',
-            starttime: '',
-            endtime: ''
+            timesheet: this.props.timesheetId,
+            name: '',
+            description: ''
+
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        
+        
     }
 
     async handleChange(e) {
@@ -21,14 +24,13 @@ class TaskForm extends Component {
         e.preventDefault();
         this.props.addTask({...this.state});
         this.setState({
-            taskname:'',
-            starttime: '',
-            endtime: ''
+            name: '',
+            description: ''
         });
       }
     
     render() {
-        const {taskname, starttime, endtime} = this.state;
+        const {name,description, endtime} = this.state;
         return (
             <div className="container">
 	        <div className="row align-items-center justify-content-center h-100">
@@ -36,20 +38,32 @@ class TaskForm extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-row">
                         <div className="form-group">
-                            <label htmlFor="taskname">Task Name</label>
+                            <label htmlFor="name">Task Name</label>
                             <input 
                             type="text"
                             className="form-control"
-                            name="taskname"
-                            id="taskname" 
-                            placeholder={this.state.taskname}
-                            value={taskname}
+                            name="name"
+                            id="name" 
+                            placeholder={this.state.name}
+                            value={name}
                             autoComplete="off"
                             onChange={this.handleChange}/>
                         </div>
                     </div>
-                    
-                    
+                    <div className="form-row">
+                        <div className="form-group">
+                            <label htmlFor="description">Task Description</label>
+                            <input 
+                            type="text"
+                            className="form-control"
+                            name="description"
+                            id="description" 
+                            placeholder={this.state.description}
+                            value={description}
+                            autoComplete="off"
+                            onChange={this.handleChange}/>
+                        </div>
+                    </div>                    
                     <div className="row justify-content-center">
                         <button
                             type="submit"
