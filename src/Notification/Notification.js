@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import {getNotifications} from "./api";
+import {getNotifications, updateIsRead} from "./api";
 import "./Notification.css"
+import {Badge} from "element-react";
 
 class Notification extends Component {
 
     state = {
         userId: this.props.currentUser.user,
-        notifications: []
+        notifications: [],
+        unread: true,
     };
 
     componentWillMount() {
@@ -17,17 +19,34 @@ class Notification extends Component {
     async getNotifications(){
         let notifications = await getNotifications(this.state.userId.id);
         this.setState({notifications: notifications})
+        let i;
+        for(i = 0; i < this.state.notifications.length; i++){
+            if(this.state.notifications[i].read == false){
+                this.setState({unread: false})
+            }
+        }
+    }
+
+    switchIconsHandler = () => {
+        let i;
+        for(i = 0; i < this.state.notifications.length; i++){
+           updateIsRead(this.state.notifications[i].notificationId);
+        }
+
+        this.setState(
+            {unread: true})
     }
 
     render(){
-        console.log(this.state.userId.id)
-        console.log(this.state.notifications)
         return(
             <div className="Notification">
                 <li className="nav-item dropdown">
                     <a className="nav-link" href="#" id="navbarDropdownMenuLink"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i className="fa fa-bell"></i>
+                        <i onClick={this.switchIconsHandler.bind(this)} className="fa fa-bell">
+                            {this.state.unread == false  &&
+                            <Badge isDot></Badge>}
+                        </i>
                     </a>
                     <div className="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
                         <div>
