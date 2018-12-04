@@ -18,6 +18,10 @@ import CompanyRegistration from "../Registration/CompanyRegistration.js";
 import { authUser } from "../store/actions/auth";
 import { removeAlert, addAlert } from "../store/actions/alerts";
 
+import SpecificTask from "../Timesheets/SpecificTask";
+
+
+
 const Main = props => {
     const adminOnly = ["ROLE_ADMIN"];
     const allUsers  = ["ROLE_ADMIN", "ROLE_EMPLOYEE", "ROLE_SUPERVISOR", "ROLE_CLIENT"];
@@ -71,6 +75,8 @@ const Main = props => {
                 <Route exact path="/timesheets" component={withAuth(allUsers, Timesheets)}/>
                 <Route exact path="/timesheets/edit" component={withAuth(allUsers, TimesheetEdit)}/>
                 <Route exact path="/viewhistory" component={withAuth(allUsers, ViewHistory)}/>
+
+                <Route exact path="/onetask" component={withAuth(allUsers, SpecificTask)}/>
 
                 {/* This is the root route. */}
                 <Route exact path="/" render={(props) => 
