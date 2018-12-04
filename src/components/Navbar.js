@@ -40,6 +40,7 @@ class Navbar extends Component {
                                 <li className="nav-item">
                                     <Link className="nav-link" to={"/jobsview"}> Jobs </Link>
                                 </li>
+                               
                             </ul>
                         }
 
@@ -50,6 +51,9 @@ class Navbar extends Component {
                                 </li>
                                 <li className="nav-item">
                                     <Link className="nav-link" to={"/review"}> Review and Submit </Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to={"/onetask"}> Specific Task </Link>
                                 </li>
                             </ul>
                         }
