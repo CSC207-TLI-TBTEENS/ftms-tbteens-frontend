@@ -26,7 +26,7 @@ const Main = props => {
     return (
         <Route render={({location}) => (
             <Switch location={location}>
-                {/* This is the login route. */}
+                {/* Login route. */}
                 <Route exact path="/login" render={(props) => 
                 <Login 
                     removeAlert={removeAlert}
@@ -82,7 +82,15 @@ const Main = props => {
                         {...props}
                 />} />
 
-                <Route exact path="/jobsview" component={withAuth(adminOnly, JobsView)} />
+                {/* JobsView route, only accessed by admins. */}
+                <Route exact path="/jobsview"  render={(props) => 
+                    <JobsView
+                        removeAlert={removeAlert}
+                        alerts={alerts}
+                        addAlert={addAlert}
+                        {...props}
+                />} />
+
                 <Route exact path="/review" component={withAuth(allUsers, Submit)} />
 
                 {/* Client Jobs route, only accessible by client users. */}

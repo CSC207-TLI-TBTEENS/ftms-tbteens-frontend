@@ -96,6 +96,10 @@ export class JobAssignment extends Component {
     };
 
     render() {
+        // Removing alerts if page is reloaded.
+        this.props.history.listen(() => {
+            this.props.removeAlert();
+        });
         return (
             <div className="container h-80">
                 <div class="row justify-content-center align-items-center">

@@ -50,7 +50,8 @@ class JobForm extends Component {
                             placeholder="Drive"
                             value={taskName}
                             autoComplete="off"
-                            onChange={this.handleChange}/>
+                            onChange={this.handleChange}
+                            required/>
                         </div>
                         <div className="form-group col-md-6">
                             <label htmlFor="siteName">Site Name</label>
@@ -62,26 +63,28 @@ class JobForm extends Component {
                             placeholder="Timmins"
                             value={siteName}
                             autoComplete="off"
-                            onChange={this.handleChange}/>
+                            onChange={this.handleChange}
+                            required/>
                         </div>
                     </div>
                     <div className="form-row">
                         <div className="form-group col-md-6">
                             <label htmlFor="workerName">Worker</label>
                             <input 
-                            type="workerName"
+                            type="text"
                             className="form-control"
                             name="workerName"
                             id="workerName" 
                             placeholder="John"
                             value={workerName}
                             autoComplete="off"
-                            onChange={this.handleChange}/>
+                            onChange={this.handleChange}
+                            required/>
                         </div>
                         <div className="form-group col-md-6">
                             <label htmlFor="companyName">Company</label>
                             <input 
-                            type="tel"
+                            type="text"
                             className="form-control"
                             name="companyName"
                             id="companyName" 
@@ -95,26 +98,28 @@ class JobForm extends Component {
                         <div className="form-group col-md-6">
                             <label htmlFor="startTime">Start</label>
                             <input 
-                            type="startTime"
+                            type="text"
                             className="form-control"
                             name="startTime"
                             id="startTime" 
                             placeholder="12:00"
                             value={startTime}
                             autoComplete="off"
-                            onChange={this.handleChange}/>
+                            onChange={this.handleChange}
+                            required/>
                         </div>
                         <div className="form-group col-md-6">
                             <label htmlFor="endTime">End Time</label>
                             <input 
-                            type="tel"
+                            type="text"
                             className="form-control"
                             name="endTime"
                             id="endTime" 
                             placeholder="12:00"
                             value={endTime}
                             autoComplete="off"
-                            onChange={this.handleChange}/>
+                            onChange={this.handleChange}
+                            required/>
                         </div>
                     </div>
                     <button
