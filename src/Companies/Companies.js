@@ -165,6 +165,11 @@ class Companies extends Component {
     }
 
     render() {
+        // Removing alerts if page is reloaded.
+        this.props.history.listen(() => {
+            this.props.removeAlert();
+        });
+
         let content;
         if (this.state.loading) {
             content = <Loading/>;
