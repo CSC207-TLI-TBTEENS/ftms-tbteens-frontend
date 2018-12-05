@@ -8,7 +8,9 @@ class errorPage extends Component {
     this.state = {
       done: true,
       input: [],
-      code: [38,38,40,40,37,39,37,39,66,65,13],
+        code:[38]
+
+      // code: [38,38,40,40,37,39,37,39,66,65,13],
       // above is the konami code (up,up,down,down,left,right,left,right,b,a,enter)
     }
   }
@@ -43,6 +45,12 @@ class errorPage extends Component {
               <hr className="my-4"/>
               <h3 className="">This page does not exist</h3>
             </div>
+
+              {/*This just adds an animation of ocean waves*/}
+              <div className="ocean">
+                  <div className="wave"></div>
+                  <div className="wave"></div>
+              </div>
           </div>
         </div>
 
