@@ -49,7 +49,8 @@ class ViewHistoryForm extends Component {
                                         placeholder={'Fix Equipment'}
                                         value={JobName}
                                         autoComplete="off"
-                                        onChange={this.handleChange}/>
+                                        onChange={this.handleChange}
+                                        required/>
                                 </div>
                             </div>
 
@@ -63,7 +64,8 @@ class ViewHistoryForm extends Component {
                                         id="DateInfo"
                                         value={DateInfo}
                                         autoComplete="off"
-                                        onChange={this.handleChange}/>
+                                        onChange={this.handleChange}
+                                        required/>
                                 </div>
                             </div>
 
@@ -78,7 +80,8 @@ class ViewHistoryForm extends Component {
                                         placeholder="87"
                                         value={StartTime}
                                         autoComplete="off"
-                                        onChange={this.handleChange}/>
+                                        onChange={this.handleChange}
+                                        required/>
                                 </div>
                                 <div className="form-group col-md-6">
                                     <label htmlFor="EndTime">End Time</label>
@@ -89,7 +92,8 @@ class ViewHistoryForm extends Component {
                                         id="EndTime"
                                         value={EndTime}
                                         autoComplete="off"
-                                        onChange={this.handleChange}/>
+                                        onChange={this.handleChange}
+                                        required/>
                                 </div>
                             </div>
 
@@ -106,7 +110,8 @@ class ViewHistoryForm extends Component {
                                         placeholder={'98'}
                                         value={TravelTime}
                                         autoComplete="off"
-                                        onChange={this.handleChange}/>
+                                        onChange={this.handleChange}
+                                        required/>
                                 </div>
                             </div>
 
