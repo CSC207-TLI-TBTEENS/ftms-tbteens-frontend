@@ -29,18 +29,29 @@ class EmployeeForm extends Component {
             role: "ROLE_EMPLOYEE"
         });
         this.props.addEmployee(this.state);
-      }
+    }
     
+    // Returns which error display should be displayed
+    getAlert() {
+        if (this.props.alerts.category === "error-adding") {
+            return "alert alert-danger"
+        }
+        if (this.props.alerts.category === "success-adding") {
+            return "alert alert-success"
+        }
+        return "d-none"
+    }
+
     render() {
         const {firstname, lastname, email, number, role} = this.state;
-        const alertClass = this.props.alerts.category === "error" ? "alert alert-danger" : "alert alert-success"
+
         return (
             <div className="container">
 	        <div className="row align-items-center justify-content-center h-100">
             <div className="popup-form">
                 <form onSubmit={this.handleSubmit}>
                     {this.props.alerts.message && (
-                        <div className={alertClass}>{this.props.alerts.message}</div>
+                        <div className={this.getAlert()}>{this.props.alerts.message}</div>
                     )}
                     <div className="form-row">
                         <div className="form-group col-md-6">
