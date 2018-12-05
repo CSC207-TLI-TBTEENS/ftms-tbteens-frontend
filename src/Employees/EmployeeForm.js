@@ -15,7 +15,7 @@ class EmployeeForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    async handleChange(e) {
+    handleChange(e) {
         this.setState({[e.target.name] : e.target.value});
     }
     
@@ -33,10 +33,10 @@ class EmployeeForm extends Component {
     
     // Returns which error display should be displayed
     getAlert() {
-        if (this.props.alerts.category === "error-adding") {
+        if (this.props.alerts.category === "error-adding-employee") {
             return "alert alert-danger"
         }
-        if (this.props.alerts.category === "success-adding") {
+        if (this.props.alerts.category === "success-adding-employee") {
             return "alert alert-success"
         }
         return "d-none"
@@ -64,7 +64,8 @@ class EmployeeForm extends Component {
                             placeholder="John"
                             value={firstname}
                             autoComplete="off"
-                            onChange={this.handleChange}/>
+                            onChange={this.handleChange}
+                            required/>
                         </div>
                         <div className="form-group col-md-6">
                             <label htmlFor="lastName">Last Name</label>
@@ -76,7 +77,8 @@ class EmployeeForm extends Component {
                             placeholder="Doe"
                             value={lastname}
                             autoComplete="off"
-                            onChange={this.handleChange}/>
+                            onChange={this.handleChange}
+                            required/>
                         </div>
                     </div>
                     <div className="form-row">
@@ -90,7 +92,8 @@ class EmployeeForm extends Component {
                             placeholder="example@example.com"
                             value={email}
                             autoComplete="off"
-                            onChange={this.handleChange}/>
+                            onChange={this.handleChange}
+                            required/>
                         </div>
                         <div className="form-group col-md-6">
                             <label htmlFor="number">Phone Number</label>
@@ -102,7 +105,8 @@ class EmployeeForm extends Component {
                             placeholder="289-400-2393"
                             value={number}
                             autoComplete="off"
-                            onChange={this.handleChange}/>
+                            onChange={this.handleChange}
+                            required/>
                         </div>
                     </div>
                     <div className="row justify-content-center">
@@ -133,7 +137,7 @@ class EmployeeForm extends Component {
 
 function mapStateToProps(state) {
     return {
-      alerts: state.alerts
-    };
-  }
-  export default connect(mapStateToProps)(EmployeeForm);
+        alerts: state.alerts
+    }; 
+}
+export default connect(mapStateToProps)(EmployeeForm);
