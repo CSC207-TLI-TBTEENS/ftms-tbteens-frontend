@@ -36,8 +36,8 @@ class Employees extends Component {
     // Loading the employees list.
     async loadEmployees() {
         try {
-            let employees = await apiCalls.getEmployees();
             this.props.removeAlert();
+            let employees = await apiCalls.getEmployees();
             this.setState({employees : employees, loading : false, employeesShow:[...employees]});
         } catch(err) {
             this.props.addAlert("error-load-employee", err.message);
@@ -47,13 +47,13 @@ class Employees extends Component {
     // Adding an employee. This is passed as a prop to the EmployeeForm.
     async addEmployee(employee) {
         try {
-            let newEmployee = await apiCalls.createEmployee(employee);
             this.props.removeAlert();
+            let newEmployee = await apiCalls.createEmployee(employee);
             this.setState({employees : [...this.state.employees, newEmployee], 
                 employeesShow : [...this.state.employeesShow, newEmployee]});
-            this.props.addAlert("success-adding", "Successfully added new employee!");
+            this.props.addAlert("success-adding-employee", "Successfully added new employee!");
         } catch(err) {
-            this.props.addAlert("error-adding", err.message);
+            this.props.addAlert("error-adding-employee", err.message);
         }
     }
 

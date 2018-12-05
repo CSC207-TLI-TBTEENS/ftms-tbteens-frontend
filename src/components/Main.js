@@ -64,7 +64,15 @@ const Main = props => {
                         {...props}
                 />} />
 
-                <Route exact path="/companies" component={withAuth(adminOnly,Companies)} />
+                {/* Companies route, only accessed by admins. */}
+                <Route exact path="/companies"  render={(props) => 
+                    <Companies
+                        removeAlert={removeAlert}
+                        alerts={alerts}
+                        addAlert={addAlert}
+                        {...props}
+                />} />
+
                 <Route exact path="/jobsview" component={withAuth(adminOnly, JobsView)} />
                 <Route exact path="/jobassign" component={withAuth(allUsers, JobAssignment)} />
                 <Route exact path="/review" component={withAuth(allUsers, Submit)} />

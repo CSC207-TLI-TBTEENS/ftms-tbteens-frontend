@@ -5,7 +5,8 @@ import CompanyList from './CompanyList';
 import Loading from '../components/Loading';
 import SearchBar from '../components/Search.js';
 import { MessageBox, Message} from 'element-react';
-import * as sorter from '../components/Sorter.js'
+import * as sorter from '../components/Sorter.js';
+import withAuth from "../hocs/withAuth";
 
 class Companies extends Component {
     constructor(props) {
@@ -31,14 +32,26 @@ class Companies extends Component {
     }
 
     async loadCompanies() {
-        let companies= await apiCalls.getCompanies();
-        this.setState({companies : companies, loading : false, companiesShow: [...companies]});
+        try {
+            this.props.removeAlert();
+            let companies= await apiCalls.getCompanies();
+            this.setState({companies : companies, loading : false, companiesShow: [...companies]});
+        } catch(err) {
+            this.props.addAlert("error-load-company", err.message);
+        }
     }
 
+    // Adding an employee. This is passed as a prop to the EmployeeForm.
     async addCompany(company) {
-        let newCompany= await apiCalls.createCompany(company);
-        this.setState({companies : [...this.state.companies, newCompany],
-                        companiesShow: [...this.state.companiesShow, newCompany]});
+        try {
+            this.props.removeAlert();
+            let newCompany= await apiCalls.createCompany(company);
+            this.setState({companies : [...this.state.companies, newCompany],
+                            companiesShow: [...this.state.companiesShow, newCompany]});
+            this.props.addAlert("success-adding-company", "Successfully added new company!");
+        } catch(err) {
+            this.props.addAlert("error-adding-company", err.message);
+        }
     }
 
     searchRet(data){
@@ -181,6 +194,11 @@ class Companies extends Component {
                     </div>
                 </header>
                 
+                {/* In case the employees list doesn't load */}
+                <div className={ this.props.alerts.category === "error-load-company" ? "d-block alert alert-danger" : "d-none" }>
+                    {this.props.alerts.message}
+                </div>
+
                 {content}
 
                 <div className="modal fade" id="companyForm" tabIndex="-1" role="dialog" aria-labelledby="createNewCompany" aria-hidden="true">
@@ -205,4 +223,4 @@ class Companies extends Component {
     }
 }
 
-export default Companies;
+export default withAuth(["ROLE_ADMIN"], Companies);
