@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import TaskList from "./TaskList";
+import TaskList from "../Tasks/TaskList";
 import PartRequestForm from "./PartRequestForm";
-import * as apiCalls from './api';
-import TaskForm from './TaskForm';
+import * as apiCalls from '../Tasks/api';
+import * as jobApiCalls from '../JobsView/api.js'
+import TaskForm from '../Tasks/TaskForm';
 import { Message, MessageBox } from 'element-react';
 
 
@@ -10,7 +11,9 @@ class TimesheetEdit extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            jobId: null,
+            jobId: "",
+            job: {},
+            user: {},
             location: "",
             taskList: [],
             taskShow:[],
@@ -20,31 +23,34 @@ class TimesheetEdit extends Component {
         }
     this.addTask = this.addTask.bind(this);
     }
-//    componentDidMount() {
-//        const { id } = this.props.match.params;
-//        this.setState({jobId: id});
-//        this.loadTasks(this.state.jobId);
-//    }
-//
-//    async loadTasks() {
-//        // let tasks = await apiCalls.getJobTasks();
-//        //this.setState({taskList: tasks});
-//        this.setState({taskList: []});
-//    }
+
+   componentDidMount() {
+       const timesheetId = this.props.match.params.id;
+       const userId = this.props.currentUser.user.id;
+       this.loadTasks(timesheetId);
+       this.loadJob(timesheetId);
+   }
+
+   async loadTasks(timesheetId) {
+       let tasks = await apiCalls.getTasks(timesheetId);
+       this.setState({taskList: tasks});
+       this.setState({taskShow: [...tasks]});
+   }
 
     async submitPartRequest(request) {
         // let newRequest = await apiCalls.createPartRequest(request);
     }
 
+    async loadJob(timesheetId) {
+        let job = await jobApiCalls.getJobFromId(timesheetId);
+        this.setState({job: job});
+    }
 
     async addTask(task) {
         let newTask = await apiCalls.createTask(task);
         this.setState({taskList : [...this.state.taskList, newTask], 
                     taskShow : [...this.state.taskShow, newTask]});
     }
-
-
-
    
     setTaskViewing = (taskname, starttime, endtime) => {
         this.setState({taskViewed: [
@@ -107,7 +113,6 @@ class TimesheetEdit extends Component {
 
     async confirmDeletion(id, taskname) {
         let deleted = false;
-        console.log(this);
         await MessageBox.confirm('This action will remove TASK #' + id + ' ' + taskname + ' from the database. Continue?', 'Warning', {
             confirmButtonText: 'OK',
             cancelButtonText: 'Cancel',
@@ -120,7 +125,6 @@ class TimesheetEdit extends Component {
               message: 'Deleted Task#' + id + ' ' + taskname + ' successfully!'
             });
         }).catch((error) => {
-            console.log(error)
             Message({
               type: 'info',
               message: "Deletion cancelled!"
@@ -149,58 +153,28 @@ class TimesheetEdit extends Component {
                         editHandler={this.handleTaskEdit}
                         parent={this}/> 
         </div>);
-    
+
         return(
             <div className="container">
-                <header className="jumbotron">
+                <header className="jumbotron bg-image">
                     <div className="container">
-                        <h1 className="display-4">{this.state.jobId}</h1>
+                        <h1 className="display-4">{this.state.job.jobTitle}</h1>
                         <hr className="my-4"/>
                         <p>
-                            Job Description here!!
+                            {this.state.job.description}
                         </p>
-                        <button type="button" className="btn btn-main mr-1" data-toggle="modal" data-target="#taskForm">
+                        <button type="button" className="btn btn-table mr-1" data-toggle="modal" data-target="#taskForm">
                             Add Task
                         </button>
-                        <button type="button" className="btn btn-second mr-1" data-toggle="modal" data-target="#requestForm">
+                        <button type="button" className="btn btn-table mr-1" data-toggle="modal" data-target="#requestForm">
                             Request Parts
                         </button>
-                        <button type="button" className="btn btn-submit mr-1 width-auto">
+                        <button type="button" className="btn btn-table mr-1 w-auto">
                             Review and Submit Timesheet
                         </button>
 
 
-                    {/* //     <br/> <br/>
-                    //     <table class="table">
-                    //         <thead>
-                    //             <tr>
-                    //                 <th scope="col">Task Name</th>
-                    //                 <th scope="col">Start Time</th>
-                    //                 <th scope="col">End Time</th>
-                    //             </tr>
-                    //         </thead>
-                    //         <tbody>
-                    //             <tr>
-                    //                 <th scope="row">1</th>
-                    //                 <td>Mark</td>
-                    //                 <td>Otto</td>
-                                 
-                    //             </tr>
-                    //          <tr>
-                    //             <th scope="row">2</th>
-                    //             <td>Jacob</td>
-                    //             <td>Thornton</td>
-                             
-                    //         </tr>
-                    //         <tr>
-                    //             <th scope="row">3</th>
-                    //              <td>Larry</td>
-                    //             <td>the Bird</td>
-                             
-                    //         </tr>
-                    //      </tbody>
-                    //     </table>
-                         */}
+                    {}
                     </div>
                 </header>
                 {content}
@@ -218,6 +192,7 @@ class TimesheetEdit extends Component {
                              <div className="modal-body">
                             <TaskForm
                             addTask = {this.addTask}
+                            timesheetId= {this.props.match.params.id}
                             />
                             </div>
                         </div>
@@ -242,10 +217,10 @@ class TimesheetEdit extends Component {
                                 />
                              </div>
                              <div className="modal-footer">
-                                <button type="button" className="btn btn-second mr-1" data-dismiss="modal">
+                                <button type="button" className="btn btn-submit mr-1" data-dismiss="modal">
                                     Back
                                 </button>
-                                <button type="button" className="btn btn-submit ml-1 width-auto" data-toggle="modal" data-target="#requestForm">
+                                <button type="button" className="btn btn-submit ml-1 w-auto" data-toggle="modal" data-target="#requestForm">
                                     Submit
                                 </button>
                              </div>

@@ -1,0 +1,10 @@
+.wrap{
+    white-space: pre-wrap;
+    width: 260px;
+    border-bottom: 1px solid;
+}
+
+.box-size{
+    max-height: 270px;
+    overflow-y: scroll;
+}

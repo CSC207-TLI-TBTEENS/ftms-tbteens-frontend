@@ -62,8 +62,8 @@ class CompanyList extends Component {
             )
         })
         return (
-            <div className="table-responsive">
-            <table className="table">
+            <div className="table-responsive table-shadow mb-4">
+            <table className="table mb-0">
                 <thead>
                     <tr className="table-head">
                         <th scope="col">Logo</th>

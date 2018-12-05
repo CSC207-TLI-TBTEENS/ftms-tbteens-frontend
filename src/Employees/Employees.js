@@ -6,6 +6,7 @@ import Loading from '../components/Loading.js';
 import SearchBar from '../components/Search.js';
 import { Message, MessageBox } from 'element-react';
 import * as sorter from '../components/Sorter.js';
+import withAuth from "../hocs/withAuth";
 
 class Employees extends Component {
     constructor(props) {
@@ -37,10 +38,17 @@ class Employees extends Component {
         this.setState({employees : employees, loading : false, employeesShow:[...employees]});
     }
 
+    // Adding an employee. This is passed as a prop to the EmployeeForm.
     async addEmployee(employee) {
-        let newEmployee = await apiCalls.createEmployee(employee);
-        this.setState({employees : [...this.state.employees, newEmployee], 
-                    employeesShow : [...this.state.employeesShow, newEmployee]});
+        try {
+            let newEmployee = await apiCalls.createEmployee(employee);
+            this.props.removeAlert();
+            this.setState({employees : [...this.state.employees, newEmployee], 
+                employeesShow : [...this.state.employeesShow, newEmployee]});
+            this.props.addAlert("success", "Successfully added new employee!");
+        } catch(err) {
+            this.props.addAlert("error", err.message);
+        }
     }
 
     searchRet(data){
@@ -165,6 +173,11 @@ class Employees extends Component {
     }
 
     render() {
+        // Removing alerts if page is reloaded.
+        this.props.history.listen(() => {
+            this.props.removeAlert();
+        });
+
         let content;
         if (this.state.loading) {
             content = <Loading/>;
@@ -183,16 +196,15 @@ class Employees extends Component {
         }
         return (
         <div className="container">
-            <header className="jumbotron bg-purple">
-                        <div className="container">
-                            <h1 className="display-4">Employees</h1>
-                            <hr className="my-4"/>
-                            <p>
-                                <button type="button" className="btn btn-submit" data-toggle="modal" data-target="#employeeForm">
-                                    Add Employee
-                                </button> 
-                            </p>
-                        </div>
+            <header className="jumbotron bg-image">
+                <div className="container">
+                    <h1 className="display-4 pb-3">Employees</h1>
+                    <p>
+                        <button type="button" className="btn btn-submit" data-toggle="modal" data-target="#employeeForm">
+                            Add Employee
+                        </button> 
+                    </p>
+                </div>
             </header>
             
             
@@ -221,4 +233,4 @@ class Employees extends Component {
     }
 }
 
-export default Employees;
+export default withAuth(["ROLE_ADMIN"], Employees);

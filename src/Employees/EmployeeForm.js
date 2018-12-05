@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { connect } from "react-redux";
 
 class EmployeeForm extends Component {
     constructor(props) {
@@ -20,7 +21,6 @@ class EmployeeForm extends Component {
     
     handleSubmit(e) {
         e.preventDefault();
-        this.props.addEmployee(this.state);
         this.setState({
             firstname: '',
             lastname: '',
@@ -28,15 +28,20 @@ class EmployeeForm extends Component {
             number: '',
             role: "ROLE_EMPLOYEE"
         });
+        this.props.addEmployee(this.state);
       }
     
     render() {
         const {firstname, lastname, email, number, role} = this.state;
+        const alertClass = this.props.alerts.category === "error" ? "alert alert-danger" : "alert alert-success"
         return (
             <div className="container">
 	        <div className="row align-items-center justify-content-center h-100">
             <div className="popup-form">
                 <form onSubmit={this.handleSubmit}>
+                    {this.props.alerts.message && (
+                        <div className={alertClass}>{this.props.alerts.message}</div>
+                    )}
                     <div className="form-row">
                         <div className="form-group col-md-6">
                             <label htmlFor="firstName">First Name</label>
@@ -114,4 +119,10 @@ class EmployeeForm extends Component {
     }
 }
 
-export default EmployeeForm;
+
+function mapStateToProps(state) {
+    return {
+      alerts: state.alerts
+    };
+  }
+  export default connect(mapStateToProps)(EmployeeForm);

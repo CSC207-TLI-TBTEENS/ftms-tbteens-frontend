@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import './clientJobDetails.css';
 
 class ClientJobForm extends Component {
     constructor(props) {
@@ -33,7 +32,7 @@ class ClientJobForm extends Component {
         return (
             <div className="container">
                 <form onSubmit={this.handleSubmit}>
-                    <div className="form-group col-md-18">
+                        <div className="form-group col-md-12">
                             <label htmlFor="jobTitle"> Job Title</label>
                             <input
                                 type="text"
@@ -46,7 +45,7 @@ class ClientJobForm extends Component {
                                 onChange={this.handleChange}/>
                         </div>
 
-                        <div className="form-group col-md-18">
+                        <div className="form-group col-md-12">
                             <label htmlFor="siteName"> Location</label>
                             <input
                                 type="text"
@@ -59,10 +58,9 @@ class ClientJobForm extends Component {
                                 onChange={this.handleChange}/>
                         </div>
 
-                        <div className="form-group col-md-18">
+                        <div className="form-group col-md-12">
                             <label htmlFor="description"> Description </label>
-                            <input
-                                type="text"
+                            <textarea
                                 className="form-control"
                                 name="description"
                                 id="description"
@@ -72,15 +70,14 @@ class ClientJobForm extends Component {
                                 onChange={this.handleChange}/>
                         </div>
 
-                    <div className="form-row justify-content-center">
-                        <div className="form-group col-md-5">
+                    
+                        <div className="form-group col-md-12">
                             <button
                                 type="submit" id = "login"
-                                className="btn btn-submit btn-block">
+                                className="btn btn-submit btn-block float-right">
                                 Create
                             </button>
                         </div>
-                    </div>
                 </form>
             </div>
         )

@@ -14,8 +14,10 @@ class TaskList extends Component {
                 curr = {this.props.parent}
             />
         ));
+
+        console.log(this.props.task);
         let num = 0;
-        let key = 0
+        let key = 0;
         const modals = this.props.task.map(task => {
             num++;
             return (
@@ -58,18 +60,20 @@ class TaskList extends Component {
             )
         })
         return (
-            <div className="table-responsive">
-            <table className="table">
+            <div className="table-responsive table-shadow mb-4">
+            <table className="table mb-0">
                 <thead>
                     <tr className="table-head">
                         <th scope="col">Task Name</th>
                         <th scope="col">Task Description</th>
-                        <th scope="col">Start Time</th>
-                        <th scope="col">End Time</th>
+                        {/* <th scope="col">Start Time</th>
+                        <th scope="col">End Time</th> */}
+                        <th scope="col">Edit</th>
                     </tr>
                 </thead>
                 <tbody>
                 {task}
+                {modals}
                 </tbody>
             </table>
             </div>

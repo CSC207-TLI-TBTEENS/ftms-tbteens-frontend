@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { logout } from "../store/actions/auth";
 import Logo from '../images/logo.png';
+import Notification from '../Notification/Notification.js';
 
 class Navbar extends Component {
     logout = e => {
@@ -12,15 +13,15 @@ class Navbar extends Component {
     };
     render() {
         // Whether to display login or logout.
-        let login = (this.props.currentUser.isAuthenticated ? 
+        let login = (this.props.currentUser.isAuthenticated ?
             <a href onClick={this.logout} className="nav-link"> 
-                Logout 
+                Logout
             </a>
             : <Link className="nav-link" to={"/login"}> Login </Link>
             )
         return (
             // Adding in Navbar
-            <nav className="navbar navbar-dark bg-purple navbar-expand-lg mb-3 w-100">
+            <nav className="navbar navbar-dark bg-black navbar-expand-lg mb-3 w-100">
                 <div className="container">
                     <div className="navbar-brand">
                         <img src={Logo} alt="FTMS Home" /> FTMS
@@ -29,6 +30,7 @@ class Navbar extends Component {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNav">
+                        {/* Links the admin can see  */}
                         {this.props.currentUser.user.role === "ROLE_ADMIN" &&
                             <ul className="navbar-nav mr-auto">    
                                 <li className="nav-item">
@@ -42,7 +44,8 @@ class Navbar extends Component {
                                 </li>
                             </ul>
                         }
-
+                        
+                        {/* Links the Employee can see */}
                         {this.props.currentUser.user.role === "ROLE_EMPLOYEE" &&
                             <ul className="navbar-nav mr-auto">    
                                 <li className="nav-item">
@@ -54,7 +57,27 @@ class Navbar extends Component {
                             </ul>
                         }
 
+                        {/* Links the client company users can see. */}
+                        {this.props.currentUser.user.role === "ROLE_CLIENT" &&
+                            <ul className="navbar-nav mr-auto">    
+                                <li className="nav-item">
+                                    <Link className="nav-link" to={"/clientjobs"}> Jobs </Link>
+                                </li>
+                            </ul>
+                        }
+
+
                         <ul className="navbar-nav ml-auto">
+                            {this.props.currentUser.user.role === "ROLE_ADMIN" &&
+                                <li>
+                                    <Notification />
+                                </li>
+                            }
+                            {this.props.currentUser.user.role === "ROLE_EMPLOYEE" &&
+                            <li>
+                                <Notification />
+                            </li>
+                            }
                             <li className="nav-item">
                                 {login}
                             </li>

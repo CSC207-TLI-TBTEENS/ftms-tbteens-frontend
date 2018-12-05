@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import SubmitList from './SubmitList';
-import './Submit.css';
 
 class Submit extends Component {
     constructor(props) {
@@ -9,8 +8,17 @@ class Submit extends Component {
         const regexHour = "^[0-9]+:[0-9]{2}$";
         const regexMoney = "^[$]{0,1}[0-9]*(,[0-9]{3})*(.[0-9]{2}){0,1}$";
 
-        this.state = {
-            details: props.details
+        if (this.props.details === null || this.props.details === []) {
+            this.state = { details: props.details }
+        }
+        else {
+            this.state = {
+                details:
+                    [{name: "Start Time", value: "12:34", inputRegex: regexTime},
+                    {name: "End Time", value: "23:45", inputRegex: regexTime},
+                    {name: "Travel Time", value: "00:00", inputRegex: regexHour},
+                    {name: "Costs", value: "1,000,000", inputRegex: regexMoney}]
+            }
         }
         // Give me a prop with the form AND of the details below, the form will autogenerate
         // i.e. 
@@ -19,14 +27,6 @@ class Submit extends Component {
         // {name: "Display-name-2", value: "Value-for-user-to-change-2", [OPTIONAL]inputRegex: "Regex=for-value-to-match-2"}
         // {name: "Display-name-3", value: "Value-for-user-to-change-3", [OPTIONAL]inputRegex: "Regex=for-value-to-match-3"}
         // ]
-
-        // this.state = {
-        //     details:
-        //         [{name: "Start Time", value: "12:34", inputRegex: regexTime},
-        //         {name: "End Time", value: "23:45", inputRegex: regexTime},
-        //         {name: "Travel Time", value: "00:00", inputRegex: regexHour},
-        //         {name: "Costs", value: "1,000,000", inputRegex: regexMoney}]
-        // }
     }
 
     loadDetails = () => {
@@ -52,10 +52,9 @@ class Submit extends Component {
     render() {
         return (
             <div className="container">
-                <header className="jumbotron bg-purple">
+                <header className="jumbotron bg-image">
                     <div className="container">
-                        <h1 className="display-4">Review and Submit</h1>
-                        <hr className="my-4"/>
+                        <h1 className="display-4 pb-3">Review and Submit</h1>
                         {/*TODO: Change this "Task Name" to be from props*/}
                         <p className="h4">Task Name</p>
                     </div>
@@ -63,9 +62,11 @@ class Submit extends Component {
 
                 <SubmitList details={this.state.details}/>
                 
-                <button type="button" className="btn btn-submit" onClick={this.handleClick}>
-                    Submit Form
-                </button>
+                <div className="mb-2">
+                    <button type="button" className="btn btn-dark" onClick={this.handleClick}>
+                        Submit Form
+                    </button>
+                </div>
             </div>
         );
     }

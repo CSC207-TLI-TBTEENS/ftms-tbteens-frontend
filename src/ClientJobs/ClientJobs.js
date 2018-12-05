@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import ClientJobList from './ClientJobList';
 import ClientJobForm from './ClientJobForm';
 import SearchBar from "../components/Search";
-import { MessageBox, Message} from 'element-react';
+import withAuth from "../hocs/withAuth";
+
 import * as apiCalls from './api';
 import * as sorter from '../components/Sorter.js'
 
@@ -28,6 +29,13 @@ class ClientJobs extends Component {
         this.loadJobs();
     }
 
+    // Load jobs associated with the company of the current user.
+    async loadJobs() {
+        let jobs = await apiCalls.getJobs(this.props.currentUser.company);
+        this.setState({clientJobs:[...jobs],loading : false, clientJobsShow:[...jobs]});
+    }
+
+    // Sorting function for jobs.
     async sortJobs(key) {
         let changeKey = (key !== this.state.previousKey) ? true : this.state.changeKey;
         let sortedList = await sorter.sortTable([...this.state.jobs], [...this.state.jobsShow], 
@@ -36,13 +44,9 @@ class ClientJobs extends Component {
                         changeKey: !changeKey, previousKey: key});
     }
 
-    async loadJobs() {
-        let jobs = await apiCalls.getJobs();
-        this.setState({clientJobs:[...jobs],loading : false, clientJobsShow:[...jobs]});
-    }
-
+    // Create a new job, and assign it to the company of the current user.
     async createJob(job) {
-        let newJob = await apiCalls.createJob(job);
+        let newJob = await apiCalls.createJob(this.props.currentUser.company, job);
         this.setState({clientJobs : [...this.state.clientJobs, newJob],
                         clientJobsShow: [...this.state.clientJobsShow, newJob]});
     }
@@ -50,106 +54,14 @@ class ClientJobs extends Component {
     searchRet(data){
         this.setState({clientJobsShow : [...data]});
     }
-    setJobViewing = (siteName, description) => {
-        this.setState({jobViewed: [
-            {label: "SiteName", value: siteName}, 
-            {label: "Description", value: description}
-        ]})
-    }
-
-    async handleJobEdit(id, siteName, description) {
-        let edited = false;
-        console.log("this", this);
-        console.log("id", id)
-        await MessageBox.confirm('Update this job\'s information?', 'Warning', {
-            confirmButtonText: 'OK',
-            cancelButtonText: 'Cancel',
-            type: 'warning'
-        }).then(async() => {
-            edited = true;
-            await apiCalls.editJob({id, siteName, description});
-            await Message({
-              type: 'success',
-              message: 'Edited JOB #' + id + ' ' + description + ' successfully!'
-            });
-        }).catch((error) => {
-            console.log(error)
-            Message({
-              type: 'info',
-              message: "Deletion cancelled!"
-            });
-        });
-        if (edited) {
-            let currentJobs = [...this.state.clientJobs];
-            for (let i = 0; i < currentJobs.length; i++) {
-                if (currentJobs[i].id === id) {
-                    let editedJob = {
-                        id: id,
-                        siteName: siteName,
-                        description: description
-                    };
-                    currentJobs[i] = editedJob;
-                    break;
-                }
-            }
-            this.setState({clientJobs: currentJobs, 
-                clientJobsShow: currentJobs});
-            
-            console.log(this.state.clientJobs, this.state.clientJobsShow)
-        }
-    }
-
-    formChangeHandler = (event, index) => {
-        const changed = {...this.state.jobViewed[index]};
-        changed.value = event.target.value;
-
-        const newJobViewed = [...this.state.jobViewed];
-        newJobViewed[index] = changed;
-
-        this.setState({
-            jobViewed: newJobViewed    
-        })
-    }
-
-    async confirmDeletion(id, siteName, description) {
-        let deleted = false;
-        console.log(this);
-        await MessageBox.confirm('This action will remove JOB #' + id + ' ' + description + ' from the database. Continue?', 'Warning', {
-            confirmButtonText: 'OK',
-            cancelButtonText: 'Cancel',
-            type: 'warning'
-        }).then(async() => {
-            deleted = true;
-            await apiCalls.deleteJob(id);
-            await Message({
-              type: 'success',
-              message: 'Deleted JOB #' + id + ' ' + description + ' successfully!'
-            });
-        }).catch(() => {
-            Message({
-              type: 'info',
-              message: "Deletion cancelled!"
-            });
-        });
-        if (deleted) {
-            let currentJobs = [...this.state.clientJobs];
-            for (let i = 0; i < currentJobs.length; i++) {
-                if (currentJobs[i].id === id) {
-                    currentJobs.splice(i, 1);
-                    break;
-                }
-            };
-            this.setState({clientJobsShow: [...currentJobs], clientJobs: [...currentJobs]});
-        }
-    }
+    
 
     render() {
         return (
             <div className="container">
-                <header className="jumbotron bg-purple">
+                <header className="jumbotron bg-image">
                     <div className="container">
-                        <h1 className="display-4">Client Job List</h1>
-                        <hr className="my-4"/>
+                        <h1 className="display-4 pb-3">Client Job List</h1>
                         <p>
                             <button type="button" className="btn btn-submit" data-toggle="modal" data-target="#clientJobForm">
                                 Add Job
@@ -170,6 +82,7 @@ class ClientJobs extends Component {
                             <div className="modal-body">
                                 <ClientJobForm
                                     createJob = {this.createJob}
+                                    company = {this.props.currentUser.company}
                                 />
                             </div>
                         </div>
@@ -178,13 +91,7 @@ class ClientJobs extends Component {
 
                 <SearchBar data={this.state.clientJobs} onchange={this.searchRet}/>
                 <ClientJobList
-                    jobs = {this.state.clientJobsShow}
-                    editHandler={this.handleJobEdit}
-                    formHandler={this.formChangeHandler}
-                    deletionHandler={this.confirmDeletion}
-                    curr={this}
-                    jobViewed={this.state.jobViewed} 
-                    viewHandler={this.setJobViewing} 
+                    jobs = {this.state.clientJobsShow} 
                     sortJobs={this.sortJobs}
                 />
 
@@ -193,4 +100,4 @@ class ClientJobs extends Component {
     }
 }
 
-export default ClientJobs;
+export default withAuth(["ROLE_CLIENT"], ClientJobs);

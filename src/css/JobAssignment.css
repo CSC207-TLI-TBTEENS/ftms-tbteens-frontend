@@ -1,0 +1,83 @@
+/* Accordion for job and employee lists */
+.accordion-jobassign-desktop {
+    height: fill;
+    width: fill;
+    overflow-y: auto;
+}
+
+
+/* Card styling */
+.card-borderless {
+    border: none;
+}
+
+.card-header-purple {
+    background-color: var(--button_v_dark);
+    text-align: center;
+    border-bottom: none;
+    border-radius: 0px !important;
+}
+
+.card-body-green {
+    background-color: var(--button_v_light);
+}
+
+.card-title {
+    color: white;
+}
+
+.card-subtitle {
+    color: var(--button_light);
+}
+
+.card-text{
+    color: white;
+}
+
+.card-scroll {
+    background-color: var(--button_v_dark);
+    overflow-y: auto;
+    overflow-x: auto;
+    width: 65%;
+}
+
+.closer-p {
+    margin-bottom: 0.1rem;
+}
+
+.el-tree-node__content {
+    border-radius: 0.5rem;
+}
+
+
+.job-manage-header {
+    color: var(--dark_font_color);
+    text-align: center;
+}
+
+.jobs-list-header {
+    overflow-x: auto;
+}
+
+
+
+.modal-header-confirm {
+  background-color: var(--button_v_dark);
+  border: none;
+  color: var(--light_font_color);
+  padding: 1rem 1rem 0.5rem 1rem;
+}
+
+.modal-content-confirm {
+  background-color: var(--button_v_dark);
+  color: var(--light_font_color);
+}
+
+.modal-footer-confirm {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0rem 1rem 1rem 1rem;
+    border-top: 0px solid black;
+}
+

@@ -39,8 +39,8 @@ class SubmitList extends Component {
 
     render() {
         return (
-            <div className="container bg-purple rounded">
-                <div className="container">
+            <div className="container bg-black rounded mb-3 table-shadow">
+                <div className="container py-1">
                     <form>
                         {this.createForm()}
                     </form>
