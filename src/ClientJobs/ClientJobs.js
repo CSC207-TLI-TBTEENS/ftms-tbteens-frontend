@@ -29,10 +29,15 @@ class ClientJobs extends Component {
         this.loadJobs();
     }
 
-    // Load jobs associated with the company of the current user.
+    // Load jobs associated with the company of the current user. Catches api errors
     async loadJobs() {
-        let jobs = await apiCalls.getJobs(this.props.currentUser.company);
-        this.setState({clientJobs:[...jobs],loading : false, clientJobsShow:[...jobs]});
+        try {
+            this.props.removeAlert();
+            let jobs = await apiCalls.getJobs(this.props.currentUser.company);
+            this.setState({clientJobs:[...jobs],loading : false, clientJobsShow:[...jobs]});
+        } catch(err) {
+            this.props.addAlert("error-load-clientjobs", err.message);
+        }
     }
 
     // Sorting function for jobs.
@@ -46,9 +51,15 @@ class ClientJobs extends Component {
 
     // Create a new job, and assign it to the company of the current user.
     async createJob(job) {
-        let newJob = await apiCalls.createJob(this.props.currentUser.company, job);
-        this.setState({clientJobs : [...this.state.clientJobs, newJob],
-                        clientJobsShow: [...this.state.clientJobsShow, newJob]});
+        try {
+            this.props.removeAlert();
+            let newJob = await apiCalls.createJob(this.props.currentUser.company, job);
+            this.setState({clientJobs : [...this.state.clientJobs, newJob],
+                            clientJobsShow: [...this.state.clientJobsShow, newJob]});
+            this.props.addAlert("success-adding-clientjobs", "Successfully added new employee!");
+        } catch(err) {
+            this.props.addAlert("error-adding-clientjobs", err.message);
+        }
     }
 
     searchRet(data){
@@ -69,6 +80,11 @@ class ClientJobs extends Component {
                         </p>
                     </div>
                 </header>
+
+                {/* In case the job list doesn't load */}
+                <div className={ this.props.alerts.category === "error-load-clientjobs" ? "d-block alert alert-danger" : "d-none" }>
+                    {this.props.alerts.message}
+                </div>
 
                 <div className="modal fade" id="clientJobForm" tabindex="-1" role="dialog" aria-labelledby="createNewJob" aria-hidden="true">
                     <div className="modal-dialog" role="document">

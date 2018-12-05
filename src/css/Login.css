@@ -31,7 +31,6 @@
     border-radius: 5px;
     color: var(--light_font_color);
     text-align: center;
-    height: 35rem;
     width: 45%;
     min-width: 320px;
 }
