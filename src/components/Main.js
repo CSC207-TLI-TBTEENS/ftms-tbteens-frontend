@@ -12,7 +12,6 @@ import Timesheets from "../Timesheets/Timesheets";
 import TimesheetEdit from "../Timesheets/TimesheetEdit";
 import ClientJobs from "../ClientJobs/ClientJobs"
 import ViewHistory from "../ViewHistory/ViewHistory.js";
-import withAuth from "../hocs/withAuth";
 import UserRegistration from "../Registration/UserRegistration.js";
 import CompanyRegistration from "../Registration/CompanyRegistration.js";
 import { authUser } from "../store/actions/auth";
@@ -20,8 +19,6 @@ import { removeAlert, addAlert } from "../store/actions/alerts";
 import SpecificTask from "../Tasks/SpecificTask";
 
 const Main = props => {
-    const adminOnly = ["ROLE_ADMIN"];
-    const allUsers  = ["ROLE_ADMIN", "ROLE_EMPLOYEE", "ROLE_SUPERVISOR", "ROLE_CLIENT"];
     const { authUser, alerts, removeAlert, currentUser } = props;
     return (
         <Route render={({location}) => (
