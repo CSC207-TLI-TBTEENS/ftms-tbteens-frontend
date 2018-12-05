@@ -8,15 +8,19 @@ class SpecificTask extends Component {
         this.state = {
             taskName: "",
             taskDescription:"",
-            STARTTIME: "",
-            ENDTIME:"",
+            startTime: "",
+            endTime:"",
             DURATION:"",
             session:[],
             sessionViewed: [{label: "Start Time", value: ""},
                 {label: "End Time", value: ""},
-                {label: "Duration", value: ""}]
+                {label: "Duration", value: ""}],
+            startPause: 'fas fa-play',
+            stopped: false  // This should be part of the task object that gets passed in.
         }
         this.handleChange = this.handleChange.bind(this);
+        this.handleStartPauseClick = this.handleStartPauseClick.bind(this);
+        this.handleStopClick = this.handleStopClick.bind(this);
     }
 
     componentWillMount() {
@@ -103,9 +107,42 @@ class SpecificTask extends Component {
     //     }
     // }
 
+    handleStartPauseClick() {
+        // Still need to get/send data to back-end.
+
+        if (this.state.startPause === 'fas fa-play') {
+            this.setState({startPause: 'fas fa-pause'});
+            // Save start time for this session to component state. Waiting for back-end code: use dummy data for now.
+            if (this.state.startTime === '') this.setState({startTime: '10:30'});
+            let newSession = {startTime: '10:30', endTime: '--', duration: '--'};
+            let addSession = this.state.session.push(newSession);
+            this.setState({session: addSession});
+        } else {
+            this.setState({startPause: 'fas fa-play'});
+            // Save end time for this session to component state. Waiting for back-end code: use dummy data for now.
+            let endSession = this.state.session;
+            endSession[-1].endTime = '11:45';
+            this.setState({session: endSession});
+        }
+    }
+
+    handleStopClick() {
+        // Still need to get/send data to back-end.
+
+        this.setState({stopped: true});
+        // Save final end time to component state. Waiting for back-end code: use dummy data for now.
+        this.setState({endTime: '15:00'});
+        let endSession = this.state.session;
+        endSession[-1].endTime = '11:45';
+        this.setState({session: endSession});
+    }
+
     render() {
         return(
             <div className="container">
+                <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css'
+                      integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU'
+                      crossOrigin='anonymous'/>
                 <header className="jumbotron bg-image">
                     <div className="container">
                         <h1 className="display-4 pb-3">{this.state.taskName}</h1>
@@ -117,18 +154,19 @@ class SpecificTask extends Component {
                         </div> 
                         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                         <p>
-                         OVERALL START TIME:         OVERALL END TIME:               TOTAL DURATION:
+                         OVERALL START TIME: {this.state.startTime} OVERALL END TIME: {this.state.endTime} TOTAL DURATION:
                         </p>
                         {/*TODO: Change these three fields according to the session table*/}
                         
                 </header>
-                    <div className="mb-2">
-                        <button type="button" className="btn btn-submit mr-1" onClick={this.handleClick}>
-                           Start-Pause
+
+                <div className="mb-2">
+                        <button type="button" className="btn btn-submit mr-1" disabled={this.state.stopped}
+                                onClick={this.handleStartPauseClick}>
+                            <i className={this.state.startPause}></i>
                         </button>
-                        {/*TODO: Change "Start-Pause" to icons. The icons can change when you click it.*/}
-                        <button type="button" className="btn btn-submit mr-1">
-                            Stop
+                        <button type="button" className="btn btn-submit mr-1" onClick={this.handleStopClick}>
+                            <i className='fas fa-stop'></i>
                         </button>
                         {/*TODO: Make stop button function.*/}
                         <button type="button" className="btn btn-dark mr-1">
