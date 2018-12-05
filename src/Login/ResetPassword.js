@@ -83,7 +83,8 @@ class ResetPassword extends React.Component {
                                         className="form-control" 
                                         id="password-first" 
                                         aria-describedby="password-first" 
-                                        placeholder="New Password"/>
+                                        placeholder="New Password"
+                                        required/>
                                 </div>
                                 <div className="form-group">
                                     <label className="text-black" htmlFor="password-confirm">Confirm Your Password</label>
@@ -93,7 +94,8 @@ class ResetPassword extends React.Component {
                                         onChange={this.handlePasswordEdit.bind(this)} 
                                         className="form-control" 
                                         id="password-confirm" 
-                                        placeholder="Confirm Password"/>
+                                        placeholder="Confirm Password"
+                                        required/>
                                 </div>
                             </form>
                             <div className="row justify-content-center">
