@@ -38,6 +38,11 @@ class SubmitList extends Component {
     }
 
     render() {
+        // Removing alerts if page is reloaded.
+        this.props.history.listen(() => {
+            this.props.removeAlert();
+        });
+        
         return (
             <div className="container bg-black rounded mb-3 table-shadow">
                 <div className="container py-1">
