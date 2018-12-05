@@ -73,8 +73,16 @@ const Main = props => {
                         {...props}
                 />} />
 
+                {/* Job Assignment route. */}
+                <Route exact path="/jobassign"  render={(props) => 
+                    <JobAssignment
+                        removeAlert={removeAlert}
+                        alerts={alerts}
+                        addAlert={addAlert}
+                        {...props}
+                />} />
+
                 <Route exact path="/jobsview" component={withAuth(adminOnly, JobsView)} />
-                <Route exact path="/jobassign" component={withAuth(allUsers, JobAssignment)} />
                 <Route exact path="/review" component={withAuth(allUsers, Submit)} />
 
                 {/* Client Jobs route, only accessible by client users. */}

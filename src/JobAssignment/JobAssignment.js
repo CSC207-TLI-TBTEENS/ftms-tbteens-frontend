@@ -7,6 +7,7 @@ import Confirmation from './Confirmation.js';
 import * as jobAPI from './api.js';
 import * as employeeAPI from '../Employees/api.js';
 import 'element-theme-default';
+import withAuth from "../hocs/withAuth";
 
 export class JobAssignment extends Component {
     constructor(props) {
@@ -31,23 +32,43 @@ export class JobAssignment extends Component {
     }
 
     async getAllJobs() {
-        let allJobs = await jobAPI.getAllJobs();
-        this.setState({jobs: allJobs});
+        try {
+            this.props.removeAlert();
+            let allJobs = await jobAPI.getAllJobs();
+            this.setState({jobs: allJobs});
+        } catch(err) {
+            this.props.addAlert("error-jobassign", err.message);
+        }
     }
 
     async getAllEmployees() {
-        let allEmployees = await employeeAPI.getEmployees();
-        this.setState({employees: allEmployees});
+        try {
+            this.props.removeAlert();
+            let allEmployees = await employeeAPI.getEmployees();
+            this.setState({employees: allEmployees});
+        } catch(err) {
+            this.props.addAlert("error-jobassign", err.message);
+        }
     }
 
     async getJobsFromEmployee(employee) {
-        let jobsFromEmployee = await employeeAPI.getJobsFromEmployee(employee.id);
-        this.setState({employeeJobs: jobsFromEmployee});
+        try {
+            this.props.removeAlert();
+            let jobsFromEmployee = await employeeAPI.getJobsFromEmployee(employee.id);
+            this.setState({employeeJobs: jobsFromEmployee});
+        } catch(err) {
+            this.props.addAlert("error-jobassign", err.message);
+        }
     }
 
     async getEmployeesFromJob(job) {
-        let employeesFromJob = await jobAPI.getEmployeesFromJob(job.id);
-        this.setState({jobEmployees: employeesFromJob});
+        try {
+            this.props.removeAlert();
+            let employeesFromJob = await jobAPI.getEmployeesFromJob(job.id);
+            this.setState({jobEmployees: employeesFromJob});
+        } catch(err) {
+            this.props.addAlert("error-jobassign", err.message);
+        }
     }
 
     // Just a dummy until I have time to implement and test the real onclick for deleting workers/jobs from each other.
@@ -98,6 +119,12 @@ export class JobAssignment extends Component {
                             <EmployeesList employees={this.state.employees} employeeHandler={this.handleEmployeeChosen}/>
                     </div>
                     <div className="col-md-6">
+                        
+                        {/* In case the employees list doesn't load */}
+                        <div className={ this.props.alerts.category === "error-jobassign" ? "d-block alert alert-danger" : "d-none" }>
+                            {this.props.alerts.message}
+                        </div>
+
                         <div className="row align-items-center justify-content-center">
                             <div className="col-md-12 mb-3 d-flex justify-content-center">
                                 <TaskConfirmation currentJob={this.state.jobToConfirm} employees={this.state.jobEmployees}/>
@@ -123,4 +150,4 @@ export class JobAssignment extends Component {
     }
 }
 
-export default JobAssignment;
+export default withAuth(["ROLE_ADMIN", "ROLE_EMPLOYEE", "ROLE_SUPERVISOR", "ROLE_CLIENT"], JobAssignment);
