@@ -99,11 +99,11 @@ code {
 /* Navigation Bar */
 .navbar a {
     font-weight: bold;
-    color: rgb(203, 200, 228);
+    color: var(--dark_font_color);
 }
 
 .navbar a:hover {
-    color: rgb(203, 200, 228);
+    color: var(--dark_font_color);
     text-decoration: underline;
     cursor: pointer;
 }
