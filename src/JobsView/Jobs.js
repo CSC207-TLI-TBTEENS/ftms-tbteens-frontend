@@ -40,8 +40,6 @@ class Jobs extends Component {
 
     async handleJobEdit(id, siteName, description) {
         let edited = false;
-        console.log("this", this);
-        console.log("id", id)
         await MessageBox.confirm('Update this job\'s information?', 'Warning', {
             confirmButtonText: 'OK',
             cancelButtonText: 'Cancel',
@@ -75,8 +73,6 @@ class Jobs extends Component {
             }
             this.setState({jobs: currentJobs, 
                 jobsShow: currentJobs});
-            
-            console.log(this.state.clientJobs, this.state.clientJobsShow)
         }
     }
 
@@ -94,7 +90,6 @@ class Jobs extends Component {
 
     async confirmDeletion(id, siteName, description) {
         let deleted = false;
-        console.log(this);
         await MessageBox.confirm('This action will remove JOB #' + id + ' ' + description + ' from the database. Continue?', 'Warning', {
             confirmButtonText: 'OK',
             cancelButtonText: 'Cancel',
