@@ -10,7 +10,8 @@ const SubmitItem = ({name, pattern, handleChange, value}) => (
                 id="colFormLabel" 
                 value={value} 
                 onChange={handleChange} 
-                pattern={pattern}/>
+                pattern={pattern}
+                required/>
             <div className="form-control-feedback form-error"></div>
         </div>
     </div>

@@ -91,7 +91,14 @@ const Main = props => {
                         {...props}
                 />} />
 
-                <Route exact path="/review" component={withAuth(allUsers, Submit)} />
+                {/* Review and Submit route. */}
+                <Route exact path="/review"  render={(props) => 
+                    <Submit
+                        removeAlert={removeAlert}
+                        alerts={alerts}
+                        addAlert={addAlert}
+                        {...props}
+                />} />
 
                 {/* Client Jobs route, only accessible by client users. */}
                 <Route exact path="/clientJobs" render={(props) => 
