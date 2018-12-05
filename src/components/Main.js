@@ -114,6 +114,9 @@ const Main = props => {
                 <Route exact path="/timesheets" render={(props) => 
                 <Timesheets
                     currentUser={currentUser}
+                    removeAlert={removeAlert}
+                    alerts={alerts}
+                    addAlert={addAlert}
                     {...props}
                 />} />
 
@@ -121,6 +124,9 @@ const Main = props => {
                 <Route exact path="/timesheets/:id/edit" render={(props) => 
                 <TimesheetEdit
                     currentUser={currentUser}
+                    removeAlert={removeAlert}
+                    alerts={alerts}
+                    addAlert={addAlert}
                     {...props}
                 />} />
 
@@ -129,17 +135,28 @@ const Main = props => {
                 <Route exact path="/taskedit" render={(props) => 
                 <SpecificTask
                     currentUser={currentUser}
+                    removeAlert={removeAlert}
+                    alerts={alerts}
+                    addAlert={addAlert}
                     {...props}
                 />} />
-
-                <Route exact path="/viewhistory" component={withAuth(allUsers, ViewHistory)}/>
+                
+                {/* View History route. */}
+                <Route exact path="/viewhistory"  render={(props) => 
+                    <ViewHistory
+                        removeAlert={removeAlert}
+                        alerts={alerts}
+                        addAlert={addAlert}
+                        {...props}
+                />} />
 
                 {/* This is the root route. */}
                 <Route exact path="/" render={(props) => 
                 <Landing
+                    currentUser={currentUser}
                     removeAlert={removeAlert}
                     alerts={alerts}
-                    currentUser= {currentUser}
+                    addAlert={addAlert}
                     {...props}
                 />} />
 
