@@ -148,6 +148,11 @@ const Main = props => {
                         {...props}
                 />} />
 
+<<<<<<< HEAD
+=======
+                
+
+>>>>>>> 32b982b83c461759dd3b7dd586d076e8abccdbe9
                 {/* This is the root route. */}
                 <Route exact path="/" render={(props) => 
                 <Landing
