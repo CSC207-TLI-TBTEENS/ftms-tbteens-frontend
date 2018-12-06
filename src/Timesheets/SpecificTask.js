@@ -54,6 +54,7 @@ class SpecificTask extends Component {
     
     async editTaskDetail(taskName, taskDescription,startTime, endTime, duration) {      
         let edited = false;
+        
         await MessageBox.confirm('Update this task\'s information?', 'Warning', {
             confirmButtonText: 'OK',
             cancelButtonText: 'Cancel',
@@ -83,7 +84,7 @@ class SpecificTask extends Component {
             // let startTime = startTime;
             // let endTime = endTime;
             // let duration = duration;
-            
+
             this.setState({taskName: taskName, 
                 taskDescription: taskDescription,
                 overallStartTime: startTime,
