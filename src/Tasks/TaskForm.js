@@ -22,7 +22,7 @@ class TaskForm extends Component {
     
     handleSubmit(e) {
         e.preventDefault();
-        this.props.addTask({...this.state});
+        this.props.editTaskDetail({...this.state});
         this.setState({
             name: '',
             description: ''
