@@ -26,10 +26,19 @@ class Navbar extends Component {
                     <div className="navbar-brand">
                         <img src={Logo} alt="FTMS Home" /> FTMS
                     </div>
+                    
+                    {this.props.currentUser.isAuthenticated &&
+                        <div className="navbar-notif-mobile ml-auto mr-2">
+                            <Notification />
+                        </div>
+                    }
+
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
+                    
                     <div className="collapse navbar-collapse" id="navbarNav">
+                        
                         {/* Links the admin can see  */}
                         {this.props.currentUser.user.role === "ROLE_ADMIN" &&
                             <ul className="navbar-nav mr-auto">    
@@ -68,16 +77,12 @@ class Navbar extends Component {
 
 
                         <ul className="navbar-nav ml-auto">
-                            {this.props.currentUser.user.role === "ROLE_ADMIN" &&
-                                <li>
+                            {this.props.currentUser.isAuthenticated &&
+                                <li className="navbar-notif">
                                     <Notification />
                                 </li>
                             }
-                            {this.props.currentUser.user.role === "ROLE_EMPLOYEE" &&
-                            <li>
-                                <Notification />
-                            </li>
-                            }
+                            
                             <li className="nav-item">
                                 {login}
                             </li>
