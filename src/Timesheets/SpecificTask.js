@@ -193,6 +193,25 @@ class SpecificTask extends Component {
                             </tbody>
                         </table>
                         {/*TODO: Change the table based on the action on button*/}
+                        <div className="modal fade" id="taskDetails" tabIndex="-1" role="dialog" aria-labelledby="taskDetails" aria-hidden="true">
+                            <div className="modal-dialog" role="document">
+                                <div className="modal-content">
+                                    <div className="modal-header">
+                                        <h5 class="modal-title">{this.state.taskName} Details</h5>
+                                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div className="modal-body">
+                                        <TaskDetailsForm
+                                            editTaskDetails = {this.editTaskDetails}
+                                            taskName = {this.state.taskName}
+                                            taskDescription = {this.state.taskDescription}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
 
