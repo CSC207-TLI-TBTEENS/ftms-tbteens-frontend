@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 
+import'./css/404.css';
 import './css/misc.css';
 import './css/index.css';
 import './css/JobAssignment.css';
