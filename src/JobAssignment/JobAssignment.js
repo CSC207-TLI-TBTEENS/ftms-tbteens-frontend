@@ -4,11 +4,12 @@ import EmployeesList from './EmployeesList.js';
 import TaskConfirmation from './TaskConfirmation.js';
 import EmployeeConfirmation from './EmployeeConfirmation.js';
 import Confirmation from './Confirmation.js';
-import SearchBar from '../components/Search.js'
+import SearchBar from './Search.js'
 import * as jobAPI from './api.js';
 import * as employeeAPI from '../Employees/api.js';
 import 'element-theme-default';
 import withAuth from "../hocs/withAuth";
+import { isMobileOnly } from 'react-device-detect';
 
 export class JobAssignment extends Component {
   constructor(props) {
@@ -113,57 +114,86 @@ export class JobAssignment extends Component {
     this.props.history.listen(() => {
       this.props.removeAlert();
     });
+
+    const employeeSection = () => {
+      return (<div>
+        <h3 className='job-manage-header'>Employees</h3>
+        <SearchBar data={this.state.employees} onchange={this.searchRetEmployee} />
+        <EmployeesList employees={this.state.employeesShow} employeeHandler={this.handleEmployeeChosen} />
+      </div>
+      )
+    }
+
+    const jobSection = () => {
+      return (
+        <div>
+
+          <h3 className='job-manage-header'>Jobs</h3>
+          <SearchBar data={this.state.jobs} onchange={this.searchRetJob} />
+          <JobsList jobs={this.state.jobsShow} taskHandler={this.handleTaskChosen} />
+        </div>
+      )
+    }
+
+    const assignSection = () => {
+      return (
+        <div>
+          {/* In case the employees list doesn't load */}
+          < div className={this.props.alerts.category === "error-jobassign" ? "d-block alert alert-danger" : "d-none"} >
+            {this.props.alerts.message}
+          </div >
+
+          <div className="row align-items-center justify-content-center">
+            <h3 className='job-manage-header'>Assign Job</h3>
+            <div className="col-md-12 mb-3 d-flex justify-content-center">
+              <TaskConfirmation currentJob={this.state.jobToConfirm} employees={this.state.jobEmployees} />
+            </div>
+          </div>
+          <div className="row align-items-center justify-content-center">
+            <div className="col-md-12 mb-3 d-flex justify-content-center">
+              <EmployeeConfirmation currentEmployee={this.state.employeeToConfirm} jobs={this.state.employeeJobs} onClick={this.dummyOnClick} />
+            </div>
+          </div>
+          <div className="row justify-content-center">
+            <div className="col-md-12 d-flex justify-content-center">
+              <Confirmation employee={this.state.employeeToConfirm} job={this.state.jobToConfirm} onClick={this.dummyOnClick} />
+            </div>
+          </div>
+        </div>)
+    }
+
     return (
-      <div className="container h-80">
-        <div class="row justify-content-center align-items-center">
-          <div class="col-4 align-items-center job-manage-header">
-            <h3>Assign Job</h3>
-          </div>
-        </div>
-        <div class="row justify-content-between align-items-center">
-          <div class="col-3 align-items-center job-manage-header">
-            <h3>Employees</h3>
-          </div>
-          <div class="col-6 align-items-center job-manage-header">
-          </div>
-          <div class="col-3 justify-content-end job-manage-header">
-            <h3>Jobs</h3>
-          </div>
-        </div>
-        {/*The main content*/}
-        <div class="row justify-content-center h-100">
-          <div className="col-md-3 justify-content-center">
-            <SearchBar data={this.state.employees} onchange={this.searchRetEmployee} />
-            <EmployeesList employees={this.state.employeesShow} employeeHandler={this.handleEmployeeChosen} />
-          </div>
-          <div className="col-md-6">
+      <div>
+        {!isMobileOnly &&
+          <div className="container h-80" >
+            <div class="row justify-content-center h-100" >
+              <div className="col-md-3 h-20">
+                {employeeSection()}
+              </div>
+              <div className="col-md-6">
+                {assignSection()}
+              </div>
+              <div className="col-md-3 h-20">
+                {jobSection()}
+              </div>
+            </div>
+          </div >}
 
-            {/* In case the employees list doesn't load */}
-            <div className={this.props.alerts.category === "error-jobassign" ? "d-block alert alert-danger" : "d-none"}>
-              {this.props.alerts.message}
+        {!!isMobileOnly &&
+          <div className="container h-80" >
+            <div className="col-md-6">
+              {assignSection()}
             </div>
-
-            <div className="row align-items-center justify-content-center">
-              <div className="col-md-12 mb-3 d-flex justify-content-center">
-                <TaskConfirmation currentJob={this.state.jobToConfirm} employees={this.state.jobEmployees} />
+            <br/>
+            <div class="row justify-content-center h-100" >
+              <div className="col-md-3 h-20">
+                {employeeSection()}
+              </div>
+              <div className="col-md-3 h-20">
+                {jobSection()}
               </div>
             </div>
-            <div className="row align-items-center justify-content-center">
-              <div className="col-md-12 mb-3 d-flex justify-content-center">
-                <EmployeeConfirmation currentEmployee={this.state.employeeToConfirm} jobs={this.state.employeeJobs} onClick={this.dummyOnClick} />
-              </div>
-            </div>
-            <div className="row justify-content-center">
-              <div className="col-md-12 d-flex justify-content-center">
-                <Confirmation employee={this.state.employeeToConfirm} job={this.state.jobToConfirm} onClick={this.dummyOnClick} />
-              </div>
-            </div>
-          </div>
-          <div className="col-md-3 justify-content-center">
-            <SearchBar data={this.state.jobs} onchange={this.searchRetJob} />
-            <JobsList jobs={this.state.jobsShow} taskHandler={this.handleTaskChosen} />
-          </div>
-        </div>
+          </div >}
       </div>
     );
   }
