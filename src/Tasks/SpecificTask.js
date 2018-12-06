@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import * as apiCalls from './api';
 import { Message, MessageBox } from 'element-react';
-import TaskDetailsForm from "./TaskDetailsForm";
 
 class SpecificTask extends Component {
     constructor(props) {
@@ -50,11 +49,6 @@ class SpecificTask extends Component {
         
     }
     
-    async editTaskDetails(taskDetails) {
-        console.log("Hey");
-        console.log(taskDetails);
-        // this.setState({taskName: taskDetails.name, taskDescription: taskDetails.description});
-    }
 
     // setSessionViewing = (starttime, endtime) => {
     //     // When one session for a task is viewed through modify button, update the session currently modified
@@ -68,7 +62,7 @@ class SpecificTask extends Component {
 
     handleChange(e) {
         // When the name, description, overall starttime, overall endtim us modified, update and pass it to the timesheet page and backend.
-        // this.props.removeAlert();
+        this.props.removeAlert();
         this.setState({[e.target.name] : e.target.value});
         // TODO: pass the update info to timesheet page
     }
@@ -116,7 +110,6 @@ class SpecificTask extends Component {
     // }
 
     render() {
-        const {taskName, taskDescription} = this.state;
         return(
             <div className="container">
                 <header className="jumbotron bg-image">
@@ -125,7 +118,7 @@ class SpecificTask extends Component {
                         <h1 className="display-4">{this.state.taskId}</h1>
                         <p className="h4 mb-3"> Description: {this.state.taskDescription}</p>
                         
-                    </div> 
+                        </div> 
                         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                         <p className="d-inline-block mr-5">
                             OVERALL START TIME: {this.state.STARTTIME}                   
@@ -138,65 +131,41 @@ class SpecificTask extends Component {
                         </p>
                         
                 </header>
+                    <div className="mb-2">
+                        <button type="button" className="btn btn-submit mr-1" onClick={this.handleClick}>
+                           Start-Pause
+                        </button>
+                        {/*TODO: Change "Start-Pause" to icons. The icons can change when you click it.*/}
+                        <button type="button" className="btn btn-submit mr-1">
+                            Stop
+                        </button>
+                        {/*TODO: Make stop button function.*/}
+                        <button type="button" className="btn btn-dark mr-1">
+                            Modify Task Details
+                        </button>
+                        {/*TODO: Allow modify function work.*/}
 
-                <div className="mb-2">
-                    <button type="button" className="btn btn-submit mr-1" onClick={this.handleClick}>
-                        Start-Pause
-                    </button>
-                    {/*TODO: Change "Start-Pause" to icons. The icons can change when you click it.*/}
-                    <button type="button" className="btn btn-submit mr-1">
-                        Stop
-                    </button>
-                    {/*TODO: Make stop button function.*/}
-                    <button type="button" className="btn btn-dark mr-1" data-toggle="modal" data-target="#taskDetails">
-                        Modify Task Details
-                    </button>
-                    {/*TODO: Allow modify function work.*/}
+                    </div> 
+                        <br/> <br/>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">Start Time</th>
+                                <th scope="col">End Time</th>
+                                <th scope="col">Duration(min)</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">12:00</th>
+                                <td>12:45</td>
+                                <td>45</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        {/*TODO: Change the table based on the action on button*/}
 
-                </div> 
-                <br/> <br/>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">Start Time</th>
-                        <th scope="col">End Time</th>
-                        <th scope="col">Duration(min)</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">12:00</th>
-                        <td>12:45</td>
-                        <td>45</td>
-                    </tr>
-                    </tbody>
-                </table>
-                {/*TODO: Change the table based on the action on button*/}
-
-                <div className="modal fade" id="taskDetails" tabIndex="-1" role="dialog" aria-labelledby="taskDetails" aria-hidden="true">
-                    <div className="modal-dialog" role="document">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 class="modal-title">{this.state.taskName} Details</h5>
-
-                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div className="modal-body">
-                                <TaskDetailsForm
-                                    editTaskDetails = {this.editTaskDetails}
-                                    taskName = {this.state.taskName}
-                                    taskDescription = {this.state.taskDescription}
-                                />
-                            </div>
-                        </div>
                     </div>
-                </div>
-            </div>
-
-
-
 
                     // <div className="modal fade" id="taskForm" tabIndex="-1" role="dialog" aria-labelledby="createNewTask" aria-hidden="true">
                     // <div className="modal-dialog" role="document">
@@ -216,7 +185,9 @@ class SpecificTask extends Component {
                     //     </div>
                     //  </div>
                     // </div>
-                
+            
+
+
         )
     }
 }

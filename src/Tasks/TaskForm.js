@@ -30,7 +30,7 @@ class TaskForm extends Component {
       }
     
     render() {
-        const {name, description} = this.state;
+        const {name,description, endtime} = this.state;
         return (
             <div className="container">
 	        <div className="row align-items-center justify-content-center h-100">
