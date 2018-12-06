@@ -2,12 +2,15 @@ import React, {Component} from 'react';
 import * as apiCalls from './api';
 import { Message, MessageBox } from 'element-react';
 import TaskForm from './TaskForm'
+import TaskItem from './TaskItem'
 
 class SpecificTask extends Component {
     constructor(props) {
         super(props);
         this.state = {
             taskName: "",
+            taskId: 1,
+            // get Id from backend/ TaskItem
             taskDescription:"",
             STARTTIME: "",
             ENDTIME:"",
@@ -18,6 +21,7 @@ class SpecificTask extends Component {
                 {label: "Duration", value: ""}]
         }
         this.handleChange = this.handleChange.bind(this);
+        this.editTaskDetail = this.editTaskDetail.bind(this);
     }
 
     componentWillMount() {
@@ -50,7 +54,36 @@ class SpecificTask extends Component {
         
     }
     
-
+    async editTaskDetail(taskName, taskDescription) {      
+        let edited = false;
+        await MessageBox.confirm('Update this task\'s information?', 'Warning', {
+            confirmButtonText: 'OK',
+            cancelButtonText: 'Cancel',
+            type: 'warning'
+        }).then(async() => {
+            edited = true;
+            // Call backend edit function this.props.match.params.id = task ID
+            let id = this.state.taskId;
+            let result = await apiCalls.editTask({id, taskName, taskDescription});
+            await Message({
+              type: 'success',
+              // Display success message
+              message: result.message
+            });
+        }).catch((error) => {
+            Message({
+              type: 'info',
+              message: error.message
+            });
+        });
+        // If no errors in editting 
+        if (edited) {
+            // Update the session that are showed and the current list of employees
+            this.setState({taskName: taskName.toString(), 
+                taskDescription: taskDescription});
+        }
+    }
+    
     // setSessionViewing = (starttime, endtime) => {
     //     // When one session for a task is viewed through modify button, update the session currently modified
     //     this.setState({sessionViewed: [
@@ -180,6 +213,7 @@ class SpecificTask extends Component {
                             </div>
                              <div className="modal-body">
                             <TaskForm
+                                 editTaskDetail = {this.editTaskDetail}
                            
                             />
                             </div>
