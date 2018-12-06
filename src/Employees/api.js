@@ -27,3 +27,7 @@ export async function getJobsFromEmployee(input) {
     const EMPLOYEEJOBS = `${EMPLOYEEAPI}/${input}/jobs`;
     return apiCall('GET', EMPLOYEEJOBS);
 }
+
+export async function getTimesheetsFromEmployee(employeeID){
+    return apiCall('GET', `/api/timesheets/employee/${employeeID}`)
+}
