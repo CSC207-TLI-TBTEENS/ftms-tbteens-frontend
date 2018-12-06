@@ -148,7 +148,7 @@ const Main = props => {
                         {...props}
                 />} />
 
-                <Route exact path="/onetask" component={withAuth(allUsers, SpecificTask)}/>
+                
 
                 {/* This is the root route. */}
                 <Route exact path="/" render={(props) => 

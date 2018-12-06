@@ -10,15 +10,9 @@ class SpecificTask extends Component {
             taskId: this.props.match.params.id,
             taskName: "",
             taskDescription:"",
-<<<<<<< HEAD
-            overallStartTime: "",
-            overallEndTime:"",
-            totalDuration:"",
-=======
             startTime: "",
             endTime:"",
             DURATION:"",
->>>>>>> 0568f1f0a14de0cc028e24ec136d513005d71a8b
             session:[],
             sessionViewed: [{label: "Start Time", value: ""},
                 {label: "End Time", value: ""},
@@ -213,20 +207,7 @@ class SpecificTask extends Component {
                         &nbsp; &nbsp; &nbsp; &nbsp;
                         &nbsp; &nbsp; &nbsp; &nbsp;
                         <p>
-<<<<<<< HEAD
-                        <div> 
-                         OVERALL   START   TIME:   <span>&nbsp; &nbsp; &nbsp; &nbsp; {this.state.overallStartTime} &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span>
-                         </div> 
-                         <div> 
-                         OVERALL   END   TIME:   <span>&nbsp; &nbsp; &nbsp; &nbsp; {this.state.overallEndTime} &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span> 
-                         </div> 
-                         <div> 
-                         TOTAL   DURATION: <span>&nbsp; &nbsp; &nbsp; &nbsp; {this.state.totalDuration} &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span> 
-                         </div> 
-                         
-=======
                          OVERALL START TIME: {this.state.startTime} OVERALL END TIME: {this.state.endTime} TOTAL DURATION:
->>>>>>> 0568f1f0a14de0cc028e24ec136d513005d71a8b
                         </p>
                         {/*TODO: Change these three fields according to the session table*/}
                         
