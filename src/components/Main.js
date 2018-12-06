@@ -13,6 +13,8 @@ import TimesheetEdit from "../Timesheets/TimesheetEdit";
 import ClientJobs from "../ClientJobs/ClientJobs"
 import ViewHistory from "../ViewHistory/ViewHistory.js";
 import UserRegistration from "../Registration/UserRegistration.js";
+import errorPage from "./404.js";
+
 import CompanyRegistration from "../Registration/CompanyRegistration.js";
 import { authUser } from "../store/actions/auth";
 import { removeAlert, addAlert } from "../store/actions/alerts";
@@ -147,6 +149,7 @@ const Main = props => {
                         {...props}
                 />} />
 
+                <Route component={errorPage}/>
                 {/* This is the root route. */}
                 <Route exact path="/" render={(props) => 
                 <Landing
