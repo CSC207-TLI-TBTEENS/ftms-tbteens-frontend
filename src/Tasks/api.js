@@ -1,7 +1,6 @@
 import {apiCall} from "../Services/api";
 
 const TASKAPI = "/api/tasks/";
-const SESSIONAPI = "/api/tasks/sessions";
 
 // Get Tasks
 export async function getTasks(timesheet_id) {
@@ -29,9 +28,10 @@ export async function deleteTask(input) {
 //Edit Task
 export async function editTask(input) {
     let id = input.id.toString();
+    let taskname = input.taskname;
     let starttime = input.starttime;
     let endtime = input.endtime;
-    let address = (SESSIONAPI + id + "&starttime=" + starttime + "&endtime=" + endtime);
+    let address = (TASKAPI + id + "?taskname=" + taskname + "&starttime=" + starttime + "&endtime=" + endtime);
     return apiCall('PUT', address, {...input});
     
 }
