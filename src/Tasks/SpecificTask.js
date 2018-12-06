@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import * as apiCalls from './api';
 import { Message, MessageBox } from 'element-react';
+import TaskForm from './TaskForm'
 
 class SpecificTask extends Component {
     constructor(props) {
@@ -140,7 +141,7 @@ class SpecificTask extends Component {
                             Stop
                         </button>
                         {/*TODO: Make stop button function.*/}
-                        <button type="button" className="btn btn-dark mr-1">
+                        <button type="button" className="btn btn-dark mr-1" data-toggle="modal" data-target="#taskForm">
                             Modify Task Details
                         </button>
                         {/*TODO: Allow modify function work.*/}
@@ -165,26 +166,27 @@ class SpecificTask extends Component {
                         </table>
                         {/*TODO: Change the table based on the action on button*/}
 
-                    </div>
+                 
 
-                    // <div className="modal fade" id="taskForm" tabIndex="-1" role="dialog" aria-labelledby="createNewTask" aria-hidden="true">
-                    // <div className="modal-dialog" role="document">
-                    //     <div className="modal-content">
-                    //         <div className="modal-header">
-                    //              <h5 className="modal-title" id="exampleModalLabel">Task Details</h5>
+                    <div className="modal fade" id="taskForm" tabIndex="-1" role="dialog" aria-labelledby="ModifyTask" aria-hidden="true">
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                 <h5 className="modal-title" id="exampleModalLabel">Task Details</h5>
                                 
-                    //              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                    //                 <span aria-hidden="true">&times;</span>
-                    //              </button>
-                    //         </div>
-                    //          <div className="modal-body">
-                    //         <TaskForm
-                    //         addTask = {this.addTask}
-                    //         />
-                    //         </div>
-                    //     </div>
-                    //  </div>
-                    // </div>
+                                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                 </button>
+                            </div>
+                             <div className="modal-body">
+                            <TaskForm
+                           
+                            />
+                            </div>
+                        </div>
+                     </div>
+                    </div>
+                    </div>
             
 
 
