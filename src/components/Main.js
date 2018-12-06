@@ -8,28 +8,23 @@ import Login from "../Login/Login.js";
 import JobsView from "../JobsView/Jobs.js";
 import JobAssignment from "../JobAssignment/JobAssignment.js";
 import Submit from "../ReviewSubmission/Submit.js";
-import Timesheets from "../Timesheets/Jobs";
+import Timesheets from "../Timesheets/Timesheets";
 import TimesheetEdit from "../Timesheets/TimesheetEdit";
 import ClientJobs from "../ClientJobs/ClientJobs"
 import ViewHistory from "../ViewHistory/ViewHistory.js";
-import withAuth from "../hocs/withAuth";
 import UserRegistration from "../Registration/UserRegistration.js";
 import CompanyRegistration from "../Registration/CompanyRegistration.js";
 import { authUser } from "../store/actions/auth";
 import { removeAlert, addAlert } from "../store/actions/alerts";
-
-import SpecificTask from "../Timesheets/SpecificTask";
-
+import SpecificTask from "../Tasks/SpecificTask";
 
 
 const Main = props => {
-    const adminOnly = ["ROLE_ADMIN"];
-    const allUsers  = ["ROLE_ADMIN", "ROLE_EMPLOYEE", "ROLE_SUPERVISOR", "ROLE_CLIENT"];
-    const { authUser, alerts, removeAlert,  currentUser } = props;
+    const { authUser, alerts, removeAlert, currentUser } = props;
     return (
         <Route render={({location}) => (
             <Switch location={location}>
-                {/* This is the login route. */}
+                {/* Login route. */}
                 <Route exact path="/login" render={(props) => 
                 <Login 
                     removeAlert={removeAlert}
@@ -67,23 +62,101 @@ const Main = props => {
                         {...props}
                 />} />
 
-                <Route exact path="/companies" component={withAuth(adminOnly,Companies)} />
-                <Route exact path="/jobsview" component={withAuth(adminOnly, JobsView)} />
-                <Route exact path="/jobassign" component={withAuth(allUsers, JobAssignment)} />
-                <Route exact path="/review" component={withAuth(allUsers, Submit)} />
-                <Route exact path="/clientJobs" component={withAuth(allUsers, ClientJobs)}/>
-                <Route exact path="/timesheets" component={withAuth(allUsers, Timesheets)}/>
-                <Route exact path="/timesheets/edit" component={withAuth(allUsers, TimesheetEdit)}/>
-                <Route exact path="/viewhistory" component={withAuth(allUsers, ViewHistory)}/>
+                {/* Companies route, only accessed by admins. */}
+                <Route exact path="/companies"  render={(props) => 
+                    <Companies
+                        removeAlert={removeAlert}
+                        alerts={alerts}
+                        addAlert={addAlert}
+                        {...props}
+                />} />
+
+                {/* Job Assignment route. */}
+                <Route exact path="/jobassign"  render={(props) => 
+                    <JobAssignment
+                        removeAlert={removeAlert}
+                        alerts={alerts}
+                        addAlert={addAlert}
+                        {...props}
+                />} />
+
+                {/* JobsView route, only accessed by admins. */}
+                <Route exact path="/jobsview"  render={(props) => 
+                    <JobsView
+                        removeAlert={removeAlert}
+                        alerts={alerts}
+                        addAlert={addAlert}
+                        {...props}
+                />} />
+
+                {/* Review and Submit route. */}
+                <Route exact path="/review"  render={(props) => 
+                    <Submit
+                        removeAlert={removeAlert}
+                        alerts={alerts}
+                        addAlert={addAlert}
+                        {...props}
+                />} />
+
+                {/* Client Jobs route, only accessible by client users. */}
+                <Route exact path="/clientJobs" render={(props) => 
+                    <ClientJobs
+                        removeAlert={removeAlert}
+                        alerts={alerts}
+                        addAlert={addAlert}
+                        currentUser={currentUser.user}
+                        {...props}
+                />} />
+
+                {/* Timesheets Route */}
+                <Route exact path="/timesheets" render={(props) => 
+                <Timesheets
+                    currentUser={currentUser}
+                    removeAlert={removeAlert}
+                    alerts={alerts}
+                    addAlert={addAlert}
+                    {...props}
+                />} />
+
+                {/* Timesheet editing route */}
+                <Route exact path="/timesheets/:id/edit" render={(props) => 
+                <TimesheetEdit
+                    currentUser={currentUser}
+                    removeAlert={removeAlert}
+                    alerts={alerts}
+                    addAlert={addAlert}
+                    {...props}
+                />} />
+
+                {/* Task editing route */}
+                {/* <Route exact path="/task/:id/edit" render={(props) =>  */}
+                <Route exact path="/task/:id/edit" render={(props) => 
+                <SpecificTask
+                    currentUser={currentUser}
+                    removeAlert={removeAlert}
+                    alerts={alerts}
+                    addAlert={addAlert}
+                    {...props}
+                />} />
+                
+                {/* View History route. */}
+                <Route exact path="/viewhistory"  render={(props) => 
+                    <ViewHistory
+                        removeAlert={removeAlert}
+                        alerts={alerts}
+                        addAlert={addAlert}
+                        {...props}
+                />} />
 
                 <Route exact path="/onetask" component={withAuth(allUsers, SpecificTask)}/>
 
                 {/* This is the root route. */}
                 <Route exact path="/" render={(props) => 
                 <Landing
+                    currentUser={currentUser}
                     removeAlert={removeAlert}
                     alerts={alerts}
-                    currentUser= {currentUser}
+                    addAlert={addAlert}
                     {...props}
                 />} />
 

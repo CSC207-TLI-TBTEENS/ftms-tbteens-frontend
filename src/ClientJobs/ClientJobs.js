@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ClientJobList from './ClientJobList';
 import ClientJobForm from './ClientJobForm';
 import SearchBar from "../components/Search";
+import withAuth from "../hocs/withAuth";
 
 import * as apiCalls from './api';
 import * as sorter from '../components/Sorter.js'
@@ -28,6 +29,18 @@ class ClientJobs extends Component {
         this.loadJobs();
     }
 
+    // Load jobs associated with the company of the current user. Catches api errors
+    async loadJobs() {
+        try {
+            this.props.removeAlert();
+            let jobs = await apiCalls.getJobs(this.props.currentUser.company);
+            this.setState({clientJobs:[...jobs],loading : false, clientJobsShow:[...jobs]});
+        } catch(err) {
+            this.props.addAlert("error-load-clientjobs", err.message);
+        }
+    }
+
+    // Sorting function for jobs.
     async sortJobs(key) {
         let changeKey = (key !== this.state.previousKey) ? true : this.state.changeKey;
         let sortedList = await sorter.sortTable([...this.state.jobs], [...this.state.jobsShow], 
@@ -36,15 +49,17 @@ class ClientJobs extends Component {
                         changeKey: !changeKey, previousKey: key});
     }
 
-    async loadJobs() {
-        let jobs = await apiCalls.getJobs();
-        this.setState({clientJobs:[...jobs],loading : false, clientJobsShow:[...jobs]});
-    }
-
+    // Create a new job, and assign it to the company of the current user.
     async createJob(job) {
-        let newJob = await apiCalls.createJob(job);
-        this.setState({clientJobs : [...this.state.clientJobs, newJob],
-                        clientJobsShow: [...this.state.clientJobsShow, newJob]});
+        try {
+            this.props.removeAlert();
+            let newJob = await apiCalls.createJob(this.props.currentUser.company, job);
+            this.setState({clientJobs : [...this.state.clientJobs, newJob],
+                            clientJobsShow: [...this.state.clientJobsShow, newJob]});
+            this.props.addAlert("success-adding-clientjobs", "Successfully added new employee!");
+        } catch(err) {
+            this.props.addAlert("error-adding-clientjobs", err.message);
+        }
     }
 
     searchRet(data){
@@ -53,6 +68,11 @@ class ClientJobs extends Component {
     
 
     render() {
+        // Removing alerts if page is reloaded.
+        this.props.history.listen(() => {
+            this.props.removeAlert();
+        });
+        
         return (
             <div className="container">
                 <header className="jumbotron bg-image">
@@ -66,6 +86,11 @@ class ClientJobs extends Component {
                     </div>
                 </header>
 
+                {/* In case the job list doesn't load */}
+                <div className={ this.props.alerts.category === "error-load-clientjobs" ? "d-block alert alert-danger" : "d-none" }>
+                    {this.props.alerts.message}
+                </div>
+
                 <div className="modal fade" id="clientJobForm" tabindex="-1" role="dialog" aria-labelledby="createNewJob" aria-hidden="true">
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
@@ -78,6 +103,7 @@ class ClientJobs extends Component {
                             <div className="modal-body">
                                 <ClientJobForm
                                     createJob = {this.createJob}
+                                    company = {this.props.currentUser.company}
                                 />
                             </div>
                         </div>
@@ -95,4 +121,4 @@ class ClientJobs extends Component {
     }
 }
 
-export default ClientJobs;
+export default withAuth(["ROLE_CLIENT"], ClientJobs);

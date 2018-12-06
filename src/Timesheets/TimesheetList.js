@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
-import JobItem from './JobItem';
+import TimesheetItem from './TimesheetItem';
 
-class JobList extends Component {
+class TimesheetList extends Component {
 
     render() {
-        const jobs = this.props.jobs.map(job => (
-           <JobItem
-                {...job}
-            />
-        ));
+        const timesheets = this.props.timesheets.map(timesheet => {
+           return (<TimesheetItem
+                key={timesheet.id}
+                {...timesheet}
+            />)
+        });
         return (
             <div className="table-responsive table-shadow mb-4">
             <table className="table mb-0">
@@ -20,7 +21,7 @@ class JobList extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                {jobs}
+                {timesheets}
                 </tbody>
             </table>
             </div>
@@ -28,4 +29,4 @@ class JobList extends Component {
     }
 }
 
-export default JobList;
+export default TimesheetList;

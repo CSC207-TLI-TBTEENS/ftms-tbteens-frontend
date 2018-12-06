@@ -1,10 +1,16 @@
 import React from 'react';
-import * as assignAPI from './api.js'
+import * as assignAPI from './api.js';
+import { connect } from "react-redux";
+
 
 const assignJob = (employee, job) => {
-  let inputs = {"job": job, "employee": employee}
-  
-  assignAPI.assignJob(inputs);
+  try {
+    this.props.removeAlert();
+    let inputs = {"job": job, "employee": employee}
+    assignAPI.assignJob(inputs);
+  } catch(err) {
+    this.props.addAlert("error-jobassign", err.message);
+  }
 }
 
 const Confirmation = (props) => {
@@ -40,4 +46,11 @@ const Confirmation = (props) => {
     )
 }
 
-export default Confirmation;
+
+
+function mapStateToProps(state) {
+  return {
+      alerts: state.alerts
+  }; 
+}
+export default connect(mapStateToProps)(Confirmation);

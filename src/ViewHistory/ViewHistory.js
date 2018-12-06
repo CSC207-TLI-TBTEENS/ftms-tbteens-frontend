@@ -3,7 +3,9 @@ import * as apiCalls from './api';
 import ViewHistoryForm from './ViewHistoryForm';
 import ViewHistoryList from './ViewHistoryList';
 import Loading from '../components/Loading';
-import SearchBar from '../components/Search.js'
+import SearchBar from '../components/Search.js';
+import withAuth from "../hocs/withAuth";
+
 
 class ViewHistory extends Component {
     constructor(props) {
@@ -21,13 +23,23 @@ class ViewHistory extends Component {
     }
 
     async loadCompanies() {
-        let companies= await apiCalls.getCompanies();
-        this.setState({companies : companies, loading : false, companiesShow: [...companies]});
+        try {
+            this.props.removeAlert();
+            let companies= await apiCalls.getCompanies();
+            this.setState({companies : companies, loading : false, companiesShow: [...companies]});
+        } catch(err) {
+            this.props.addAlert("error-viewhistory", err.message);
+        }
     }
 
     async addCompany(company) {
-        let newCompany= await apiCalls.createCompany(company);
-        this.setState({companies : [...this.state.companies, newCompany]});
+        try {
+            this.props.removeAlert();
+            let newCompany= await apiCalls.createCompany(company);
+            this.setState({companies : [...this.state.companies, newCompany]});
+        } catch(err) {
+            this.props.addAlert("error-viewhistory", err.message);
+        }
     }
 
     searchRet(data){
@@ -57,6 +69,11 @@ class ViewHistory extends Component {
                     </div>
                 </header>
 
+                {/* In case theres an error */}
+                <div className={ this.props.alerts.category === "error-viewhistory" ? "d-block alert alert-danger" : "d-none" }>
+                    {this.props.alerts.message}
+                </div>
+
                 {content}
 
                 <div className="modal fade" id="ViewHistoryForm" tabindex="-1" role="dialog" aria-labelledby="createNewCompany" aria-hidden="true">
@@ -81,4 +98,4 @@ class ViewHistory extends Component {
     }
 }
 
-export default ViewHistory;
+export default withAuth(["ROLE_ADMIN", "ROLE_EMPLOYEE", "ROLE_SUPERVISOR", "ROLE_CLIENT"], ViewHistory);

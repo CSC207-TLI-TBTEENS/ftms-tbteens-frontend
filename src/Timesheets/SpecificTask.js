@@ -10,15 +10,25 @@ class SpecificTask extends Component {
             taskId: this.props.match.params.id,
             taskName: "",
             taskDescription:"",
+<<<<<<< HEAD
             overallStartTime: "",
             overallEndTime:"",
             totalDuration:"",
+=======
+            startTime: "",
+            endTime:"",
+            DURATION:"",
+>>>>>>> 0568f1f0a14de0cc028e24ec136d513005d71a8b
             session:[],
             sessionViewed: [{label: "Start Time", value: ""},
                 {label: "End Time", value: ""},
-                {label: "Duration", value: ""}]
+                {label: "Duration", value: ""}],
+            startPause: 'fas fa-play',
+            stopped: false  // This should be part of the task object that gets passed in.
         }
         this.handleChange = this.handleChange.bind(this);
+        this.handleStartPauseClick = this.handleStartPauseClick.bind(this);
+        this.handleStopClick = this.handleStopClick.bind(this);
     }
 
     componentWillMount() {
@@ -154,9 +164,42 @@ class SpecificTask extends Component {
     //     }
     // }
 
+    handleStartPauseClick() {
+        // Still need to get/send data to back-end.
+
+        if (this.state.startPause === 'fas fa-play') {
+            this.setState({startPause: 'fas fa-pause'});
+            // Save start time for this session to component state. Waiting for back-end code: use dummy data for now.
+            if (this.state.startTime === '') this.setState({startTime: '10:30'});
+            let newSession = {startTime: '10:30', endTime: '--', duration: '--'};
+            let addSession = this.state.session.push(newSession);
+            this.setState({session: addSession});
+        } else {
+            this.setState({startPause: 'fas fa-play'});
+            // Save end time for this session to component state. Waiting for back-end code: use dummy data for now.
+            let endSession = this.state.session;
+            endSession[-1].endTime = '11:45';
+            this.setState({session: endSession});
+        }
+    }
+
+    handleStopClick() {
+        // Still need to get/send data to back-end.
+
+        this.setState({stopped: true});
+        // Save final end time to component state. Waiting for back-end code: use dummy data for now.
+        this.setState({endTime: '15:00'});
+        let endSession = this.state.session;
+        endSession[-1].endTime = '11:45';
+        this.setState({session: endSession});
+    }
+
     render() {
         return(
             <div className="container">
+                <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css'
+                      integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU'
+                      crossOrigin='anonymous'/>
                 <header className="jumbotron bg-image">
                     <div className="container">
                          {/*TODO: Change this "Task Name" to be from props*/}
@@ -170,6 +213,7 @@ class SpecificTask extends Component {
                         &nbsp; &nbsp; &nbsp; &nbsp;
                         &nbsp; &nbsp; &nbsp; &nbsp;
                         <p>
+<<<<<<< HEAD
                         <div> 
                          OVERALL   START   TIME:   <span>&nbsp; &nbsp; &nbsp; &nbsp; {this.state.overallStartTime} &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span>
                          </div> 
@@ -180,6 +224,9 @@ class SpecificTask extends Component {
                          TOTAL   DURATION: <span>&nbsp; &nbsp; &nbsp; &nbsp; {this.state.totalDuration} &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span> 
                          </div> 
                          
+=======
+                         OVERALL START TIME: {this.state.startTime} OVERALL END TIME: {this.state.endTime} TOTAL DURATION:
+>>>>>>> 0568f1f0a14de0cc028e24ec136d513005d71a8b
                         </p>
                         {/*TODO: Change these three fields according to the session table*/}
                         
@@ -190,13 +237,14 @@ class SpecificTask extends Component {
                             </button>
                         </p>
                 </header>
-                    <div className="mb-2">
-                        <button type="button" className="btn btn-submit mr-1" onClick={this.handleClick}>
-                           Start-Pause
+
+                <div className="mb-2">
+                        <button type="button" className="btn btn-submit mr-1" disabled={this.state.stopped}
+                                onClick={this.handleStartPauseClick}>
+                            <i className={this.state.startPause}></i>
                         </button>
-                        {/*TODO: Change "Start-Pause" to icons. The icons can change when you click it.*/}
-                        <button type="button" className="btn btn-submit mr-1">
-                            Stop
+                        <button type="button" className="btn btn-submit mr-1" onClick={this.handleStopClick}>
+                            <i className='fas fa-stop'></i>
                         </button>
                         {/*TODO: Make stop button function.*/}
                         

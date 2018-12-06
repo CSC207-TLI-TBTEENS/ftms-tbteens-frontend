@@ -4,6 +4,7 @@ import JobList from './JobList';
 import Loading from '../components/Loading.js';
 import SearchBar from '../components/Search.js'
 import { MessageBox, Message} from 'element-react';
+import withAuth from "../hocs/withAuth";
 
 class Jobs extends Component {
     constructor(props) {
@@ -16,6 +17,7 @@ class Jobs extends Component {
             {label: "Description", value: null}]
         }
         this.searchRet = this.searchRet.bind(this);
+        this.loadJobs = this.loadJobs.bind(this);
     }
  
     searchRet(data){
@@ -27,8 +29,13 @@ class Jobs extends Component {
     }
 
     async loadJobs() {
-        let jobs = await apiCalls.getJobs();
-        this.setState({jobs, loading : false, jobsShow:[...jobs]});
+        try {
+            this.props.removeAlert();
+            let jobs = await apiCalls.getJobs();
+            this.setState({jobs, loading : false, jobsShow:[...jobs]});
+        } catch(err) {
+            this.props.addAlert("error-load-jobsview", err.message);
+        }
     }
 
     setJobViewing = (siteName, description) => {
@@ -40,8 +47,6 @@ class Jobs extends Component {
 
     async handleJobEdit(id, siteName, description) {
         let edited = false;
-        console.log("this", this);
-        console.log("id", id)
         await MessageBox.confirm('Update this job\'s information?', 'Warning', {
             confirmButtonText: 'OK',
             cancelButtonText: 'Cancel',
@@ -75,8 +80,6 @@ class Jobs extends Component {
             }
             this.setState({jobs: currentJobs, 
                 jobsShow: currentJobs});
-            
-            console.log(this.state.clientJobs, this.state.clientJobsShow)
         }
     }
 
@@ -94,7 +97,6 @@ class Jobs extends Component {
 
     async confirmDeletion(id, siteName, description) {
         let deleted = false;
-        console.log(this);
         await MessageBox.confirm('This action will remove JOB #' + id + ' ' + description + ' from the database. Continue?', 'Warning', {
             confirmButtonText: 'OK',
             cancelButtonText: 'Cancel',
@@ -125,6 +127,11 @@ class Jobs extends Component {
     }
 
     render() {
+        // Removing alerts if page is reloaded.
+        this.props.history.listen(() => {
+            this.props.removeAlert();
+        });
+
         let content;
         const {jobsShow} = this.state;
         if (this.state.loading) {
@@ -154,7 +161,10 @@ class Jobs extends Component {
                         </div>
             </header>
             
-            
+            {/* In case the employees list doesn't load */}
+            <div className={ this.props.alerts.category === "error-load-jobsview" ? "d-block alert alert-danger" : "d-none" }>
+                {this.props.alerts.message}
+            </div>
             {content}
             
 
@@ -177,4 +187,4 @@ class Jobs extends Component {
     }
 }
 
-export default Jobs;
+export default withAuth(["ROLE_ADMIN"], Jobs);
