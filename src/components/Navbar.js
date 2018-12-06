@@ -66,6 +66,15 @@ class Navbar extends Component {
                             </ul>
                         }
 
+                        {/* Links the supervisors can see. */}
+                        {this.props.currentUser.user.role === "ROLE_SUPERVISOR" &&
+                            <ul className="navbar-nav mr-auto">    
+                                <li className="nav-item">
+                                    <Link className="nav-link" to={"/jobassign"}> Assign Jobs </Link>
+                                </li>
+                            </ul>
+                        }
+
                         {/* Links the client company users can see. */}
                         {this.props.currentUser.user.role === "ROLE_CLIENT" &&
                             <ul className="navbar-nav mr-auto">    

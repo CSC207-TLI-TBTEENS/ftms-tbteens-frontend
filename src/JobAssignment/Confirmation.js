@@ -1,17 +1,4 @@
 import React from 'react';
-import * as assignAPI from './api.js';
-import { connect } from "react-redux";
-
-
-const assignJob = (employee, job) => {
-  try {
-    this.props.removeAlert();
-    let inputs = {"job": job, "employee": employee}
-    assignAPI.assignJob(inputs);
-  } catch(err) {
-    this.props.addAlert("error-jobassign", err.message);
-  }
-}
 
 const Confirmation = (props) => {
     return (
@@ -32,7 +19,7 @@ const Confirmation = (props) => {
 
                 <div class="modal-footer modal-footer-confirm">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                  <button type="button" class="btn btn-submit" data-dismiss="modal" onClick={assignJob.bind(this, props.employee, props.job)}>OK</button>
+                  <button type="button" class="btn btn-submit" data-dismiss="modal" onClick={props.assignJob}>OK</button>
                 </div>
 
               </div>
@@ -46,11 +33,4 @@ const Confirmation = (props) => {
     )
 }
 
-
-
-function mapStateToProps(state) {
-  return {
-      alerts: state.alerts
-  }; 
-}
-export default connect(mapStateToProps)(Confirmation);
+export default Confirmation;
