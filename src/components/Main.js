@@ -1,6 +1,9 @@
 import React from "react";
 import { Switch, Route, withRouter} from "react-router-dom";
 import { connect } from "react-redux";
+import { authUser } from "../store/actions/auth";
+import { removeAlert, addAlert } from "../store/actions/alerts";
+
 import Landing from "./Landing";
 import Employees from "../Employees/Employees";
 import Companies from "../Companies/Companies";
@@ -14,10 +17,7 @@ import ClientJobs from "../ClientJobs/ClientJobs"
 import ViewHistory from "../ViewHistory/ViewHistory.js";
 import UserRegistration from "../Registration/UserRegistration.js";
 import errorPage from "./404.js";
-
 import CompanyRegistration from "../Registration/CompanyRegistration.js";
-import { authUser } from "../store/actions/auth";
-import { removeAlert, addAlert } from "../store/actions/alerts";
 import SpecificTask from "../Tasks/SpecificTask";
 import Approval from "../ClientApproval/Approval"
 
@@ -159,7 +159,6 @@ const Main = props => {
                         {...props}
                 />} />
 
-                <Route component={errorPage}/>
                 {/* This is the root route. */}
                 <Route exact path="/" render={(props) => 
                 <Landing
@@ -170,6 +169,8 @@ const Main = props => {
                     {...props}
                 />} />
 
+                {/* This is the 404 page. Keep it at the bottom of the switch. */}
+                <Route component={errorPage}/>
             </Switch>
         )} />
     )

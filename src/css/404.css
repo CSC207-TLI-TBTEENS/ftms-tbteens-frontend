@@ -1,12 +1,22 @@
 .gif-background {
-    background-image: url("../images/dancing.gif");
+    /*background-image: url(../images/dancing.gif);*/
+    background-image: url(../images/blobemoji.gif);
+    background-size: 100px 100px;
     /*border-color: var(--button_light);*/
     /*color: var(--light_font_color);*/
 }
 
+.white-hr {
+    border-top: 1px solid white;
+}
+
+.scroll-y-overflow {
+    overflow-y: auto;
+    /*max-height: 75vh;*/
+}
 
 /*Waves Animation*/
-html, body { height: 100%; }
+/*html, body { height: 100%; }
 body {
     background:radial-gradient(ellipse at center, rgba(255,254,234,1) 0%,
     rgba(255,254,234,1) 35%, #B7E8EB 100%);
@@ -54,4 +64,4 @@ body {
     50% {
         transform: translate3d(0,5px,0);
     }
-}
+}*/
