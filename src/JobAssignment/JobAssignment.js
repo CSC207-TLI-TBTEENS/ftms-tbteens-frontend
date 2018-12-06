@@ -22,8 +22,10 @@ export class JobAssignment extends Component {
         jobEmployees: []
       };
 
+      // Binding functions so that the 'this' keyword refers to the Job Assignment class.
       this.getJobsFromEmployees = this.getJobsFromEmployee.bind(this);
       this.getEmployeesFromJob = this.getEmployeesFromJob.bind(this);
+      this.assignJob = this.assignJob.bind(this);
     }
 
     componentWillMount() {
@@ -83,7 +85,6 @@ export class JobAssignment extends Component {
             }
         );
         this.getEmployeesFromJob({...job});
-        console.log(JSON.stringify(this.state.jobEmployees));
     };
 
     handleEmployeeChosen = (employee) => {
@@ -95,6 +96,18 @@ export class JobAssignment extends Component {
         this.getJobsFromEmployee({...employee});
     };
 
+    // Function to assign a job to an employee.
+    async assignJob() {
+        try {
+        this.props.removeAlert();
+        await jobAPI.assignJob(this.state.jobToConfirm.id, this.state.employeeToConfirm.id);
+        this.setState({employeeJobs: [...this.state.employeeJobs,this.state.jobToConfirm], 
+                jobEmployees:[...this.state.jobEmployees, this.state.employeeToConfirm]});
+        } catch(err) {
+          this.props.addAlert("error-jobassign", err.message);
+        }
+    }
+
     render() {
         // Removing alerts if page is reloaded.
         this.props.history.listen(() => {
@@ -102,23 +115,23 @@ export class JobAssignment extends Component {
         });
         return (
             <div className="container h-80">
-                <div class="row justify-content-center align-items-center">
-                    <div class="col-4 align-items-center job-manage-header">
+                <div className="row justify-content-center align-items-center">
+                    <div className="col-4 align-items-center job-manage-header">
                         <h3>Assign Job</h3>
                     </div>
                 </div>
-                <div class="row justify-content-between align-items-center">
-                    <div class="col-3 align-items-center job-manage-header">
+                <div className="row justify-content-between align-items-center">
+                    <div className="col-3 align-items-center job-manage-header">
                         <h3>Employees</h3>
                     </div>
-                    <div class="col-6 align-items-center job-manage-header">
+                    <div className="col-6 align-items-center job-manage-header">
                     </div>
-                    <div class="col-3 justify-content-end job-manage-header">
+                    <div className="col-3 justify-content-end job-manage-header">
                         <h3>Jobs</h3>
                     </div>
                 </div>
                 {/*The main content*/}
-                <div class="row justify-content-center h-100">
+                <div className="row justify-content-center h-100">
                     <div className="col-md-3 d-flex justify-content-center">
                             <EmployeesList employees={this.state.employees} employeeHandler={this.handleEmployeeChosen}/>
                     </div>
@@ -131,19 +144,28 @@ export class JobAssignment extends Component {
 
                         <div className="row align-items-center justify-content-center">
                             <div className="col-md-12 mb-3 d-flex justify-content-center">
-                                <TaskConfirmation currentJob={this.state.jobToConfirm} employees={this.state.jobEmployees}/>
+                                <TaskConfirmation 
+                                currentJob={this.state.jobToConfirm} 
+                                employees={this.state.jobEmployees}/>
                             </div>
                         </div>
+
                         <div className="row align-items-center justify-content-center">
                             <div className="col-md-12 mb-3 d-flex justify-content-center">
-                                <EmployeeConfirmation currentEmployee={this.state.employeeToConfirm} jobs={this.state.employeeJobs} onClick={this.dummyOnClick}/>
+                                <EmployeeConfirmation 
+                                currentEmployee={this.state.employeeToConfirm} 
+                                jobs={this.state.employeeJobs} 
+                                onClick={this.dummyOnClick}/>
                             </div>
                          </div>
+                        
+                        {/* Confirm Job Assignment component. */}
                         <div className="row justify-content-center">
                             <div className="col-md-12 d-flex justify-content-center">
-                                <Confirmation employee={this.state.employeeToConfirm} job={this.state.jobToConfirm} onClick={this.dummyOnClick}/>
+                                <Confirmation assignJob={this.assignJob}/>
                             </div>
                         </div>
+
                     </div> 
                     <div className="col-md-3 d-flex justify-content-center">
                         <JobsList jobs={this.state.jobs} taskHandler={this.handleTaskChosen}/>
@@ -154,4 +176,4 @@ export class JobAssignment extends Component {
     }
 }
 
-export default withAuth(["ROLE_ADMIN", "ROLE_EMPLOYEE", "ROLE_SUPERVISOR", "ROLE_CLIENT"], JobAssignment);
+export default withAuth(["ROLE_SUPERVISOR"], JobAssignment);

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import * as apiCalls from './api';
+import { removeAlert, addAlert } from "../store/actions/alerts";
 import { connect } from "react-redux";
 
 //Toggle for Job Detail View Enabled
@@ -110,4 +111,4 @@ function mapStateToProps(state) {
         alerts: state.alerts
     }; 
 }
-export default connect(mapStateToProps)(JobItem);
+export default connect(mapStateToProps, { removeAlert, addAlert })(JobItem);
