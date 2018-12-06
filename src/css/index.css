@@ -114,6 +114,26 @@ code {
     cursor: pointer;
 }
 
+.navbar-notif {
+    display: none;
+}
+@media (min-width: 992px) {
+    .navbar-notif {
+        display: block;
+        list-style: none;
+    }
+}
+
+.navbar-notif-mobile {
+    display: block;
+    list-style: none;
+}
+@media (min-width: 992px) {
+    .navbar-notif-mobile {
+        display: none;
+    }
+}
+
 /* FTMS logo */
 .navbar-brand > img {
     display: inline-block;
