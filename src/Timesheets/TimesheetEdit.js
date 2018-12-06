@@ -94,43 +94,43 @@ class TimesheetEdit extends Component {
             })
         }
     }
-    // async handleTaskEdit(id, taskname, starttime, endtime) {
-    //     let edited = false;
-    //     await MessageBox.confirm('Update this Task\'s name?', 'Warning', {
-    //         confirmButtonText: 'OK',
-    //         cancelButtonText: 'Cancel',
-    //         type: 'warning'
-    //     }).then(async() => {
-    //         edited = true;
-    //         await apiCalls.editTask({id, taskname, starttime, endtime});
-    //         await Message({
-    //           type: 'success',
-    //           message: 'Edited Task #' + id + ' ' + taskname + ' successfully!'
-    //         });
-    //     }).catch((error) => {
-    //         Message({
-    //           type: 'info',
-    //           message: "Deletion cancelled!"
-    //         });
-    //     });
-    //     if (edited) {
-    //         let currentTasks = [...this.state.taskList];
-    //         for (let i = 0; i < currentTasks.length; i++) {
-    //             if (currentTasks[i].id === id) {
-    //                 let editedTask = {
-    //                     id: id,
-    //                     taskname: taskname,
-    //                     starttime: starttime,
-    //                     endtime: endtime
-    //                 };
-    //                 currentTasks[i] = editedTask;
-    //                 break;
-    //             }
-    //         }
-    //         this.setState({taskList: currentTasks, 
-    //             taskShow: currentTasks});
-    //     }
-    // }
+    async handleTaskEdit(id, taskname, starttime, endtime) {
+        let edited = false;
+        await MessageBox.confirm('Update this Task\'s name?', 'Warning', {
+            confirmButtonText: 'OK',
+            cancelButtonText: 'Cancel',
+            type: 'warning'
+        }).then(async() => {
+            edited = true;
+            await apiCalls.editTask({id, taskname, starttime, endtime});
+            await Message({
+              type: 'success',
+              message: 'Edited Task #' + id + ' ' + taskname + ' successfully!'
+            });
+        }).catch((error) => {
+            Message({
+              type: 'info',
+              message: "Deletion cancelled!"
+            });
+        });
+        if (edited) {
+            let currentTasks = [...this.state.taskList];
+            for (let i = 0; i < currentTasks.length; i++) {
+                if (currentTasks[i].id === id) {
+                    let editedTask = {
+                        id: id,
+                        taskname: taskname,
+                        starttime: starttime,
+                        endtime: endtime
+                    };
+                    currentTasks[i] = editedTask;
+                    break;
+                }
+            }
+            this.setState({taskList: currentTasks, 
+                taskShow: currentTasks});
+        }
+    }
 
     async confirmDeletion(id, taskname) {
         let deleted = false;
