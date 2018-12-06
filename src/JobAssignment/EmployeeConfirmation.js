@@ -26,7 +26,7 @@ const EmployeeConfirmation = (props) => {
 
                                   <div class="modal-footer modal-footer-confirm">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                    <button type="button" class="btn btn-confirmation" data-dismiss="modal" onClick={props.onClick}>OK</button>
+                                    <button type="button" class="btn btn-confirmation" data-dismiss="modal" onClick={props.onClickz}>OK</button>
                                   </div>
 
                                 </div>

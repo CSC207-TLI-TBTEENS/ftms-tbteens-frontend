@@ -20,3 +20,7 @@ export async function assignJob(timesheet){
 export async function getEmployeesFromJob(input) {
   return apiCall('GET', JOBEMPLOYEES + input);
 }
+
+export async function removeEmployeeFromJob(input) {
+  return apiCall('DELETE', JOBAPI + input.job + '/employees/' + input.employee);
+}
