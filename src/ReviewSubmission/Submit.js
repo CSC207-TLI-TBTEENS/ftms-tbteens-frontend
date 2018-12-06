@@ -9,13 +9,13 @@ class Submit extends Component {
         const regexHour = "^[0-9]+:[0-9]{2}$";
         const regexMoney = "^[$]{0,1}[0-9]*(,[0-9]{3})*(.[0-9]{2}){0,1}$";
 
-        if (this.props.details === null || this.props.details === []) {
+        if (this.props.details !== null && this.props.details !== undefined) {
             this.state = { details: props.details }
         }
         else {
             this.state = {
                 details:
-                    [{name: "Start Time", value: "12:34", inputRegex: regexTime},
+                    [{name: "Start Time", value: "12:34"},
                     {name: "End Time", value: "23:45", inputRegex: regexTime},
                     {name: "Travel Time", value: "00:00", inputRegex: regexHour},
                     {name: "Costs", value: "1,000,000", inputRegex: regexMoney}]

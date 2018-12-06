@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import SubmitItem from './SubmitItem';
+import ApprovalItem from './ApprovalItem';
 
-class SubmitList extends Component {
+class ApprovalList extends Component {
     constructor(props) {
         super(props);
 
@@ -27,12 +27,13 @@ class SubmitList extends Component {
     // If there are n number of elements in the state.details, it prints out n input fields
     createForm = () => {
         return this.state.details.map((detail, index) => {
-            return <SubmitItem
+            return <ApprovalItem
                 name={detail.name}
                 value={detail.value}
                 // Sets the regex to accept all strings if there is no inputRegex
                 pattern={detail.inputRegex === undefined ? ".*" : detail.inputRegex}
                 handleChange={(event) => this.handleInputChange(event, index)}
+                disabled={this.props.disabled}
                 key={index}
             />
         })
@@ -51,4 +52,4 @@ class SubmitList extends Component {
     }
 }
 
-export default SubmitList;
+export default ApprovalList;
