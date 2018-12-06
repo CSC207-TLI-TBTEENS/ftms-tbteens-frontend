@@ -4,7 +4,6 @@ const NOTIFICATIONAPI = "/api/notifications/";
 const ISREADAPI = "/api/notifications/isRead/";
 
 export async function getNotifications(userId){
-    console.log(userId)
     return apiCall('GET', NOTIFICATIONAPI + userId);
 }
 

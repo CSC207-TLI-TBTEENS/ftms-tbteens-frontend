@@ -53,6 +53,11 @@ class Submit extends Component {
     }
 
     render() {
+        // Removing alerts if page is reloaded.
+        this.props.history.listen(() => {
+            this.props.removeAlert();
+        });
+        
         return (
             <div className="container">
                 <header className="jumbotron bg-image">
