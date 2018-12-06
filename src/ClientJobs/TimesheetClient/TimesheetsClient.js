@@ -35,6 +35,9 @@ class Timesheets extends Component {
     }
 
     render() {
+        this.props.history.listen(() => {
+            this.props.removeAlert();
+        });
         return (
             <div className="container">
                 <header className="jumbotron bg-image">
@@ -47,6 +50,9 @@ class Timesheets extends Component {
 
                 <TimesheetClientList
                     timesheets = {this.state.timesheetsShow}
+                    addAlert={this.props.addAlert}
+                    removeAlert={this.props.removeAlert}
+                    alerts={this.props.alerts}
                 />
 
             </div>

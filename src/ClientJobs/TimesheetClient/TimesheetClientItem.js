@@ -1,58 +1,55 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
-import * as apiCalls from './api.js';
+import Approval from './Approval';
+
 
 export class TimesheetItem extends Component {
     constructor(props) {
         super(props);
+
     }
 
+
     render(){
+
+        let employeeName = this.props.employee.firstname + " " + this.props.employee.lastname;
+        //Calls Approval React Child
         return(
         <tr>
-            <td>{this.props.employee.firstname + " " + this.props.employee.lastname}</td>
+            <td>{employeeName}</td>
             <td>
-                <button type="button" className="btn primary success">
-                    Details
-                </button>
-            </td>
-            <td>
-                <button type="button" className="btn primary success">
-                    Approve
-                </button>
-                <button type="button" className="btn primary success">
-                    Reject
-                </button>
-                <button type="button" className="btn primary success">
-                    Approve
-                </button>
+                    <button type="button" className="btn primary success" data-toggle="modal" data-target={"#Employee"+ this.props.employee.id}>
+                        Review
+                    </button>
             </td>
 
-            <div className="modal fade" id="timesheetDetails" tabindex="-1" role="dialog" aria-labelledby="timesheetDetails" aria-hidden="true">
-                <div className="modal-dialog" role="document">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h5 class="modal-title">Details</h5>
-
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div className="modal-body">
-                            <h6>Tasks</h6>
-                            <p className="detail">Some Tasks Go HERE</p>
-                            <h6>Duration</h6>
-                            <p className="detail">Some Possible Duration</p>
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-submit mr-1" data-dismiss="modal">
-                                Back
-                            </button>
+            <div class="modal fade" id={"Employee" + this.props.employee.id} tabindex="-1" role="dialog" aria-labelledby="#viewReview" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="viewReview">{employeeName}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <Approval
+                                    employeeName= {employeeName}
+                                    jobTitle={this.props.job.jobTitle}
+                                    timesheetID={this.props.id}
+                                    addAlert={this.props.addAlert}
+                                    alerts={this.props.alerts}
+                                    removeAlert={this.props.removeAlert}
+                                />
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
                         </div>
                     </div>
-                </div>
             </div>
         </tr>
+
         );
     }
 

@@ -100,15 +100,6 @@ const Main = props => {
                         {...props}
                 />} />
 
-                {/* Client Approval route, only accessed by clients. */}
-                <Route exact path="/clientApproval"  render={(props) => 
-                    <Approval
-                        removeAlert={removeAlert}
-                        alerts={alerts}
-                        addAlert={addAlert}
-                        {...props}
-                />} />
-
                 {/* Client Jobs route, only accessible by client users. */}
                 <Route exact path="/clientJobs" render={(props) => 
                     <ClientJobs
