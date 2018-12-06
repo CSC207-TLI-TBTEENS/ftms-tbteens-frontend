@@ -1,18 +1,15 @@
 import React, {Component} from 'react';
 
-class TaskForm extends Component {
+class TaskDetailsForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            timesheet: this.props.timesheetId,
-            name: '',
-            description: ''
+            name: this.props.taskName,
+            description: this.props.taskDescription
 
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        
-        
     }
 
     async handleChange(e) {
@@ -22,15 +19,11 @@ class TaskForm extends Component {
     
     handleSubmit(e) {
         e.preventDefault();
-        this.props.addTask({...this.state});
-        this.setState({
-            name: '',
-            description: ''
-        });
+        this.props.editTaskDetails({...this.state});
       }
     
     render() {
-        const {name, description} = this.state;
+        const {name,description, endtime} = this.state;
         return (
             <div className="container">
 	        <div className="row align-items-center justify-content-center h-100">
@@ -44,8 +37,8 @@ class TaskForm extends Component {
                             className="form-control"
                             name="name"
                             id="name" 
-                            placeholder={this.state.name}
-                            value={name}
+                            placeholder={this.props.taskName}
+                            value={this.state.name}
                             autoComplete="off"
                             onChange={this.handleChange}/>
                         </div>
@@ -58,8 +51,8 @@ class TaskForm extends Component {
                             className="form-control"
                             name="description"
                             id="description" 
-                            placeholder={this.state.description}
-                            value={description}
+                            placeholder={this.props.taskDescription}
+                            value={this.state.description}
                             autoComplete="off"
                             onChange={this.handleChange}/>
                         </div>
@@ -67,9 +60,8 @@ class TaskForm extends Component {
                     <div className="row justify-content-center">
                         <button
                             type="submit"
-                            className="btn btn-submit btn-block"
-                        >
-                        Create
+                            className="btn btn-submit btn-block">
+                        Update
                         </button>
                     </div>
                 </form>
@@ -80,4 +72,4 @@ class TaskForm extends Component {
     }
 }
 
-export default TaskForm;
+export default TaskDetailsForm;
