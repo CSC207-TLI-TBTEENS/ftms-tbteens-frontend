@@ -6,7 +6,6 @@ class TaskList extends Component {
     render() {
         const task = this.props.task.map(task => (
            <TaskItem
-                
                 key={task.id}
                 {...task}
                 viewHandler = {this.props.viewHandler}
