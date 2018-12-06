@@ -1,5 +1,4 @@
 import React from 'react';
-import * as jobAPI from "../ClientJobs/api";
 
 const EmployeeConfirmation = (props) => {
   return (
@@ -12,7 +11,7 @@ const EmployeeConfirmation = (props) => {
                     return (
                         <div>
                             <p className="card-text closer-p">
-                              <i className="el-icon-delete"/>
+                              <i className="el-icon-delete" data-toggle="modal" data-target="#deleteJobCenterModal"/>
                                 {job.jobTitle}
                             </p>
 
@@ -26,7 +25,7 @@ const EmployeeConfirmation = (props) => {
 
                                   <div class="modal-footer modal-footer-confirm">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                    <button type="button" class="btn btn-confirmation" data-dismiss="modal" onClick={props.onClick}>OK</button>
+                                    <button type="button" class="btn btn-confirmation" data-dismiss="modal" onClick={() => props.delete(job.id, props.currentEmployee.id)}>OK</button>
                                   </div>
 
                                 </div>

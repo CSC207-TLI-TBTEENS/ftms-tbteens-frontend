@@ -26,6 +26,7 @@ export class JobAssignment extends Component {
       this.getJobsFromEmployees = this.getJobsFromEmployee.bind(this);
       this.getEmployeesFromJob = this.getEmployeesFromJob.bind(this);
       this.assignJob = this.assignJob.bind(this);
+      this.removeJob = this.removeJob.bind(this);
     }
 
     componentWillMount() {
@@ -73,11 +74,6 @@ export class JobAssignment extends Component {
         }
     }
 
-    // Just a dummy until I have time to implement and test the real onclick for deleting workers/jobs from each other.
-    async dummyOnClick() {
-        alert("Button pressed");
-    }
-
     handleTaskChosen = (job) => {
         this.setState(
             {
@@ -108,6 +104,20 @@ export class JobAssignment extends Component {
         }
     }
 
+    // Function to remove a job from an employee
+    async removeJob(jobID, employeeID) {
+        try {
+            this.props.removeAlert();
+            await jobAPI.removeJob(jobID, employeeID);
+            // Editing state
+            const employeeJobs = [...this.state.employeeJobs].filter(job => job.id !== jobID);
+            const jobEmployees = [...this.state.jobEmployees].filter(employee => employee.id !== employeeID);
+            this.setState({employeeJobs, jobEmployees});
+        } catch(err) {
+            this.props.addAlert("error-jobassign", err.message);
+          }
+    }
+
     render() {
         // Removing alerts if page is reloaded.
         this.props.history.listen(() => {
@@ -132,6 +142,8 @@ export class JobAssignment extends Component {
                 </div>
                 {/*The main content*/}
                 <div className="row justify-content-center h-100">
+
+                    {/* The list of employees.  */}
                     <div className="col-md-3 d-flex justify-content-center">
                             <EmployeesList employees={this.state.employees} employeeHandler={this.handleEmployeeChosen}/>
                     </div>
@@ -142,20 +154,23 @@ export class JobAssignment extends Component {
                             {this.props.alerts.message}
                         </div>
 
+                        {/* The current job you're viewing. */}
                         <div className="row align-items-center justify-content-center">
                             <div className="col-md-12 mb-3 d-flex justify-content-center">
                                 <TaskConfirmation 
                                 currentJob={this.state.jobToConfirm} 
-                                employees={this.state.jobEmployees}/>
+                                employees={this.state.jobEmployees}
+                                delete={this.removeJob}/>
                             </div>
                         </div>
 
+                        {/* The current employee you are viewing. */}
                         <div className="row align-items-center justify-content-center">
                             <div className="col-md-12 mb-3 d-flex justify-content-center">
                                 <EmployeeConfirmation 
                                 currentEmployee={this.state.employeeToConfirm} 
                                 jobs={this.state.employeeJobs} 
-                                onClick={this.dummyOnClick}/>
+                                delete={this.removeJob}/>
                             </div>
                          </div>
                         
@@ -165,8 +180,9 @@ export class JobAssignment extends Component {
                                 <Confirmation assignJob={this.assignJob}/>
                             </div>
                         </div>
-
                     </div> 
+
+                    {/* The list of all jobs.  */}
                     <div className="col-md-3 d-flex justify-content-center">
                         <JobsList jobs={this.state.jobs} taskHandler={this.handleTaskChosen}/>
                     </div>
