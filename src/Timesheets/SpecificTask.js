@@ -1,16 +1,18 @@
 import React, {Component} from 'react';
 import * as apiCalls from './api';
 import { Message, MessageBox } from 'element-react';
+import SpecificTaskForm from './SpecificTaskForm';
 
 class SpecificTask extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            taskId: this.props.match.params.id,
             taskName: "",
             taskDescription:"",
-            STARTTIME: "",
-            ENDTIME:"",
-            DURATION:"",
+            overallStartTime: "",
+            overallEndTime:"",
+            totalDuration:"",
             session:[],
             sessionViewed: [{label: "Start Time", value: ""},
                 {label: "End Time", value: ""},
@@ -24,10 +26,12 @@ class SpecificTask extends Component {
     }
 
     async loadSpecificTask() {
-        let oneTask = {taskName: "Digging Hole", taskDescription: "None",
+        let oneTask = {taskName: "Digging Hole", taskDescription: "description",
+                     overallStartTime: "12:00", overallEndTime: "", totalDuration:"",
                      session:[{starttime:"12:00", endtime:"12:30", duration: "30"},
                               {starttime:"12:50", endtime:"12:55", duration: "5"}]
                     };
+
         // TODO: Get specific task from props on TimesheetEdit. It uses dummy data now.
 
         // let sessions = oneTask[session];
@@ -35,13 +39,59 @@ class SpecificTask extends Component {
 
         let taskName = oneTask.taskName;
         let taskDescription = oneTask.taskDescription;
-        
+        let overallStartTime = oneTask.overallStartTime;
+        let overallEndTime = oneTask.overallEndTime;
+        let duration = oneTask.duration;
 
-        this.setState({task : oneTask, taskName: taskName, taskDescription: taskDescription});
+        this.setState({taskName: taskName, 
+                       taskDescription: taskDescription,
+                       overallStartTime: overallStartTime,
+                       overallEndTime: overallEndTime,
+                       totalDuration: duration});
         // session: sessions, sessionsShow:[...session],
-        //?? every session is a dictionary and is passed?
-        
+        //?? every session is a dictionary and is passed? 
     }
+    
+    async editTaskDetail(taskName, taskDescription,startTime, endTime, duration) {      
+        let edited = false;
+        await MessageBox.confirm('Update this task\'s information?', 'Warning', {
+            confirmButtonText: 'OK',
+            cancelButtonText: 'Cancel',
+            type: 'warning'
+        }).then(async() => {
+            edited = true;
+            // Call backend edit function this.props.match.params.id = task ID
+            let id = this.state.taskId;
+            let result = await apiCalls.editTask({id, taskName, taskDescription, startTime, endTime, duration});
+            await Message({
+              type: 'success',
+              // Display success message
+              message: result.message
+            });
+        }).catch((error) => {
+            Message({
+              type: 'info',
+              message: error.message
+            });
+        });
+        // If no errors in editting 
+        if (edited) {
+            // Update the session that are showed and the current list of employees
+            
+            // let taskName = taskName;
+            // let taskDescription = taskDescription
+            // let startTime = startTime;
+            // let endTime = endTime;
+            // let duration = duration;
+            
+            this.setState({taskName: taskName, 
+                taskDescription: taskDescription,
+                overallStartTime: startTime,
+                overallEndTime: endTime,
+                totalDuration: duration});
+        }
+    }
+    
     
 
     // setSessionViewing = (starttime, endtime) => {
@@ -108,19 +158,36 @@ class SpecificTask extends Component {
             <div className="container">
                 <header className="jumbotron bg-image">
                     <div className="container">
-                        <h1 className="display-4 pb-3">{this.state.taskName}</h1>
-                        {/*TODO: Change this "Task Name" to be from props*/}
-                        <h1 className="display-4">{this.state.taskId}</h1>
+                         {/*TODO: Change this "Task Name" to be from props*/}
+                        <h1 className="display-4">{this.state.taskName}</h1>
                         <p className="h4">{this.state.taskDescription}</p>
                         {/* TODO: Change this "Task description" to be from props */}
                         
                         </div> 
-                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        
+                        &nbsp; &nbsp; &nbsp; &nbsp;
+                        &nbsp; &nbsp; &nbsp; &nbsp;
+                        &nbsp; &nbsp; &nbsp; &nbsp;
                         <p>
-                         OVERALL START TIME:         OVERALL END TIME:               TOTAL DURATION:
+                        <div> 
+                         OVERALL   START   TIME:   <span>&nbsp; &nbsp; &nbsp; &nbsp; {this.state.overallStartTime} &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span>
+                         </div> 
+                         <div> 
+                         OVERALL   END   TIME:   <span>&nbsp; &nbsp; &nbsp; &nbsp; {this.state.overallEndTime} &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span> 
+                         </div> 
+                         <div> 
+                         TOTAL   DURATION: <span>&nbsp; &nbsp; &nbsp; &nbsp; {this.state.totalDuration} &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span> 
+                         </div> 
+                         
                         </p>
                         {/*TODO: Change these three fields according to the session table*/}
                         
+                        &nbsp;
+                        <p>
+                            <button type="button" className="btn btn-submit mr-1" data-toggle="modal" data-target="#specificTaskForm">
+                                Change Task Details
+                            </button>
+                        </p>
                 </header>
                     <div className="mb-2">
                         <button type="button" className="btn btn-submit mr-1" onClick={this.handleClick}>
@@ -131,11 +198,7 @@ class SpecificTask extends Component {
                             Stop
                         </button>
                         {/*TODO: Make stop button function.*/}
-                        <button type="button" className="btn btn-dark mr-1">
-                            Modify Task Details
-                        </button>
-                        {/*TODO: Allow modify function work.*/}
-
+                        
                     </div> 
                         <br/> <br/>
                         <table class="table">
@@ -156,28 +219,45 @@ class SpecificTask extends Component {
                         </table>
                         {/*TODO: Change the table based on the action on button*/}
 
+                <div className="mb-2">
+                <button type="button" className="btn btn-submit mr-1" onClick={this.handleClick}>
+                           Back
+                </button>
+                </div>
+                 {/*TODO: Return to the timesheet page by clicking back button*/}  
+
+                <div className="modal fade" id="specificTaskForm" tabIndex="-1" role="dialog" aria-labelledby="editTask" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                    <div className="modal-header">
+                    <h5 className="modal-title" id="exampleModalLabel">Change Task Detail</h5>
+                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
                     </div>
+                    <div className="modal-body">
+                    <SpecificTaskForm
+                        editTaskDetail = {this.editTaskDetail}
+                    />
+                    </div>
+                    </div>
+                </div>
 
-                    // <div className="modal fade" id="taskForm" tabIndex="-1" role="dialog" aria-labelledby="createNewTask" aria-hidden="true">
-                    // <div className="modal-dialog" role="document">
-                    //     <div className="modal-content">
-                    //         <div className="modal-header">
-                    //              <h5 className="modal-title" id="exampleModalLabel">Task Details</h5>
-                                
-                    //              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                    //                 <span aria-hidden="true">&times;</span>
-                    //              </button>
-                    //         </div>
-                    //          <div className="modal-body">
-                    //         <TaskForm
-                    //         addTask = {this.addTask}
-                    //         />
-                    //         </div>
-                    //     </div>
-                    //  </div>
-                    // </div>
+                
+                </div>
+                
+
+            {/* //     <div className="modal-footer">
+            //     <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+            //     <button onClick={this.props.editHandler.bind(this.props.curr,  */}
+            {/* //             cmp.id, this.props.companyViewed[0].value, 
+            //             this.props.companyViewed[1].value, 
+            //             this.props.companyViewed[2].value, 
+            //             this.props.companyViewed[3].value)}
+            //     type="button" className="btn btn-primary save-changes-btn">Save changes</button> */}
+            </div>
+ 
             
-
 
         )
     }
