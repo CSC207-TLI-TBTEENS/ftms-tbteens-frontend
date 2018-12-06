@@ -35,13 +35,33 @@ class EmployeeList extends Component {
                                     {
                                         this.props.employeeViewed.map((field, index) => {
                                             key++;
-                                            return (
-                                                <div className="form-group" key={key}>
-                                                    <label htmlFor="employeeInfo">{field.label}</label>
-                                                    <input type="text" className="form-control" id={field.label + num} aria-describedby="emailHelp" 
-                                                        value={field.value} onChange={(event) => this.props.formHandler(event, index)}/>
-                                                </div>
-                                            )
+                                            if (field.label.indexOf("Email") !== -1) {
+                                                return (
+                                                    <div key={key} className="form-group">
+                                                        <label htmlFor="employee-info">{field.label}</label>
+                                                        <input type="email" className="form-control" id={field.label + num} aria-describedby="emailHelp" 
+                                                            value={field.value} onChange={(event) => this.props.formHandler(event, index)} required/>
+                                                    </div>
+                                                )
+                                            }
+                                            else if (field.label.indexOf("Number") !== -1) {
+                                                return (
+                                                    <div key={key} className="form-group">
+                                                        <label htmlFor="employee-info">{field.label}</label>
+                                                        <input type="tel" className="form-control" id={field.label + num} aria-describedby="emailHelp" 
+                                                            value={field.value} onChange={(event) => this.props.formHandler(event, index)} required/>
+                                                    </div>
+                                                )
+                                            }
+                                            else {
+                                                return (
+                                                    <div key={key} className="form-group">
+                                                        <label htmlFor="employee-info">{field.label}</label>
+                                                        <input type="text" className="form-control" id={field.label + num} aria-describedby="emailHelp" 
+                                                            value={field.value} onChange={(event) => this.props.formHandler(event, index)} required/>
+                                                    </div>
+                                                )
+                                            }
                                         })
                                     }
                                 </form>

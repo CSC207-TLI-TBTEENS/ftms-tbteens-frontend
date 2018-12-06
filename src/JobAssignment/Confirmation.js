@@ -1,11 +1,4 @@
 import React from 'react';
-import * as assignAPI from './api.js'
-
-const assignJob = (employee, job) => {
-  let inputs = {"job": job, "employee": employee}
-  
-  assignAPI.assignJob(inputs);
-}
 
 const Confirmation = (props) => {
     return (
@@ -26,7 +19,7 @@ const Confirmation = (props) => {
 
                 <div class="modal-footer modal-footer-confirm">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                  <button type="button" class="btn btn-submit" data-dismiss="modal" onClick={assignJob.bind(this, props.employee, props.job)}>OK</button>
+                  <button type="button" class="btn btn-submit" data-dismiss="modal" onClick={props.assignJob}>OK</button>
                 </div>
 
               </div>

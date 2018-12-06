@@ -37,7 +37,7 @@ class SubmitList extends Component {
         })
     }
 
-    render() {
+    render() {        
         return (
             <div className="container bg-black rounded mb-3 table-shadow">
                 <div className="container py-1">

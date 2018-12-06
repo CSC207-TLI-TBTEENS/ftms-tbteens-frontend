@@ -25,14 +25,14 @@ export async function deleteTask(input) {
 }
 
 
+
 //Edit Task
 export async function editTask(input) {
     let id = input.id.toString();
-    let taskname = input.taskname;
-    let starttime = input.starttime;
-    let endtime = input.endtime;
-    let address = (TASKAPI + id + "?taskname=" + taskname + "&starttime=" + starttime + "&endtime=" + endtime);
+    let taskName = input.taskName;
+    let taskDescription = input.taskDescription;
+    
+    let address = (TASKAPI + id + "?taskname=" + taskName + "&sdescription=" + taskDescription);
     return apiCall('PUT', address, {...input});
     
 }
-

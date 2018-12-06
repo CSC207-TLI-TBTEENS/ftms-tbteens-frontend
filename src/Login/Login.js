@@ -74,7 +74,7 @@ class Login extends Component {
                                     value={email}
                                     autoComplete="off"
                                     onChange={this.handleChange}
-                                    />
+                                    required/>
                                 </div>
                                 <div className="form-group">
                                     <input 
@@ -86,7 +86,7 @@ class Login extends Component {
                                     value={password}
                                     autoComplete="off"
                                     onChange={this.handleChange} 
-                                    />
+                                    required/>
                                 </div>
                                 <div className="row justify-content-between">
                                     <div className="col">

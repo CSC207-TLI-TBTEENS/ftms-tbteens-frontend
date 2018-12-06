@@ -33,21 +33,27 @@ class Employees extends Component {
         this.loadEmployees();
     }
 
+    // Loading the employees list.
     async loadEmployees() {
-        let employees = await apiCalls.getEmployees();
-        this.setState({employees : employees, loading : false, employeesShow:[...employees]});
+        try {
+            this.props.removeAlert();
+            let employees = await apiCalls.getEmployees();
+            this.setState({employees : employees, loading : false, employeesShow:[...employees]});
+        } catch(err) {
+            this.props.addAlert("error-load-employee", err.message);
+        }
     }
 
     // Adding an employee. This is passed as a prop to the EmployeeForm.
     async addEmployee(employee) {
         try {
-            let newEmployee = await apiCalls.createEmployee(employee);
             this.props.removeAlert();
+            let newEmployee = await apiCalls.createEmployee(employee);
             this.setState({employees : [...this.state.employees, newEmployee], 
                 employeesShow : [...this.state.employeesShow, newEmployee]});
-            this.props.addAlert("success", "Successfully added new employee!");
+            this.props.addAlert("success-adding-employee", "Successfully added new employee!");
         } catch(err) {
-            this.props.addAlert("error", err.message);
+            this.props.addAlert("error-adding-employee", err.message);
         }
     }
 
@@ -207,7 +213,10 @@ class Employees extends Component {
                 </div>
             </header>
             
-            
+            {/* In case the employees list doesn't load */}
+            <div className={ this.props.alerts.category === "error-load-employee" ? "d-block alert alert-danger" : "d-none" }>
+                {this.props.alerts.message}
+            </div>
 
             {content}
 
