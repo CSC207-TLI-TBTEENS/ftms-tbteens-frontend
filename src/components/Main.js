@@ -19,7 +19,7 @@ import UserRegistration from "../Registration/UserRegistration.js";
 import errorPage from "./404.js";
 import CompanyRegistration from "../Registration/CompanyRegistration.js";
 import SpecificTask from "../Tasks/SpecificTask";
-import Approval from "../ClientApproval/Approval"
+import TimesheetClient from "../ClientJobs/TimesheetClient/TimesheetsClient"
 
 const Main = props => {
     const { authUser, alerts, removeAlert, currentUser } = props;
@@ -132,6 +132,15 @@ const Main = props => {
                 {/* Timesheet editing route */}
                 <Route exact path="/timesheets/:id/edit" render={(props) => 
                 <TimesheetEdit
+                    currentUser={currentUser}
+                    removeAlert={removeAlert}
+                    alerts={alerts}
+                    addAlert={addAlert}
+                    {...props}
+                />} />
+                
+                <Route exact path="/timesheets/:id/client" render={(props) => 
+                <TimesheetClient
                     currentUser={currentUser}
                     removeAlert={removeAlert}
                     alerts={alerts}
