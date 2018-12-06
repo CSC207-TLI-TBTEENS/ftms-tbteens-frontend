@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import SubmitList from './SubmitList';
+import withAuth from "../hocs/withAuth";
 
 class Submit extends Component {
     constructor(props) {
@@ -23,9 +24,11 @@ class Submit extends Component {
         // Give me a prop with the form AND of the details below, the form will autogenerate
         // i.e. 
         // details: [
-        // {name: "Display-name-1", value: "Value-for-user-to-change-1", [OPTIONAL]inputRegex: "Regex=for-value-to-match-1"}
-        // {name: "Display-name-2", value: "Value-for-user-to-change-2", [OPTIONAL]inputRegex: "Regex=for-value-to-match-2"}
-        // {name: "Display-name-3", value: "Value-for-user-to-change-3", [OPTIONAL]inputRegex: "Regex=for-value-to-match-3"}
+        // {
+        //     name: "Display-name-1", 
+        //     value: "Value-for-user-to-change-1", 
+        //     [OPTIONAL]inputRegex: "Regex=for-value-to-match-1"
+        // }
         // ]
     }
 
@@ -74,4 +77,4 @@ class Submit extends Component {
 
 }
 
-export default Submit;
+export default withAuth(["ROLE_ADMIN", "ROLE_EMPLOYEE", "ROLE_SUPERVISOR", "ROLE_CLIENT"], Submit);

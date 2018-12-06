@@ -159,7 +159,8 @@ class ForgotCredentials extends React.Component {
                                         type="text" 
                                         className="form-control" 
                                         id="code-verify" 
-                                        aria-describedby="basic-addon3"/>
+                                        aria-describedby="basic-addon3"
+                                        required/>
                             </div>
                             </div>
                             <div className="modal-footer justify-content-center">
@@ -208,7 +209,7 @@ class ForgotCredentials extends React.Component {
                                 <div className="input-group-prepend">
                                     <span className="input-group-text" id="code-verify">10-digit code</span>
                                 </div>
-                                <input type="text" className="form-control" id="code-verify" aria-describedby="basic-addon3"/>
+                                <input type="text" className="form-control" id="code-verify" aria-describedby="basic-addon3" required/>
                             </div>
                             </div>
                             <div className="modal-footer justify-content-center">
@@ -232,7 +233,8 @@ class ForgotCredentials extends React.Component {
                                     type="text" 
                                     className="form-control" 
                                     id="email" 
-                                    placeholder="Email"/>
+                                    placeholder="Email" 
+                                    required/>
                             </div>
                             <div className="row justify-content-center">
                                 <button onClick={this.verifyPasswordRecovery.bind(this)}type="button" className="btn btn-primary submit-forgot">
@@ -255,7 +257,8 @@ class ForgotCredentials extends React.Component {
                                         type="text" 
                                         className="form-control" 
                                         id="fname" 
-                                        placeholder="First Name"/>
+                                        placeholder="First Name"
+                                        required/>
                             </div>
                             <div className="form-group">
                                 <label className="text-black" htmlFor="lname">Enter your last name:</label>
@@ -265,7 +268,8 @@ class ForgotCredentials extends React.Component {
                                         value={this.state.forgotOther.lastname}
                                         className="form-control" 
                                         id="lname" 
-                                        placeholder="Last Name"/>
+                                        placeholder="Last Name"
+                                        required/>
                             </div>
                             <div className="form-group">
                                 <label className="text-black" htmlFor="phone">Enter your phone number:</label>
@@ -274,7 +278,8 @@ class ForgotCredentials extends React.Component {
                                         name="phone"
                                         value={this.state.forgotOther.phone} 
                                         className="form-control" id="phone" 
-                                        placeholder="Phone Number"/>
+                                        placeholder="Phone Number"
+                                        required/>
                             </div>
                             <div className="row justify-content-center">
                                 <button onClick={this.verifyEmailOrBothRecovery.bind(this)}

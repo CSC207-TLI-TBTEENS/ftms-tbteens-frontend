@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TimesheetList from './TimesheetList';
 import SearchBar from '../components/Search';
 import * as apiCalls from '../Employees/api.js';
+import { Message } from 'element-react';
 
 class Timesheets extends Component {
     constructor(props) {
@@ -22,8 +23,15 @@ class Timesheets extends Component {
     }
 
     async loadTimesheets() {
-        let getTimesheets = await apiCalls.getJobsFromEmployee(this.props.currentUser.user.id);
-        this.setState({timesheets: [...getTimesheets], timesheetsShow: [...getTimesheets]});
+        try {
+            let getTimesheets = await apiCalls.getJobsFromEmployee(this.props.currentUser.user.id);
+            this.setState({timesheets: [...getTimesheets], timesheetsShow: [...getTimesheets]});
+        } catch(err) {
+            Message({
+                type: 'error',
+                message: err.message
+            });
+        }
     }
 
     render() {

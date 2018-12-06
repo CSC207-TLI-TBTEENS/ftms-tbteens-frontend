@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { logout } from "../store/actions/auth";
 import Logo from '../images/logo.png';
+import Notification from '../Notification/Notification.js';
 
 class Navbar extends Component {
     logout = e => {
@@ -12,9 +13,9 @@ class Navbar extends Component {
     };
     render() {
         // Whether to display login or logout.
-        let login = (this.props.currentUser.isAuthenticated ? 
+        let login = (this.props.currentUser.isAuthenticated ?
             <a href onClick={this.logout} className="nav-link"> 
-                Logout 
+                Logout
             </a>
             : <Link className="nav-link" to={"/login"}> Login </Link>
             )
@@ -71,6 +72,16 @@ class Navbar extends Component {
 
 
                         <ul className="navbar-nav ml-auto">
+                            {this.props.currentUser.user.role === "ROLE_ADMIN" &&
+                                <li>
+                                    <Notification />
+                                </li>
+                            }
+                            {this.props.currentUser.user.role === "ROLE_EMPLOYEE" &&
+                            <li>
+                                <Notification />
+                            </li>
+                            }
                             <li className="nav-item">
                                 {login}
                             </li>

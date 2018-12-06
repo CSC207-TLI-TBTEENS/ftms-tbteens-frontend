@@ -16,9 +16,9 @@
     --dark_font_color: rgb(64, 64, 66); 
     --light_font_color: rgb(214, 214, 214);
 
-    --delete-color: rgb(255, 0, 0);
-    --delete-color-hover: rgb(204, 0, 0);
-    --edit-color: rgb(160, 218, 113); 
+    --delete-color: rgb(140, 140, 140);
+    --delete-color-hover: rgb(255, 40, 40);
+    --edit-color: rgb(140, 140, 140); 
     --edit-color-hover: rgb(133, 208, 73);
     --white-icon: rgb(255,255,255); 
 
@@ -96,14 +96,20 @@ code {
     monospace;
 }
 
+@media (max-width:320px) {
+    .el-message-box {
+        width: 320px !important;
+    }
+}
+
 /* Navigation Bar */
 .navbar a {
     font-weight: bold;
-    color: rgb(203, 200, 228);
+    color: var(--dark_font_color);
 }
 
 .navbar a:hover {
-    color: rgb(203, 200, 228);
+    color: var(--dark_font_color);
     text-decoration: underline;
     cursor: pointer;
 }

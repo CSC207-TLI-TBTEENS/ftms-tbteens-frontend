@@ -47,7 +47,8 @@ class TaskForm extends Component {
                             placeholder={this.state.name}
                             value={name}
                             autoComplete="off"
-                            onChange={this.handleChange}/>
+                            onChange={this.handleChange}
+                            required/>
                         </div>
                     </div>
                     <div className="form-row">
@@ -61,7 +62,8 @@ class TaskForm extends Component {
                             placeholder={this.state.description}
                             value={description}
                             autoComplete="off"
-                            onChange={this.handleChange}/>
+                            onChange={this.handleChange}
+                            required/>
                         </div>
                     </div>                    
                     <div className="row justify-content-center">

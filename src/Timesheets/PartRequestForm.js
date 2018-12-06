@@ -44,7 +44,8 @@ class PartRequestForm extends Component {
                             placeholder= {this.state.location}
                             value={location}
                             autoComplete="off"
-                            onChange={this.handleChange}/>
+                            onChange={this.handleChange}
+                            required/>
                         </div>
                     </div>
                     <div className="form-group">
@@ -58,7 +59,8 @@ class PartRequestForm extends Component {
                             rows="5"
                             value={details}
                             autoComplete="off"
-                            onChange={this.handleChange}/>
+                            onChange={this.handleChange}
+                            required/>
                         </div>
                     </div>
                 </form>
