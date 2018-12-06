@@ -2,7 +2,7 @@ import { apiCall} from "../Services/api";
 
 const JOBAPI = "/api/jobs/";
 const TASKAPI = "/api/tasks";
-const JOBEMPLOYEES = JOBAPI + "employees"
+const JOBEMPLOYEES = JOBAPI + "employees/";
 let newtimesheet= {job: "", employee: " "};
 
 export async function getAllJobs() {
