@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import * as apiCalls from './api';
 import { Message, MessageBox } from 'element-react';
-import SpecificTaskForm from './SpecificTaskForm';
 
 class SpecificTask extends Component {
     constructor(props) {
@@ -202,10 +201,7 @@ class SpecificTask extends Component {
                         {/* TODO: Change this "Task description" to be from props */}
                         
                         </div> 
-                        
-                        &nbsp; &nbsp; &nbsp; &nbsp;
-                        &nbsp; &nbsp; &nbsp; &nbsp;
-                        &nbsp; &nbsp; &nbsp; &nbsp;
+
                         <p>
                          OVERALL START TIME: {this.state.startTime} OVERALL END TIME: {this.state.endTime} TOTAL DURATION:
                         </p>
@@ -214,7 +210,7 @@ class SpecificTask extends Component {
                         &nbsp;
                         <p>
                             <button type="button" className="btn btn-submit mr-1" data-toggle="modal" data-target="#specificTaskForm">
-                                Change Task Details
+                                Modify Task Details
                             </button>
                         </p>
                 </header>
@@ -267,45 +263,7 @@ class SpecificTask extends Component {
                                 </div>
                             </div>
                         </div>
-
-                <div className="mb-2">
-                <button type="button" className="btn btn-submit mr-1" onClick={this.handleClick}>
-                           Back
-                </button>
-                </div>
-                 {/*TODO: Return to the timesheet page by clicking back button*/}  
-
-                <div className="modal fade" id="specificTaskForm" tabIndex="-1" role="dialog" aria-labelledby="editTask" aria-hidden="true">
-                <div className="modal-dialog" role="document">
-                    <div className="modal-content">
-                    <div className="modal-header">
-                    <h5 className="modal-title" id="exampleModalLabel">Change Task Detail</h5>
-                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                    </div>
-                    <div className="modal-body">
-                    <SpecificTaskForm
-                        editTaskDetail = {this.editTaskDetail}
-                    />
-                    </div>
-                    </div>
-                </div>
-
-                
-                </div>
-                
-
-            {/* //     <div className="modal-footer">
-            //     <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-            //     <button onClick={this.props.editHandler.bind(this.props.curr,  */}
-            {/* //             cmp.id, this.props.companyViewed[0].value, 
-            //             this.props.companyViewed[1].value, 
-            //             this.props.companyViewed[2].value, 
-            //             this.props.companyViewed[3].value)}
-            //     type="button" className="btn btn-primary save-changes-btn">Save changes</button> */}
-            </div>
- 
+                </div> 
             
 
         )
