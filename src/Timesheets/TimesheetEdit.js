@@ -73,7 +73,7 @@ class TimesheetEdit extends Component {
             })
         }
     }
-    async handleTaskEdit(id, taskname, starttime, endtime) {
+    /*async handleTaskEdit(id, taskname, starttime, endtime) {
         let edited = false;
         await MessageBox.confirm('Update this Task\'s name?', 'Warning', {
             confirmButtonText: 'OK',
@@ -109,7 +109,7 @@ class TimesheetEdit extends Component {
             this.setState({taskList: currentTasks, 
                 taskShow: currentTasks});
         }
-    }
+    } */
 
     async confirmDeletion(id, taskname) {
         let deleted = false;
