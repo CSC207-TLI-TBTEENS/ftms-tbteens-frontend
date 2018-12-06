@@ -17,6 +17,7 @@ import CompanyRegistration from "../Registration/CompanyRegistration.js";
 import { authUser } from "../store/actions/auth";
 import { removeAlert, addAlert } from "../store/actions/alerts";
 import SpecificTask from "../Tasks/SpecificTask";
+import Approval from "../ClientApproval/Approval"
 
 const Main = props => {
     const { authUser, alerts, removeAlert, currentUser } = props;
@@ -91,6 +92,15 @@ const Main = props => {
                 {/* Review and Submit route. */}
                 <Route exact path="/review"  render={(props) => 
                     <Submit
+                        removeAlert={removeAlert}
+                        alerts={alerts}
+                        addAlert={addAlert}
+                        {...props}
+                />} />
+
+                {/* Client Approval route, only accessed by clients. */}
+                <Route exact path="/clientApproval"  render={(props) => 
+                    <Approval
                         removeAlert={removeAlert}
                         alerts={alerts}
                         addAlert={addAlert}
