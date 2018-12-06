@@ -18,5 +18,5 @@ export async function assignJob(timesheet){
 }
 
 export async function getEmployeesFromJob(input) {
-    return apiCall("POST", JOBEMPLOYEES, {...input});
+  return apiCall('GET', JOBEMPLOYEES + input);
 }
