@@ -18,12 +18,16 @@ export async function createTask(input) {
     return apiCall('POST',`/api/timesheets/${timesheet_id}/tasks`, {...input});
 }
 
+// Create a new part request
+export async function createPartRequest(input) {
+    return apiCall('POST', "/api/tasks/parts", input);
+}
+
 // Delete Task
 export async function deleteTask(input) {
     let address = TASKAPI + input.toString();
     return apiCall('DELETE', address, {...input});
 }
-
 
 //Edit Task
 export async function editTask(input) {

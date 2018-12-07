@@ -29,5 +29,6 @@ export async function getJobsFromEmployee(input) {
 }
 
 export async function getTimesheetsFromEmployee(employeeID){
+    console.log(employeeID)
     return apiCall('GET', `/api/timesheets/employee/${employeeID}`)
 }

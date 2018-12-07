@@ -39,17 +39,28 @@ class TimesheetEdit extends Component {
             this.setState({taskList: tasks});
             this.setState({taskShow: [...tasks]});
         } catch(err) {
-            this.props.addAlert("error-timesheetedit", err.message);
+            // this.props.addAlert("error-timesheetedit", err.message);
+            Message({
+                type: "error",
+                message: err.message
+            })
         }
     }
 
     async submitPartRequest(request) {
-        // try {
-        //     this.props.removeAlert();
-        //     let newRequest = await apiCalls.createPartRequest(request);
-        // } catch(err) {
-        //     this.props.addAlert("error-timesheetedit", err.message);
-        // }
+        try {
+            await apiCalls.createPartRequest(request);
+            Message({
+                type: "success",
+                message: "Your part request has been created successfully!"
+            })
+        } catch(err) {
+            // this.props.addAlert("error-timesheetedit", err.message);
+            Message({
+                type: "error",
+                message: err.message
+            })
+        }
     }
 
     async loadJob(timesheetId) {
@@ -68,6 +79,10 @@ class TimesheetEdit extends Component {
             let newTask = await apiCalls.createTask(task);
             this.setState({taskList : [...this.state.taskList, newTask], 
                         taskShow : [...this.state.taskShow, newTask]});
+            Message({
+                type: "success",
+                message: `New task named ${task.name} added successfully!`
+            })
         } catch(err) {
             this.props.addAlert("error-timesheetedit", err.message);
         }
@@ -189,10 +204,10 @@ class TimesheetEdit extends Component {
                         <p>
                             {this.state.job.description}
                         </p>
-                        <button type="button" className="btn btn-table mr-1" data-toggle="modal" data-target="#taskForm">
+                        <button type="button" className="btn btn-table mr-1" data-toggle="collapse" data-target="#taskForm" aria-expanded="false" aria-controls="add-new-task">
                             Add Task
                         </button>
-                        <button type="button" className="btn btn-table mr-1" data-toggle="modal" data-target="#requestForm">
+                        <button type="button" className="btn btn-table mr-1" data-toggle="collapse" data-target="#requestForm" aria-expanded="false" aria-controls="request-parts">
                             Request Parts
                         </button>
                         <button type="button" className="btn btn-table mr-1 w-auto">
@@ -205,57 +220,22 @@ class TimesheetEdit extends Component {
                 <div className={ this.props.alerts.category === "error-timesheetedit" ? "d-block alert alert-danger" : "d-none" }>
                     {this.props.alerts.message}
                 </div>
-
-                {content}
-
-                <div className="modal fade" id="taskForm" tabIndex="-1" role="dialog" aria-labelledby="createNewTask" aria-hidden="true">
-                    <div className="modal-dialog" role="document">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                 <h5 className="modal-title" id="exampleModalLabel">Adding New Task</h5>
-                                
-                                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                 </button>
-                            </div>
-                             <div className="modal-body">
-                            <TaskForm
+                <div className="collapse mb-3" id="taskForm">
+                    <div className="card card-body">
+                        <TaskForm style={{float: "left"}}
                             addTask = {this.addTask}
-                            timesheetId= {this.props.match.params.id}
-                            />
-                            </div>
-                        </div>
+                            timesheetId= {this.props.match.params.id}/>
                     </div>
                 </div>
-
-                <div className="modal fade" id="requestForm" tabindex="-1" role="dialog" aria-labelledby="requestForm" aria-hidden="true">
-                     <div className="modal-dialog" role="document">
-                         <div className="modal-content">
-                             <div className="modal-header">
-                                 <h5 class="modal-title">Part Request Form</h5>
-
-                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                   <span aria-hidden="true">&times;</span>
-                                 </button>
-                             </div>
-                             <div className="modal-body">
-                                <PartRequestForm
-                                    submitPartRequest = {this.submitPartRequest}
-                                    jobId = {this.state.jobId}
-                                    location = {this.state.location}
-                                />
-                             </div>
-                             <div className="modal-footer">
-                                <button type="button" className="btn btn-submit mr-1" data-dismiss="modal">
-                                    Back
-                                </button>
-                                <button type="button" className="btn btn-submit ml-1 w-auto" data-toggle="modal" data-target="#requestForm">
-                                    Submit
-                                </button>
-                             </div>
-                         </div>
-                     </div>
+                <div className="collapse mb-3" id="requestForm">
+                    <div className="card card-body">
+                        <PartRequestForm submitPartRequest = {this.submitPartRequest}
+                            jobId = {this.state.jobId}
+                            location = {this.state.location}/>
+                    </div>
                 </div>
+                
+                {content}
             </div>
         )
     }

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import '../css/index.css';
 import * as apiCalls from './api';
 import { Message, MessageBox } from 'element-react';
 import TaskForm from './TaskForm'
@@ -105,22 +106,22 @@ class SpecificTask extends Component {
             <div className="container">
                 <header className="jumbotron bg-image">
                     <div className="container">
-                        <h1 className="display-4 pb-3">{this.state.taskName}</h1>
+                        <h1 className="display-4 pb-3" suppressContentEditableWarning contentEditable="true">{this.state.taskName}</h1>
                         <h1 className="display-4">{this.state.taskId}</h1>
-                        <p className="h4 mb-3"> Description: {this.state.taskDescription}</p>
-
+                        <p className="h4 mb-3"> Description: 
+                            <p className="h5" suppressContentEditableWarning contentEditable="true">{this.state.taskDescription}</p>
+                        </p>
+                        <p>
+                            OVERALL START TIME: {this.state.STARTTIME}
+                        </p>
+                        <p>
+                            OVERALL END TIME: {this.state.ENDTIME}
+                        </p>
+                        <p>
+                            TOTAL DURATION: {this.state.DURATION}
+                        </p>
                     </div>
-                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                    <p className="d-inline-block mr-5">
-                        OVERALL START TIME: {this.state.STARTTIME}
-                    </p>
-                    <p className="d-inline-block mr-5 ml-5">
-                        OVERALL END TIME: {this.state.ENDTIME}
-                    </p>
-                    <p className="d-inline-block mr-5 ml-5">
-                        TOTAL DURATION: {this.state.DURATION}
-                    </p>
-
+                    
                 </header>
                 <div className="mb-2">
                     <button type="button" className="btn btn-submit mr-1" onClick={this.handleClick}>
@@ -138,7 +139,7 @@ class SpecificTask extends Component {
 
                 </div>
                 <br/> <br/>
-                <table class="table">
+                <table className="table">
                     <thead>
                     <tr>
                         <th scope="col">Start Time</th>
