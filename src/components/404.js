@@ -12,36 +12,36 @@ class errorPage extends Component {
       // this is the konami code (up,up,down,down,left,right,left,right,b,a,enter)
       specialThanks: [
         {name: 'Marc Lefebvre', description: 'Agile Coach'},
-        {name: 'Micheal McCarthy', description: 'Runs TLI'},
-        {name: 'Paul Gries', description: 'Runs CSC207 and TLI'},
-        {name: 'Robert Wood', description: '"Microsoft"'},
+        {name: 'Micheal McCarthy', description: 'Technology Leadership Initiative Leader'},
+        {name: 'Paul Gries', description: 'Professor'},
+        {name: 'Robert Wood', description: 'Microsoft Tech Guy'},
         {name: 'Water Guy', description: 'Sprayed water on us'}
       ],
       credits: [
         {name: 'Aslesha Pokhrel', description: 'Frontend/Backend'},
-        {name: 'Ben Pry', description: 'Frontend/Backend - Udemy courses dealer'},
-        {name: 'Clara Silwal', description: 'Frontend - "I like pretty colors"'},
-        {name: 'Chenhao Gong', description: 'Backend - "?????"'},
+        {name: 'Ben Pry', description: 'Udemy courses dealer - Frontend/Backend'},
+        {name: 'Clara Silwal', description: '"I like pretty colors" - Frontend'},
+        {name: 'Chenhao Gong', description: '"?????" - Backend'},
         {name: 'Ece Yucer', description: 'Backend'},
         {name: 'Elias Williams', description: 'Backend'},
         {name: 'Felicia Liang', description: 'Frontend'},
-        {name: 'Ibrahim Hasan', description: 'Frontend/Backend - "Wow its actually good"'},
-        {name: 'Ignas Armoska', description: 'Frontend/Backend - Bad at mario kart'},
-        {name: 'Jason Tang', description: 'Frontend - "Tony use bootstrap"'},
+        {name: 'Ibrahim Hasan', description: '"Wow its actually good" - Frontend/Backend'},
+        {name: 'Ignas Armoska', description: 'Bad at mario kart - Frontend/Backend'},
+        {name: 'Jason Tang', description: '"Tony use bootstrap" - Frontend'},
         {name: 'Julie Quintero', description: 'Backend'},
-        {name: 'Kshitij Shah', description: 'Backend - Honorary True Blue Teen'},
+        {name: 'Kshitij Shah', description: 'Honorary True Blue Teen - Backend'},
         {name: 'Lauren Mason', description: 'Frontend'},
         {name: 'Luke Kwong', description: 'Frontend/Backend'},
         {name: 'Matthieu Chan Chee', description: 'Frontend/Backend'},
         {name: 'Muhammad Khattak', description: 'Backend'},
-        {name: 'Nancy Zhang', description: 'Frontend - "Wait whaaaat"'},
+        {name: 'Nancy Zhang', description: 'Frontend'},
         {name: 'Peiyu Yu', description: 'Frontend/Backend'},
         {name: 'Ruth Castro', description: 'Backend'},
         {name: 'Sami Fassnacht', description: 'Frontend'},
-        {name: 'Tony Nguyen', description: 'Frontend/Backend - "Element React has so many more THINGS"'},
+        {name: 'Tony Nguyen', description: '"Element React has so many more THINGS" - Frontend/Backend'},
         {name: 'Utkarsh Agarwal', description: 'Backend'},
-        {name: 'Viresh Umbre', description: 'Frontend/Backend - "Youre not getting away this time"'},
-        {name: 'William Nono', description: 'Frontend/Backend - "So theres this guy..."'}
+        {name: 'Viresh Umbre', description: '"Youre not getting away this time" - Frontend/Backend'},
+        {name: 'William Nono', description: '"So theres this guy..." - Frontend/Backend'}
       ]
     }
   }
@@ -139,13 +139,13 @@ class errorPage extends Component {
             <div className="container px-4">
               <div className="row mx-0"><h1 className="display-4">Welcome to the credits</h1></div>
               <hr className="white-hr"/>
-              <div className="row mx-0"><h1>Meet the Developers: </h1></div>
-              <hr className="white-hr"/>
-              {content}
-              <hr className="white-hr"/>
               <div className="row mx-0"><h1>Special thanks to: </h1></div>
               <hr className="white-hr"/>
               {specialContent}
+              <hr className="white-hr"/>
+              <div className="row mx-0"><h1>Meet the Developers: </h1></div>
+              <hr className="white-hr"/>
+              {content}
             </div>
           </div>
 
