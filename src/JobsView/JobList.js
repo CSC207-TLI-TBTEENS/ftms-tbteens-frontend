@@ -33,13 +33,24 @@ class JobList extends Component {
                                 <form>
                                     {
                                         this.props.jobViewed.map((field, index) => {
-                                            return (
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">{field.label}</label>
-                                                    <input type="email" class="form-control" id="firstName" aria-describedby="emailHelp" 
-                                                        value={field.value} onChange={(event) => this.props.formHandler(event, index)}/>
-                                                </div>
-                                            )
+                                            if (field.label.indexOf("Email") !== -1) {
+                                                return (
+                                                    <div class="form-group">
+                                                        <label>{field.label}</label>
+                                                        <input type="email" class="form-control" id="firstName" aria-describedby="emailHelp" 
+                                                            value={field.value} onChange={(event) => this.props.formHandler(event, index)} required/>
+                                                    </div>
+                                                )
+                                            }
+                                            else {
+                                                return (
+                                                    <div class="form-group">
+                                                        <label>{field.label}</label>
+                                                        <input type="text" class="form-control" id="firstName" aria-describedby="emailHelp" 
+                                                            value={field.value} onChange={(event) => this.props.formHandler(event, index)} required/>
+                                                    </div>
+                                                )
+                                            }
                                         })
                                     }
                                 </form>

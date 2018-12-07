@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import SubmitList from './SubmitList';
+import withAuth from "../hocs/withAuth";
 
 class Submit extends Component {
     constructor(props) {
@@ -8,13 +9,13 @@ class Submit extends Component {
         const regexHour = "^[0-9]+:[0-9]{2}$";
         const regexMoney = "^[$]{0,1}[0-9]*(,[0-9]{3})*(.[0-9]{2}){0,1}$";
 
-        if (this.props.details === null || this.props.details === []) {
+        if (this.props.details !== null && this.props.details !== undefined) {
             this.state = { details: props.details }
         }
         else {
             this.state = {
                 details:
-                    [{name: "Start Time", value: "12:34", inputRegex: regexTime},
+                    [{name: "Start Time", value: "12:34"},
                     {name: "End Time", value: "23:45", inputRegex: regexTime},
                     {name: "Travel Time", value: "00:00", inputRegex: regexHour},
                     {name: "Costs", value: "1,000,000", inputRegex: regexMoney}]
@@ -23,9 +24,11 @@ class Submit extends Component {
         // Give me a prop with the form AND of the details below, the form will autogenerate
         // i.e. 
         // details: [
-        // {name: "Display-name-1", value: "Value-for-user-to-change-1", [OPTIONAL]inputRegex: "Regex=for-value-to-match-1"}
-        // {name: "Display-name-2", value: "Value-for-user-to-change-2", [OPTIONAL]inputRegex: "Regex=for-value-to-match-2"}
-        // {name: "Display-name-3", value: "Value-for-user-to-change-3", [OPTIONAL]inputRegex: "Regex=for-value-to-match-3"}
+        // {
+        //     name: "Display-name-1", 
+        //     value: "Value-for-user-to-change-1", 
+        //     [OPTIONAL]inputRegex: "Regex=for-value-to-match-1"
+        // }
         // ]
     }
 
@@ -50,6 +53,11 @@ class Submit extends Component {
     }
 
     render() {
+        // Removing alerts if page is reloaded.
+        this.props.history.listen(() => {
+            this.props.removeAlert();
+        });
+        
         return (
             <div className="container">
                 <header className="jumbotron bg-image">
@@ -74,4 +82,4 @@ class Submit extends Component {
 
 }
 
-export default Submit;
+export default withAuth(["ROLE_ADMIN", "ROLE_EMPLOYEE", "ROLE_SUPERVISOR", "ROLE_CLIENT"], Submit);

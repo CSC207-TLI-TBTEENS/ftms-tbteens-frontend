@@ -1,0 +1,12 @@
+.notif-dropdown{
+    border-bottom: 1px solid var(--button_v_light);
+    white-space: pre-wrap;
+    width: auto;
+    color: var(--dark_font_color);
+}
+
+.box-size{
+    max-height: 100%;
+    overflow-y: auto;
+    overflow-x: auto;
+}

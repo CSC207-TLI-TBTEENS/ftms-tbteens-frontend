@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import * as apiCalls from './api';
-
+import { removeAlert, addAlert } from "../store/actions/alerts";
+import { connect } from "react-redux";
 
 //Toggle for Job Detail View Enabled
 class JobItem extends Component {
@@ -13,9 +14,13 @@ class JobItem extends Component {
     
     //Get list of all employees from specific job
     async getEmployeesFromJob(jobId){
-        let newemployees = await apiCalls.getEmployeesFromJob(jobId);
-        console.log(newemployees)
-        this.setState({employees: [...newemployees]});
+        try {
+            this.props.removeAlert();
+            let newemployees = await apiCalls.getEmployeesFromJob(jobId);
+            this.setState({employees: [...newemployees]});
+        } catch(err) {
+            this.props.addAlert("error-getting-employee", err.message);
+        }
     }
 
     componentWillMount() {
@@ -32,6 +37,10 @@ class JobItem extends Component {
                     <button type="button" className="btn btn-second mr-1" data-toggle="modal" data-target={"#Job" +this.props.job.id}>
                         View Job Details
                     </button>
+                    {/* In case the employees list doesn't load */}
+                    <div className={ this.props.alerts.category === "error-getting-employee" ? "d-block alert alert-danger" : "d-none" }>
+                        {this.props.alerts.message}
+                    </div>
                 </td>
                 <td>
                     <div className="btn-group float-right" role="group" aria-label="deletion-edit">
@@ -95,4 +104,11 @@ class JobItem extends Component {
 
     }
 }
-export default JobItem;
+
+
+function mapStateToProps(state) {
+    return {
+        alerts: state.alerts
+    }; 
+}
+export default connect(mapStateToProps, { removeAlert, addAlert })(JobItem);

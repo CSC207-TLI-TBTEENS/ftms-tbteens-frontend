@@ -41,8 +41,14 @@ class UserRegistration extends Component {
     }
 
     async getEmployeeInfo(id) {
-        let employee = await apiCall("GET", "/api/auth/user/" + this.props.match.params.id);
-        this.setState({ employee })
+        try {
+            this.props.removeAlert();
+            let employee = await apiCall("GET", "/api/auth/user/" + this.props.match.params.id);
+            this.setState({ employee });
+        } catch(err) {
+            this.props.addAlert(err.message);
+        }
+        
     }
     
     render() {
@@ -74,6 +80,7 @@ class UserRegistration extends Component {
                                 autoComplete="off"
                                 value = {password}
                                 onChange={this.handleChange} 
+                                required
                                 />
                             </div>
                             <div className="form-group">
@@ -86,6 +93,7 @@ class UserRegistration extends Component {
                                 autoComplete="off"
                                 value = {confirmPassword}
                                 onChange={this.handleChange} 
+                                required
                                 />
                                 <div className="form-control-feedback form-error">{passwordMessage}</div>
                             </div>

@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 
+import'./css/404.css';
 import './css/misc.css';
 import './css/index.css';
 import './css/JobAssignment.css';
@@ -14,6 +15,7 @@ import './css/ButtonsIcons.css';
 import './css/Login.css';
 import './css/mobile.css';
 import './css/Submit.css';
+import './css/Notification.css';
 
 ReactDOM.render(<App />,  document.getElementById('root'));
 

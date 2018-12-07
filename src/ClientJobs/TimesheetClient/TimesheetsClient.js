@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import TimesheetList from './TimesheetList';
-import SearchBar from '../components/Search';
-import * as apiCalls from '../Employees/api.js';
+import TimesheetClientList from './TimesheetClientList';
+import SearchBar from '../../components/Search';
+import * as apiCalls from './api.js';
 import { Message } from 'element-react';
 
 class Timesheets extends Component {
@@ -24,7 +24,7 @@ class Timesheets extends Component {
 
     async loadTimesheets() {
         try {
-            let getTimesheets = await apiCalls.getTimesheetsFromEmployee(this.props.currentUser.user.id);
+            let getTimesheets = await apiCalls.getTimesheetsClientJob(this.props.match.params.id);
             this.setState({timesheets: [...getTimesheets], timesheetsShow: [...getTimesheets]});
         } catch(err) {
             Message({
@@ -35,6 +35,9 @@ class Timesheets extends Component {
     }
 
     render() {
+        this.props.history.listen(() => {
+            this.props.removeAlert();
+        });
         return (
             <div className="container">
                 <header className="jumbotron bg-image">
@@ -45,8 +48,11 @@ class Timesheets extends Component {
 
                 <SearchBar data={this.state.timesheets} onchange={this.searchRet}/>
 
-                <TimesheetList
+                <TimesheetClientList
                     timesheets = {this.state.timesheetsShow}
+                    addAlert={this.props.addAlert}
+                    removeAlert={this.props.removeAlert}
+                    alerts={this.props.alerts}
                 />
 
             </div>

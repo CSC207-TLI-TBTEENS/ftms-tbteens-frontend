@@ -5,6 +5,7 @@ import * as apiCalls from '../Tasks/api';
 import * as jobApiCalls from '../JobsView/api.js'
 import TaskForm from '../Tasks/TaskForm';
 import { Message, MessageBox } from 'element-react';
+import withAuth from "../hocs/withAuth";
 
 
 class TimesheetEdit extends Component {
@@ -24,32 +25,52 @@ class TimesheetEdit extends Component {
     this.addTask = this.addTask.bind(this);
     }
 
-   componentDidMount() {
-       const timesheetId = this.props.match.params.id;
-       const userId = this.props.currentUser.user.id;
-       this.loadTasks(timesheetId);
-       this.loadJob(timesheetId);
-   }
+    componentDidMount() {
+        const timesheetId = this.props.match.params.id;
+        const userId = this.props.currentUser.user.id;
+        this.loadTasks(timesheetId);
+        this.loadJob(timesheetId);
+    }
 
-   async loadTasks(timesheetId) {
-       let tasks = await apiCalls.getTasks(timesheetId);
-       this.setState({taskList: tasks});
-       this.setState({taskShow: [...tasks]});
-   }
+    async loadTasks(timesheetId) {
+        try {
+            this.props.removeAlert();
+            let tasks = await apiCalls.getTasks(timesheetId);
+            this.setState({taskList: tasks});
+            this.setState({taskShow: [...tasks]});
+        } catch(err) {
+            this.props.addAlert("error-timesheetedit", err.message);
+        }
+    }
 
     async submitPartRequest(request) {
-        // let newRequest = await apiCalls.createPartRequest(request);
+        // try {
+        //     this.props.removeAlert();
+        //     let newRequest = await apiCalls.createPartRequest(request);
+        // } catch(err) {
+        //     this.props.addAlert("error-timesheetedit", err.message);
+        // }
     }
 
     async loadJob(timesheetId) {
-        let job = await jobApiCalls.getJobFromId(timesheetId);
-        this.setState({job: job});
+        try {
+            this.props.removeAlert();
+            let job = await jobApiCalls.getJobFromId(timesheetId);
+            this.setState({job: job});
+        } catch(err) {
+            this.props.addAlert("error-timesheetedit", err.message);
+        }
     }
 
     async addTask(task) {
-        let newTask = await apiCalls.createTask(task);
-        this.setState({taskList : [...this.state.taskList, newTask], 
-                    taskShow : [...this.state.taskShow, newTask]});
+        try {
+            this.props.removeAlert();
+            let newTask = await apiCalls.createTask(task);
+            this.setState({taskList : [...this.state.taskList, newTask], 
+                        taskShow : [...this.state.taskShow, newTask]});
+        } catch(err) {
+            this.props.addAlert("error-timesheetedit", err.message);
+        }
     }
    
     setTaskViewing = (taskname, starttime, endtime) => {
@@ -143,6 +164,11 @@ class TimesheetEdit extends Component {
     }
 
     render() {
+        // Removing alerts if page is reloaded.
+        this.props.history.listen(() => {
+            this.props.removeAlert();
+        });
+
         let content = (<div>
             
             <TaskList task = {this.state.taskShow} 
@@ -172,11 +198,14 @@ class TimesheetEdit extends Component {
                         <button type="button" className="btn btn-table mr-1 w-auto">
                             Review and Submit Timesheet
                         </button>
-
-
-                    {}
                     </div>
                 </header>
+
+                {/* In case the employees list doesn't load */}
+                <div className={ this.props.alerts.category === "error-timesheetedit" ? "d-block alert alert-danger" : "d-none" }>
+                    {this.props.alerts.message}
+                </div>
+
                 {content}
 
                 <div className="modal fade" id="taskForm" tabIndex="-1" role="dialog" aria-labelledby="createNewTask" aria-hidden="true">
@@ -232,4 +261,4 @@ class TimesheetEdit extends Component {
     }
 }
 
-export default TimesheetEdit;
+export default withAuth(["ROLE_ADMIN", "ROLE_EMPLOYEE", "ROLE_SUPERVISOR", "ROLE_CLIENT"], TimesheetEdit);

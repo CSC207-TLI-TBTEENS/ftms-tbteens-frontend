@@ -11,7 +11,7 @@ const TaskConfirmation = (props) => {
                         return (
                             <div>
                                 <p className="card-text closer-p">
-                                  <i className="el-icon-delete"/>
+                                  <i className="el-icon-delete" data-toggle="modal" data-target="#deleteJobCenterModal"/>
                                     {"                 " + employee.firstname + " " + employee.lastname}
                                 </p>
 
@@ -26,7 +26,7 @@ const TaskConfirmation = (props) => {
 
                                       <div class="modal-footer modal-footer-confirm">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                        <button type="button" class="btn btn-confirmation" data-dismiss="modal" onClick={props.onClick}>OK</button>
+                                        <button type="button" class="btn btn-confirmation" data-dismiss="modal" onClick={() => props.delete(props.currentJob.id, employee.id)}>OK</button>
                                       </div>
 
                                     </div>

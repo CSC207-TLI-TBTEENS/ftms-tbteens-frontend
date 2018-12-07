@@ -12,21 +12,31 @@ class Activities extends React.Component {
         this.getJobs();
     }
 
+    // get the jobs from the current user
     getJobs = async () => {
+        // api call to get the jobs
         let employeeJobs = await JobAPI.getJobsFromEmployee(this.props.user.id);
+
+        // for each job, add info of its progress
         for (let i = 0; i < employeeJobs.length; i++) {
             let completion = await JobAPI.getJobCompletion(employeeJobs[i].id);
             employeeJobs[i]["progress"] = completion
         }
+
+        // set the state
         this.setState({jobs: employeeJobs});
-        console.log(this.state.jobs)
     }
 
     
     render() {
+        // for every job, create a progress bar
+        // this bar is not representative of this specific employee's progress on the job
+        // but the entire jb as a whole
         const jobs = this.state.jobs.map(job => {
             let percentage = (job.progress * 100).toString() + "%"
             let bar;
+
+            // if the job is done, bar will be colored green
             if (percentage === "100%") {
                 bar = (
                     <div className="progress-bar progress-bar-striped" 
@@ -36,6 +46,7 @@ class Activities extends React.Component {
                             aria-valuemin="0" 
                             aria-valuemax="100"/>
                 )
+            // else will just be blue
             } else {
                 bar = (
                     <div className="progress-bar progress-bar-striped bg-success" 
