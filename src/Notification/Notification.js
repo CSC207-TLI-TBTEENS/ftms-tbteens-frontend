@@ -47,7 +47,7 @@ class Notification extends Component {
             <div>
                 <a className="dropdown-item notif-dropdown" href="#">
                     <p className="mb-2">{notification.message}</p>
-                    <h6 className="mb-1">{notification.createdAt}</h6>
+                    <h6 className="mb-1">{notification.createdAt.substring(0, notification.createdAt.length - 12).replace("T", " ")}</h6>
                 </a>
             </div>
         )
