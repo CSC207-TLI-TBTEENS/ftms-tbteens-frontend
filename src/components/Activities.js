@@ -16,7 +16,7 @@ class Activities extends React.Component {
     // get the jobs from the current user
     getJobs = async () => {
         // api call to get the jobs
-        let jobsToShow;
+        let jobsToShow = [];
         if (this.props.user.role === "ROLE_EMPLOYEE") { 
             jobsToShow = await JobAPI.getJobsFromEmployee(this.props.user.id);
         } else if (this.props.user.role === "ROLE_CLIENT") {
