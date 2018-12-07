@@ -12,6 +12,16 @@ export async function getEmployeesFromJob(input) {
     return apiCall("GET", address);
 }
 
+export async function getJobsFromEmployee(input) {
+    let address = "api/jobs/getfromemployee/" + input.toString();
+    return apiCall('GET', address);
+}
+
+export async function getJobCompletion(input) {
+    let address = "api/timesheet/completion/" + input.toString();
+    return apiCall('GET', address)
+}
+
 export async function getJobFromId(id) {
     return apiCall("GET", JOBAPI + id + "/timesheet");
 }

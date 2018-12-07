@@ -55,7 +55,7 @@ class UserRegistration extends Component {
         }
 
         let display;
-        if (!completed && this.state.employee.password === null) {
+        if (!completed) {
             display = (
             <div className="row">
                 <div className="container container-style">

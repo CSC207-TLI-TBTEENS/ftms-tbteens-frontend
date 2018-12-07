@@ -2,7 +2,7 @@ import { apiCall} from "../Services/api";
 
 const JOBAPI = "/api/jobs/";
 const TASKAPI = "/api/tasks";
-const JOBEMPLOYEES = JOBAPI + "employees"
+const JOBEMPLOYEES = JOBAPI + "employees/"
 let newtimesheet= {job: "", employee: " "};
 
 export async function getAllJobs() {
@@ -18,5 +18,6 @@ export async function assignJob(timesheet){
 }
 
 export async function getEmployeesFromJob(input) {
-    return apiCall("POST", JOBEMPLOYEES, {...input});
+    console.log(input)
+    return apiCall("GET", JOBEMPLOYEES + input, {...input});
 }

@@ -188,7 +188,75 @@ code {
 }
 */
 
+/* Carousel */
+.carousel-header {
+    text-align: center;
+}
 
+.email-carousel {
+}
+
+.email-carousel:focus {
+    outline: none !important;
+    outline-color: var(--button-dark);
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -webkit-appearance: none;
+}
+.dark-font {
+    color: black;
+}
+
+.change-label {
+    color: black;
+}
+
+.dark-border {
+    border-color: var(--button_dark);
+}
+
+.round-table {
+    border-radius: 5%
+}
+
+.no-outline {
+    background-color: var(--button_v_dark);
+    border-color: transparent;
+    outline: none;
+    color: white;
+}
+
+.no-outline:focus .no-outline:active .no-outline:hover {
+    background-color: var(--button_v_dark) !important;
+    outline: none !important;
+    outline-color: var(--button-dark);
+    box-shadow: 0px transparent;
+    -webkit-box-shadow: none;
+    -webkit-appearance: none;
+    color: white;
+}
+
+.editable-cell {
+    outline: none !important;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -webkit-appearance: none;
+}
+
+.submit-edit-info {
+    text-align: center;
+}
+
+.submit-edit-button:hover {
+    cursor: pointer;
+    color: white;
+}
+
+/* Container */
+.dashboard-container {
+    width: 80%;
+    height: 100%
+}
 
 /*Code for the modal popups(forms which pop up when we click on "Add Companies, etc)*/
 .modal-header {
