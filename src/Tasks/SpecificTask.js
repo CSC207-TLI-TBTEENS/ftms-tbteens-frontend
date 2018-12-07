@@ -9,8 +9,7 @@ class SpecificTask extends Component {
         super(props);
         this.state = {
             taskName: "",
-            taskId: 1,
-            // get Id from backend/ TaskItem
+            taskId: this.props.id,
             taskDescription:"",
             STARTTIME: "",
             ENDTIME:"",

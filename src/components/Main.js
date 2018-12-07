@@ -25,6 +25,9 @@ import TimesheetClient from "../ClientJobs/TimesheetClient/TimesheetsClient"
 const Main = props => {
     const { authUser, alerts, removeAlert, currentUser } = props;
     return (
+        
+       
+       
         <Route render={({location}) => (
             <Switch location={location}>
                 {/* Login route. */}
@@ -173,7 +176,9 @@ const Main = props => {
                 {/* This is the 404 page. Keep it at the bottom of the switch. */}
                 <Route component={errorPage}/>
             </Switch>
+            
         )} />
+        
     )
 }
 
