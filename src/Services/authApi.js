@@ -1,4 +1,5 @@
 import request from './apiServices';
+import {apiCall} from "../Services/api";
 
 export function login(loginRequest) {
     return request({
@@ -25,4 +26,8 @@ export function getCurrentUser() {
         url: "/api/users/me",
         method: 'GET'
     });
+}
+
+export function verifyPasswordEmployee(info) {
+    return apiCall('POST', "/api/auth/verifypassword/employee", info);
 }
