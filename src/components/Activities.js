@@ -1,5 +1,6 @@
 import React from 'react';
 import * as JobAPI from '../JobsView/api.js';
+import * as ClientJobAPI from '../ClientJobs/api.js';
 import { Progress } from 'element-react';
 
 
@@ -15,16 +16,21 @@ class Activities extends React.Component {
     // get the jobs from the current user
     getJobs = async () => {
         // api call to get the jobs
-        let employeeJobs = await JobAPI.getJobsFromEmployee(this.props.user.id);
+        let jobsToShow;
+        if (this.props.user.role === "ROLE_EMPLOYEE") { 
+            jobsToShow = await JobAPI.getJobsFromEmployee(this.props.user.id);
+        } else if (this.props.user.role === "ROLE_CLIENT") {
+            jobsToShow = await ClientJobAPI.getJobs(this.props.user.company.id);
+        }
 
         // for each job, add info of its progress
-        for (let i = 0; i < employeeJobs.length; i++) {
-            let completion = await JobAPI.getJobCompletion(employeeJobs[i].id);
-            employeeJobs[i]["progress"] = completion
+        for (let i = 0; i < jobsToShow.length; i++) {
+            let completion = await JobAPI.getJobCompletion(jobsToShow[i].id);
+            jobsToShow[i]["progress"] = completion
         }
 
         // set the state
-        this.setState({jobs: employeeJobs});
+        this.setState({jobs: jobsToShow});
     }
 
     
