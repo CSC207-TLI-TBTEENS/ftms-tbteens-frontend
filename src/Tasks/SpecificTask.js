@@ -4,95 +4,113 @@ import * as apiCalls from './api';
 import { Message, MessageBox } from 'element-react';
 import TaskForm from './TaskForm'
 import TaskItem from './TaskItem'
+import { timingSafeEqual } from 'crypto';
 
 class SpecificTask extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            taskName: "",
-            taskId: this.props.id,
-            taskDescription:"",
-            STARTTIME: "",
-            ENDTIME:"",
-            DURATION:"",
-            session:[],
-            sessionViewed: [{label: "Start Time", value: ""},
-                {label: "End Time", value: ""},
-                {label: "Duration", value: ""}]
+            taskID: Number(this.props.match.params.id),
+            task: {},
+            sessions: [],
+            sessionOnGoing: false
         }
+
         this.handleChange = this.handleChange.bind(this);
         this.editTaskDetail = this.editTaskDetail.bind(this);
     }
 
     componentWillMount() {
         this.loadSpecificTask();
-    }
-
-    componentDidMount() {
-        const taskId = this.props.match.params.id;
-        const userId = this.props.currentUser.user.id;
-        //this.loadSessions(taskId, userId);
+        this.loadSessions();
     }
 
     async loadSpecificTask() {
-        let oneTask = {taskName: "Digging Hole", taskDescription: "None",
-            session:[{starttime:"12:00", endtime:"12:30", duration: "30"},
-                {starttime:"12:50", endtime:"12:55", duration: "5"}]
-        };
-        // TODO: Get specific task from props on TimesheetEdit. It uses dummy data now.
+        let oneTask = await apiCalls.getTaskByID(this.state.taskID);
 
-        // let sessions = oneTask[session];
-        // change sessions accordingly when task is passed as an object.
-
-        let taskName = oneTask.taskName;
-        let taskDescription = oneTask.taskDescription;
-
-
-        this.setState({task : oneTask, taskName: taskName, taskDescription: taskDescription});
-        // session: sessions, sessionsShow:[...session],
-        //?? every session is a dictionary and is passed?
-
+        this.setState({task: oneTask});
+        this.setState({starting: oneTask.startingSession, latest: oneTask.latestSession});
+        console.log(oneTask)
     }
 
-    async editTaskDetail(taskName, taskDescription) {
-        let edited = false;
+    handleStartOrPause = async () => {
+        let latest;
+        if (this.state.task.latestSession !== null) {
+            latest = await apiCalls.getSessionBySessionID(this.state.task.latestSession);
+        }
+
+        if (this.state.task.startingSession === null || !latest.inProgress) {
+            let session;
+            try {
+                session = await apiCalls.startNewSession(this.state.taskID);
+                this.setState({sessionOnGoing: true});
+                Message({
+                    type: "success",
+                    message: "A new session has been started successfully!"
+                })
+            } catch (error) {
+                Message({
+                    type: "error",
+                    message: "There was an error while starting a new session. Please contact support!"
+                })
+            }
+        } else {
+            let result = await apiCalls.endSession(this.state.latest);
+            if (result.success === true) {
+                this.setState({sessionOnGoing: false});
+                Message({
+                    type: "success",
+                    message: "Session has been ended."
+                })
+            } else {
+                Message({
+                    type: "error",
+                    message: result.message
+                })
+            }
+        }
+        let updatedTask = await apiCalls.getTaskByID(this.state.taskID);
+        this.setState({task: updatedTask})
+        this.loadSpecificTask();
+        this.loadSessions();
+    }
+  
+    async loadSessions() {
+        let sessions = await apiCalls.getSessionsByTaskID(this.state.taskID);
+
+        this.setState({sessions: sessions});
+        console.log(sessions);
+    }
+
+    async editTaskDetail() {
+        let newName = document.getElementById("title").innerHTML;
+        let newDescription = document.getElementById("description").innerHTML;
         await MessageBox.confirm('Update this task\'s information?', 'Warning', {
             confirmButtonText: 'OK',
             cancelButtonText: 'Cancel',
             type: 'warning'
-        }).then(async() => {
-            edited = true;
+        }).then(async () => {
             // Call backend edit function this.props.match.params.id = task ID
-            let id = this.state.taskId;
-            let result = await apiCalls.editTask({id, taskName, taskDescription});
+            let result = await apiCalls.editTask({id: this.state.taskID, name: newName, 
+                description: newDescription});
             await Message({
                 type: 'success',
                 // Display success message
                 message: result.message
             });
         }).catch((error) => {
+            let message;
+            if (error === undefined) {
+                message = "Editing cancelled.";
+            } else {
+                message = error.message;
+            }
             Message({
                 type: 'info',
-                message: error.message
+                message: message
             });
         });
-        // If no errors in editting
-        if (edited) {
-            // Update the session that are showed and the current list of employees
-            this.setState({taskName: taskName.toString(),
-                taskDescription: taskDescription});
-        }
     }
-
-    // setSessionViewing = (starttime, endtime) => {
-    //     // When one session for a task is viewed through modify button, update the session currently modified
-    //     this.setState({sessionViewed: [
-    //         {label: "Start Time", value: starttime},
-    //         {label: "End Time", value: endtime},
-    //         {label: "Duration", value: endtime-starttime}
-    //     ]})
-    // }
-
 
     handleChange(e) {
         // When the name, description, overall starttime, overall endtim us modified, update and pass it to the timesheet page and backend.
@@ -102,41 +120,48 @@ class SpecificTask extends Component {
     }
 
     render() {
+        let startStop;
+        if (this.state.sessionOnGoing) {
+            startStop = (
+                <i className="fas fa-stop"></i>
+            )
+        } else {
+            startStop = (
+                <i className="fas fa-play"></i>
+            )
+        }
+        console.log(this.state.task);
+        const times = this.state.sessions.map(session => {
+            return(
+                <tr>
+                    <td>{session.startTimeString}</td>
+                    <td>{session.endTimeString}</td>
+                    <td>{(session.hoursElapsed.toString() + "0000").slice(0, 4)}</td>
+                </tr>
+            )
+        })
         return(
             <div className="container">
                 <header className="jumbotron bg-image">
                     <div className="container">
-                        <h1 className="display-4 pb-3" suppressContentEditableWarning contentEditable="true">{this.state.taskName}</h1>
+                        <h1 id="title" className="display-4 pb-3" suppressContentEditableWarning contentEditable="true">{this.state.task.name}</h1>
                         <h1 className="display-4">{this.state.taskId}</h1>
                         <p className="h4 mb-3"> Description: 
-                            <p className="h5" suppressContentEditableWarning contentEditable="true">{this.state.taskDescription}</p>
+                            <p id="description" className="h5" suppressContentEditableWarning contentEditable="true">{this.state.task.description}</p>
                         </p>
                         <p>
-                            OVERALL START TIME: {this.state.STARTTIME}
-                        </p>
-                        <p>
-                            OVERALL END TIME: {this.state.ENDTIME}
-                        </p>
-                        <p>
-                            TOTAL DURATION: {this.state.DURATION}
+                            TOTAL DURATION (HOURS): {(this.state.task.hoursElapsed)}
                         </p>
                     </div>
                     
                 </header>
                 <div className="mb-2">
-                    <button type="button" className="btn btn-submit mr-1" onClick={this.handleClick}>
-                        Start-Pause
+                    <button type="button" className="btn btn-submit mr-1" onClick={this.handleStartOrPause.bind(this)}>
+                        {startStop}
                     </button>
-                    {/*TODO: Change "Start-Pause" to icons. The icons can change when you click it.*/}
-                    <button type="button" className="btn btn-submit mr-1">
-                        Stop
+                    <button type="button" className="btn btn-submit mr-1" onClick={this.editTaskDetail.bind(this)}>
+                        <i class="fas fa-check"></i>
                     </button>
-                    {/*TODO: Make stop button function.*/}
-                    <button type="button" className="btn btn-dark mr-1" data-toggle="modal" data-target="#taskForm">
-                        Modify Task Details
-                    </button>
-                    {/*TODO: Allow modify function work.*/}
-
                 </div>
                 <br/> <br/>
                 <table className="table">
@@ -144,15 +169,11 @@ class SpecificTask extends Component {
                     <tr>
                         <th scope="col">Start Time</th>
                         <th scope="col">End Time</th>
-                        <th scope="col">Duration(min)</th>
+                        <th scope="col">Duration (hours)</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">12:00</th>
-                        <td>12:45</td>
-                        <td>45</td>
-                    </tr>
+                        {times}
                     </tbody>
                 </table>
                 {/*TODO: Change the table based on the action on button*/}

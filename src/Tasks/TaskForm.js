@@ -7,8 +7,8 @@ class TaskForm extends Component {
         this.state = {
             timesheet: this.props.timesheetId,
             name: '',
-            description: ''
-
+            description: '',
+            userID: this.props.userID,
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,7 +21,7 @@ class TaskForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.addTask({...this.state});
+        this.props.addTask(this.state);
         this.setState({
             name: '',
             description: ''

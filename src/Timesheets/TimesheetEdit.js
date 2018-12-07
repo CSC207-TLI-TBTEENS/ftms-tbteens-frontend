@@ -13,6 +13,7 @@ class TimesheetEdit extends Component {
         super(props);
         this.state = {
             jobId: "",
+            userID: this.props.currentUser.user.id,
             job: {},
             user: {},
             location: "",
@@ -27,7 +28,6 @@ class TimesheetEdit extends Component {
 
     componentDidMount() {
         const timesheetId = this.props.match.params.id;
-        const userId = this.props.currentUser.user.id;
         this.loadTasks(timesheetId);
         this.loadJob(timesheetId);
     }
@@ -36,8 +36,16 @@ class TimesheetEdit extends Component {
         try {
             this.props.removeAlert();
             let tasks = await apiCalls.getTasks(timesheetId);
-            this.setState({taskList: tasks});
-            this.setState({taskShow: [...tasks]});
+            let filtertasks = [];
+            for (let i = 0; i < tasks.length; i++) {
+                console.log(tasks[i].userID, tasks[i].userID !== this.state.userID)
+                if (tasks[i].userID == this.state.userID) {
+                    filtertasks.push(tasks[i])
+                }
+            }
+            console.log(filtertasks);
+            this.setState({taskList: filtertasks});
+            this.setState({taskShow: filtertasks});
         } catch(err) {
             // this.props.addAlert("error-timesheetedit", err.message);
             Message({
@@ -223,6 +231,7 @@ class TimesheetEdit extends Component {
                 <div className="collapse mb-3" id="taskForm">
                     <div className="card card-body">
                         <TaskForm style={{float: "left"}}
+                            userID = {this.state.userID}
                             addTask = {this.addTask}
                             timesheetId= {this.props.match.params.id}/>
                     </div>
