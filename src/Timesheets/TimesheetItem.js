@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const TimesheetItem = ({id, jobTitle, company, description, siteName}) => (
+const TimesheetItem = ({id, job}) => (
     <tr>
-        <td>{jobTitle}</td>
-        <td>{company.name}</td>
+        <td>{job.jobTitle}</td>
+        <td>{job.company.name}</td>
         <td>
             <center>
                 <button type="button" className="btn btn-second mr-1" data-toggle="modal" data-target="#jobDetails">
@@ -22,7 +22,7 @@ const TimesheetItem = ({id, jobTitle, company, description, siteName}) => (
              <div className="modal-dialog" role="document">
                  <div className="modal-content">
                      <div className="modal-header">
-                         <h5 class="modal-title">{jobTitle} Details</h5>
+                         <h5 class="modal-title">{job.jobTitle} Details</h5>
 
                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                            <span aria-hidden="true">&times;</span>
@@ -30,11 +30,11 @@ const TimesheetItem = ({id, jobTitle, company, description, siteName}) => (
                      </div>
                      <div className="modal-body">
                         <h6>Client Company</h6>
-                        <p className="detail">{company.name}</p>
+                        <p className="detail">{job.company.name}</p>
                         <h6>Description</h6>
-                        <p className="detail">{description}</p>
+                        <p className="detail">{job.description}</p>
                         <h6>Location</h6>
-                        <p className="detail">{siteName}</p>
+                        <p className="detail">{job.siteName}</p>
                      </div>
                      <div className="modal-footer">
                         <button type="button" className="btn btn-submit mr-1" data-dismiss="modal">

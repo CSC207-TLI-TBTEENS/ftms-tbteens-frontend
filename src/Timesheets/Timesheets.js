@@ -24,7 +24,7 @@ class Timesheets extends Component {
 
     async loadTimesheets() {
         try {
-            let getTimesheets = await apiCalls.getJobsFromEmployee(this.props.currentUser.user.id);
+            let getTimesheets = await apiCalls.getTimesheetsFromEmployee(this.props.currentUser.user.id);
             this.setState({timesheets: [...getTimesheets], timesheetsShow: [...getTimesheets]});
         } catch(err) {
             Message({
