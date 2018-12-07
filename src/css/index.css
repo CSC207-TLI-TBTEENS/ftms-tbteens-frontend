@@ -101,7 +101,10 @@ code {
         width: 320px !important;
     }
 }
-
+*:focus {
+    outline: none;
+    box-shadow: none;
+}
 /* Navigation Bar */
 .navbar a {
     font-weight: bold;
@@ -260,6 +263,14 @@ code {
     -webkit-box-shadow: none;
     -webkit-appearance: none;
     color: white;
+}
+
+.display-4:focus .display-4:active .display-4:hover  {
+    outline: none !important;
+    outline-color: var(--button-dark);
+    box-shadow: 0px transparent;
+    -webkit-box-shadow: none;
+    -webkit-appearance: none;
 }
 
 .editable-cell {

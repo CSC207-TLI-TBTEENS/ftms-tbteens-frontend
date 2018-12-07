@@ -16,6 +16,7 @@ class Timesheets extends Component {
     }
 
     componentWillMount() {
+        console.log(this.props.currentUser.user.id)
         this.loadTimesheets();
     }
     searchRet(data){
